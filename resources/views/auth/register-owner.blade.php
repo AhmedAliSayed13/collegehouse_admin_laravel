@@ -19,7 +19,7 @@
   <div class="row mt-4 mb-4" >
     <div class="col-lg-7 float-left register-div-1 ">
       <h2 >
-        CollegeHousing<span class="sign-admin-text"> Student portal</span>
+        CollegeHousing<span class="sign-admin-text"> Owner House portal</span>
       </h2>
       <h4>
         Register
@@ -27,7 +27,7 @@
       <div class="col-lg-12 float-left">
         <form method="POST" action="{{ route('register') }}">
             @csrf
-            <input type="hidden"  name="role_id" value="{{ old('role_id',3) }}"  >
+            <input type="hidden"  name="role_id" value="{{ old('role_id',2) }}"  >
           <div class="form-row mt-3">
             <div class="col">
               <label for="first_name">First Name</label>
@@ -137,12 +137,7 @@
 
 
 
-            
-
-
-
-
-
+        
 
           <div class="form-check mt-3">
             <input type="checkbox" class="form-check-input"  @error("condition") is-invalid @enderror" name="condition" id="field_condition">
@@ -165,7 +160,7 @@
 
     </div>
     <div class="col-lg-5 float-left">
-      <img class="index-img-left" src="./images/index-1.png">
+      <img class="index-img-left" src="{{asset('images/index-1.png')}}">
     </div>
   </div>
 </div>

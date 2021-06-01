@@ -53,12 +53,12 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'numeric'],
+            'phone' => ['required', 'numeric','unique:users'],
             'address' => ['required', 'string', 'max:255'],
             'state' => ['required', 'string', 'max:255'],
             'city_id' => ['required', 'integer'],
             'zip' => ['required', 'string', 'max:255'],
-            // 'role_id' => ['required'],
+            'role_id' => ['required'],
             'condition' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -79,7 +79,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'address' => $data['address'],
             'city_id' => $data['city_id'],
-            'role_id' => 1,
+            'role_id' => $data['role_id'],
             'zip' => $data['zip'],
             'email' => $data['email'],
             'state' => $data['state'],
@@ -96,6 +96,12 @@ class RegisterController extends Controller
     {
         $cities=City::all();
         return view('auth.register', compact('cities'));
+    }
+
+    public function showFormOwner()
+    {
+        $cities=City::all();
+        return view('auth.register-owner', compact('cities'));
     }
 
 
