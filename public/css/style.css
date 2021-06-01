@@ -1,0 +1,26 @@
+.index-img-left{
+    width: 100%;
+    height: 100%;
+}
+.index-div-1 h2{
+    padding-top: 125px;
+}
+.index-div-1 h4{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.index-link-signin{
+    width: 100%;
+    margin-top: 25px;
+}
+.index-link-register{
+    width: 100%;
+    margin-top: 25px;
+}
+h2 span.sign-admin-text{
+    font-size: 14px!important;
+}
+.register-div-1 h2{
+    padding-top: 50px;
+    
+}

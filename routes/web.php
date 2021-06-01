@@ -15,6 +15,56 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+ Auth::routes();
+// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+// Route::post('login', 'Auth\LoginController@login');
+// Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+// Route::post('register', 'Auth\RegisterController@register');
+
+// // Password Reset Routes...
+// Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+// Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+
+
+Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'home']);
+
+Route::post('login/{provider}/callback', 'Auth\LoginController@handleCallback');
+
+
+Route::get('/test','App\Http\Controllers\TestController@test1');
+Route::post('/test','App\Http\Controllers\TestController@test2');
+
+Route::get('admin/profile','App\Http\Controllers\HomeController@profile')->name('profile')->middleware('admin');
+Route::post('admin/profile','App\Http\Controllers\HomeController@save_profile')->name('admin.save-profile');
+
+Route::get('admin/add-house','App\Http\Controllers\HouseController@showAddHouseFrom')->name('add-house')->middleware('admin');
+Route::post('admin/add-house','App\Http\Controllers\HouseController@AddHouseSave')->name('add-house-save')->middleware('admin');
+Route::get('admin/all-house','App\Http\Controllers\HouseController@showAllHouse')->name('all-house')->middleware('admin');
+
+Route::get('admin/all-rental-owners','App\Http\Controllers\AdminController@showAllRentalOwners')->name('all-rental-owners')->middleware('admin');
+Route::get('admin/add-rental-owner','App\Http\Controllers\AdminController@showAddRentalOwner')->name('add-rental-owner')->middleware('admin');
+Route::post('admin/add-rental-owner','App\Http\Controllers\AdminController@AddRentalOwnerSave')->name('add-rental-owner-save')->middleware('admin');
+
+
+Route::get('admin/add-room','App\Http\Controllers\RoomController@showAddRoomFrom')->name('add-room')->middleware('admin');
+Route::post('admin/add-room','App\Http\Controllers\RoomController@AddRoomFormSave')->name('add-room-save')->middleware('admin');
+Route::get('admin/all-rooms','App\Http\Controllers\RoomController@showAllRoom')->name('all-rooms')->middleware('admin');
+
+
+
+
+
+
+// owner
+Route::get('owner/profile', [App\Http\Controllers\OwnerController::class, 'profile'])->name('owner.profile')->middleware('owner');
+Route::post('owner/profile','App\Http\Controllers\OwnerController@save_profile')->name('owner.save-profile');
+
+// student
+Route::get('student/profile', [App\Http\Controllers\StudentController::class, 'profile'])->name('student.profile')->middleware('student');
+Route::post('student/profile','App\Http\Controllers\StudentController@save_profile')->name('student.save-profile');
