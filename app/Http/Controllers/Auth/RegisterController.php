@@ -94,14 +94,28 @@ class RegisterController extends Controller
     */
     public function showRegistrationForm()
     {
+     return redirect('tenant/register');;
+    }
+    public function showFormTenant()
+    {
         $cities=City::all();
-        return view('auth.register', compact('cities'));
+        return view('auth.register-tenant', compact('cities'));
     }
 
     public function showFormOwner()
     {
         $cities=City::all();
         return view('auth.register-owner', compact('cities'));
+    }
+    public function redirectTo()
+    {
+        if (auth()->user()->role_id==1) {
+            return '/admin/dashboard';
+        } else if (auth()->user()->role_id==2) {
+            return '/admin/dashboard';
+        } else {
+            return '/tenant/dashboard';
+        }
     }
 
 

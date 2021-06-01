@@ -6,17 +6,17 @@
 								<span>Main</span>
 							</li>
 							<li class="active"> 
-								<a href="{{route('home')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+								<a href="{{url('home')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
 							
 							<li class="">
-								<a href="{{route('all-house')}}"><i class="fe fe-home"></i> <span>All Houses</span></a>
+								<a href="{{url('all-house')}}"><i class="fe fe-home"></i> <span>All Houses</span></a>
 							</li>
 							<li class="">
-								<a href="{{route('all-rental-owners')}}"><i class="fe fe-home"></i> <span>All Rental Owners</span></a>
+								<a href="{{url('all-rental-owners')}}"><i class="fe fe-home"></i> <span>All Rental Owners</span></a>
 							</li>
 							<li class="">
-								<a href="{{route('all-rooms')}}"><i class="fe fe-home"></i> <span>All Rooms</span></a>
+								<a href="{{url('all-rooms')}}"><i class="fe fe-home"></i> <span>All Rooms</span></a>
 							</li>
 							
 

@@ -19,7 +19,7 @@
   <div class="row mt-4 mb-4" >
     <div class="col-lg-7 float-left register-div-1 ">
       <h2 >
-        CollegeHousing<span class="sign-admin-text"> Student portal</span>
+        CollegeHousing<span class="sign-admin-text"> Tenant portal</span>
       </h2>
       <h4>
         Register
@@ -165,7 +165,7 @@
 
     </div>
     <div class="col-lg-5 float-left">
-      <img class="index-img-left" src="./images/index-1.png">
+      <img class="index-img-left" src="{{asset('images/index-1.png')}}">
     </div>
   </div>
 </div>

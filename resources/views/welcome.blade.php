@@ -30,7 +30,7 @@
       </div>
       @else
       @if (Route::has('login'))
-      <div class="col-lg-6 float-left">
+      <div class="col-lg-12 float-left">
       
         
         
@@ -42,7 +42,13 @@
       @if(Route::has('register'))
       <div class="col-lg-6 float-left">
        
-        <a href="{{ route('register') }}" class="index-link-register btn btn-secondary">Register</a>
+        <a href="{{ route('tenant.register') }}" class="index-link-register btn btn-secondary">Register Tenant</a>
+        
+      </div>
+
+      <div class="col-lg-6 float-left">
+       
+        <a href="{{ route('owner.register') }}" class="index-link-register btn btn-secondary">Register House Owner</a>
         
       </div>
       @endif

@@ -6,7 +6,7 @@
 								<span>Main</span>
 							</li>
 							<li class="active"> 
-								<a href="{{route('home')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+								<a href="{{url('home')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
 							
 							

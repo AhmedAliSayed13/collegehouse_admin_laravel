@@ -64,7 +64,8 @@
             <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
             <div class="border-bottom w-100 mr-5"></div>
           </div>
-          <a href="{{ route('register') }}" class="index-link-register btn btn-primary" style="margin-top: 0px!important;" >Register</a>
+          <a href="{{ route('owner.register') }}" class="index-link-register btn btn-primary mb-2" style="margin-top: 0px!important;" >Register House Owner</a>
+          <a href="{{ route('tenant.register') }}" class="index-link-register btn btn-primary mb-2" style="margin-top: 0px!important;" >Register Tenant</a>
           </form>
 
 
