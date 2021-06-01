@@ -11,7 +11,6 @@
       <link rel="stylesheet" href="{{ asset('css/app.css') }}" >
       <link rel="stylesheet" href="{{ asset('css/style.css') }}" >
       <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
-      
       </head>
 <body>
 
@@ -134,11 +133,6 @@
                 @enderror
               </div>
             </div>
-
-
-
-        
-
           <div class="form-check mt-3">
             <input type="checkbox" class="form-check-input"  @error("condition") is-invalid @enderror" name="condition" id="field_condition">
             <label class="form-check-label" for="condition">I have agreed to the terms and conditions</label>
