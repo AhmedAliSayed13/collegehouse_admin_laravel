@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2021 at 05:06 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Generation Time: Jun 02, 2021 at 02:01 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -129,9 +130,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone`, `address`, `state`, `city_id`, `zip`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ahmed', 'ali', '01112912233', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'wedwe', 1, 'ewr3w', 'ahmednour@gmail.com', NULL, '$2y$10$UhgBGyE/wfd7g61/NJqzZuA/vg.W2CMojyUEzarTLC6MqdSI5r9lK', 1, NULL, '2021-06-01 12:25:06', '2021-06-01 12:25:06'),
-(2, 'ahmed', 'ali', '01112913344', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'hjthj', 1, 'fdgrf', 'st1@gmail.com', NULL, '$2y$10$zR92d6lc1.0mwudhbl4n/uHg5xqT6G6hPtpJSJsAzI8OMSeDWgOO2', 3, NULL, '2021-06-01 12:34:11', '2021-06-01 12:34:11'),
-(3, 'ahmed', 'ali', '01112912244', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'ed23edx', 1, '234e23', 'ow1@gmail.com', NULL, '$2y$10$.Kt9BrklKp5xhxa135XpmunfSpvGZ/aUyuL6QJf.YVTvDH7NCIrjS', 2, NULL, '2021-06-01 12:45:45', '2021-06-01 12:45:45');
+(1, 'ahmed', 'ali sayed', '01112912233', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'wedwe', 2, 'ewr3w', 'admin@gmail.com', NULL, '$2y$10$3oWWERiU3W22KsmWAw05Iua.rDfQefUBT8/QK4TyYx2Cs3p0baxI6', 1, NULL, '2021-06-01 12:25:06', '2021-06-01 21:27:26'),
+(2, 'ahmed', 'ali', '01112913344', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'hjthj', 1, 'fdgrf', 'student@gmail.com', NULL, '$2y$10$zR92d6lc1.0mwudhbl4n/uHg5xqT6G6hPtpJSJsAzI8OMSeDWgOO2', 3, NULL, '2021-06-01 12:34:11', '2021-06-01 12:34:11'),
+(3, 'ahmed', 'ali', '01112912244', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'ed23edx', 1, '234e23', 'owner@gmail.com', NULL, '$2y$10$.Kt9BrklKp5xhxa135XpmunfSpvGZ/aUyuL6QJf.YVTvDH7NCIrjS', 2, NULL, '2021-06-01 12:45:45', '2021-06-01 12:45:45');
 
 --
 -- Indexes for dumped tables
