@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use App\DataTables\UsersDataTable;
 class AdminController extends Controller
 {
     public function showDashboard(){
@@ -91,5 +92,9 @@ class AdminController extends Controller
         $success="Add Rental Owner Successfully";
         return  back()->with('success',$success);
 
+    }
+    public function index(UsersDataTable $user)
+    {
+        return $user->render('admin.brands.index',['title'=>'admin title']);
     }
 }
