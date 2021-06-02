@@ -34,7 +34,7 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
     Route::get('/add-owner',[App\Http\Controllers\AdminController::class,'ShowAddOwner'])->name('admin.showAddOwner');
     Route::post('/save-owner',[App\Http\Controllers\AdminController::class,'ShowAddOwnerSave'])->name('admin.showAddOwner.save');
     
-
+    
 
 
     
@@ -65,8 +65,13 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
     
 });
 
-Route::get('datatable', 'DataTableController@index');
-Route::get('fetch', 'DataTableController@fetch');
+
+
+
+
+
+
+
 // Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'home']);
 

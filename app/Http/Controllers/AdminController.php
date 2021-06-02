@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Auth;
-use App\DataTables\UsersDataTable;
+// use App\DataTables\UsersDataTable;
 class AdminController extends Controller
 {
     public function showDashboard(){
