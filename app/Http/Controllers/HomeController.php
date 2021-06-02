@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,16 @@ class HomeController extends Controller
     }
     public function home()
     {
-        return view('home');
+        $url='/';
+        if(Auth::check()){
+            if(Auth::user()->role_id==1){
+                $url='admin/dashboard';
+            }else if(Auth::user()->role_id==2){
+                $url='owner/dashboard';
+            }else if(Auth::user()->role_id==3){
+                $url='tenant/dashboard';
+            }
+        }
+        return view('welcome',compact('url'));
     }
 }

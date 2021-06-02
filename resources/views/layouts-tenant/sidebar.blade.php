@@ -5,8 +5,8 @@
 							<li class="menu-title"> 
 								<span>Main</span>
 							</li>
-							<li class="active"> 
-								<a href="{{url('home')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+							<li class="{{active_link('tenant/dashboard')}}"> 
+								<a href="{{route('tenant.dashboard')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
 							
 							

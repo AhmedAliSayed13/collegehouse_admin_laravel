@@ -119,7 +119,8 @@
                                 <p class="text-muted mb-0">Administrator</p>
                             </div>
                         </div>
-                        <a class="dropdown-item" href="{{route('student.profile')}}">My Profile</a>
+                        <a class="dropdown-item {{active_link('tenant/profile')}}" href="{{route('tenant.profile')}}">My Profile</a>
+                        <a class="dropdown-item {{active_link('tenant/change-password')}}" href="{{route('tenant.changepassword')}}">Change Password</a>
                         
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" >Logout</a>
                         <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">

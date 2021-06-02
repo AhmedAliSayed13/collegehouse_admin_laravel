@@ -5,10 +5,10 @@
 							<li class="menu-title"> 
 								<span>Main</span>
 							</li>
-							<li class="active"> 
-								<a href="{{url('home')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+							<li class="{{active_link('admin/dashboard')}}"> 
+								<a href="{{route('admin.dashboard')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
-							
+<!-- 							
 							<li class="">
 								<a href="{{url('all-house')}}"><i class="fe fe-home"></i> <span>All Houses</span></a>
 							</li>
@@ -17,7 +17,7 @@
 							</li>
 							<li class="">
 								<a href="{{url('all-rooms')}}"><i class="fe fe-home"></i> <span>All Rooms</span></a>
-							</li>
+							</li> -->
 							
 
 						</ul>

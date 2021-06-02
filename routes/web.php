@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 // Route::get('/register', function () {
 //     return redirect('/register/tenant');
 // });
@@ -36,13 +34,25 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
 
 
 Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
-    
+    Route::get('/dashboard',[App\Http\Controllers\OwnerController::class,'showDashboard'])->name('owner.dashboard');
+
+    Route::get('/profile',[App\Http\Controllers\OwnerController::class,'showProfile'])->name('owner.profile');
+    Route::post('/profile-save',[App\Http\Controllers\OwnerController::class,'profileSave'])->name('owner.profile.save');
+
+    Route::get('/change-password',[App\Http\Controllers\OwnerController::class,'showChangePassword'])->name('owner.changepassword');
+    Route::post('/change-password-save',[App\Http\Controllers\OwnerController::class,'ChangePasswordSave'])->name('owner.changepassword.save');
 });
 
 
 
 Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
-    
+    Route::get('/dashboard',[App\Http\Controllers\TenantController::class,'showDashboard'])->name('tenant.dashboard');
+
+    Route::get('/profile',[App\Http\Controllers\TenantController::class,'showProfile'])->name('tenant.profile');
+    Route::post('/profile-save',[App\Http\Controllers\TenantController::class,'profileSave'])->name('tenant.profile.save');
+
+    Route::get('/change-password',[App\Http\Controllers\TenantController::class,'showChangePassword'])->name('tenant.changepassword');
+    Route::post('/change-password-save',[App\Http\Controllers\TenantController::class,'ChangePasswordSave'])->name('tenant.changepassword.save');
 });
 
 
@@ -77,9 +87,9 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
 
 // owner
-Route::get('owner/profile', [App\Http\Controllers\OwnerController::class, 'profile'])->name('owner.profile')->middleware('owner');
-Route::post('owner/profile','App\Http\Controllers\OwnerController@save_profile')->name('owner.save-profile');
+// Route::get('owner/profile', [App\Http\Controllers\OwnerController::class, 'profile'])->name('owner.profile')->middleware('owner');
+// Route::post('owner/profile','App\Http\Controllers\OwnerController@save_profile')->name('owner.save-profile');
 
-// student
-Route::get('student/profile', [App\Http\Controllers\StudentController::class, 'profile'])->name('student.profile')->middleware('student');
-Route::post('student/profile','App\Http\Controllers\StudentController@save_profile')->name('student.save-profile');
+// // student
+// Route::get('student/profile', [App\Http\Controllers\StudentController::class, 'profile'])->name('student.profile')->middleware('student');
+// Route::post('student/profile','App\Http\Controllers\StudentController@save_profile')->name('student.save-profile');

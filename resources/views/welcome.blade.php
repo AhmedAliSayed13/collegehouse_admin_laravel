@@ -26,7 +26,7 @@
       </p>
       @auth
       <div class="col-lg-12 float-left">
-      <a href="{{ route('home') }}" class="index-link-signin btn btn-primary">Home</a>
+      <a href="{{ url($url) }}" class="index-link-signin btn btn-primary">Home</a>
       </div>
       @else
       @if (Route::has('login'))
