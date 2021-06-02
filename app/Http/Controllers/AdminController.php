@@ -22,12 +22,12 @@ class AdminController extends Controller
         $validatedData = $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'numeric'],
+            'phone' => ['required', 'numeric','unique:users,phone,'.Auth::user()->id.',id'],
             'address' => ['required', 'string', 'max:255'],
             'city_id' => ['required', 'integer'],
             'state' => ['required', 'string', 'max:255'],
             'zip' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255']
+            'email' => ['required', 'string', 'email', 'max:255','unique:users,email,'.Auth::user()->id.',id']
         ]);
 
         $id = Auth::user()->id;
@@ -56,5 +56,40 @@ class AdminController extends Controller
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
         $success="Change Password Successfully";
         return  back()->with('success',$success);
+    }
+    public function ShowAddOwner(Request $request){
+        $cities=City::all();
+        return view('admin.add-owner',compact('cities'));
+    }
+    public function ShowAddOwnerSave(Request $request){
+        $validatedData = $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'numeric','unique:users'],
+            'address' => ['required', 'string', 'max:255'],
+            'state' => ['required', 'string', 'max:255'],
+            'city_id' => ['required', 'integer'],
+            'zip' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required', 'string', 'min:8'],
+        ]);
+
+     
+        User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'city_id' => $request->city_id,
+            'role_id' => 2,
+            'zip' => $request->zip,
+            'email' => $request->email,
+            'state' => $request->state,
+            'password' => Hash::make($request->password)
+        ]);
+        $success="Add Rental Owner Successfully";
+        return  back()->with('success',$success);
+
     }
 }

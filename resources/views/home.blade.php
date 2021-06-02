@@ -33,11 +33,11 @@
 		
 			<!-- Header -->
 			
-            @extends('layouts-admin.header')
+            @include('layouts-admin.header')
 			<!-- /Header -->
 			<!-- Sidebar -->
 			
-            @extends('layouts-admin.sidebar')
+            @include('layouts-admin.sidebar')
 			<!-- /Sidebar -->
 			
 			<!-- Page Wrapper -->

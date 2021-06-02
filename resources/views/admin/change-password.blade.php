@@ -35,16 +35,26 @@
 	<div class="main-wrapper">
 
 		<!-- Header -->
-		@extends('layouts-admin.header')
+		@include('layouts-admin.header')
 		<!-- /Header -->
 		<!-- Sidebar -->
-		@extends('layouts-admin.sidebar')
+		@include('layouts-admin.sidebar')
 		<!-- /Sidebar -->
 
 		<!-- Page Wrapper -->
 		<div class="page-wrapper">
 			<div class="content container-fluid">
-
+			<div class="page-header">
+					<div class="row">
+						<div class="col">
+							<h3 class="page-title">Admin</h3>
+							<ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+								<li class="breadcrumb-item active">Change Password</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 
 
 				<div class="row">

@@ -30,6 +30,9 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
     Route::post('/profile',[App\Http\Controllers\AdminController::class,'profileSave']);
     Route::get('/change-password',[App\Http\Controllers\AdminController::class,'showChangePassword'])->name('admin.changepassword');
     Route::post('/change-password-save',[App\Http\Controllers\AdminController::class,'ChangePasswordSave'])->name('admin.changepassword.save');
+
+    Route::get('/add-owner',[App\Http\Controllers\AdminController::class,'ShowAddOwner'])->name('admin.showAddOwner');
+    Route::post('/save-owner',[App\Http\Controllers\AdminController::class,'ShowAddOwnerSave'])->name('admin.showAddOwner.save');
 });
 
 
@@ -53,6 +56,8 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
     Route::get('/change-password',[App\Http\Controllers\TenantController::class,'showChangePassword'])->name('tenant.changepassword');
     Route::post('/change-password-save',[App\Http\Controllers\TenantController::class,'ChangePasswordSave'])->name('tenant.changepassword.save');
+
+    
 });
 
 

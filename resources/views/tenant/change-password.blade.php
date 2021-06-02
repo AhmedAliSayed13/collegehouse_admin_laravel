@@ -35,10 +35,10 @@
 	<div class="main-wrapper">
 
 		<!-- Header -->
-		@extends('layouts-tenant.header')
+		@include('layouts-tenant.header')
 		<!-- /Header -->
 		<!-- Sidebar -->
-		@extends('layouts-tenant.sidebar')
+		@include('layouts-tenant.sidebar')
 		<!-- /Sidebar -->
 
 		<!-- Page Wrapper -->

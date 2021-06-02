@@ -22,12 +22,12 @@ class OwnerController extends Controller
         $validatedData = $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'numeric'],
+            'phone' => ['required', 'numeric','unique:users,phone,'.Auth::user()->id.',id'],
             'address' => ['required', 'string', 'max:255'],
             'city_id' => ['required', 'integer'],
             'state' => ['required', 'string', 'max:255'],
             'zip' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255']
+            'email' => ['required', 'string', 'email', 'max:255','unique:users,email,'.Auth::user()->id.',id']
         ]);
 
         $id = Auth::user()->id;

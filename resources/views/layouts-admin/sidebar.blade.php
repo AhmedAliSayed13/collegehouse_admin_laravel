@@ -8,6 +8,14 @@
 							<li class="{{active_link('admin/dashboard')}}"> 
 								<a href="{{route('admin.dashboard')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-document"></i> <span> All Rental Owner </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{{route('admin.showAddOwner')}}"> <i class="fa fa-plus mr-2"></i> Add Rental Owner </a></li>
+									<li><a href="login.html"> <i class="fa fa-th-list mr-2"></i> List Rental Owner </a></li>
+									
+								</ul>
+							</li>
 <!-- 							
 							<li class="">
 								<a href="{{url('all-house')}}"><i class="fe fe-home"></i> <span>All Houses</span></a>
