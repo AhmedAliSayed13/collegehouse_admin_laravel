@@ -12,7 +12,15 @@
 								<a href="#"><i class="fe fe-document"></i> <span> All Rental Owner </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{route('admin.showAddOwner')}}"> <i class="fa fa-plus mr-2"></i> Add Rental Owner </a></li>
-									<li><a href="login.html"> <i class="fa fa-th-list mr-2"></i> List Rental Owner </a></li>
+									<li><a href="{{route('admin.showListOwner')}}"> <i class="fa fa-th-list mr-2"></i> List Rental Owner </a></li>
+									
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-document"></i> <span> All Houses </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{{route('admin.showAddHouse')}}"> <i class="fa fa-plus mr-2"></i> Add House </a></li>
+									<li><a href=""> <i class="fa fa-th-list mr-2"></i> List Houses </a></li>
 									
 								</ul>
 							</li>

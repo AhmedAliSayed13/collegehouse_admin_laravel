@@ -1,44 +1,107 @@
-<html lang="en">
+<!DOCTYPE html>
+
+<html>
+
 <head>
-    <title>Laravel Datatable using Yajra Tutorial Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(function() {
-            $('#dataTable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{{ url('fetch') }}',
-                columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'name', name: 'name' },
-                    { data: 'email', name: 'email' },
-                    { data: 'created_at', name: 'created_at' }
-                ]
-            });
-        });
-    </script>
+
+    <title>Laravel 5.8 image upload example - HDTuto.com</title>
+
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css">
+
 </head>
+
+  
+
 <body>
- 
+
 <div class="container">
-    <h2>Laravel Datatable using Yajra Tutorial Example</h2>
-    <table class="table table-bordered" id="dataTable">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Created</th>
-        </tr>
-        </thead>
-    </table>
+
+   
+
+    <div class="panel panel-primary">
+
+      <div class="panel-heading"><h2>Laravel 5.8 image upload example - HDTuto.com</h2></div>
+
+      <div class="panel-body">
+
+   
+
+        @if ($message = Session::get('success'))
+
+        <div class="alert alert-success alert-block">
+
+            <button type="button" class="close" data-dismiss="alert">×</button>
+
+                <strong>{{ $message }}</strong>
+
+        </div>
+
+        <img src="images/{{ Session::get('image') }}">
+
+        @endif
+
+  
+
+        @if (count($errors) > 0)
+
+            <div class="alert alert-danger">
+
+                <strong>Whoops!</strong> There were some problems with your input.
+
+                <ul>
+
+                    @foreach ($errors->all() as $error)
+
+                        <li>{{ $error }}</li>
+
+                    @endforeach
+
+                </ul>
+
+            </div>
+
+        @endif
+
+  
+
+        <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
+
+            @csrf
+
+            <div class="row">
+
+  
+
+                <div class="col-md-6">
+
+                    <input type="file" name="image" class="form-control">
+
+                </div>
+
+   
+
+                <div class="col-md-6">
+
+                    <button type="submit" class="btn btn-success">Upload</button>
+
+                </div>
+
+   
+
+            </div>
+
+        </form>
+
+  
+
+      </div>
+
+    </div>
+
 </div>
- 
+
 </body>
+
+  
+
 </html>

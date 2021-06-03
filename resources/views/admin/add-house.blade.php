@@ -1,87 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts-admin.index')
+@section('content')
+			
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+				<div class="page-header">
+					
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Doccure - Profile</title>
-
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
-
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-
-	<!-- Fontawesome CSS -->
-	<link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
-
-	<!-- Feathericon CSS -->
-	<link rel="stylesheet" href="{{ asset('assets/css/feathericon.min.css') }}">
-
-	<!-- Main CSS -->
-	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
-
-
-	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-	<!-- firebase files end -->
-
-</head>
-
-<body>
-
-	<!-- Main Wrapper -->
-	<div class="main-wrapper">
-
-		<!-- Header -->
-		@inclde('layouts-admin.header')
-		<!-- /Header -->
-		<!-- Sidebar -->
-		@inclde('layouts-admin.sidebar')
-		<!-- /Sidebar -->
-
-		<!-- Page Wrapper -->
-		<div class="page-wrapper">
-			<div class="content container-fluid">
-
-
-
+					<div class="row">
+							<div class="col-sm-7 col-auto">
+								<h3 class="page-title">Admin</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+									<li class="breadcrumb-item active">List Owner</li>
+									
+								</ul>
+							</div>
+							<div class="col-sm-5 col">
+							<a href="{{route('admin.showAddOwner')}}"  class="btn btn-primary float-right mt-2"><i class="fa fa-plus mr-2"></i> Add Rental Owner</a>
+							</div>
+						</div>
+				</div>
+				
 				<div class="row">
-					<div class="col-md-12">
-						
+						<div class="col-sm-12">
+							<div class="card">
+								
+								<div class="card-body">
 
-
-
-						<!-- Personal Details Tab -->
-
-
-						<!-- Personal Details -->
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="card">
-									<div class="card-body">
-
-										<div class="row">
-
-											<div class="col-md-12">
-												@isset($error)
-												<div class="alert alert-danger alert-dismissible fade show" role="alert">
-													<strong>Error!</strong>{{$error}}
-													<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-														<span aria-hidden="true">×</span>
-													</button>
-												</div>    
-                                                @endisset
-												@isset($success)
-												<div class="alert alert-success alert-dismissible fade show" role="alert">
-													<strong>Success!</strong>{{ $success}}
-													<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-														<span aria-hidden="true">×</span>
-													</button>
-												</div>
-                                                @endisset
-												<form method="POST" action="{{route('add-house-save')}}">
+								<form method="POST" action="{{route('admin.showAddHouse.save')}}" enctype="multipart/form-data">
 													{{ csrf_field() }}
 													<div class="row">
 														<div class="col-md-12">
@@ -90,7 +37,7 @@
 																<select id="owner_id" type="text" class="form-control @error('owner_id') is-invalid @enderror" name="owner_id" value="{{ old('owner_id') }}" autocomplete="owner_id" autofocus>
 																<option value="">Select Owner</option>
 																@foreach ($owners as $owner) 
-																	<option value="{{$owner['uid']}}">{{$owner['first_name'].' '.$owner['last_name']}}</option>
+																	<option value="{{$owner['uid']}}">{{$owner->fullname()}}</option>
 																@endforeach
 																</select>
 																@error('owner_id')
@@ -131,8 +78,14 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																
-																<input id="city" placeholder="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" autocomplete="city" autofocus>
-																@error('city')
+																<select id="city_id" placeholder="city_id" type="text" class="form-control @error('city_id') is-invalid @enderror" name="city_id" value="{{ old('city_id') }}" autocomplete="city_id" autofocus>
+																	<option value="">Select City</option>
+																	@foreach ($citys as $city) 
+																		<option value="{{$city->uid}}">{{$city->name}}</option>
+																	@endforeach
+																	
+																</select>
+																@error('city_id')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
 																</span>
@@ -158,12 +111,12 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																
-																<select id="type"  class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type') }}" autocomplete="type" autofocus>
+																<select id="type_house_id"  class="form-control @error('type_house_id') is-invalid @enderror" name="type_house_id" value="{{ old('type_house_id') }}" autocomplete="type_house_id" autofocus>
 																	<option value="option1">option 1</option>
 																	<option value="option2">option 2</option>
 																	<option value="option3">option 3</option>
 																</select>
-																@error('type')
+																@error('type_house_id')
 																	<span class="invalid-feedback" role="alert">
 																		<strong>{{ $message }}</strong>
 																	</span>
@@ -198,8 +151,8 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																
-																<input id="bathrooms" placeholder="Number Bathrooms" type="number" class="form-control @error('bathrooms') is-invalid @enderror" name="bathrooms" value="{{ old('bathrooms') }}" autocomplete="bathrooms" autofocus>
-																@error('bathrooms')
+																<input id="num_bathrooms" placeholder="Number Bathrooms" type="number" class="form-control @error('num_bathrooms') is-invalid @enderror" name="num_bathrooms" value="{{ old('num_bathrooms') }}" autocomplete="num_bathrooms" autofocus>
+																@error('num_bathrooms')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
 																</span>
@@ -210,8 +163,8 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																
-																<input id="flooers" placeholder="number Flooers" type="number" class="form-control @error('flooers') is-invalid @enderror" name="flooers" value="{{ old('flooers') }}" autocomplete="flooers" autofocus>
-																@error('flooers')
+																<input id="num_flooers" placeholder="number num_flooers" type="number" class="form-control @error('num_flooers') is-invalid @enderror" name="num_flooers" value="{{ old('num_flooers') }}" autocomplete="num_flooers" autofocus>
+																@error('num_flooers')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
 																</span>
@@ -222,8 +175,8 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																
-																<input id="parking" placeholder="Off-Street Parking" type="number" class="form-control @error('parking') is-invalid @enderror" name="parking" value="{{ old('parking') }}" autocomplete="parking" autofocus>
-																@error('parking')
+																<input id="num_parkings" placeholder="Off-Street num_parkings" type="number" class="form-control @error('num_parkings') is-invalid @enderror" name="num_parkings" value="{{ old('num_parkings') }}" autocomplete="num_parkings" autofocus>
+																@error('num_parkings')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
 																</span>
@@ -233,26 +186,22 @@
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
-																
 																<input id="total_size" placeholder="Total Size" type="number" class="form-control @error('total_size') is-invalid @enderror" name="total_size" value="{{ old('total_size') }}" autocomplete="total_size" autofocus>
 																@error('total_size')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
 																</span>
 																@enderror
-
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
-																
-																<input id="kitchens" placeholder="Kitchens" type="number" class="form-control @error('kitchens') is-invalid @enderror" name="kitchens" value="{{ old('kitchens') }}" autocomplete="kitchens" autofocus>
-																@error('kitchens')
+																<input id="num_kitchens" placeholder="Kitchens" type="number" class="form-control @error('num_kitchens') is-invalid @enderror" name="num_kitchens" value="{{ old('num_kitchens') }}" autocomplete="num_kitchens" autofocus>
+																@error('num_kitchens')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
 																</span>
 																@enderror
-
 															</div>
 														</div>
 														<div class="col-md-12">
@@ -260,9 +209,7 @@
 														</div>
 														<div class="col-md-12">
 															<div class="form-group">
-																
-																<input id="annual_reset" placeholder="Annual Reset"  type="text"  class="form-control @error('annual_reset') is-invalid @enderror" name="annual_reset" value="{{ old('annual_reset') }}" autocomplete="annual_reset" autofocus>
-																
+																<input id="annual_reset" placeholder="Annual Reset"  type="text"  class="form-control @error('annual_reset') is-invalid @enderror" name="annual_reset" value="{{ old('annual_reset') }}" autocomplete="annual_reset" autofocus>													
 																@error('annual_reset')
 																	<span class="invalid-feedback" role="alert">
 																		<strong>{{ $message }}</strong>
@@ -277,20 +224,20 @@
 																<div class="col-md-10 d-flex">
 																	<div class="radio p-3">
 																		<label>
-																			<input type="radio" checked name="payment" value="Annual"> Annual
+																			<input type="radio" checked name="payment_method_id" value="Annual"> Annual
 																		</label>
 																	</div>
 																	<div class="radio p-3">
 																		<label>
-																			<input type="radio" name="payment" value="Monthly"> Monthly 
+																			<input type="radio" name="payment_method_id" value="Monthly"> Monthly 
 																		</label>
 																	</div>
 																	<div class="radio p-3">
 																		<label>
-																			<input type="radio" name="payment" value="Quarterly"> Quarterly
+																			<input type="radio" name="payment_method_id" value="Quarterly"> Quarterly
 																		</label>
 																	</div>
-																	@error('payment')
+																	@error('payment_method_id')
 																		<span class="invalid-feedback" role="alert">
 																			<strong>{{ $message }}</strong>
 																		</span>
@@ -301,8 +248,8 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																<label>Upload Ownership Contract</label>
-																<input id="ownership"  type="file"  class="form-control @error('ownership') is-invalid @enderror" name="ownership" value="{{ old('ownership') }}" autocomplete="ownership" autofocus>
-																@error('ownership')
+																<input id="image_ownership"  type="file"  class="form-control @error('image_ownership') is-invalid @enderror" name="image_ownership" value="{{ old('image_ownership') }}" autocomplete="image_ownership" autofocus>
+																@error('image_ownership')
 																	<span class="invalid-feedback" role="alert">
 																		<strong>{{ $message }}</strong>
 																	</span>
@@ -311,9 +258,9 @@
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
-																<label>Upload lease Contract</label>
-																<input id="lease"  type="file"  class="form-control @error('lease') is-invalid @enderror" name="lease" value="{{ old('lease') }}" autocomplete="lease" autofocus>
-																@error('lease')
+																<label>Upload image_lease Contract</label>
+																<input id="image_lease"  type="file"  class="form-control @error('image_lease') is-invalid @enderror" name="image_lease" value="{{ old('image_lease') }}" autocomplete="image_lease" autofocus>
+																@error('image_lease')
 																	<span class="invalid-feedback" role="alert">
 																		<strong>{{ $message }}</strong>
 																	</span>
@@ -321,121 +268,28 @@
 															</div>
 														</div>
 
-														<div class="col-md-12">
-															<h5 class="d-block mt-4">Property Media Gallery</h5>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>Upload Front View Image</label>
-																<input id="front"  type="file"  class="form-control @error('front') is-invalid @enderror" name="front" value="{{ old('front') }}" autocomplete="lease" autofocus>
-																@error('front')
-																	<span class="invalid-feedback" role="alert">
-																		<strong>{{ $message }}</strong>
-																	</span>
-																@enderror
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>Upload Hall  Images</label>
-																<input id="hall"  type="file"  class="form-control @error('hall') is-invalid @enderror" name="hall" value="{{ old('hall') }}" autocomplete="hall" autofocus>
-																@error('hall')
-																	<span class="invalid-feedback" role="alert">
-																		<strong>{{ $message }}</strong>
-																	</span>
-																@enderror
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>Upload Bedroom  Images</label>
-																<input id="bedroom_images"  type="file"  class="form-control @error('bedroom_images') is-invalid @enderror" name="bedroom_images" value="{{ old('bedroom_images') }}" autocomplete="bedroom_images" autofocus>
-																@error('bedroom_images')
-																	<span class="invalid-feedback" role="alert">
-																		<strong>{{ $message }}</strong>
-																	</span>
-																@enderror
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>Upload Kitchen  Images</label>
-																<input id="kitchen_images"  type="file"  class="form-control @error('kitchen_images') is-invalid @enderror" name="kitchen_images" value="{{ old('kitchen_images') }}" autocomplete="kitchen_images" autofocus>
-																@error('kitchen_images')
-																	<span class="invalid-feedback" role="alert">
-																		<strong>{{ $message }}</strong>
-																	</span>
-																@enderror
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="form-group">
-																<label>Upload Diagram  Images</label>
-																<input id="diagram"  type="file"  class="form-control @error('diagram') is-invalid @enderror" name="diagram" value="{{ old('diagram') }}" autocomplete="diagram" autofocus>
-																@error('diagram')
-																	<span class="invalid-feedback" role="alert">
-																		<strong>{{ $message }}</strong>
-																	</span>
-																@enderror
-															</div>
-														</div>
+														
 													</div>
 													<button type="submit" class="btn btn-primary" id="id-form1">
 														Update info
 													</button>
 
 												</form>
-											</div>
-										</div>
-
-
-
-									</div>
 								</div>
-
-
-
 							</div>
-
-
 						</div>
-						<!-- /Personal Details -->
-
-
-						<!-- /Personal Details Tab -->
-
-
-
-
 					</div>
-				</div>
 
+					
+					
+					
+					
+				
+				</div>			
 			</div>
-		</div>
-		<!-- /Page Wrapper -->
-
-	</div>
-	<!-- /Main Wrapper -->
-
-	<!-- jQuery -->
-	<script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
-
-	<!-- Bootstrap Core JS -->
-	<script src="{{ asset('assets/js/popper.min.js') }}"></script>
-	<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-
-	<!-- Slimscroll JS -->
-	<script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
-
-	<!-- Custom JS -->
-	<script src="{{ asset('assets/js/script.js') }}"></script>
-
-
-
-
-
-	
-
-</body>
-
-</html>
+			<!-- /Page Wrapper -->
+		
+    
+@stop
+												
+											

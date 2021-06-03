@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Auth;
-// use App\DataTables\UsersDataTable;
+
 class AdminController extends Controller
 {
     public function showDashboard(){
@@ -93,8 +93,42 @@ class AdminController extends Controller
         return  back()->with('success',$success);
 
     }
-    public function index(UsersDataTable $user)
+
+    public function ShowListOwner()
     {
-        return $user->render('admin.brands.index',['title'=>'admin title']);
+        $perpage=1;
+        $owners=User::where('role_id','=', 2)->paginate($perpage);
+        
+        return view('admin.list-owner',compact('owners','perpage'));
+    }
+    public function ShowAddHouse(){
+        $owners=User::where('role_id','=', 2)->get();
+        $citys=City::all();
+        return view('admin.add-house',compact('owners','citys'));
+    }
+    public function ShowAddHouseSave(Request $request){
+        $validatedData = $request->validate([
+            'owner_id' => ['required', 'integer'],
+            'address' => ['required', 'string', 'max:255'],
+            'status' => ['required'],
+            'city_id' => ['required', 'integer'],
+            'name' => ['required', 'string', 'max:255'],
+            'type_house_id' => ['required', 'integer'],
+            'num_rooms' => ['required', 'integer'],
+            'num_residents' => ['required', 'integer'],
+            'num_bathrooms' => ['required', 'integer' ],
+            'num_flooers' => ['required', 'integer'],
+            'num_parkings' => ['required', 'integer'],
+            'total_size' => ['required', 'numeric'],
+            'num_kitchens' => ['required', 'integer'],
+            'annual_reset' => ['required','integer'],
+            'payment_method_id' => ['required', 'integer'],
+            'image_ownership' => ['required','image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
+            'image_lease' => ['required','image','mimes:jpeg,png,jpg,gif,svg','max:2048']
+        ]);
+
+     
+        
+
     }
 }
