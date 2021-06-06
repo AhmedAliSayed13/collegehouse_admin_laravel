@@ -10,4 +10,27 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+
+    public function imageUpload()
+
+    {
+
+        return view('imageUpload');
+
+    }
+
+  
+
+    /**
+
+     * Display a listing of the resource.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    
 }

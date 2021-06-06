@@ -8,6 +8,14 @@ if (! function_exists('active_link')) {
     }
 }
 
+if (! function_exists('option_select')) {
+    function option_select($current,$item_id) {
+        if($current==$item_id){
+            return 'selected';
+        }
+    }
+}
+
 
 
 ?>

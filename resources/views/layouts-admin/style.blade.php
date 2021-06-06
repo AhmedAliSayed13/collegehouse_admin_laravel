@@ -17,6 +17,9 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
+<link rel="stylesheet" href="{{ asset('assets/plugins/select2/select2.min.css') }}">
+
+
 
 <!-- firebase files start -->
 

@@ -27,17 +27,17 @@
 							<div class="card">
 								
 								<div class="card-body">
-
+								@include('flash-message')
 								<form method="POST" action="{{route('admin.showAddHouse.save')}}" enctype="multipart/form-data">
 													{{ csrf_field() }}
 													<div class="row">
 														<div class="col-md-12">
 															<div class="form-group">
 																<label>Assign to Rental Owner : </label>
-																<select id="owner_id" type="text" class="form-control @error('owner_id') is-invalid @enderror" name="owner_id" value="{{ old('owner_id') }}" autocomplete="owner_id" autofocus>
+																<select  id="owner_id" type="text" class="  form-control @error('owner_id') is-invalid @enderror" name="owner_id" value="{{ old('owner_id') }}" autocomplete="owner_id" autofocus>
 																<option value="">Select Owner</option>
 																@foreach ($owners as $owner) 
-																	<option value="{{$owner['uid']}}">{{$owner->fullname()}}</option>
+																	<option value="{{$owner['id']}}" {{ option_select(old("owner_id") , $owner["id"] )}} >{{$owner->fullname()}}</option>
 																@endforeach
 																</select>
 																@error('owner_id')
@@ -78,10 +78,10 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																
-																<select id="city_id" placeholder="city_id" type="text" class="form-control @error('city_id') is-invalid @enderror" name="city_id" value="{{ old('city_id') }}" autocomplete="city_id" autofocus>
+																<select id="city_id"  type="text" class="form-control @error('city_id') is-invalid @enderror" name="city_id" value="{{ old('city_id') }}" autocomplete="city_id" autofocus>
 																	<option value="">Select City</option>
 																	@foreach ($citys as $city) 
-																		<option value="{{$city->uid}}">{{$city->name}}</option>
+																		<option value="{{$city->id}}">{{$city->name}}</option>
 																	@endforeach
 																	
 																</select>
@@ -111,12 +111,13 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																
-																<select id="type_house_id"  class="form-control @error('type_house_id') is-invalid @enderror" name="type_house_id" value="{{ old('type_house_id') }}" autocomplete="type_house_id" autofocus>
-																	<option value="option1">option 1</option>
-																	<option value="option2">option 2</option>
-																	<option value="option3">option 3</option>
+																<select id="house_type_id"  class="form-control @error('house_type_id') is-invalid @enderror" name="house_type_id" value="{{ old('house_type_id') }}" autocomplete="house_type_id" autofocus>
+																	<option value="option1">House Type</option>
+																	@foreach ($house_types as $house_type) 
+																		<option value="{{$house_type->id}}">{{$house_type->name}}</option>
+																	@endforeach
 																</select>
-																@error('type_house_id')
+																@error('house_type_id')
 																	<span class="invalid-feedback" role="alert">
 																		<strong>{{ $message }}</strong>
 																	</span>
@@ -163,7 +164,7 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																
-																<input id="num_flooers" placeholder="number num_flooers" type="number" class="form-control @error('num_flooers') is-invalid @enderror" name="num_flooers" value="{{ old('num_flooers') }}" autocomplete="num_flooers" autofocus>
+																<input id="num_flooers" placeholder="number Flooers" type="number" class="form-control @error('num_flooers') is-invalid @enderror" name="num_flooers" value="{{ old('num_flooers') }}" autocomplete="num_flooers" autofocus>
 																@error('num_flooers')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
@@ -175,7 +176,7 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																
-																<input id="num_parkings" placeholder="Off-Street num_parkings" type="number" class="form-control @error('num_parkings') is-invalid @enderror" name="num_parkings" value="{{ old('num_parkings') }}" autocomplete="num_parkings" autofocus>
+																<input id="num_parkings" placeholder="Off-Street Parkings" type="number" class="form-control @error('num_parkings') is-invalid @enderror" name="num_parkings" value="{{ old('num_parkings') }}" autocomplete="num_parkings" autofocus>
 																@error('num_parkings')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
@@ -222,21 +223,14 @@
 															<div class="form-group row">
 																<label class="col-form-label col-md-2">Payments Scheduals</label>
 																<div class="col-md-10 d-flex">
-																	<div class="radio p-3">
-																		<label>
-																			<input type="radio" checked name="payment_method_id" value="Annual"> Annual
-																		</label>
-																	</div>
-																	<div class="radio p-3">
-																		<label>
-																			<input type="radio" name="payment_method_id" value="Monthly"> Monthly 
-																		</label>
-																	</div>
-																	<div class="radio p-3">
-																		<label>
-																			<input type="radio" name="payment_method_id" value="Quarterly"> Quarterly
-																		</label>
-																	</div>
+																	@foreach ($payment_methods as $payment_method) 
+																		<div class="radio p-3">
+																			<label>
+																				<input type="radio" checked name="payment_method_id" value="{{$payment_method->id}}"> {{$payment_method->name}}
+																			</label>
+																		</div>
+																	@endforeach
+																	
 																	@error('payment_method_id')
 																		<span class="invalid-feedback" role="alert">
 																			<strong>{{ $message }}</strong>
@@ -267,6 +261,19 @@
 																@enderror
 															</div>
 														</div>
+
+														<div class="col-md-12">
+															<div class="form-group">
+																<label>Upload Front House Images</label>
+																<input id="front_house_images"   type="file"  class="form-control @error('front_house_images') is-invalid @enderror" name="front_house_images[]"  autocomplete="front_house_images" autofocus multiple>
+																@error('front_house_images')
+																	<span class="invalid-feedback" role="alert">
+																		<strong>{{ $message }}</strong>
+																	</span>
+																@enderror
+															</div>
+														</div>
+														
 
 														
 													</div>
