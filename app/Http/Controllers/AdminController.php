@@ -7,7 +7,7 @@ use App\Models\City;
 use App\User;
 use App\Models\House;
 use App\Models\House_type;
-use App\Payment_method;
+use App\Models\Payment_method;
 use App\Front_house_image;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;

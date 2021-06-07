@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\Models\House;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -44,5 +44,9 @@ class User extends Authenticatable
     public function fullname()
     {
         return $this->first_name.' '.$this->last_name ;
+    }
+    public function houses()
+    {
+        return $this->hasMany(House::class);
     }
 }

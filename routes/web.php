@@ -38,7 +38,7 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
 
 
     //Route::get('/add-house',[App\Http\Controllers\AdminController::class,'ShowAddHouse'])->name('house.create');
-    Route::post('/save-house',[App\Http\Controllers\AdminController::class,'ShowAddHouseSave'])->name('house.create.save');
+    Route::post('/house/delete-image-front',[App\Http\Controllers\Admin\HouseController::class,'delete_image_front']);
     
     //resource
     Route::resource('tag','Admin\TagController');

@@ -25,13 +25,25 @@ class HousesDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('edit', 'admin.houses.btn.edit')
             ->addColumn('delete', 'admin.houses.btn.delete')
-            ->addColumn('parent_id', function ($category) {
-                if(!empty($category->parent)){
-                    return $category->parent->name;
+            ->addColumn('house_type_id', function ($house) {
+                if(!empty($house->house_type)){
+                    return $house->house_type->name;
                 }
-                return 'no parent';
+                return 'no Type';
             })
-            ->rawColumns(['parent_id','edit','delete']);
+            ->addColumn('owner_id', function ($house) {
+                if(!empty($house->owner)){
+                    return $house->owner->first_name .' '.$house->owner->last_name ;
+                }
+                return 'no Owner';
+            })
+            ->addColumn('payment_method_id', function ($house) {
+                if(!empty($house->payment_method)){
+                    return $house->payment_method->name;
+                }
+                return 'no Value';
+            })
+            ->rawColumns(['house_type_id','owner_id','payment_method_id','edit','delete']);
     }
 
     /**
@@ -66,7 +78,7 @@ class HousesDataTable extends DataTable
             ->orderBy(1)
             ->parameters([
                 'dom' => 'Blfrtip',
-                'lengthMenu'=>[[10,20,50,100,-1],[10,20,50,100,trans('admin.TextAll')]],
+                'lengthMenu'=>[[10,20,50,100,-1],[10,20,50,100,trans('All Record')]],
                 'buttons'      => [
                     ['extend'=>'print','className'=>'btn btn-primary ','text'=>'<i class="fa fa-print"></i> '.'Print'],
                     ['extend'=>'export','className'=>' btn btn-primary ','text'=>'<i class="fa fa-download"></i> '.'Export'],

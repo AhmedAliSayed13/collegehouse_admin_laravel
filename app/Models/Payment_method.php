@@ -2,13 +2,13 @@
 
 namespace App\Models;
 use App\Models\House;
-
 use Illuminate\Database\Eloquent\Model;
 
-class House_type extends Model
+class Payment_method extends Model
 {
-    public function houses()
+    public function house()
     {
         return $this->hasMany(House::class);
     }
+    
 }

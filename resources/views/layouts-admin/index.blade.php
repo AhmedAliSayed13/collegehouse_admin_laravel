@@ -20,7 +20,7 @@
     <div class="page-wrapper">
         <div class="content container-fluid">
 
-            @include('flash-message')
+           
 
 
                     @yield('content')
