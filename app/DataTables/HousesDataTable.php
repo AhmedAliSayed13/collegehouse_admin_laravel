@@ -25,7 +25,13 @@ class HousesDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('edit', 'admin.houses.btn.edit')
             ->addColumn('delete', 'admin.houses.btn.delete')
-            ->rawColumns(['edit','delete']);
+            ->addColumn('parent_id', function ($category) {
+                if(!empty($category->parent)){
+                    return $category->parent->name;
+                }
+                return 'no parent';
+            })
+            ->rawColumns(['parent_id','edit','delete']);
     }
 
     /**
