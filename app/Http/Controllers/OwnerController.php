@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\City;
+use App\Models\City;
 use App\User;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;

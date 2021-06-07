@@ -42,60 +42,7 @@
                             <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
                         </div>
                         <div class="noti-content">
-                            <ul class="notification-list">
-                                <li class="notification-message">
-                                    <a href="#">
-                                        <div class="media">
-                                            <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/doctors/doctor-thumb-01.jpg">
-                                            </span>
-                                            <div class="media-body">
-                                                <p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule <span class="noti-title">her appointment</span></p>
-                                                <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-message">
-                                    <a href="#">
-                                        <div class="media">
-                                            <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient1.jpg">
-                                            </span>
-                                            <div class="media-body">
-                                                <p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
-                                                <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-message">
-                                    <a href="#">
-                                        <div class="media">
-                                            <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg">
-                                            </span>
-                                            <div class="media-body">
-                                            <p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a amount of $210 for his <span class="noti-title">appointment</span></p>
-                                            <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-message">
-                                    <a href="#">
-                                        <div class="media">
-                                            <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient3.jpg">
-                                            </span>
-                                            <div class="media-body">
-                                                <p class="noti-details"><span class="noti-title">Carl Kelly</span> send a message <span class="noti-title"> to his doctor</span></p>
-                                                <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
+                            
                         </div>
                         <div class="topnav-dropdown-footer">
                             <a href="#">View all Notifications</a>

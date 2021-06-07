@@ -2,25 +2,26 @@
 @section('content')
 			
 			<!-- Page Wrapper -->
-            <div class="page-wrapper">
-                <div class="content container-fluid">
-				<div class="page-header">
-					
+           
+               
+                    <div class="page-header">
+                        
 
-					<div class="row">
-							<div class="col-sm-7 col-auto">
-								<h3 class="page-title">Admin</h3>
-								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-									<li class="breadcrumb-item active">List Owner</li>
-									
-								</ul>
-							</div>
-							<div class="col-sm-5 col">
-							<a href="{{route('admin.showAddOwner')}}"  class="btn btn-primary float-right mt-2"><i class="fa fa-plus mr-2"></i> Add Rental Owner</a>
-							</div>
-						</div>
-				</div>
+                        <div class="row">
+                                <div class="col-sm-7 col-auto">
+                                    <h3 class="page-title">Admin</h3>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="{{route('house.index')}}">Houses</a></li>
+                                        <li class="breadcrumb-item active">Add House</li>
+                                        
+                                    </ul>
+                                </div>
+                                <!-- <div class="col-sm-5 col">
+                                <a href="{{route('admin.showAddOwner')}}"  class="btn btn-primary float-right mt-2"><i class="fa fa-plus mr-2"></i> Add Rental Owner</a>
+                                </div> -->
+                            </div>
+                    </div>
 				
 				<div class="row">
 						<div class="col-sm-12">
@@ -285,15 +286,15 @@
 								</div>
 							</div>
 						</div>
-					</div>
+				</div>
 
 					
 					
 					
 					
 				
-				</div>			
-			</div>
+							
+			
 			<!-- /Page Wrapper -->
 		
     

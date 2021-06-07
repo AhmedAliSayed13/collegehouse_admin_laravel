@@ -16,11 +16,11 @@
 									
 								</ul>
 							</li>
-							<li class="submenu">
-								<a href="#"><i class="fe fe-document"></i> <span> All Houses </span> <span class="menu-arrow"></span></a>
+							<li class="submenu ">
+								<a href=""><i class="fe fe-document"></i> <span> All Houses </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{route('admin.showAddHouse')}}"> <i class="fa fa-plus mr-2"></i> Add House </a></li>
-									<li><a href=""> <i class="fa fa-th-list mr-2"></i> List Houses </a></li>
+									<li><a class="{{active_link('admin/house/create')}}" href="{{route('house.create')}}"> <i class="fa fa-plus mr-2"></i> Add House </a></li>
+									<li><a class="{{active_link('admin/house')}}" href="{{route('house.index')}}"> <i class="fa fa-th-list mr-2"></i> List Houses </a></li>
 									
 								</ul>
 							</li>

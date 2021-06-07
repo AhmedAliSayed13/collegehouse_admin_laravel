@@ -23,4 +23,9 @@
 
 <!-- firebase files start -->
 
-<link rel="stylesheet" href="{{ asset('css/style.css') }}" 
+<link rel="stylesheet" href="{{ asset('css/style.css') }}" >
+
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+

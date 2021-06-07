@@ -16,6 +16,11 @@ if (! function_exists('option_select')) {
     }
 }
 
-
+if(!function_exists('admin_url')) {
+    function admin_url($url = null)
+    {
+        return url('admin/' . $url);
+    }
+}
 
 ?>

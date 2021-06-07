@@ -37,13 +37,12 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
 
 
 
-    Route::get('/add-house',[App\Http\Controllers\AdminController::class,'ShowAddHouse'])->name('admin.showAddHouse');
-    Route::post('/save-house',[App\Http\Controllers\AdminController::class,'ShowAddHouseSave'])->name('admin.showAddHouse.save');
+    //Route::get('/add-house',[App\Http\Controllers\AdminController::class,'ShowAddHouse'])->name('house.create');
+    Route::post('/save-house',[App\Http\Controllers\AdminController::class,'ShowAddHouseSave'])->name('house.create.save');
     
-    
-    
-
-
+    //resource
+    Route::resource('tag','Admin\TagController');
+    Route::resource('house','Admin\HouseController');
     
 });
 
@@ -74,11 +73,33 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
 
 
-Route::get('test', 'TestController@test')->name('image.upload');
-Route::post('test2', 'TestController@test2')->name('image.upload.post');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Route::get('test', 'TestController@test')->name('image.upload');
+// Route::post('test2', 'TestController@test2')->name('image.upload.post');
+
+
+// Route::get('api/customers','CustomerController@data');
+// Route::get('customers','CustomerController@index');
+
+// Route::get('create', 'DisplayDataController@create');
+// Route::get('index', 'DisplayDataController@index');
 
 // Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'home']);

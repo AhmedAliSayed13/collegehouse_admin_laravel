@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 
-use App\City;
+use App\Models\City;
 use App\User;
-use App\House;
-use App\house_type;
+use App\Models\House;
+use App\Models\House_type;
 use App\Payment_method;
 use App\Front_house_image;
 use Illuminate\Http\Request;
