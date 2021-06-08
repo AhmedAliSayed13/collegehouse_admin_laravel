@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2021 at 05:17 PM
+-- Generation Time: Jun 08, 2021 at 05:36 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -45,6 +45,32 @@ INSERT INTO `cities` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `flooers`
+--
+
+CREATE TABLE `flooers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `size` int(11) NOT NULL,
+  `bathroom` int(11) NOT NULL,
+  `room` int(11) NOT NULL,
+  `describe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `house_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `flooers`
+--
+
+INSERT INTO `flooers` (`id`, `size`, `bathroom`, `room`, `describe`, `image`, `house_id`, `created_at`, `updated_at`) VALUES
+(7, 1, 1, 1, '1', '16231664850room_image.png', 5, '2021-06-08 13:34:45', '2021-06-08 13:34:45'),
+(8, 2, 2, 2, '2', '16231664851room_image.png', 5, '2021-06-08 13:34:45', '2021-06-08 13:34:45');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `front_house_images`
 --
 
@@ -61,9 +87,15 @@ CREATE TABLE `front_house_images` (
 --
 
 INSERT INTO `front_house_images` (`id`, `name`, `house_id`, `created_at`, `updated_at`) VALUES
-(1, '16229925160front_house_image.png', 4, '2021-06-06 13:15:16', '2021-06-06 13:15:16'),
-(2, '16229925161front_house_image.png', 4, '2021-06-06 13:15:16', '2021-06-06 13:15:16'),
-(3, '16229925162front_house_image.png', 4, '2021-06-06 13:15:16', '2021-06-06 13:15:16');
+(10, '16231495581front_house_image.png', 1, '2021-06-08 08:52:38', '2021-06-08 08:52:38'),
+(11, '16231495582front_house_image.png', 1, '2021-06-08 08:52:38', '2021-06-08 08:52:38'),
+(12, '16231495593front_house_image.png', 1, '2021-06-08 08:52:39', '2021-06-08 08:52:39'),
+(13, '16231509220front_house_image.png', 1, '2021-06-08 09:15:22', '2021-06-08 09:15:22'),
+(14, '16231650000front_house_image.png', 2, '2021-06-08 13:10:00', '2021-06-08 13:10:00'),
+(15, '16231652040front_house_image.png', 3, '2021-06-08 13:13:24', '2021-06-08 13:13:24'),
+(20, '16231664850front_house_image.png', 5, '2021-06-08 13:34:45', '2021-06-08 13:34:45'),
+(21, '16231664851front_house_image.png', 5, '2021-06-08 13:34:45', '2021-06-08 13:34:45'),
+(22, '16231664852front_house_image.png', 5, '2021-06-08 13:34:45', '2021-06-08 13:34:45');
 
 -- --------------------------------------------------------
 
@@ -90,6 +122,12 @@ CREATE TABLE `houses` (
   `payment_method_id` bigint(20) UNSIGNED NOT NULL,
   `image_ownership` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image_lease` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `about` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `excellent_location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `safety_security` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `professional_maintenance` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `resident_account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -98,9 +136,8 @@ CREATE TABLE `houses` (
 -- Dumping data for table `houses`
 --
 
-INSERT INTO `houses` (`id`, `owner_id`, `address`, `status`, `city_id`, `name`, `house_type_id`, `num_rooms`, `num_residents`, `num_bathrooms`, `num_flooers`, `num_parkings`, `total_size`, `num_kitchens`, `annual_reset`, `payment_method_id`, `image_ownership`, `image_lease`, `created_at`, `updated_at`) VALUES
-(3, 2, 'التوسعات الشمالية - قطعة 816', 'erew', 1, 'ewew', 2, 12, 12, 12, 12, 12, 121, 12, 'sdfcds', 1, '1622992486image_ownership.png', '1622992486image_lease.png', '2021-06-06 13:14:46', '2021-06-06 13:14:46'),
-(4, 2, 'التوسعات الشمالية - قطعة 816', 'erew', 1, 'ewew', 2, 12, 12, 12, 12, 12, 121, 12, 'sdfcds', 1, '1622992516image_ownership.png', '1622992516image_lease.png', '2021-06-06 13:15:16', '2021-06-06 13:15:16');
+INSERT INTO `houses` (`id`, `owner_id`, `address`, `status`, `city_id`, `name`, `house_type_id`, `num_rooms`, `num_residents`, `num_bathrooms`, `num_flooers`, `num_parkings`, `total_size`, `num_kitchens`, `annual_reset`, `payment_method_id`, `image_ownership`, `image_lease`, `description`, `about`, `excellent_location`, `safety_security`, `professional_maintenance`, `resident_account`, `created_at`, `updated_at`) VALUES
+(5, 2, 'التوسعات الشمالية - قطعة 816', 'asd', 1, 'qwedqwd', 1, 12, 12, 12, 12, 12, 121, 12, 'qwdxas', 4, '1623166485image_ownership.png', '1623166485image_lease.png', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', '2021-06-08 13:34:45', '2021-06-08 13:34:45');
 
 -- --------------------------------------------------------
 
@@ -148,10 +185,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2014_10_12_100000_create_password_resets_table', 4),
 (5, '2021_06_06_123645_create_house_types_table', 5),
 (6, '2021_06_06_124631_create_payment_methods_table', 6),
-(9, '2021_06_06_123206_create_houses_table', 7),
 (10, '2021_06_06_142233_create_forent_house_images_table', 8),
 (11, '2021_06_06_144121_create_froent_house_images_table', 9),
-(12, '2021_06_06_144450_create_front_house_images_table', 10);
+(12, '2021_06_06_144450_create_front_house_images_table', 10),
+(14, '2021_06_06_123206_create_houses_table', 11),
+(15, '2021_06_08_125338_create_flooers_table', 12);
 
 -- --------------------------------------------------------
 
@@ -256,6 +294,13 @@ ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `flooers`
+--
+ALTER TABLE `flooers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `flooers_house_id_foreign` (`house_id`);
+
+--
 -- Indexes for table `front_house_images`
 --
 ALTER TABLE `front_house_images`
@@ -322,16 +367,22 @@ ALTER TABLE `cities`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `flooers`
+--
+ALTER TABLE `flooers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `front_house_images`
 --
 ALTER TABLE `front_house_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `houses`
 --
 ALTER TABLE `houses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `house_types`
@@ -343,7 +394,7 @@ ALTER TABLE `house_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `payment_methods`
@@ -366,6 +417,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `flooers`
+--
+ALTER TABLE `flooers`
+  ADD CONSTRAINT `flooers_house_id_foreign` FOREIGN KEY (`house_id`) REFERENCES `houses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `front_house_images`
