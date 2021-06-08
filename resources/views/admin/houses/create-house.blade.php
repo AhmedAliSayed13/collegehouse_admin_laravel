@@ -89,10 +89,10 @@
 
 								<select id="city_id" type="text"
 									class="form-control @error('city_id') is-invalid @enderror" name="city_id"
-									value="{{ old('city_id') }}" autocomplete="city_id" autofocus>
+									 autocomplete="city_id" autofocus>
 									<option value="">Select City</option>
 									@foreach ($citys as $city)
-									<option value="{{$city->id}}">{{$city->name}}</option>
+									<option {{ option_select(old("city_id") , $city->id )}} value="{{$city->id}}">{{$city->name}}</option>
 									@endforeach
 
 								</select>
@@ -126,11 +126,11 @@
 
 								<select id="house_type_id"
 									class="form-control @error('house_type_id') is-invalid @enderror"
-									name="house_type_id" value="{{ old('house_type_id') }}" autocomplete="house_type_id"
+									name="house_type_id"  autocomplete="house_type_id"
 									autofocus>
 									<option value="option1">House Type</option>
 									@foreach ($house_types as $house_type)
-									<option value="{{$house_type->id}}">{{$house_type->name}}</option>
+									<option {{ option_select(old("house_type_id") , $house_type->id )}} value="{{$house_type->id}}">{{$house_type->name}}</option>
 									@endforeach
 								</select>
 								@error('house_type_id')
@@ -274,6 +274,95 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12">
+							<h5 class="d-block mt-4">Property Highlights</h5>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input id="excellent_location" placeholder="Excellent Location" type="text"
+									class="form-control @error('excellent_location') is-invalid @enderror" name="excellent_location"
+									value="{{ old('excellent_location') }}" autocomplete="excellent_location" autofocus>
+								@error('excellent_location')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input id="safety_security" placeholder="Safety Security" type="text"
+									class="form-control @error('safety_security') is-invalid @enderror" name="safety_security"
+									value="{{ old('safety_security') }}" autocomplete="Safety Security" autofocus>
+								@error('safety_security')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input id="professional_maintenance" placeholder="Professional Maintenance" type="text"
+									class="form-control @error('professional_maintenance') is-invalid @enderror" name="professional_maintenance"
+									value="{{ old('professional_maintenance') }}" autocomplete="professional_maintenance" autofocus>
+								@error('professional_maintenance')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input id="resident_account" placeholder="Resident Account" type="text"
+									class="form-control @error('resident_account') is-invalid @enderror" name="resident_account"
+									value="{{ old('resident_account') }}" autocomplete="resident_account" autofocus>
+								@error('resident_account')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>House Description</label>
+								<textarea id="image_ownership" 
+									class="form-control @error('description') is-invalid @enderror"
+									name="description" 
+									autocomplete="description" autofocus>
+									{{ old('description') }}
+									</textarea>
+								@error('description')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>House About</label>
+								<textarea id="about" 
+									class="form-control @error('about') is-invalid @enderror"
+									name="about" 
+									autocomplete="about" autofocus>
+									{{ old('about') }}
+									</textarea>
+								@error('about')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						
+
+
+
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Upload Ownership Contract</label>

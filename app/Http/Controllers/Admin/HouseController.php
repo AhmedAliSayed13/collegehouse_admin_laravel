@@ -51,6 +51,12 @@ class HouseController extends Controller
             'image_lease' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'front_house_images' => ['required'],
             'front_house_images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
+            'description' => ['required'],
+            'about' => ['required'],
+            'excellent_location' => ['required'],
+            'safety_security' => ['required'],
+            'professional_maintenance' => ['required'],
+            'resident_account' => ['required'],
 
         ]);
 
@@ -76,6 +82,12 @@ class HouseController extends Controller
         $house->payment_method_id = $request->payment_method_id;
         $house->image_ownership = $image_ownership;
         $house->image_lease = $image_lease;
+        $house->description = $request->description;
+        $house->about = $request->about;
+        $house->excellent_location = $request->excellent_location;
+        $house->safety_security = $request->safety_security;
+        $house->professional_maintenance = $request->professional_maintenance;
+        $house->resident_account = $request->resident_account;
         $house->save();
 
         $count = 0;
@@ -135,6 +147,12 @@ class HouseController extends Controller
             'image_lease' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'front_house_images' => ['nullable'],
             'front_house_images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
+            'description' => ['required'],
+            'about' => ['required'],
+            'excellent_location' => ['required'],
+            'safety_security' => ['required'],
+            'professional_maintenance' => ['required'],
+            'resident_account' => ['required'],
         ]);
 
         $house = House::find($id);
@@ -153,6 +171,12 @@ class HouseController extends Controller
         $house->num_kitchens = $request->num_kitchens;
         $house->annual_reset = $request->annual_reset;
         $house->payment_method_id = $request->payment_method_id;
+        $house->description = $request->description;
+        $house->about = $request->about;
+        $house->excellent_location = $request->excellent_location;
+        $house->safety_security = $request->safety_security;
+        $house->professional_maintenance = $request->professional_maintenance;
+        $house->resident_account = $request->resident_account;
 
         if ($request->image_ownership) {
             $image_ownership = time() . 'image_ownership.' . request()->image_ownership->getClientOriginalExtension();

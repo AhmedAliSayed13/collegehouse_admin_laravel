@@ -36,6 +36,12 @@ class CreateHousesTable extends Migration
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade')->onUpdate('cascade');
             $table->string('image_ownership');
             $table->string('image_lease');
+            $table->string('description', 255);
+            $table->string('about', 255);
+            $table->string('excellent_location', 255);
+            $table->string('safety_security', 255);
+            $table->string('professional_maintenance', 255);
+            $table->string('resident_account', 255);
 
 
             

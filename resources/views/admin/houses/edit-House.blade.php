@@ -275,7 +275,96 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12">
+							<h5 class="d-block mt-4">Property Highlights</h5>
+						</div>
 						<div class="col-md-6">
+							<div class="form-group">
+								<input id="excellent_location" placeholder="Excellent Location" type="text"
+									class="form-control @error('excellent_location') is-invalid @enderror" name="excellent_location"
+									value="{{ old('excellent_location',$house->excellent_location) }}" autocomplete="excellent_location" autofocus>
+								@error('excellent_location')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input id="safety_security" placeholder="Safety Security" type="text"
+									class="form-control @error('safety_security') is-invalid @enderror" name="safety_security"
+									value="{{ old('safety_security',$house->safety_security) }}" autocomplete="Safety Security" autofocus>
+								@error('safety_security')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input id="professional_maintenance" placeholder="Professional Maintenance" type="text"
+									class="form-control @error('professional_maintenance') is-invalid @enderror" name="professional_maintenance"
+									value="{{ old('professional_maintenance',$house->professional_maintenance) }}" autocomplete="professional_maintenance" autofocus>
+								@error('professional_maintenance')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input id="resident_account" placeholder="Resident Account" type="text"
+									class="form-control @error('resident_account') is-invalid @enderror" name="resident_account"
+									value="{{ old('resident_account',$house->resident_account) }}" autocomplete="resident_account" autofocus>
+								@error('resident_account')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>House Description</label>
+								<textarea id="image_ownership" 
+									class="form-control @error('description') is-invalid @enderror"
+									name="description" 
+									autocomplete="description" autofocus>
+									{{ old('description',$house->description) }}
+									</textarea>
+								@error('description')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>House About</label>
+								<textarea id="about" 
+									class="form-control @error('about') is-invalid @enderror"
+									name="about" 
+									autocomplete="about" autofocus>
+									{{ old('about',$house->about) }}
+									</textarea>
+								@error('about')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+
+
+
+
+						<!-- <div class="col-md-6">
 							<div class="form-group">
 								<label>Upload Ownership Contract</label>
 								<input id="image_ownership" type="file"
@@ -288,8 +377,8 @@
 								</span>
 								@enderror
 							</div>
-						</div>
-						<div class="col-md-6">
+						</div> -->
+						<!-- <div class="col-md-6">
 							<div class="form-group">
 								<label>Upload lease Contract</label>
 								<input id="image_lease" type="file"
@@ -301,7 +390,7 @@
 								</span>
 								@enderror
 							</div>
-						</div>
+						</div> -->
 
 						<div class="col-md-12">
 							<div class="form-group">
@@ -331,29 +420,31 @@
 		
 	</div>
 </div>
-<h4 class="card-title">House Front Images</h4>
-		<div class="row">
-			@foreach ($front_images as $front_image)
-			<div class="col-2 d-flex">
-				<div class="card flex-fill">
-					<img alt="Card Image" src="{{asset('images/houses/'.$front_image->name)}}" class="card-img-top image-edit-house">
+
+
+	<h4 class="card-title">House Front Images</h4>
+	<div class="row">
+		@foreach ($front_images as $front_image)
+		<div class="col-2 d-flex">
+			<div class="card flex-fill">
+				<img alt="Card Image" src="{{asset('images/houses/'.$front_image->name)}}" class="card-img-top image-edit-house">
+				
+				<div class="card-body">
 					
-					<div class="card-body">
+					<form method="post" action="{{ url('admin/house/delete-image-front')}}">
+						{{ csrf_field() }}
+						<input type="hidden" name="id" value="{{$front_image->id}}">
 						
-						<form method="post" action="{{ url('admin/house/delete-image-front')}}">
-							{{ csrf_field() }}
-							<input type="hidden" name="id" value="{{$front_image->id}}">
 							
-								
-								<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> </button>
-								
+							<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> </button>
 							
-						</form>
-					</div>
+						
+					</form>
 				</div>
 			</div>
-			@endforeach
 		</div>
+		@endforeach
+	</div>
 
 
 
