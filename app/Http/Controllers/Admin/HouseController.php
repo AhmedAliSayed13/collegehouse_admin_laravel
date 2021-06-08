@@ -7,6 +7,7 @@ use App\Models\Front_house_image;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\House;
+use App\Models\Flooer;
 use App\Models\House_type;
 use App\Models\Payment_method;
 use App\User;
@@ -57,7 +58,6 @@ class HouseController extends Controller
             'safety_security' => ['required'],
             'professional_maintenance' => ['required'],
             'resident_account' => ['required'],
-
         ]);
 
         $image_ownership = time() . 'image_ownership.' . request()->image_ownership->getClientOriginalExtension();
@@ -99,6 +99,28 @@ class HouseController extends Controller
             $Front_house_image->name = $image_name;
             $Front_house_image->house_id = $house->id;
             $Front_house_image->save();
+        }
+
+
+       
+        if(!empty($request->flooer_size)){
+            
+            foreach ($request->flooer_size as $key => $size) {
+                $flooer=new Flooer();
+                $flooer->size=$size;
+                $flooer->bathroom=$request->flooer_bathroom[$key];
+                $flooer->room=$request->flooer_room[$key];
+                $flooer->describe=$request->flooer_describe[$key];
+                // $flooer->describe=$request->flooer_describe[$key];
+                $flooer->house_id= $house->id;
+
+                $image_room=$request->flooer_image[$key];
+                $image_name = time() . $key . 'room_image.' . $image_room->getClientOriginalExtension();
+                $image_room->move(public_path('images\houses'), $image_name);
+                $flooer->image= $image_name;
+                $flooer->save();
+               
+            }
         }
 
         $success = "Add New House Successfully";

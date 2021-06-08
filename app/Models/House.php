@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\House_type;
 use App\Models\Payment_method;
 use App\Models\Front_house_image;
+use App\Models\Flooer;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,5 +25,9 @@ class House extends Model
     public function front_house_images()
     {
         return $this->hasMany(Front_house_image::class);
+    }
+    public function flooers()
+    {
+        return $this->hasMany(Flooer::class);
     }
 }

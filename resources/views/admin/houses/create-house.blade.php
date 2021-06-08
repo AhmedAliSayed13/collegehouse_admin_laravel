@@ -404,6 +404,56 @@
 								@enderror
 							</div>
 						</div>
+						<div class="col-md-12">
+						<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Floor</h4>
+									<div class="education-info">
+										<div class="row form-row education-cont">
+											<div class="col-12 col-md-10 col-lg-11">
+												<div class="row form-row">
+													<div class="col-12 col-md-6 col-lg-2">
+														<div class="form-group">
+															<label>Size</label>
+															<input type="number" name="flooer_size[]" required class="form-control  @error('flooer_size') is-invalid @enderror">
+															
+														</div> 
+													</div>
+													<div class="col-12 col-md-6 col-lg-2">
+														<div class="form-group">
+															<label>Bathrooms</label>
+															<input type="number" required class="form-control" name="flooer_bathroom[]">
+														</div> 
+													</div>
+													<div class="col-12 col-md-6 col-lg-2">
+														<div class="form-group">
+															<label>Rooms</label>
+															<input type="number" class="form-control" required name="flooer_room[]">
+														</div> 
+													</div>
+													<div class="col-12 col-md-6 col-lg-3">
+														<div class="form-group">
+															<label>describe</label>
+															<input type="text" class="form-control" required name="flooer_describe[]">
+														</div> 
+													</div>
+													<div class="col-12 col-md-6 col-lg-3">
+														<div class="form-group">
+															<label>image</label>
+															<input type="file" class="form-control" accept="image/*" required name="flooer_image[]">
+														</div> 
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-education"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						
 
 
 
