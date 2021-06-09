@@ -11,8 +11,8 @@
 							<li class="submenu">
 								<a href="#"><i class="fe fe-document"></i> <span> All Rental Owner </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{route('admin.showAddOwner')}}"> <i class="fa fa-plus mr-2"></i> Add Rental Owner </a></li>
-									<li><a href="{{route('admin.showListOwner')}}"> <i class="fa fa-th-list mr-2"></i> List Rental Owner </a></li>
+									<li><a class="{{active_link('admin/owner/create')}}" href="{{route('owner.create')}}"> <i class="fa fa-plus mr-2"></i> Add Rental Owner </a></li>
+									<li><a class="{{active_link('admin/owner')}}" href="{{route('owner.index')}}"> <i class="fa fa-th-list mr-2"></i> List Rental Owner </a></li>
 									
 								</ul>
 							</li>

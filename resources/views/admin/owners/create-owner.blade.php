@@ -50,6 +50,7 @@
 							<h3 class="page-title">Admin</h3>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+								<li class="breadcrumb-item"><a href="{{route('owner.index')}}">Owners</a></li>
 								<li class="breadcrumb-item active">Add Rental Owner</li>
 							</ul>
 						</div>
@@ -77,7 +78,7 @@
 											<div class="col-md-12">
 												@include('flash-message')
 												
-												<form method="POST" action="{{route('admin.showAddOwner.save')}}">
+												<form method="POST" action="{{route('owner.store')}}">
 													{{ csrf_field() }}
 													<div class="row">
 														<div class="col-md-6">

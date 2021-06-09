@@ -64,7 +64,7 @@ class AdminController extends Controller
     }
     public function ShowAddOwner(Request $request){
         $cities=City::all();
-        return view('admin.add-owner',compact('cities'));
+        return view('admin.owners.create-owner',compact('cities'));
     }
     public function ShowAddOwnerSave(Request $request){
         $validatedData = $request->validate([

@@ -57,3 +57,6 @@ h2 span.sign-admin-text{
     -webkit-justify-content: center;
     -ms-flex-pack: center;
 }
+ a.active{
+    text-decoration: none!important;
+}

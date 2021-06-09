@@ -20,7 +20,7 @@ class HouseController extends Controller
     {
         return $house->render('admin.houses.index', ['title' => 'admin title']);
     }
-
+ 
     public function create()
     {
         $owners = User::where('role_id', '=', 2)->get();
