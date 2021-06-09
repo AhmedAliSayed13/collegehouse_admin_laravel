@@ -34,16 +34,16 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
     Route::get('/add-owner',[App\Http\Controllers\AdminController::class,'ShowAddOwner'])->name('admin.showAddOwner');
     Route::post('/save-owner',[App\Http\Controllers\AdminController::class,'ShowAddOwnerSave'])->name('admin.showAddOwner.save');
     Route::get('/list-owner',[App\Http\Controllers\AdminController::class,'ShowListOwner'])->name('admin.showListOwner');
+   
 
-
-
-    //Route::get('/add-house',[App\Http\Controllers\AdminController::class,'ShowAddHouse'])->name('house.create');
-    Route::post('/house/delete-image-front',[App\Http\Controllers\Admin\HouseController::class,'delete_image_front']);
-    
     //resource
     Route::resource('tag','Admin\TagController');
     Route::resource('house','Admin\HouseController');
-    
+    Route::post('/house/delete-image-front',[App\Http\Controllers\Admin\HouseController::class,'delete_image_front']);
+    Route::post('/house/edit-flooer',[App\Http\Controllers\Admin\HouseController::class,'edit_flooer'])->name('admin.edit-flooer');
+
+    Route::get('/house/delete-flooer/{id}',[App\Http\Controllers\Admin\HouseController::class,'delete_flooer'])->name('admin.delete-flooer');
+    Route::post('/house/flooer/create',[App\Http\Controllers\Admin\HouseController::class,'create_flooer'])->name('admin.create-flooer');
 });
 
 

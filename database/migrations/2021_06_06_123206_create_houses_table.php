@@ -42,9 +42,11 @@ class CreateHousesTable extends Migration
             $table->string('safety_security', 255);
             $table->string('professional_maintenance', 255);
             $table->string('resident_account', 255);
+            $table->string('video');
+            $table->string('pdf');
 
 
-            
+
 
 
 

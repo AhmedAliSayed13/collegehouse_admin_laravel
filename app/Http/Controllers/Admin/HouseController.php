@@ -58,12 +58,16 @@ class HouseController extends Controller
             'safety_security' => ['required'],
             'professional_maintenance' => ['required'],
             'resident_account' => ['required'],
+            'video'  => ['required','mimes:mp4,mov,ogg,qt'],
+            'pdf'  => ['required','mimes:pdf'],
+
         ]);
 
         $image_ownership = time() . 'image_ownership.' . request()->image_ownership->getClientOriginalExtension();
         request()->image_ownership->move(public_path('images\houses'), $image_ownership);
         $image_lease = time() . 'image_lease.' . request()->image_ownership->getClientOriginalExtension();
         request()->image_lease->move(public_path('images\houses'), $image_lease);
+
         $house = new House();
         $house->owner_id = $request->owner_id;
         $house->address = $request->address;
@@ -88,6 +92,18 @@ class HouseController extends Controller
         $house->safety_security = $request->safety_security;
         $house->professional_maintenance = $request->professional_maintenance;
         $house->resident_account = $request->resident_account;
+
+//        if(!empty($request->video)){
+            $video_name = time() . 'video.' . request()->video->getClientOriginalExtension();
+            request()->video->move(public_path('images\houses\videos'), $video_name);
+            $house->video = $video_name;
+//        }
+
+//        if(!empty($request->pdf)){
+            $pdf_name = time().'pdf.'. request()->pdf->getClientOriginalExtension();
+            request()->pdf->move(public_path('images\houses\pdf'), $pdf_name);
+            $house->pdf = $pdf_name;
+//        }
         $house->save();
 
         $count = 0;
@@ -102,16 +118,15 @@ class HouseController extends Controller
         }
 
 
-       
+
         if(!empty($request->flooer_size)){
-            
+
             foreach ($request->flooer_size as $key => $size) {
                 $flooer=new Flooer();
                 $flooer->size=$size;
                 $flooer->bathroom=$request->flooer_bathroom[$key];
                 $flooer->room=$request->flooer_room[$key];
                 $flooer->describe=$request->flooer_describe[$key];
-                // $flooer->describe=$request->flooer_describe[$key];
                 $flooer->house_id= $house->id;
 
                 $image_room=$request->flooer_image[$key];
@@ -119,7 +134,7 @@ class HouseController extends Controller
                 $image_room->move(public_path('images\houses'), $image_name);
                 $flooer->image= $image_name;
                 $flooer->save();
-               
+
             }
         }
 
@@ -139,15 +154,12 @@ class HouseController extends Controller
         $house_types = House_type::all();
         $payment_methods = Payment_method::all();
         $house = House::find($id);
+        $flooers=$house->flooers;
         $front_images=$house->front_house_images;
-        return view('admin.houses.edit-House', compact('owners', 'citys', 'house_types', 'payment_methods', 'house','front_images'));
+        return view('admin.houses.edit-House', compact('owners', 'citys', 'house_types', 'payment_methods', 'house','front_images','flooers'));
     }
     public function update(Request $request, $id)
     {
-        // $validatedData = $request->validate([
-        //     'name'=>['required','string','unique:houses,name,'.$id],
-
-        // ]);
 
         $validatedData = $request->validate([
             'owner_id' => ['required', 'integer'],
@@ -165,8 +177,8 @@ class HouseController extends Controller
             'num_kitchens' => ['required', 'integer'],
             'annual_reset' => ['required', 'string'],
             'payment_method_id' => ['required', 'integer'],
-            'image_ownership' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            'image_lease' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'image_ownership' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
+            'image_lease' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
             'front_house_images' => ['nullable'],
             'front_house_images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
             'description' => ['required'],
@@ -200,17 +212,19 @@ class HouseController extends Controller
         $house->professional_maintenance = $request->professional_maintenance;
         $house->resident_account = $request->resident_account;
 
-        if ($request->image_ownership) {
+        if (!empty($request->image_ownership)) {
             $image_ownership = time() . 'image_ownership.' . request()->image_ownership->getClientOriginalExtension();
             request()->image_ownership->move(public_path('images\houses'), $image_ownership);
+            @unlink('images/houses/'.$house->image_ownership);
             $house->image_ownership = $image_ownership;
         }
-        if($request->image_ownership){
-            $image_lease = time() . 'image_lease.' . request()->image_ownership->getClientOriginalExtension();
+        if($request->image_lease){
+            $image_lease = time() . 'image_lease.' . request()->image_lease->getClientOriginalExtension();
             request()->image_lease->move(public_path('images\houses'), $image_lease);
+            @unlink('images/houses/'.$house->image_lease);
             $house->image_lease = $image_lease;
         }
-        
+
 
         $house->save();
 
@@ -244,9 +258,62 @@ class HouseController extends Controller
     public function delete_image_front(Request $request)
     {
         $Front_house_image = Front_house_image::Find($request->id);
+        @unlink('images/houses/'.$Front_house_image->name);
         $Front_house_image->delete();
+
         return Redirect::back()->with('success', 'Deleted image Successfully');
     }
-    
+    public function edit_flooer(Request $request)
+    {
+       $flooer=Flooer::find($request->id);
+       $flooer->size=$request->size;
+       $flooer->bathroom=$request->bathroom;
+       $flooer->room=$request->room;
+       $flooer->describe=$request->describe;
+       if($request->image){
+           $new_image=$request->image;
+            @unlink('images/houses/'.$flooer->image);
+            $image_name = time().'flooer_image.' . $new_image->getClientOriginalExtension();
+            $new_image->move(public_path('images\houses'), $image_name);
+            $flooer->image=$image_name;
+       }
+       $flooer->save();
+        return Redirect::back()->with('success', 'Save Flooer Successfully');
+    }
+
+    public function delete_flooer(Request $request)
+    {
+        $flooer = Flooer::Find($request->id);
+        @unlink('images/houses/'.$flooer->image);
+        $flooer->delete();
+
+        return Redirect::back()->with('success', 'Deleted Flooer Successfully');
+    }
+    public function create_flooer(Request $request)
+    {
+        if(!empty($request->flooer_size)){
+
+            foreach ($request->flooer_size as $key => $size) {
+                $flooer=new Flooer();
+                $flooer->size=$size;
+                $flooer->bathroom=$request->flooer_bathroom[$key];
+                $flooer->room=$request->flooer_room[$key];
+                $flooer->describe=$request->flooer_describe[$key];
+                $flooer->house_id= $request->house_id;
+
+                $image_room=$request->flooer_image[$key];
+                $image_name = time() . $key . 'room_image.' . $image_room->getClientOriginalExtension();
+                $image_room->move(public_path('images\houses'), $image_name);
+                $flooer->image= $image_name;
+                $flooer->save();
+
+            }
+        }
+
+        return Redirect::back()->with('success', 'Deleted Flooer Successfully');
+    }
+
+
+
 
 }

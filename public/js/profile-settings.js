@@ -59,6 +59,11 @@ Version      : 1.0
         $(".education-info").append(educationcontent);
         return false;
     });
+
+
+
+
+	
 	
 	
 	

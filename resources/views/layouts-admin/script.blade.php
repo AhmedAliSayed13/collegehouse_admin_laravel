@@ -14,7 +14,8 @@
 	<!-- Custom JS -->
 	<!-- <script src="{{asset('/js/jquery.dataTables.min.js')}}"></script> -->
 	<script src="{{ asset('assets/js/script.js') }}"></script>
-	<script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+	<!-- <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script> -->
+	<script src="{{ asset('library/dropzone/dropzone.js') }}"></script>
 	<script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
 	<script src="{{asset('/js/jquery.dataTables.min.js')}}"></script>
 	<script src="{{asset('/js/profile-settings.js')}}"></script>
