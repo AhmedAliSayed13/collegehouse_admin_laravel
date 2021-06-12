@@ -1,0 +1,90 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateApplicationsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up() 
+    {
+        Schema::create('applications', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('first_name'); 
+            $table->string('last_name');
+            $table->bigInteger('gender_id')->unsigned();
+            $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade')->onUpdate('cascade'); 
+            $table->string('email')->unique();
+            $table->date('birthday');
+            $table->string('phone');
+            $table->string('ssn');
+            $table->string('address1');
+            $table->string('address2')->nullable();
+            $table->bigInteger('city_id')->unsigned();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('state_id')->unsigned();
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('zip');
+            $table->bigInteger('house_type_id')->unsigned();
+            $table->foreign('house_type_id')->references('id')->on('house_types')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('school');
+            $table->string('major');
+            $table->string('graduation_year');
+            $table->Integer('gpa');
+            $table->bigInteger('chapter_id')->unsigned();
+            $table->foreign('chapter_id')->references('id')->on('chapters')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('payment_method_id')->unsigned();
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('paying_rent_id')->unsigned();
+            $table->foreign('paying_rent_id')->references('id')->on('paying_rents')->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('bringing_Car');
+            $table->string('requested_houses');
+            // $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('room_type_id')->unsigned()->nullable();
+            $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('room_id')->unsigned()->nullable();
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
+            $table->Integer('amount_pay_dollars');
+            $table->string('car_make')->nullable();
+            $table->string('car_model')->nullable();
+            $table->string('driver_license_number')->nullable();
+            $table->string('car_license_number')->nullable();
+            $table->string('requested_property')->nullable();
+            $table->string('group_lead_name')->nullable();
+            $table->string('group_member_name_1')->nullable();
+            $table->string('group_member_name_2')->nullable();
+            $table->string('group_member_name_3')->nullable();
+            $table->string('group_member_name_4')->nullable();
+            $table->boolean('problem-with-both-parents-signing');
+            $table->string('parents_sign_not');
+            $table->string('parents_sign_not_other_reasons')->nullable();
+            $table->bigInteger('parent_information1_id')->unsigned()->nullable();
+            $table->foreign('parent_information1_id')->references('id')->on('parent_informations')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('parent_information2_id')->unsigned()->nullable();
+            $table->foreign('parent_information2_id')->references('id')->on('parent_informations')->onDelete('cascade')->onUpdate('cascade');
+            
+            $table->boolean('have_rental_history');
+            $table->boolean('have_employment_history');
+            $table->string('applicant-full-name');
+
+
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('applications');
+    }
+}

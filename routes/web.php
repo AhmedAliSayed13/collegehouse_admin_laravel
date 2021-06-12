@@ -12,16 +12,14 @@
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
-// Route::get('/register', function () {
-//     return redirect('/register/tenant');
-// });
+
 
  Auth::routes();
 
 
  Route::get('/owner/register', [App\Http\Controllers\Auth\RegisterController::class, 'showFormOwner'])->name('owner.register');
  Route::get('/tenant/register', [App\Http\Controllers\Auth\RegisterController::class, 'showFormTenant'])->name('tenant.register');
-//  Route::get('register', [App\Http\Controllers\Auth\RegisterController::class, 'showFormOwner'])->name('showFormOwner');
+
 
 Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
     Route::get('/dashboard',[App\Http\Controllers\AdminController::class,'showDashboard'])->name('admin.dashboard');
@@ -73,48 +71,14 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 });
 
 
+Route::get('/step1', 'ApplicationController@createStep1')->name('step1');
+Route::post('/step1', 'ApplicationController@PostcreateStep1');
 
+Route::get('/step2', 'ApplicationController@createStep2')->name('step2');
+Route::post('/step2', 'ApplicationController@PostcreateStep2');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Route::get('test', 'TestController@test')->name('image.upload');
-// Route::post('test2', 'TestController@test2')->name('image.upload.post');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::get('/step3', 'ApplicationController@createStep3')->name('step3');
+Route::post('/step3', 'ApplicationController@PostcreateStep3');
 
 
 

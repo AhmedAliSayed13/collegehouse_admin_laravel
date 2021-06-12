@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2021 at 06:06 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Generation Time: Jun 13, 2021 at 01:28 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -20,6 +21,74 @@ SET time_zone = "+00:00";
 --
 -- Database: `collegehouse_admin_laravel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `applications`
+--
+
+CREATE TABLE `applications` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender_id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `birthday` date NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ssn` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city_id` bigint(20) UNSIGNED NOT NULL,
+  `state_id` bigint(20) UNSIGNED NOT NULL,
+  `zip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `house_type_id` bigint(20) UNSIGNED NOT NULL,
+  `school` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `major` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `graduation_year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gpa` int(11) NOT NULL,
+  `chapter_id` bigint(20) UNSIGNED NOT NULL,
+  `payment_method_id` bigint(20) UNSIGNED NOT NULL,
+  `paying_rent_id` bigint(20) UNSIGNED NOT NULL,
+  `bringing_Car` tinyint(1) NOT NULL,
+  `requested_houses` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `room_type_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `room_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `amount_pay_dollars` int(11) NOT NULL,
+  `car_make` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `car_model` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `driver_license_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `car_license_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `requested_property` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_lead_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_member_name_1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_member_name_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_member_name_3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_member_name_4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problem-with-both-parents-signing` tinyint(1) NOT NULL,
+  `parents_sign_not` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parents_sign_not_other_reasons` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_information1_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `parent_information2_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `have_rental_history` tinyint(1) NOT NULL,
+  `have_employment_history` tinyint(1) NOT NULL,
+  `applicant-full-name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chapters`
+--
+
+CREATE TABLE `chapters` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -45,6 +114,35 @@ INSERT INTO `cities` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `employments`
+--
+
+CREATE TABLE `employments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `application_id` bigint(20) UNSIGNED NOT NULL,
+  `employer_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city_id` bigint(20) UNSIGNED NOT NULL,
+  `zip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state_id` bigint(20) UNSIGNED NOT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `monthly_gross_salary` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `current_work` tinyint(1) NOT NULL,
+  `employment_date_start` date NOT NULL,
+  `employment_date_end` date DEFAULT NULL,
+  `supervisor_first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `supervisor_last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `supervisor_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `flooers`
 --
 
@@ -60,13 +158,6 @@ CREATE TABLE `flooers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `flooers`
---
-
-INSERT INTO `flooers` (`id`, `size`, `bathroom`, `room`, `describe`, `image`, `house_id`, `created_at`, `updated_at`) VALUES
-(12, 1, 1, 1, '1', '16232531710room_image.png', 1, '2021-06-09 13:39:31', '2021-06-09 13:39:31');
-
 -- --------------------------------------------------------
 
 --
@@ -81,12 +172,27 @@ CREATE TABLE `front_house_images` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `front_house_images`
+-- Table structure for table `genders`
 --
 
-INSERT INTO `front_house_images` (`id`, `name`, `house_id`, `created_at`, `updated_at`) VALUES
-(27, '16232531710front_house_image.png', 1, '2021-06-09 13:39:31', '2021-06-09 13:39:31');
+CREATE TABLE `genders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `genders`
+--
+
+INSERT INTO `genders` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Male', NULL, NULL),
+(2, 'feMale', NULL, NULL),
+(3, 'Prefer not to say', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -125,13 +231,6 @@ CREATE TABLE `houses` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `houses`
---
-
-INSERT INTO `houses` (`id`, `owner_id`, `address`, `status`, `city_id`, `name`, `house_type_id`, `num_rooms`, `num_residents`, `num_bathrooms`, `num_flooers`, `num_parkings`, `total_size`, `num_kitchens`, `annual_reset`, `payment_method_id`, `image_ownership`, `image_lease`, `description`, `about`, `excellent_location`, `safety_security`, `professional_maintenance`, `resident_account`, `video`, `pdf`, `created_at`, `updated_at`) VALUES
-(1, 2, 'التوسعات الشمالية - قطعة 816', 'hgjfhjfh', 1, 'sdfgdfgf', 3, 12, 12, 12, 12, 12, 121, 12, 'erdfgdgvadf', 2, '1623254432image_ownership.png', '1623254438image_lease.png', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', '1623253171video.mp4', '1623253171pdf.pdf', '2021-06-09 13:39:31', '2021-06-09 14:00:38');
-
 -- --------------------------------------------------------
 
 --
@@ -150,10 +249,8 @@ CREATE TABLE `house_types` (
 --
 
 INSERT INTO `house_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'op1', NULL, NULL),
-(2, 'op2', NULL, NULL),
-(3, 'op3', NULL, NULL),
-(4, 'op4', NULL, NULL);
+(1, 'Group House', NULL, NULL),
+(2, 'Boarding House', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -182,7 +279,40 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2021_06_06_144121_create_froent_house_images_table', 9),
 (12, '2021_06_06_144450_create_front_house_images_table', 10),
 (15, '2021_06_08_125338_create_flooers_table', 12),
-(16, '2021_06_06_123206_create_houses_table', 13);
+(16, '2021_06_06_123206_create_houses_table', 13),
+(17, '2021_06_11_091808_create_genders_table', 14),
+(18, '2021_06_11_092859_create_states_table', 15),
+(19, '2021_06_11_093312_create_chapters_table', 16),
+(20, '2021_06_11_093833_create_paying_rents_table', 17),
+(21, '2021_06_11_094951_create_room_types_table', 18),
+(22, '2021_06_11_094836_create_rooms_table', 19),
+(24, '2021_06_11_113246_create_parent_informations_table', 21),
+(27, '2021_06_12_101908_create_employments_table', 24),
+(28, '2021_06_12_100742_create_rental_histories_table', 25),
+(30, '2021_06_10_193622_create_applications_table', 26);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parent_informations`
+--
+
+CREATE TABLE `parent_informations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city_id` bigint(20) UNSIGNED NOT NULL,
+  `state_id` bigint(20) UNSIGNED NOT NULL,
+  `zip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `place_employment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -194,6 +324,19 @@ CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `paying_rents`
+--
+
+CREATE TABLE `paying_rents` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -222,6 +365,31 @@ INSERT INTO `payment_methods` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rental_histories`
+--
+
+CREATE TABLE `rental_histories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `application_id` bigint(20) UNSIGNED NOT NULL,
+  `address1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city_id` bigint(20) UNSIGNED NOT NULL,
+  `state_id` bigint(20) UNSIGNED NOT NULL,
+  `zip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rental_date` date NOT NULL,
+  `monthly_rent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reason_leaving` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `roles`
 --
 
@@ -240,6 +408,118 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'admin', NULL, NULL),
 (2, 'owner', NULL, NULL),
 (3, 'tenant', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `house_id` bigint(20) UNSIGNED NOT NULL,
+  `room_type_id` bigint(20) UNSIGNED NOT NULL,
+  `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_types`
+--
+
+CREATE TABLE `room_types` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `room_types`
+--
+
+INSERT INTO `room_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Single', NULL, NULL),
+(2, 'Double', NULL, NULL),
+(3, 'Suite Single', NULL, NULL),
+(4, 'Suite Double', NULL, NULL),
+(5, 'Apartment', NULL, NULL),
+(6, 'Basement Double', NULL, NULL),
+(7, 'Basement Triple', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `states`
+--
+
+CREATE TABLE `states` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `states`
+--
+
+INSERT INTO `states` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Alabama', NULL, NULL),
+(2, 'Alaska', NULL, NULL),
+(3, 'Arizona', NULL, NULL),
+(4, 'Arkansas', NULL, NULL),
+(5, 'California', NULL, NULL),
+(6, 'Colorado', NULL, NULL),
+(7, 'Connecticut', NULL, NULL),
+(8, 'Delaware', NULL, NULL),
+(9, 'District Of Columbia', NULL, NULL),
+(10, 'Florida', NULL, NULL),
+(11, 'Georgia', NULL, NULL),
+(12, 'Hawaii', NULL, NULL),
+(13, 'Idaho', NULL, NULL),
+(14, 'Illinois', NULL, NULL),
+(15, 'Indiana', NULL, NULL),
+(16, 'Iowa', NULL, NULL),
+(17, 'Kansas', NULL, NULL),
+(18, 'Kentucky', NULL, NULL),
+(19, 'Louisiana', NULL, NULL),
+(20, 'Maine', NULL, NULL),
+(21, 'Maryland', NULL, NULL),
+(22, 'Massachusetts', NULL, NULL),
+(23, 'Michigan', NULL, NULL),
+(24, 'Minnesota', NULL, NULL),
+(25, 'Mississippi', NULL, NULL),
+(26, 'Missouri', NULL, NULL),
+(27, 'Montana', NULL, NULL),
+(28, 'Nebraska', NULL, NULL),
+(29, 'Nevada', NULL, NULL),
+(30, 'New Hampshire', NULL, NULL),
+(31, 'New Jersey', NULL, NULL),
+(32, 'New Mexico', NULL, NULL),
+(33, 'New York', NULL, NULL),
+(34, 'North Carolina', NULL, NULL),
+(35, 'North Dakota', NULL, NULL),
+(36, 'Ohio', NULL, NULL),
+(37, 'Oklahoma', NULL, NULL),
+(38, 'Oregon', NULL, NULL),
+(39, 'Pennsylvania', NULL, NULL),
+(40, 'Rhode Island', NULL, NULL),
+(41, 'South Carolina', NULL, NULL),
+(42, 'South Dakota', NULL, NULL),
+(43, 'Tennessee', NULL, NULL),
+(44, 'Texas', NULL, NULL),
+(45, 'Utah', NULL, NULL),
+(46, 'Vermont', NULL, NULL),
+(47, 'Virginia', NULL, NULL),
+(48, 'Washington', NULL, NULL),
+(49, 'West Virginia', NULL, NULL),
+(50, 'Wisconsin', NULL, NULL),
+(51, 'Wyoming', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -270,7 +550,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone`, `address`, `state`, `city_id`, `zip`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'ahmed', 'ali sayed', '01112912233', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'qwde', 1, 'eqd', 'owner@gmail.com', NULL, '$2y$10$J01pToCEgIkwXq4gwP2V4uwPEz/A5Fh.j0O7Om3Yb0sHyXlJzvHjS', 2, NULL, '2021-06-02 08:42:20', '2021-06-02 09:28:09'),
+(2, 'ahmed', 'ali sayed', '01112912233', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'qwde', 2, 'eqd', 'owner@gmail.com', NULL, '$2y$10$QQL2.pY56aS.am4QzhpwO.SCv0OF4tNX2MeuBpiaXb4PgZvkIFaM6', 2, NULL, '2021-06-02 08:42:20', '2021-06-09 18:16:42'),
 (3, 'ahmed', 'mostafa ali', '01112912244', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'rerbd', 2, 'gredger', 'tenant@gmail.com', NULL, '$2y$10$kLx2oWvk52i6K5LSb1f1cOcUnVGvD3rfK0zGiT2Z/U1/eiD7ETGzm', 3, NULL, '2021-06-02 09:35:35', '2021-06-02 09:52:15'),
 (4, 'ahmed', 'nour', '01112912211', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'wefcew', 2, 'ddwfcwe', 'admin@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 1, NULL, '2021-06-02 09:59:25', '2021-06-02 09:59:25'),
 (5, 'ahmed', 'ali', '01112912999', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'dsds', 1, 'sdcsd', 'owner2@gmail.com', NULL, '$2y$10$FxDqg1eBjmL4p83UhM5A/uHOB0IIXoSmO7hIFc4.OaCDoNUj/z4P2', 2, NULL, '2021-06-02 11:37:23', '2021-06-02 11:37:23'),
@@ -281,10 +561,43 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone`, `address`, `state
 --
 
 --
+-- Indexes for table `applications`
+--
+ALTER TABLE `applications`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `applications_email_unique` (`email`),
+  ADD KEY `applications_gender_id_foreign` (`gender_id`),
+  ADD KEY `applications_city_id_foreign` (`city_id`),
+  ADD KEY `applications_state_id_foreign` (`state_id`),
+  ADD KEY `applications_house_type_id_foreign` (`house_type_id`),
+  ADD KEY `applications_chapter_id_foreign` (`chapter_id`),
+  ADD KEY `applications_payment_method_id_foreign` (`payment_method_id`),
+  ADD KEY `applications_paying_rent_id_foreign` (`paying_rent_id`),
+  ADD KEY `applications_room_type_id_foreign` (`room_type_id`),
+  ADD KEY `applications_room_id_foreign` (`room_id`),
+  ADD KEY `applications_parent_information1_id_foreign` (`parent_information1_id`),
+  ADD KEY `applications_parent_information2_id_foreign` (`parent_information2_id`);
+
+--
+-- Indexes for table `chapters`
+--
+ALTER TABLE `chapters`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `cities`
 --
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `employments`
+--
+ALTER TABLE `employments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `employments_application_id_foreign` (`application_id`),
+  ADD KEY `employments_city_id_foreign` (`city_id`),
+  ADD KEY `employments_state_id_foreign` (`state_id`);
 
 --
 -- Indexes for table `flooers`
@@ -299,6 +612,12 @@ ALTER TABLE `flooers`
 ALTER TABLE `front_house_images`
   ADD PRIMARY KEY (`id`),
   ADD KEY `front_house_images_house_id_foreign` (`house_id`);
+
+--
+-- Indexes for table `genders`
+--
+ALTER TABLE `genders`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `houses`
@@ -323,10 +642,25 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `parent_informations`
+--
+ALTER TABLE `parent_informations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `parent_informations_email_unique` (`email`),
+  ADD KEY `parent_informations_city_id_foreign` (`city_id`),
+  ADD KEY `parent_informations_state_id_foreign` (`state_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `paying_rents`
+--
+ALTER TABLE `paying_rents`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `payment_methods`
@@ -335,9 +669,38 @@ ALTER TABLE `payment_methods`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `rental_histories`
+--
+ALTER TABLE `rental_histories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rental_histories_application_id_foreign` (`application_id`),
+  ADD KEY `rental_histories_city_id_foreign` (`city_id`),
+  ADD KEY `rental_histories_state_id_foreign` (`state_id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rooms_house_id_foreign` (`house_id`),
+  ADD KEY `rooms_room_type_id_foreign` (`room_type_id`);
+
+--
+-- Indexes for table `room_types`
+--
+ALTER TABLE `room_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `states`
+--
+ALTER TABLE `states`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -354,22 +717,46 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `applications`
+--
+ALTER TABLE `applications`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `chapters`
+--
+ALTER TABLE `chapters`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `employments`
+--
+ALTER TABLE `employments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `flooers`
 --
 ALTER TABLE `flooers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `front_house_images`
 --
 ALTER TABLE `front_house_images`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `genders`
+--
+ALTER TABLE `genders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `houses`
@@ -387,7 +774,19 @@ ALTER TABLE `house_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `parent_informations`
+--
+ALTER TABLE `parent_informations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `paying_rents`
+--
+ALTER TABLE `paying_rents`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payment_methods`
@@ -396,20 +795,68 @@ ALTER TABLE `payment_methods`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `rental_histories`
+--
+ALTER TABLE `rental_histories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `room_types`
+--
+ALTER TABLE `room_types`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `states`
+--
+ALTER TABLE `states`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `applications`
+--
+ALTER TABLE `applications`
+  ADD CONSTRAINT `applications_chapter_id_foreign` FOREIGN KEY (`chapter_id`) REFERENCES `chapters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_gender_id_foreign` FOREIGN KEY (`gender_id`) REFERENCES `genders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_house_type_id_foreign` FOREIGN KEY (`house_type_id`) REFERENCES `house_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_parent_information1_id_foreign` FOREIGN KEY (`parent_information1_id`) REFERENCES `parent_informations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_parent_information2_id_foreign` FOREIGN KEY (`parent_information2_id`) REFERENCES `parent_informations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_paying_rent_id_foreign` FOREIGN KEY (`paying_rent_id`) REFERENCES `paying_rents` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_payment_method_id_foreign` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_room_type_id_foreign` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `employments`
+--
+ALTER TABLE `employments`
+  ADD CONSTRAINT `employments_application_id_foreign` FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `employments_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `employments_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `flooers`
@@ -431,6 +878,28 @@ ALTER TABLE `houses`
   ADD CONSTRAINT `houses_house_type_id_foreign` FOREIGN KEY (`house_type_id`) REFERENCES `house_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `houses_owner_id_foreign` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `houses_payment_method_id_foreign` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `parent_informations`
+--
+ALTER TABLE `parent_informations`
+  ADD CONSTRAINT `parent_informations_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `parent_informations_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `rental_histories`
+--
+ALTER TABLE `rental_histories`
+  ADD CONSTRAINT `rental_histories_application_id_foreign` FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rental_histories_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rental_histories_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD CONSTRAINT `rooms_house_id_foreign` FOREIGN KEY (`house_id`) REFERENCES `houses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rooms_room_type_id_foreign` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`
