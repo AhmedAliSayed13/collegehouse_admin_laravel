@@ -36,7 +36,9 @@ class ApplicationController extends Controller
 
     public function PostcreateStep1(Request $request)
     {
-        $validatedData = $request->validate([
+        $arr2=[];
+        $arr3=[];
+        $arr1=array(
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
             'gender_id' => ['required','integer'],
@@ -51,19 +53,19 @@ class ApplicationController extends Controller
             'zip' => ['required', 'string'],
             'house_type_id' => ['required', 'integer'],
             'requested_houses' => ['required', 'string'],
-            'group_lead_name' => ['nullable', 'string'],
-            'group_member_name_1' => ['nullable','string'],
-            'group_member_name_2' => ['nullable','string'],
-            'group_member_name_3' => ['nullable','string'],
-            'group_member_name_4' => ['nullable','string'],
-            'room_id' => ['nullable','integer'],
-            'room_type_id' => ['nullable','integer'],
+            // 'group_lead_name' => ['required', 'string'],
+            // 'group_member_name_1' => ['required','string'],
+            // 'group_member_name_2' => ['required','string'],
+            // 'group_member_name_3' => ['required','string'],
+            // 'group_member_name_4' => ['required','string'],
+            // 'room_id' => ['required','integer'],
+            // 'room_type_id' => ['required','integer'],
             'amount_pay_dollars' => ['required','integer'],
             'bringing_Car' => ['required'],
-            'car_make' => ['nullable', 'string'],
-            'car_model' => ['nullable', 'string'],
-            'driver_license_number' => ['nullable', 'string'],
-            'car_license_number' => ['nullable', 'string'],
+            // 'car_make' => ['required', 'string'],
+            // 'car_model' => ['required', 'string'],
+            // 'driver_license_number' => ['required', 'string'],
+            // 'car_license_number' => ['required', 'string'],
             'school' => ['required', 'string'],
             'major' => ['required', 'string'],
             'graduation_year' => ['required', 'string'],
@@ -71,8 +73,37 @@ class ApplicationController extends Controller
             'chapter_id' => ['required','integer'],
             'payment_method_id' => ['required','integer'],
             'paying_rent_id' => ['required','integer'],
-            'register_vote' => ['required'],
-        ]);
+            'register_vote' => ['required']
+        );
+        if($request->house_type_id==1){
+            $arr2=array(
+                'group_lead_name' => ['required', 'string'],
+                'group_member_name_1' => ['required','string'],
+                'group_member_name_2' => ['required','string'],
+                'group_member_name_3' => ['required','string'],
+                'group_member_name_4' => ['required','string']
+                
+            );
+        }elseif($request->house_type_id==2){
+            $arr2=array(
+                'room_id' => ['required','integer'],
+                'room_type_id' => ['required','integer']
+            );
+        }
+
+
+        if($request->bringing_Car==1){
+            $arr3=array(
+                'car_make' => ['required', 'string'],
+                'car_model' => ['required', 'string'],
+                'driver_license_number' => ['required', 'string'],
+                'car_license_number' => ['required', 'string']
+            );
+        }
+        $arr=$arr1+$arr2+$arr3;
+        $validatedData = $request->validate($arr);
+
+        
 
         if(empty($request->session()->get('application'))){
             $application = new Application();
@@ -88,9 +119,9 @@ class ApplicationController extends Controller
 
     public function createStep2(Request $request)
     {
-        $register = $request->session()->get('register');
+        $application = $request->session()->get('application');
 
-        return view('register.step2', compact('register'));
+        return view('application.step2', compact('application'));
     }
 
     public function PostcreateStep2(Request $request)

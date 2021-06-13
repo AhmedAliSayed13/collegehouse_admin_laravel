@@ -761,9 +761,13 @@
 
 
 							</div>
-							<button type="submit" class="btn btn-primary" id="id-form1">
-								Update info
-							</button>
+							
+								<div class="col-lg-1 float-right">
+									<button type="submit" class="btn btn-primary" id="id-form1">
+										Next
+									</button>
+								</div>
+							
 
 						</form>
 					</div>
