@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2021 at 01:28 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Jun 13, 2021 at 05:14 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -90,6 +89,66 @@ CREATE TABLE `chapters` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `chapters`
+--
+
+INSERT INTO `chapters` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Alpha Delta Phi (IFC)', NULL, NULL),
+(2, 'Alpha Epsilon Pi (IFC)', NULL, NULL),
+(3, 'Alpha Phi Alpha Fraternity, Inc. (NPHC)', NULL, NULL),
+(4, 'Alpha Sigma Phi (IFC)', NULL, NULL),
+(5, 'Alpha Tau Omega (IFC)', NULL, NULL),
+(6, 'Beta Theta Pi (IFC)', NULL, NULL),
+(7, 'Chi Phi (IFC)', NULL, NULL),
+(8, 'Delta Sigma Phi (IFC)', NULL, NULL),
+(9, 'Delta Upsilon (IFC)', NULL, NULL),
+(10, 'Iota Nu Delta Fraternity, Inc. (MGC)', NULL, NULL),
+(11, 'Kappa Alpha Order (IFC)', NULL, NULL),
+(12, 'Kappa Alpha Psi Fraternity, Inc. (NPHC)', NULL, NULL),
+(13, 'Lambda Chi Alpha (IFC)', NULL, NULL),
+(14, 'Lambda Upsilon Lambda Fraternity, Inc. (MGC)', NULL, NULL),
+(15, 'Phi Delta Sigma Fraternity, Inc. (MGC)', NULL, NULL),
+(16, 'Phi Delta Theta (IFC)', NULL, NULL),
+(17, 'Phi Kappa Psi (IFC)', NULL, NULL),
+(18, 'Phi Kappa Tau (IFC)', NULL, NULL),
+(19, 'Phi Sigma Kappa (IFC)', NULL, NULL),
+(20, 'Pi Kappa Alpha (IFC)', NULL, NULL),
+(21, 'Sigma Alpha Epsilon (IFC)', NULL, NULL),
+(22, 'Sigma Alpha Mu (IFC)', NULL, NULL),
+(23, 'Sigma Chi (IFC)', NULL, NULL),
+(24, 'Sigma Nu (IFC)', NULL, NULL),
+(25, 'Sigma Phi Epsilon (IFC)', NULL, NULL),
+(26, 'Tau Epsilon Phi (IFC)', NULL, NULL),
+(27, 'Theta Chi (IFC)', NULL, NULL),
+(28, 'Zeta Beta Tau (IFC)', NULL, NULL),
+(29, 'Zeta Psi (IFC)', NULL, NULL),
+(30, 'Alpha Chi Omega (PHA)', NULL, NULL),
+(31, 'Alpha Delta Pi (PHA)', NULL, NULL),
+(32, 'Alpha Epsilon Phi (PHA)', NULL, NULL),
+(33, 'Alpha Kappa Alpha Sorority, Inc. (NPHC)', NULL, NULL),
+(34, 'Alpha Omicron Pi (PHA)', NULL, NULL),
+(35, 'Alpha Phi (PHA)', NULL, NULL),
+(36, 'Alpha Xi Delta (PHA)', NULL, NULL),
+(37, 'Delta Delta Delta (PHA)', NULL, NULL),
+(38, 'Delta Gamma (PHA)', NULL, NULL),
+(39, 'Delta Phi Epsilon (PHA)', NULL, NULL),
+(40, 'Delta Sigma Theta Sorority, Inc. (NPHC)', NULL, NULL),
+(41, 'Gamma Phi Beta (PHA)', NULL, NULL),
+(42, 'Hermandad de Sigma Iota Alpha, Inc. (MGC)', NULL, NULL),
+(43, 'Kappa Alpha Theta (PHA)', NULL, NULL),
+(44, 'Kappa Delta (PHA)', NULL, NULL),
+(45, 'Kappa Lambda Xi Multicultural Sorority, Inc. (MGC)', NULL, NULL),
+(46, 'Kappa Phi Lambda Sorority, Inc. (MGC)', NULL, NULL),
+(47, 'Lambda Theta Alpha Latin Sorority, Inc. (MGC)', NULL, NULL),
+(48, 'Phi Sigma Sigma (PHA)', NULL, NULL),
+(49, 'Sigma Delta Tau (PHA)', NULL, NULL),
+(50, 'Sigma Kappa (PHA)', NULL, NULL),
+(51, 'Sigma Psi Zeta Sorority, Inc. (MGC)', NULL, NULL),
+(52, 'Zeta Tau Alpha (PHA)', NULL, NULL),
+(53, 'alpha Kappa Delta Phi Sorority, Inc. (MGC)', NULL, NULL),
+(54, 'N/A', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -158,6 +217,16 @@ CREATE TABLE `flooers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `flooers`
+--
+
+INSERT INTO `flooers` (`id`, `size`, `bathroom`, `room`, `describe`, `image`, `house_id`, `created_at`, `updated_at`) VALUES
+(14, 12, 12, 12, '12', '16235899760room_image.png', 2, '2021-06-13 11:12:56', '2021-06-13 11:12:56'),
+(15, 12, 12, 12, '1212', '16235900500room_image.png', 3, '2021-06-13 11:14:10', '2021-06-13 11:14:10'),
+(16, 44, 44, 44, '444', '16235901810room_image.png', 4, '2021-06-13 11:16:21', '2021-06-13 11:16:21'),
+(17, 55, 55, 55, '55', '16235902580room_image.png', 5, '2021-06-13 11:17:38', '2021-06-13 11:17:38');
+
 -- --------------------------------------------------------
 
 --
@@ -171,6 +240,16 @@ CREATE TABLE `front_house_images` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `front_house_images`
+--
+
+INSERT INTO `front_house_images` (`id`, `name`, `house_id`, `created_at`, `updated_at`) VALUES
+(28, '16235899760front_house_image.png', 2, '2021-06-13 11:12:56', '2021-06-13 11:12:56'),
+(29, '16235900500front_house_image.png', 3, '2021-06-13 11:14:10', '2021-06-13 11:14:10'),
+(30, '16235901810front_house_image.png', 4, '2021-06-13 11:16:21', '2021-06-13 11:16:21'),
+(31, '16235902580front_house_image.png', 5, '2021-06-13 11:17:38', '2021-06-13 11:17:38');
 
 -- --------------------------------------------------------
 
@@ -230,6 +309,16 @@ CREATE TABLE `houses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `houses`
+--
+
+INSERT INTO `houses` (`id`, `owner_id`, `address`, `status`, `city_id`, `name`, `house_type_id`, `num_rooms`, `num_residents`, `num_bathrooms`, `num_flooers`, `num_parkings`, `total_size`, `num_kitchens`, `annual_reset`, `payment_method_id`, `image_ownership`, `image_lease`, `description`, `about`, `excellent_location`, `safety_security`, `professional_maintenance`, `resident_account`, `video`, `pdf`, `created_at`, `updated_at`) VALUES
+(2, 2, 'التوسعات الشمالية - قطعة 816', '42343', 1, 'b-house', 2, 12, 12, 12, 12, 12, 1212, 12, 'dfd', 5, '1623589976image_ownership.png', '1623589976image_lease.png', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', '1623589976video.mp4', '1623589976pdf.pdf', '2021-06-13 11:12:56', '2021-06-13 11:12:56'),
+(3, 5, 'التوسعات الشمالية - قطعة 816', 'ertger', 2, 'g-house', 1, 12, 12, 12, 12, 12, 121, 12, 'dfvdf', 2, '1623590050image_ownership.png', '1623590050image_lease.png', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', '1623590050video.mp4', '1623590050pdf.pdf', '2021-06-13 11:14:10', '2021-06-13 11:14:10'),
+(4, 2, 'التوسعات الشمالية - قطعة 816', 'dfgdf', 1, 'g-house2', 1, 12, 12, 12, 12, 12, 121, 12, 'rfdfv', 3, '1623590181image_ownership.png', '1623590181image_lease.png', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', '1623590181video.mp4', '1623590181pdf.pdf', '2021-06-13 11:16:21', '2021-06-13 11:16:21'),
+(5, 5, 'التوسعات الشمالية - قطعة 816', 'drefgdfg', 1, 'b-house2', 2, 55, 55, 55, 55, 55, 555, 55, 'dfbdfb', 4, '1623590257image_ownership.png', '1623590257image_lease.png', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', '1623590257video.mp4', '1623590257pdf.pdf', '2021-06-13 11:17:37', '2021-06-13 11:17:37');
 
 -- --------------------------------------------------------
 
@@ -339,6 +428,16 @@ CREATE TABLE `paying_rents` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `paying_rents`
+--
+
+INSERT INTO `paying_rents` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Self', NULL, NULL),
+(2, 'Parents', NULL, NULL),
+(3, 'Scholarships', NULL, NULL),
+(4, 'Others', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -357,10 +456,11 @@ CREATE TABLE `payment_methods` (
 --
 
 INSERT INTO `payment_methods` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'op1', NULL, NULL),
-(2, 'op2', NULL, NULL),
-(3, 'op3', NULL, NULL),
-(4, 'op4', NULL, NULL);
+(1, 'Quarterly', NULL, NULL),
+(2, 'Biannual', NULL, NULL),
+(3, 'Yearly', NULL, NULL),
+(4, 'Monthly', NULL, NULL),
+(5, 'Bimonthly', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -424,6 +524,14 @@ CREATE TABLE `rooms` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `name`, `house_id`, `room_type_id`, `number`, `created_at`, `updated_at`) VALUES
+(1, 'room1', 4, 2, '121', NULL, NULL),
+(2, 'room2', 5, 2, '222', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -726,7 +834,7 @@ ALTER TABLE `applications`
 -- AUTO_INCREMENT for table `chapters`
 --
 ALTER TABLE `chapters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -744,13 +852,13 @@ ALTER TABLE `employments`
 -- AUTO_INCREMENT for table `flooers`
 --
 ALTER TABLE `flooers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `front_house_images`
 --
 ALTER TABLE `front_house_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `genders`
@@ -762,7 +870,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT for table `houses`
 --
 ALTER TABLE `houses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `house_types`
@@ -786,13 +894,13 @@ ALTER TABLE `parent_informations`
 -- AUTO_INCREMENT for table `paying_rents`
 --
 ALTER TABLE `paying_rents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `payment_methods`
 --
 ALTER TABLE `payment_methods`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `rental_histories`
@@ -810,7 +918,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `room_types`
