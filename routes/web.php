@@ -72,13 +72,13 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
 
 Route::get('/step1', 'ApplicationController@createStep1')->name('step1');
-Route::post('/step1', 'ApplicationController@PostcreateStep1');
+Route::post('/step1', 'ApplicationController@PostcreateStep1')->name('step1-save');
 
 Route::get('/step2', 'ApplicationController@createStep2')->name('step2');
-Route::post('/step2', 'ApplicationController@PostcreateStep2');
+Route::post('/step2', 'ApplicationController@PostcreateStep2')->name('step2-save');
 
 Route::get('/step3', 'ApplicationController@createStep3')->name('step3');
-Route::post('/step3', 'ApplicationController@PostcreateStep3');
+Route::post('/step3', 'ApplicationController@PostcreateStep3')->name('step3-save');
 
 
 

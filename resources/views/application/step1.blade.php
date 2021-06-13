@@ -76,7 +76,7 @@
 						<p class="step-form-decs">Your information will be used to create your profile with us. Please
 							complete all required fields accurately.</p>
 
-						<form method="POST" action="{{route('house.store')}}" enctype="multipart/form-data">
+						<form method="POST" action="{{route('step1-save')}}" >
 							{{ csrf_field() }}
 							<div class="row">
 
@@ -113,8 +113,6 @@
 
 									</div>
 								</div>
-
-
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Gender:</label>
@@ -143,7 +141,7 @@
 										<label>Email Address:</label>
 										<input id="email" placeholder="email" type="email"
 											class="form-control @error('email') is-invalid @enderror"
-											name="num_rooms" value="{{ old('email') }}" autocomplete="email"
+											name="email" value="{{ old('email') }}" autocomplete="email"
 											autofocus>
 										@error('email')
 										<span class="invalid-feedback" role="alert">
@@ -319,7 +317,7 @@
 									</div>
 								</div>
 
-								<div class="col-md-12">
+								<div class="col-md-12  group_house_field">
 									<div class="form-group">
 										<label>Requested Property For Rent:</label>
 										<select id="requested_houses"
@@ -340,10 +338,11 @@
 
 									</div>
 								</div>
-								<div class="col-md-12">
+
+								<div class="col-md-12 group_house_field">
 									<h4 class="d-block mt-4">Group Members:</h4>
 								</div>
-								<div class="col-md-12">
+								<div class="col-md-12 group_house_field">
 									<div class="form-group">
 										<label>Group lead name:</label>
 										<input id="group_lead_name" placeholder="Group lead name" type="text"
@@ -357,7 +356,8 @@
 										@enderror
 									</div>
 								</div>
-								<div class="col-md-6">
+
+								<div class="col-md-6 group_house_field">
 									<div class="form-group">
 										<label>Group member name (1):</label>
 										<input id="group_member_name_1" placeholder="Group member name (1)" type="text"
@@ -371,7 +371,8 @@
 										@enderror
 									</div>
 								</div>
-								<div class="col-md-6">
+
+								<div class="col-md-6 group_house_field">
 									<div class="form-group">
 										<label>Group member name (2):</label>
 										<input id="group_member_name_2" placeholder="Group member name (2)" type="text"
@@ -385,7 +386,8 @@
 										@enderror
 									</div>
 								</div>
-								<div class="col-md-6">
+
+								<div class="col-md-6 group_house_field">
 									<div class="form-group">
 										<label>Group member name (3):</label>
 										<input id="group_member_name_3" placeholder="Group member name (3)" type="text"
@@ -399,7 +401,8 @@
 										@enderror
 									</div>
 								</div>
-								<div class="col-md-6">
+
+								<div class="col-md-6 group_house_field">
 									<div class="form-group">
 										<label>Group member name (4):</label>
 										<input id="group_member_name_4" placeholder="Group member name (4)" type="text"
@@ -413,7 +416,8 @@
 										@enderror
 									</div>
 								</div>
-								<div class="col-md-12">
+
+								<div class="col-md-12 boarding_house_field">
 									<div class="form-group">
 										<label>Requested Property For Rent:</label>
 										<select id="requested_houses"
@@ -434,7 +438,31 @@
 
 									</div>
 								</div>
-								<div class="col-md-6">
+
+								<div class="col-md-6 boarding_house_field">
+									<div class="form-group">
+										<label>Room Number:</label>
+										<select id="room_id"
+											class="form-control @error('room_id') is-invalid @enderror"
+											name="room_id"  autocomplete="room_id"
+											autofocus>
+
+											
+											@foreach ($rooms as $room)
+											<option value="{{$room->id}}"
+												{{ option_select(old("room_id") , $room->id )}}>{{$room->number}}
+											</option>
+											@endforeach
+										</select>
+										@error('room_id')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+								<div class="col-md-6 boarding_house_field">
 									<div class="form-group">
 										<label>Room Type:</label>
 										<select id="room_type_id"
@@ -450,6 +478,24 @@
 											@endforeach
 										</select>
 										@error('room_type_id')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<h4 class="d-block mt-4">Estimated amount you are prepared to pay per person (without utilities):</h4>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+									<label>Estimated amount to pay in dollars</label>
+										<input id="amount_pay_dollars" placeholder="Estimated amount to pay in dollars" type="number"
+											class="form-control @error('amount_pay_dollars') is-invalid @enderror"
+											name="amount_pay_dollars" value="{{ old('amount_pay_dollars') }}" autocomplete="amount_pay_dollars"
+											autofocus>
+										@error('amount_pay_dollars')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
 										</span>
@@ -474,7 +520,7 @@
 											class=" form-control @error('bringing_Car') is-invalid @enderror"
 											name="bringing_Car"  autocomplete="bringing_Car"
 											autofocus>
-											<option value="0" {{ option_select(old("bringing_Car") , 0 )}}>NO</option>
+											<option value="0" {{ option_select(old("bringing_Car") , 0 )}}>No</option>
 											<option value="1" {{ option_select(old("bringing_Car") , 1 )}}>Yes</option>
 										</select>
 										@error('bringing_Car')
@@ -486,167 +532,147 @@
 									</div>
 								</div>
 
+								<div class="col-md-6 car_field">
+									<div class="form-group">
+									<label>Car Make:</label>
+										<input id="car_make" placeholder="Car Make" type="text"
+											class="form-control @error('car_make') is-invalid @enderror"
+											name="car_make" value="{{ old('car_make') }}"
+											autocomplete="car_make" autofocus>
+										@error('car_make')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+								<div class="col-md-6 car_field">
+									<div class="form-group">
+									<label>Car Model:</label>
+										<input id="car_model" placeholder="Car Model" type="text"
+											class="form-control @error('car_model') is-invalid @enderror"
+											name="car_model" value="{{ old('car_model') }}"
+											autocomplete="car_model" autofocus>
+										@error('car_model')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+								<div class="col-md-6 car_field">
+									<div class="form-group">
+									<label>Car license plate number:</label>
+										<input id="driver_license_number" placeholder="Car license plate number" type="text"
+											class="form-control @error('driver_license_number') is-invalid @enderror"
+											name="driver_license_number" value="{{ old('driver_license_number') }}"
+											autocomplete="driver_license_number" autofocus>
+										@error('driver_license_number')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+								<div class="col-md-6 car_field">
+									<div class="form-group">
+									<label>Drivers license number:</label>
+										<input id="car_license_number" placeholder="Drivers license number" type="text"
+											class="form-control @error('car_license_number') is-invalid @enderror"
+											name="car_license_number" value="{{ old('car_license_number') }}"
+											autocomplete="car_license_number" autofocus>
+										@error('car_license_number')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
 
 
 
 								
 
+								
 								<div class="col-md-6">
 									<div class="form-group">
-										<input id="total_size" placeholder="Total Size" type="number"
-											class="form-control @error('total_size') is-invalid @enderror"
-											name="total_size" value="{{ old('total_size') }}" autocomplete="total_size"
+									<label>School:</label>
+										<input id="school" placeholder="school" type="text"
+											class="form-control @error('school') is-invalid @enderror"
+											name="school" value="{{ old('school') }}"
+											autocomplete="school" autofocus>
+										@error('school')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+									<label>Major:</label>
+										<input id="major" placeholder="major" type="text"
+											class="form-control @error('major') is-invalid @enderror"
+											name="major" value="{{ old('major') }}"
+											autocomplete="major" autofocus>
+										@error('major')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+									<label>Graduation Year:</label>
+										<input id="graduation_year" placeholder="Graduation Year" type="text"
+											class="form-control @error('graduation_year') is-invalid @enderror"
+											name="graduation_year" value="{{ old('graduation_year') }}"
+											autocomplete="graduation_year" autofocus>
+										@error('graduation_year')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+									<label>GPA:</label>
+										<input id="gpa" placeholder="GPA" type="number"
+											class="form-control @error('gpa') is-invalid @enderror"
+											name="gpa" value="{{ old('gpa') }}"
+											autocomplete="gpa" autofocus>
+										@error('gpa')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Chapters:</label>
+										<select id="chapter_id"
+											class="form-control @error('chapter_id') is-invalid @enderror"
+											name="chapter_id"  autocomplete="chapter_id"
 											autofocus>
-										@error('total_size')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<input id="num_kitchens" placeholder="Kitchens" type="number"
-											class="form-control @error('num_kitchens') is-invalid @enderror"
-											name="num_kitchens" value="{{ old('num_kitchens') }}"
-											autocomplete="num_kitchens" autofocus>
-										@error('num_kitchens')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-								<div class="col-md-12">
-									<h5 class="d-block mt-4">Diligence Requirements</h5>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<input id="annual_reset" placeholder="Annual Reset" type="text"
-											class="form-control @error('annual_reset') is-invalid @enderror"
-											name="annual_reset" value="{{ old('annual_reset') }}"
-											autocomplete="annual_reset" autofocus>
-										@error('annual_reset')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
 
-									</div>
-								</div>
-
-								<div class="col-md-12">
-									<h5 class="d-block mt-4">Property Highlights</h5>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<input id="excellent_location" placeholder="Excellent Location" type="text"
-											class="form-control @error('excellent_location') is-invalid @enderror"
-											name="excellent_location" value="{{ old('excellent_location') }}"
-											autocomplete="excellent_location" autofocus>
-										@error('excellent_location')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<input id="safety_security" placeholder="Safety Security" type="text"
-											class="form-control @error('safety_security') is-invalid @enderror"
-											name="safety_security" value="{{ old('safety_security') }}"
-											autocomplete="Safety Security" autofocus>
-										@error('safety_security')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<input id="professional_maintenance" placeholder="Professional Maintenance"
-											type="text"
-											class="form-control @error('professional_maintenance') is-invalid @enderror"
-											name="professional_maintenance"
-											value="{{ old('professional_maintenance') }}"
-											autocomplete="professional_maintenance" autofocus>
-										@error('professional_maintenance')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<input id="resident_account" placeholder="Resident Account" type="text"
-											class="form-control @error('resident_account') is-invalid @enderror"
-											name="resident_account" value="{{ old('resident_account') }}"
-											autocomplete="resident_account" autofocus>
-										@error('resident_account')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>House Description</label>
-										<textarea id="image_ownership"
-											class="form-control @error('description') is-invalid @enderror"
-											name="description" autocomplete="description" autofocus>
-													{{ old('description') }}
-													</textarea>
-										@error('description')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>House About</label>
-										<textarea id="about" class="form-control @error('about') is-invalid @enderror"
-											name="about" autocomplete="about" autofocus>
-													{{ old('about') }}
-													</textarea>
-										@error('about')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>Upload Ownership Contract</label>
-										<input id="image_ownership" type="file"
-											class="form-control @error('image_ownership') is-invalid @enderror"
-											name="image_ownership" value="{{ old('image_ownership') }}"
-											autocomplete="image_ownership" autofocus>
-										@error('image_ownership')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>Upload lease Contract</label>
-										<input id="image_lease" type="file"
-											class="form-control @error('image_lease') is-invalid @enderror"
-											name="image_lease" value="{{ old('image_lease') }}"
-											autocomplete="image_lease" autofocus>
-										@error('image_lease')
+											
+											@foreach ($chapters as $chapter)
+											<option value="{{$chapter->id}}"
+												{{ option_select(old("chapter_id") , $chapter->id )}}>{{$chapter->name}}
+											</option>
+											@endforeach
+										</select>
+										@error('chapter_id')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
 										</span>
@@ -656,103 +682,82 @@
 
 								<div class="col-md-12">
 									<div class="form-group">
-										<label>Upload Front House Images</label>
-										<input id="front_house_images" type="file"
-											class="form-control @error('front_house_images') is-invalid @enderror"
-											name="front_house_images[]" autocomplete="front_house_images" autofocus
-											multiple>
-										@error('front_house_images')
+										<label>Preferred payment schedule:</label>
+										<select id="payment_method_id"
+											class="form-control @error('payment_method_id') is-invalid @enderror"
+											name="payment_method_id"  autocomplete="payment_method_id"
+											autofocus>
+
+											
+											@foreach ($payment_methods as $payment_method)
+											<option value="{{$payment_method->id}}"
+												{{ option_select(old("payment_method_id") , $payment_method->id )}}>{{$payment_method->name}}
+											</option>
+											@endforeach
+										</select>
+										@error('payment_method_id')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
 										</span>
 										@enderror
 									</div>
 								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>Upload Video</label>
-										<input id="video" type="file"
-											class="form-control @error('video') is-invalid @enderror" name="video"
-											autocomplete="video" autofocus multiple>
-										@error('video')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>Upload pdf</label>
-										<input id="pdf" type="file"
-											class="form-control @error('pdf') is-invalid @enderror" name="pdf"
-											autocomplete="pdf" autofocus>
-										@error('pdf')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
-
 
 								<div class="col-md-12">
-									<div class="card">
-										<div class="card-body">
-											<h4 class="card-title">Floor</h4>
-											<div class="education-info">
-												<div class="row form-row education-cont">
-													<div class="col-12 col-md-10 col-lg-11">
-														<div class="row form-row">
-															<div class="col-12 col-md-6 col-lg-2">
-																<div class="form-group">
-																	<label>Size</label>
-																	<input type="number" name="flooer_size[]" required
-																		class="form-control  @error('flooer_size') is-invalid @enderror">
+									<div class="form-group">
+										<label>Who is paying the rent ?</label>
+										<select id="paying_rent_id"
+											class="form-control @error('paying_rent_id') is-invalid @enderror"
+											name="paying_rent_id"  autocomplete="paying_rent_id"
+											autofocus>
 
-																</div>
-															</div>
-															<div class="col-12 col-md-6 col-lg-2">
-																<div class="form-group">
-																	<label>Bathrooms</label>
-																	<input type="number" required class="form-control"
-																		name="flooer_bathroom[]">
-																</div>
-															</div>
-															<div class="col-12 col-md-6 col-lg-2">
-																<div class="form-group">
-																	<label>Rooms</label>
-																	<input type="number" class="form-control" required
-																		name="flooer_room[]">
-																</div>
-															</div>
-															<div class="col-12 col-md-6 col-lg-3">
-																<div class="form-group">
-																	<label>describe</label>
-																	<input type="text" class="form-control" required
-																		name="flooer_describe[]">
-																</div>
-															</div>
-															<div class="col-12 col-md-6 col-lg-3">
-																<div class="form-group">
-																	<label>image</label>
-																	<input type="file" class="form-control"
-																		accept="image/*" required name="flooer_image[]">
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="add-more">
-												<a href="javascript:void(0);" class="add-education"><i
-														class="fa fa-plus-circle"></i> Add More</a>
-											</div>
-										</div>
+											
+											@foreach ($paying_rents as $paying_rent)
+											<option value="{{$paying_rent->id}}"
+												{{ option_select(old("paying_rent_id") , $paying_rent->id )}}>{{$paying_rent->name}}
+											</option>
+											@endforeach
+										</select>
+										@error('paying_rent_id')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 									</div>
 								</div>
+
+								<div class="col-md-12">
+									<h6>
+									It is so important that you register to vote in Collage Park (it will make a difference for YOU and future Terps). Pass this on to everyone you know - this CAN really make a difference for YOU living in College Park. Are you willing to register to vote?
+									</h6>
+								</div>
+
+								<div class="col-md-12">
+									<div class="form-group">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="register_vote" id="vote_yes" value="1" checked="">
+										<label class="form-check-label" for="vote_yes">
+										Yes
+										</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="register_vote" id="vote_no" value="0">
+										<label class="form-check-label" for="vote_no">
+										No
+										</label>
+									</div>
+									@error('register_vote')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+									@enderror
+										
+										
+									</div>
+								</div>
+
+
+								
 
 
 							</div>
@@ -794,7 +799,89 @@
 
 	<!-- Custom JS -->
 	<script src="{{ asset('assets/js/script.js') }}"></script>
+	<script>
+		value_house_type=$('#house_type_id').val();
+		if(value_house_type==1){
+			$('.group_house_field').show();
+			$('.boarding_house_field').hide();
+		}else if(value_house_type==2){
+			
+			$('.group_house_field').hide();
+			$('.boarding_house_field').show();
+		}else{
+			$('.group_house_field').hide();
+			$('.boarding_house_field').hide();
+		}
 
+
+	$('#house_type_id').on('change', function() {
+		value=$(this).val();
+		if(value==1){
+			$('.group_house_field').show();
+			$('.boarding_house_field').hide();
+		}else if(value==2){
+			
+			$('.group_house_field').hide();
+			$('.boarding_house_field').show();
+		}
+	});
+	</script>
+	<script>
+		value_house_type=$('#house_type_id').val();
+		if(value_house_type==1){
+			$('.group_house_field').show();
+			$('.boarding_house_field').hide();
+		}else if(value_house_type==2){
+			
+			$('.group_house_field').hide();
+			$('.boarding_house_field').show();
+		}else{
+			$('.group_house_field').hide();
+			$('.boarding_house_field').hide();
+		}
+
+
+	$('#house_type_id').on('change', function() {
+		value=$(this).val();
+		if(value==1){
+			$('.group_house_field').show();
+			$('.boarding_house_field').hide();
+			$('.boarding_house_field input').val();
+			$('.boarding_house_field select').val();
+		}else if(value==2){
+			
+			$('.group_house_field').hide();
+			$('.group_house_field input').val('');
+			$('.group_house_field select').val('');
+			$('.boarding_house_field').show();
+		}
+	});
+	</script>
+
+<script>
+		bringing_Car=$('#bringing_Car').val('');
+		if(bringing_Car==1){
+			$('.car_field').show();
+		}else{
+			$('.car_field').hide();
+			$('.car_field input').val('');
+			$('.car_field select').val('');
+		}
+
+
+	$('#bringing_Car').on('change', function() {
+		value=$(this).val();
+		if(value==1){
+			$('.car_field').show();
+			
+		}else{
+			$('.car_field').hide();
+			$('.car_field input').val('');
+			$('.car_field select').val('');
+		}
+	});
+	</script>
+	
 
 
 
