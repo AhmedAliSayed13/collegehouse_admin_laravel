@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2021 at 05:14 PM
+-- Generation Time: Jun 14, 2021 at 05:06 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -64,14 +64,14 @@ CREATE TABLE `applications` (
   `group_member_name_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `group_member_name_3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `group_member_name_4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problem-with-both-parents-signing` tinyint(1) NOT NULL,
-  `parents_sign_not` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `both_parents_signing` tinyint(1) NOT NULL,
+  `parent_information2_id` bigint(20) UNSIGNED NOT NULL,
   `parents_sign_not_other_reasons` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_information1_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `parent_information2_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `reason_sign_parent_id` bigint(20) UNSIGNED DEFAULT NULL,
   `have_rental_history` tinyint(1) NOT NULL,
   `have_employment_history` tinyint(1) NOT NULL,
-  `applicant-full-name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `applicant_full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -378,7 +378,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (24, '2021_06_11_113246_create_parent_informations_table', 21),
 (27, '2021_06_12_101908_create_employments_table', 24),
 (28, '2021_06_12_100742_create_rental_histories_table', 25),
-(30, '2021_06_10_193622_create_applications_table', 26);
+(31, '2021_06_14_084929_create_reason_sign_parents_table', 27),
+(33, '2021_06_10_193622_create_applications_table', 28);
 
 -- --------------------------------------------------------
 
@@ -461,6 +462,29 @@ INSERT INTO `payment_methods` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (3, 'Yearly', NULL, NULL),
 (4, 'Monthly', NULL, NULL),
 (5, 'Bimonthly', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reason_sign_parents`
+--
+
+CREATE TABLE `reason_sign_parents` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reason_sign_parents`
+--
+
+INSERT INTO `reason_sign_parents` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Passed away', NULL, NULL),
+(2, 'Have no contact', NULL, NULL),
+(3, 'Financially independent', NULL, NULL),
+(4, 'Other', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -683,8 +707,9 @@ ALTER TABLE `applications`
   ADD KEY `applications_paying_rent_id_foreign` (`paying_rent_id`),
   ADD KEY `applications_room_type_id_foreign` (`room_type_id`),
   ADD KEY `applications_room_id_foreign` (`room_id`),
+  ADD KEY `applications_parent_information2_id_foreign` (`parent_information2_id`),
   ADD KEY `applications_parent_information1_id_foreign` (`parent_information1_id`),
-  ADD KEY `applications_parent_information2_id_foreign` (`parent_information2_id`);
+  ADD KEY `applications_reason_sign_parent_id_foreign` (`reason_sign_parent_id`);
 
 --
 -- Indexes for table `chapters`
@@ -774,6 +799,12 @@ ALTER TABLE `paying_rents`
 -- Indexes for table `payment_methods`
 --
 ALTER TABLE `payment_methods`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `reason_sign_parents`
+--
+ALTER TABLE `reason_sign_parents`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -882,7 +913,7 @@ ALTER TABLE `house_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `parent_informations`
@@ -901,6 +932,12 @@ ALTER TABLE `paying_rents`
 --
 ALTER TABLE `payment_methods`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `reason_sign_parents`
+--
+ALTER TABLE `reason_sign_parents`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rental_histories`
@@ -954,6 +991,7 @@ ALTER TABLE `applications`
   ADD CONSTRAINT `applications_parent_information2_id_foreign` FOREIGN KEY (`parent_information2_id`) REFERENCES `parent_informations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_paying_rent_id_foreign` FOREIGN KEY (`paying_rent_id`) REFERENCES `paying_rents` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_payment_method_id_foreign` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_reason_sign_parent_id_foreign` FOREIGN KEY (`reason_sign_parent_id`) REFERENCES `reason_sign_parents` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_room_type_id_foreign` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
