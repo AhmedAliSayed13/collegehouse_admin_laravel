@@ -14,12 +14,23 @@ use App\Models\Chapter;
 use App\Models\Payment_method;
 use App\Models\Paying_rent;
 use App\Models\Application;
+use App\Models\Reason_sign_parent;
+use App\Models\Parent_information;
 class ApplicationController extends Controller
 {
 
     public function createStep1(Request $request)
     {
-        $application = $request->session()->get('application');
+        $application=NULL;
+        if (empty($request->session()->get('application'))) {
+            $application = new Application();
+            $request->session()->put('application', $application);
+        } else {
+            $application = $request->session()->get('application');
+            $request->session()->put('application', $application);
+        }
+
+        
         $genders=Gender::all();
         $citys=City::all();
         $states=State::all();
@@ -121,30 +132,135 @@ class ApplicationController extends Controller
     {
         $application = $request->session()->get('application');
 
-        return view('application.step2', compact('application'));
+        $parent_information_1=NULL;
+        if (empty($request->session()->get('parent_information_1'))) {
+            $parent_information_1 = new Parent_information();
+            $request->session()->put('parent_information_1', $parent_information_1);
+        } else {
+            $parent_information_1 = $request->session()->get('parent_information_1');
+            $request->session()->put('parent_information_1', $parent_information_1);
+        }
+
+        $parent_information_2=NULL;
+        if (empty($request->session()->get('parent_information_2'))) {
+            $parent_information_2 = new Parent_information();
+            $request->session()->put('parent_information_2', $parent_information_2);
+        } else {
+            $parent_information_2 = $request->session()->get('parent_information_2');
+            $request->session()->put('parent_information_2', $parent_information_2);
+        }
+         
+
+         $reason_sign_parents=Reason_sign_parent::all();
+         $citys=City::all();
+         $states=State::all();
+         return view('application.step2', compact('application','reason_sign_parents','citys','states','parent_information_1','parent_information_2'));
     }
 
     public function PostcreateStep2(Request $request)
     {
-        $validatedData = $request->validate([
-            'description' => 'required|unique:registers',
-        ]);
-        if (empty($request->session()->get('register'))) {
-            $register = new \App\Register();
-            $register->fill($validatedData);
-            $request->session()->put('register', $register);
-        } else {
-            $register = $request->session()->get('register');
-            $register->fill($validatedData);
-            $request->session()->put('register', $register);
+        $arr2=[];
+        $arr3=[];
+        $arr1=array(
+            'both_parents_signing'=>['required', 'integer'],
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'address1' => ['required', 'string'],
+            'address2' => ['required', 'string'],
+            'city_id' => ['required', 'integer'],
+            'state_id' => ['required', 'integer'],
+            'zip' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'phone' => ['required', 'string'],
+            'place_employment' => ['required','string'],
+            'Position' => ['required','string'],
+            'first_name_2' => ['required', 'string'],
+            'last_name_2' => ['required', 'string'],
+            'address1_2' => ['required', 'string'],
+            'address2_2' => ['required', 'string'],
+            'city_id_2' => ['required', 'integer'],
+            'state_id_2' => ['required', 'integer'],
+            'email_2' => ['required', 'email'],
+            'phone_2' => ['required', 'string'],
+            'zip_2' => ['required', 'string'],
+            'place_employment_2' => ['required','string'],
+            'Position_2' => ['required','string']
+        );
+        if($request->both_parents_signing==1){
+            $arr2=array(
+                'reason_sign_parent_id' => ['required', 'integer'],
+            );
         }
-        return redirect('/register3');
+
+        if($request->reason_sign_parent_id==4){
+            $arr2=array(
+                'parents_sign_not_other_reasons' => ['required', 'string'],
+            );
+        }
+
+        $arr=$arr1+$arr2+$arr3;
+        $validatedData = $request->validate($arr);
+
+        $application="";
+        $parent_information_1="";
+        $parent_information_2="";
+        if(empty($request->session()->get('application'))){
+            redirect()->route('step1');
+        }else{
+            $application = $request->session()->get('application');
+            $application->both_parents_signing=$request->both_parents_signing;
+            $application->reason_sign_parent_id=$request->reason_sign_parent_id;
+            $application->parents_sign_not_other_reasons=$request->parents_sign_not_other_reasons;
+            $request->session()->put('application', $application);
+        }
+
+
+        if(empty($request->session()->get('parent_information_2'))){
+            $parent_information_1 = new Parent_information();
+            $parent_information_2 = new Parent_information();
+        }else{
+            $parent_information_1 = $request->session()->get('parent_information_1');
+            $parent_information_2 = $request->session()->get('parent_information_2');
+        }
+        $parent_information_1->first_name=$request->first_name;
+        $parent_information_1->last_name=$request->last_name;
+        $parent_information_1->address1=$request->address1;
+        $parent_information_1->address2=$request->address2;
+        $parent_information_1->city_id =$request->city_id ;
+        $parent_information_1->state_id  =$request->state_id  ;
+        $parent_information_1->zip =$request->zip ;
+        $parent_information_1->phone =$request->phone ;
+        $parent_information_1->email =$request->email ;
+        $parent_information_1->Position =$request->Position ;
+        $parent_information_1->place_employment =$request->place_employment ;
+
+
+        $parent_information_2->first_name=$request->first_name_2;
+        $parent_information_2->last_name=$request->last_name_2;
+        $parent_information_2->address1=$request->address1_2;
+        $parent_information_2->address2=$request->address2_2;
+        $parent_information_2->city_id =$request->city_id_2 ;
+        $parent_information_2->state_id =$request->city_id_2 ;
+        $parent_information_2->zip =$request->zip_2 ;
+        $parent_information_2->phone =$request->phone_2 ;
+        $parent_information_2->email  =$request->email_2  ;
+        $parent_information_2->Position =$request->Position_2 ;
+        $parent_information_2->place_employment =$request->place_employment_2 ;
+
+        $request->session()->put('parent_information_1', $parent_information_1);
+        $request->session()->put('parent_information_2', $parent_information_2);
+        $request->session()->put('application', $application);
+
+        return redirect()->route('step3');
+       
     }
 
     public function createStep3(Request $request)
     {
-        $register = $request->session()->get('register');
-        return view('register.step3', compact('register'));
+        $parent_information_1 = $request->session()->get('parent_information_1');
+        $parent_information_2 = $request->session()->get('parent_information_2');
+        $application = $request->session()->get('application');
+        print_r($application);
     }
 
     public function PostcreateStep3(Request $request)

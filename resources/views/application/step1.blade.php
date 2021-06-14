@@ -88,7 +88,7 @@
 										<label>First Name:</label>
 										<input id="first_name" type="text" placeholder="First Name"
 											class="form-control @error('first_name') is-invalid @enderror"
-											name="first_name" value="{{ old('first_name') }}" autocomplete="first_name"
+											name="first_name" value="{{ old('first_name',$application->first_name) }}" autocomplete="first_name"
 											autofocus>
 										@error('first_name')
 										<span class="invalid-feedback" role="alert">
@@ -98,12 +98,13 @@
 
 									</div>
 								</div>
+
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Last Name:</label>
 										<input id="last_name" type="text" placeholder="Last Name"
 											class="form-control @error('last_name') is-invalid @enderror"
-											name="last_name" value="{{ old('last_name') }}" autocomplete="last_name"
+											name="last_name" value="{{ old('last_name',$application->last_name) }}" autocomplete="last_name"
 											autofocus>
 										@error('last_name')
 										<span class="invalid-feedback" role="alert">
@@ -113,6 +114,8 @@
 
 									</div>
 								</div>
+
+
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Gender:</label>
@@ -123,7 +126,7 @@
 											<option value="">Select Gender</option>
 											@foreach ($genders as $gender)
 											<option value="{{$gender->id}}"
-												{{ option_select(old("owner_id") , $gender->id )}}>{{$gender->name}}
+												{{ option_select(old("gender_id",$application->gender_id) , $gender->id )}}>{{$gender->name}}
 											</option>
 											@endforeach
 										</select>
@@ -141,7 +144,7 @@
 										<label>Email Address:</label>
 										<input id="email" placeholder="email" type="email"
 											class="form-control @error('email') is-invalid @enderror"
-											name="email" value="{{ old('email') }}" autocomplete="email"
+											name="email" value="{{ old('email',$application->email) }}" autocomplete="email"
 											autofocus>
 										@error('email')
 										<span class="invalid-feedback" role="alert">
@@ -151,12 +154,13 @@
 
 									</div>
 								</div>
+
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Birthday:</label>
 										<input id="birthday" placeholder="Birthday" type="date"
 											class="form-control @error('birthday') is-invalid @enderror"
-											name="birthday" value="{{ old('birthday') }}"
+											name="birthday" value="{{ old('birthday',$application->birthday) }}"
 											autocomplete="birthday" autofocus>
 										@error('birthday')
 										<span class="invalid-feedback" role="alert">
@@ -166,12 +170,13 @@
 
 									</div>
 								</div>
+
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Mobile/Phone Number:</label>
 										<input id="phone"  type="text" placeholder="Phone"
 											class="form-control @error('phone') is-invalid @enderror"
-											name="phone" value="{{ old('phone') }}"
+											name="phone" value="{{ old('phone',$application->phone) }}"
 											autocomplete="phone" autofocus>
 										@error('phone')
 										<span class="invalid-feedback" role="alert">
@@ -181,12 +186,13 @@
 
 									</div>
 								</div>
+
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>SSN:</label>
 										<input id="ssn"  type="text" placeholder="ssn"
 											class="form-control @error('ssn') is-invalid @enderror"
-											name="ssn" value="{{ old('ssn') }}"
+											name="ssn" value="{{ old('ssn',$application->ssn) }}"
 											autocomplete="ssn" autofocus>
 										@error('ssn')
 										<span class="invalid-feedback" role="alert">
@@ -208,7 +214,7 @@
 									<label>Address 1</label>
 									<textarea id="address1" class="form-control @error('address1') is-invalid @enderror"
 										name="address1" autocomplete="address1" autofocus>
-												{{ old('address1') }}
+												{{ old('address1',$application->address1) }}
 												</textarea>
 										@error('address1')
 										<span class="invalid-feedback" role="alert">
@@ -223,7 +229,7 @@
 									<label>Address 2</label>
 									<textarea id="address2" class="form-control @error('address2') is-invalid @enderror"
 										name="address2" autocomplete="address2" autofocus>
-												{{ old('address2') }}
+												{{ old('address2',$application->address2) }}
 												</textarea>
 										@error('address2')
 										<span class="invalid-feedback" role="alert">
@@ -245,7 +251,7 @@
 											<option value="">Select City</option>
 											@foreach ($citys as $city)
 											<option value="{{$city->id}}"
-												{{ option_select(old("city_id") , $city->id )}}>{{$city->name}}
+												{{ option_select(old("city_id",$application->city_id) , $city->id )}}>{{$city->name}}
 											</option>
 											@endforeach
 										</select>
@@ -267,7 +273,7 @@
 											<option value="">Select City</option>
 											@foreach ($states as $state)
 											<option value="{{$state->id}}"
-												{{ option_select(old("state_id") , $state->id )}}>{{$state->name}}
+												{{ option_select(old("state_id",$application->state_id) , $state->id )}}>{{$state->name}}
 											</option>
 											@endforeach
 										</select>
@@ -284,7 +290,7 @@
 										<label>Zip Code:</label>
 										<input id="zip" placeholder="Zip Code" type="text"
 											class="form-control @error('zip') is-invalid @enderror"
-											name="zip" value="{{ old('zip') }}" autocomplete="zip"
+											name="zip" value="{{ old('zip',$application->zip) }}" autocomplete="zip"
 											autofocus>
 										@error('zip')
 										<span class="invalid-feedback" role="alert">
@@ -304,7 +310,7 @@
 											<option value="">Select Housing Type</option>
 											@foreach ($house_types as $house_type)
 											<option value="{{$house_type->id}}"
-												{{ option_select(old("house_type_id") , $house_type->id )}}>{{$house_type->name}}
+												{{ option_select(old("house_type_id",$application->house_type_id) , $house_type->id )}}>{{$house_type->name}}
 											</option>
 											@endforeach
 										</select>
@@ -347,7 +353,7 @@
 										<label>Group lead name:</label>
 										<input id="group_lead_name" placeholder="Group lead name" type="text"
 											class="form-control @error('group_lead_name') is-invalid @enderror"
-											name="group_lead_name" value="{{ old('group_lead_name') }}" autocomplete="group_lead_name"
+											name="group_lead_name" value="{{ old('group_lead_name',$application->group_lead_name) }}" autocomplete="group_lead_name"
 											autofocus>
 										@error('group_lead_name')
 										<span class="invalid-feedback" role="alert">
@@ -362,7 +368,7 @@
 										<label>Group member name (1):</label>
 										<input id="group_member_name_1" placeholder="Group member name (1)" type="text"
 											class="form-control @error('group_member_name_1') is-invalid @enderror"
-											name="group_member_name_1" value="{{ old('group_member_name_1') }}" autocomplete="group_member_name_1"
+											name="group_member_name_1" value="{{ old('group_member_name_1',$application->group_member_name_1) }}" autocomplete="group_member_name_1"
 											autofocus>
 										@error('group_member_name_1')
 										<span class="invalid-feedback" role="alert">
@@ -377,7 +383,7 @@
 										<label>Group member name (2):</label>
 										<input id="group_member_name_2" placeholder="Group member name (2)" type="text"
 											class="form-control @error('group_member_name_1') is-invalid @enderror"
-											name="group_member_name_2" value="{{ old('group_member_name_2') }}" autocomplete="group_member_name_2"
+											name="group_member_name_2" value="{{ old('group_member_name_2',$application->group_member_name_2) }}" autocomplete="group_member_name_2"
 											autofocus>
 										@error('group_member_name_2')
 										<span class="invalid-feedback" role="alert">
@@ -392,7 +398,7 @@
 										<label>Group member name (3):</label>
 										<input id="group_member_name_3" placeholder="Group member name (3)" type="text"
 											class="form-control @error('group_member_name_1') is-invalid @enderror"
-											name="group_member_name_3" value="{{ old('group_member_name_3') }}" autocomplete="group_member_name_3"
+											name="group_member_name_3" value="{{ old('group_member_name_3',$application->group_member_name_3) }}" autocomplete="group_member_name_3"
 											autofocus>
 										@error('group_member_name_3')
 										<span class="invalid-feedback" role="alert">
@@ -407,7 +413,7 @@
 										<label>Group member name (4):</label>
 										<input id="group_member_name_4" placeholder="Group member name (4)" type="text"
 											class="form-control @error('group_member_name_1') is-invalid @enderror"
-											name="group_member_name_4" value="{{ old('group_member_name_4') }}" autocomplete="group_member_name_4"
+											name="group_member_name_4" value="{{ old('group_member_name_4',$application->group_member_name_4) }}" autocomplete="group_member_name_4"
 											autofocus>
 										@error('group_member_name_4')
 										<span class="invalid-feedback" role="alert">
@@ -450,7 +456,7 @@
 											
 											@foreach ($rooms as $room)
 											<option value="{{$room->id}}"
-												{{ option_select(old("room_id") , $room->id )}}>{{$room->number}}
+												{{ option_select(old("room_id",$application->room_id) , $room->id )}}>{{$room->number}}
 											</option>
 											@endforeach
 										</select>
@@ -473,7 +479,7 @@
 											
 											@foreach ($room_types as $room_type)
 											<option value="{{$room_type->id}}"
-												{{ option_select(old("room_type_id") , $room_type->id )}}>{{$room_type->name}}
+												{{ option_select(old("room_type_id",$application->room_type_id) , $room_type->id )}}>{{$room_type->name}}
 											</option>
 											@endforeach
 										</select>
@@ -493,7 +499,7 @@
 									<label>Estimated amount to pay in dollars</label>
 										<input id="amount_pay_dollars" placeholder="Estimated amount to pay in dollars" type="number"
 											class="form-control @error('amount_pay_dollars') is-invalid @enderror"
-											name="amount_pay_dollars" value="{{ old('amount_pay_dollars') }}" autocomplete="amount_pay_dollars"
+											name="amount_pay_dollars" value="{{ old('amount_pay_dollars',$application->amount_pay_dollars) }}" autocomplete="amount_pay_dollars"
 											autofocus>
 										@error('amount_pay_dollars')
 										<span class="invalid-feedback" role="alert">
@@ -520,8 +526,9 @@
 											class=" form-control @error('bringing_Car') is-invalid @enderror"
 											name="bringing_Car"  autocomplete="bringing_Car"
 											autofocus>
-											<option value="0" {{ option_select(old("bringing_Car") , 0 )}}>No</option>
-											<option value="1" {{ option_select(old("bringing_Car") , 1 )}}>Yes</option>
+											
+											<option {{ option_select(old("bringing_Car",$application->bringing_Car) , 0 )}} value="0"  >No</option>
+											<option {{ option_select(old("bringing_Car",$application->bringing_Car) , 1 )}} value="1"  >Yes</option>
 										</select>
 										@error('bringing_Car')
 										<span class="invalid-feedback" role="alert">
@@ -537,7 +544,7 @@
 									<label>Car Make:</label>
 										<input id="car_make" placeholder="Car Make" type="text"
 											class="form-control @error('car_make') is-invalid @enderror"
-											name="car_make" value="{{ old('car_make') }}"
+											name="car_make" value="{{ old('car_make',$application->car_make) }}"
 											autocomplete="car_make" autofocus>
 										@error('car_make')
 										<span class="invalid-feedback" role="alert">
@@ -552,7 +559,7 @@
 									<label>Car Model:</label>
 										<input id="car_model" placeholder="Car Model" type="text"
 											class="form-control @error('car_model') is-invalid @enderror"
-											name="car_model" value="{{ old('car_model') }}"
+											name="car_model" value="{{ old('car_model',$application->car_model) }}"
 											autocomplete="car_model" autofocus>
 										@error('car_model')
 										<span class="invalid-feedback" role="alert">
@@ -567,7 +574,7 @@
 									<label>Car license plate number:</label>
 										<input id="driver_license_number" placeholder="Car license plate number" type="text"
 											class="form-control @error('driver_license_number') is-invalid @enderror"
-											name="driver_license_number" value="{{ old('driver_license_number') }}"
+											name="driver_license_number" value="{{ old('driver_license_number',$application->driver_license_number) }}"
 											autocomplete="driver_license_number" autofocus>
 										@error('driver_license_number')
 										<span class="invalid-feedback" role="alert">
@@ -582,7 +589,7 @@
 									<label>Drivers license number:</label>
 										<input id="car_license_number" placeholder="Drivers license number" type="text"
 											class="form-control @error('car_license_number') is-invalid @enderror"
-											name="car_license_number" value="{{ old('car_license_number') }}"
+											name="car_license_number" value="{{ old('car_license_number',$application->car_license_number) }}"
 											autocomplete="car_license_number" autofocus>
 										@error('car_license_number')
 										<span class="invalid-feedback" role="alert">
@@ -602,7 +609,7 @@
 									<label>School:</label>
 										<input id="school" placeholder="school" type="text"
 											class="form-control @error('school') is-invalid @enderror"
-											name="school" value="{{ old('school') }}"
+											name="school" value="{{ old('school',$application->school) }}"
 											autocomplete="school" autofocus>
 										@error('school')
 										<span class="invalid-feedback" role="alert">
@@ -617,7 +624,7 @@
 									<label>Major:</label>
 										<input id="major" placeholder="major" type="text"
 											class="form-control @error('major') is-invalid @enderror"
-											name="major" value="{{ old('major') }}"
+											name="major" value="{{ old('major',$application->major) }}"
 											autocomplete="major" autofocus>
 										@error('major')
 										<span class="invalid-feedback" role="alert">
@@ -632,7 +639,7 @@
 									<label>Graduation Year:</label>
 										<input id="graduation_year" placeholder="Graduation Year" type="text"
 											class="form-control @error('graduation_year') is-invalid @enderror"
-											name="graduation_year" value="{{ old('graduation_year') }}"
+											name="graduation_year" value="{{ old('graduation_year',$application->graduation_year) }}"
 											autocomplete="graduation_year" autofocus>
 										@error('graduation_year')
 										<span class="invalid-feedback" role="alert">
@@ -647,7 +654,7 @@
 									<label>GPA:</label>
 										<input id="gpa" placeholder="GPA" type="number"
 											class="form-control @error('gpa') is-invalid @enderror"
-											name="gpa" value="{{ old('gpa') }}"
+											name="gpa" value="{{ old('gpa',$application->gpa) }}"
 											autocomplete="gpa" autofocus>
 										@error('gpa')
 										<span class="invalid-feedback" role="alert">
@@ -668,7 +675,7 @@
 											
 											@foreach ($chapters as $chapter)
 											<option value="{{$chapter->id}}"
-												{{ option_select(old("chapter_id") , $chapter->id )}}>{{$chapter->name}}
+												{{ option_select(old("chapter_id",$application->chapter_id) , $chapter->id )}}>{{$chapter->name}}
 											</option>
 											@endforeach
 										</select>
@@ -691,7 +698,7 @@
 											
 											@foreach ($payment_methods as $payment_method)
 											<option value="{{$payment_method->id}}"
-												{{ option_select(old("payment_method_id") , $payment_method->id )}}>{{$payment_method->name}}
+												{{ option_select(old("payment_method_id",$application->payment_method_id) , $payment_method->id )}}>{{$payment_method->name}}
 											</option>
 											@endforeach
 										</select>
@@ -714,7 +721,7 @@
 											
 											@foreach ($paying_rents as $paying_rent)
 											<option value="{{$paying_rent->id}}"
-												{{ option_select(old("paying_rent_id") , $paying_rent->id )}}>{{$paying_rent->name}}
+												{{ option_select(old("paying_rent_id",$application->paying_rent_id) , $paying_rent->id )}}>{{$paying_rent->name}}
 											</option>
 											@endforeach
 										</select>
@@ -735,13 +742,13 @@
 								<div class="col-md-12">
 									<div class="form-group">
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="register_vote" id="vote_yes" value="1" checked="">
+										<input class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_yes" value="1" checked="">
 										<label class="form-check-label" for="vote_yes">
 										Yes
 										</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="register_vote" id="vote_no" value="0">
+										<input class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_no" value="0">
 										<label class="form-check-label" for="vote_no">
 										No
 										</label>
@@ -758,15 +765,15 @@
 
 
 								
-
-
-							</div>
-							
-								<div class="col-lg-1 float-right">
-									<button type="submit" class="btn btn-primary" id="id-form1">
+								<div class="col-lg-12 float-right">
+									<button type="submit" class="btn btn-primary float-right" id="id-form1">
 										Next
 									</button>
 								</div>
+
+							</div>
+							
+								
 							
 
 						</form>
@@ -862,8 +869,8 @@
 	});
 	</script>
 
-<script>
-		bringing_Car=$('#bringing_Car').val('');
+	<script>
+		bringing_Car=$('#bringing_Car').val();
 		if(bringing_Car==1){
 			$('.car_field').show();
 		}else{
@@ -871,26 +878,17 @@
 			$('.car_field input').val('');
 			$('.car_field select').val('');
 		}
-
-
-	$('#bringing_Car').on('change', function() {
-		value=$(this).val();
-		if(value==1){
-			$('.car_field').show();
-			
-		}else{
-			$('.car_field').hide();
-			$('.car_field input').val('');
-			$('.car_field select').val('');
-		}
-	});
+		$('#bringing_Car').on('change', function() {
+			value=$(this).val();
+			if(value==1){
+				$('.car_field').show();
+			}else{
+				$('.car_field').hide();
+				$('.car_field input').val('');
+				$('.car_field select').val('');
+			}
+		});
 	</script>
-	
-
-
-
-
-
 
 </body>
 

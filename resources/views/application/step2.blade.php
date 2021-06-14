@@ -72,256 +72,504 @@
 				</div>
 				<div class="col-md-9 m-auto ">
 					<div class="div-step-form">
-						<header class="step-form-header">Applicant Information</header>
-						<p class="step-form-decs">Your information will be used to create your profile with us. Please
-							complete all required fields accurately.</p>
+						<header class="step-form-header">Guarantors</header>
+						<p class="step-form-decs">Your guarantors are financially responsible for any outstanding payments under the terms of your lease in case you were unable to pay. All guarantors listed will be contacted automatically for confirmation. Please list your guarantors and provide valid email addresses for them.</p>
 
-						<form method="POST" action="{{route('step1-save')}}" >
+						<form method="POST" action="{{route('step2-save')}}" >
 							{{ csrf_field() }}
 							<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<p>
+												Both parents are required to sign the guaranty. Is there any problems with that?
+											</p>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input @error('parents_sign_not') is-invalid @enderror" {{ option_radio(old("both_parents_signing", $application->both_parents_signing),1 )}}   type="radio" name="both_parents_signing" id="vote_yes" value="1" >
+												<label class="form-check-label" for="vote_yes">
+													Yes
+												</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input @error('both_parents_signing') is-invalid @enderror" type="radio" {{ option_radio(old("both_parents_signing" , $application->both_parents_signing),0 )}} name="both_parents_signing" id="vote_no" value="0">
+												<label class="form-check-label" for="vote_no">
+													No
+												</label>
+											</div>
+											@error('both_parents_signing')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+											@enderror
+										</div>
+									</div>
+
+									<div class="col-md-12" id="reason_sign_parent_id-div">
+										<div class="form-group">
+											<label>If yes, please note reason:</label>
+											<select id="reason_sign_parent_id"
+												class=" form-control @error('reason_sign_parent_id') is-invalid @enderror"
+												name="reason_sign_parent_id"  autocomplete="reason_sign_parent_id"
+												autofocus>
+												<option value="">Select Reason</option>
+												@foreach ($reason_sign_parents as $reason_sign_parent)
+												<option value="{{$reason_sign_parent->id}}"
+													{{ option_select(old("reason_sign_parent_id") , $application->reason_sign_parent_id )}}>{{$reason_sign_parent->name}}
+												</option>
+												@endforeach
+											</select>
+											@error('reason_sign_parent_id')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-12" id='other-div'>
+										<div class="form-group">
+											<label>Other:</label>
+											<input id="parents_sign_not_other_reasons" placeholder="Other" type="text"
+												class="form-control @error('parents_sign_not_other_reasons') is-invalid @enderror"
+												name="parents_sign_not_other_reasons" value="{{ old('parents_sign_not_other_reasons',$application->parents_sign_not_other_reasons) }}" autocomplete="group_member_name_4"
+												autofocus>
+											@error('parents_sign_not_other_reasons')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+										</div>
+									</div>
+
+
+									<div class="col-md-12">
+										<h4 class="d-block mt-4">Parent 1 Information:</h4>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>First Name:</label>
+											<input id="first_name" type="text" placeholder="First Name"
+												class="form-control @error('first_name') is-invalid @enderror"
+												name="first_name" value="{{ old('first_name',$parent_information_1->first_name) }}" autocomplete="first_name"
+												autofocus>
+												@error('first_name')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Last Name:</label>
+											<input id="last_name" type="text" placeholder="Last Name"
+												class="form-control @error('last_name') is-invalid @enderror"
+												name="last_name" value="{{ old('last_name',$parent_information_1->last_name) }}" autocomplete="last_name"
+												autofocus>
+												@error('last_name')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+										<label>Address 1</label>
+										<textarea id="address1" class="form-control @error('address1') is-invalid @enderror"
+											name="address1" autocomplete="address1" autofocus>
+													{{ old('address1',$parent_information_1->address1) }}
+													</textarea>
+											@error('address1')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+										<label>Address 2</label>
+										<textarea id="address2" class="form-control @error('address2') is-invalid @enderror"
+											name="address2" autocomplete="address2" autofocus>
+													{{ old('address2',$parent_information_1->address2) }}
+													</textarea>
+											@error('address2')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-5">
+										<div class="form-group">
+											<label>City:</label>
+											<select id="city_id"
+												class=" form-control @error('city_id') is-invalid @enderror"
+												name="city_id"  autocomplete="city_id"
+												autofocus>
+												<option value="">Select City</option>
+												@foreach ($citys as $city)
+												<option value="{{$city->id}}"
+													{{ option_select(old("city_id",$parent_information_1->city_id) , $city->id )}}>{{$city->name}}
+												</option>
+												@endforeach
+											</select>
+											@error('city_id')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>State:</label>
+											<select id="city_id"
+												class=" form-control @error('state_id') is-invalid @enderror"
+												name="state_id"  autocomplete="state_id"
+												autofocus>
+												<option value="">Select City</option>
+												@foreach ($states as $state)
+												<option value="{{$state->id}}"
+													{{ option_select(old("state_id",$parent_information_1->state_id) , $state->id )}}>{{$state->name}}
+												</option>
+												@endforeach
+											</select>
+											@error('state_id')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label>Zip Code:</label>
+											<input id="zip" placeholder="Zip Code" type="text"
+												class="form-control @error('zip') is-invalid @enderror"
+												name="zip" value="{{ old('zip',$parent_information_1->zip) }}" autocomplete="zip"
+												autofocus>
+											@error('zip')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+
+
+
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Phone:</label>
+											<input id="phone" type="text" placeholder="Phone"
+												class="form-control @error('phone') is-invalid @enderror"
+												name="phone" value="{{ old('phone',$parent_information_1->phone) }}" autocomplete="phone"
+												autofocus>
+												@error('phone')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Email:</label>
+											<input id="email" type="email" placeholder="email"
+												class="form-control @error('email') is-invalid @enderror"
+												name="email" value="{{ old('email',$parent_information_1->email) }}" autocomplete="email"
+												autofocus>
+												@error('email')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Place of employment:</label>
+											<input id="place_employment" type="text" placeholder="Place of employment"
+												class="form-control @error('place_employment') is-invalid @enderror"
+												name="place_employment" value="{{ old('place_employment',$parent_information_1->place_employment) }}" autocomplete="first_name"
+												autofocus>
+												@error('place_employment')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Position:</label>
+											<input id="Position" type="text" placeholder="Position"
+												class="form-control @error('Position') is-invalid @enderror"
+												name="Position" value="{{ old('Position',$parent_information_1->Position) }}" autocomplete="Position"
+												autofocus>
+												@error('Position')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+
+
+
+									<div class="col-md-12">
+										<h4 class="d-block mt-4">Parent 2 Information:</h4>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>First Name:</label>
+											<input id="first_name_2" type="text" placeholder="First Name"
+												class="form-control @error('first_name_2') is-invalid @enderror"
+												name="first_name_2" value="{{ old('first_name_2',$parent_information_2->first_name) }}" autocomplete="first_name_2"
+												autofocus>
+												@error('first_name_2')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Last Name:</label>
+											<input id="last_name_2" type="text" placeholder="Last Name"
+												class="form-control @error('last_name_2') is-invalid @enderror"
+												name="last_name_2" value="{{ old('last_name_2',$parent_information_2->last_name) }}" autocomplete="last_name_2"
+												autofocus>
+												@error('last_name_2')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+										<label>Address 1</label>
+										<textarea id="address1_2" class="form-control @error('address1_2') is-invalid @enderror"
+											name="address1_2" autocomplete="address1_2" autofocus>
+													{{ old('address1_2',$parent_information_2->address1) }}
+													</textarea>
+											@error('address1_2')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+									
+									<div class="col-md-6">
+										<div class="form-group">
+										<label>Address 2</label>
+										<textarea id="address2_2" class="form-control @error('address2_2') is-invalid @enderror"
+											name="address2_2" autocomplete="address2_2" autofocus>
+													{{ old('address2_2',$parent_information_2->address2) }}
+													</textarea>
+											@error('address2_2')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-5">
+										<div class="form-group">
+											<label>City:</label>
+											<select id="city_id_2"
+												class=" form-control @error('city_id_2') is-invalid @enderror"
+												name="city_id_2"  autocomplete="city_id_2"
+												autofocus>
+												<option value="">Select City</option>
+												@foreach ($citys as $city)
+												<option value="{{$city->id}}"
+													{{ option_select(old("city_id_2",$parent_information_2->city_id) , $city->id )}}>{{$city->name}}
+												</option>
+												@endforeach
+											</select>
+											@error('city_id_2')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>State:</label>
+											<select id="state_id_2"
+												class=" form-control @error('state_id_2') is-invalid @enderror"
+												name="state_id_2"  autocomplete="state_id_2"
+												autofocus>
+												<option value="">Select State</option>
+												@foreach ($states as $state)
+												<option value="{{$state->id}}"
+													{{ option_select(old("state_id",$parent_information_2->state_id) , $state->id )}}>{{$state->name}}
+												</option>
+												@endforeach
+											</select>
+											@error('state_id_2')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label>Zip Code:</label>
+											<input id="zip_2" placeholder="Zip Code" type="text"
+												class="form-control @error('zip_2') is-invalid @enderror"
+												name="zip_2" value="{{ old('zip_2',$parent_information_2->zip) }}" autocomplete="zip_2"
+												autofocus>
+											@error('zip_2')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+
+										</div>
+									</div>
+
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Phone:</label>
+											<input id="phone_2" type="text" placeholder="Phone"
+												class="form-control @error('phone_2') is-invalid @enderror"
+												name="phone_2" value="{{ old('phone_2',$parent_information_1->phone) }}" autocomplete="phone_2"
+												autofocus>
+												@error('phone_2')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Email:</label>
+											<input id="email_2" type="email" placeholder="email"
+												class="form-control @error('email_2') is-invalid @enderror"
+												name="email_2" value="{{ old('email_2',$parent_information_1->email) }}" autocomplete="email_2"
+												autofocus>
+												@error('email_2')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Place of employment:</label>
+											<input id="place_employment_2" type="text" placeholder="Place of employment"
+												class="form-control @error('place_employment_2') is-invalid @enderror"
+												name="place_employment_2" value="{{ old('place_employment_2',$parent_information_2->place_employment) }}" autocomplete="place_employment_2"
+												autofocus>
+												@error('place_employment_2')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Position:</label>
+											<input id="Position_2" type="text" placeholder="Position"
+												class="form-control @error('Position_2') is-invalid @enderror"
+												name="Position_2" value="{{ old('Position_2',$parent_information_2->Position) }}" autocomplete="Position_2"
+												autofocus>
+												@error('Position_2')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+										</div>
+									</div>
 
 
 
 
 								
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>Mobile/Phone Number:</label>
-										<input id="phone"  type="text" placeholder="Phone"
-											class="form-control @error('phone') is-invalid @enderror"
-											name="phone" value="{{ old('phone') }}"
-											autocomplete="phone" autofocus>
-										@error('phone')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>SSN:</label>
-										<input id="ssn"  type="text" placeholder="ssn"
-											class="form-control @error('ssn') is-invalid @enderror"
-											name="ssn" value="{{ old('ssn') }}"
-											autocomplete="ssn" autofocus>
-										@error('ssn')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-
-									</div>
-								</div>
-								<div class="col-md-12">
-									<h4 class="d-block mt-4">Address:</h4>
-								</div>
+								
 
 
 
-
-								<div class="col-md-6">
-									<div class="form-group">
-									<label>Address 1</label>
-									<textarea id="address1" class="form-control @error('address1') is-invalid @enderror"
-										name="address1" autocomplete="address1" autofocus>
-												{{ old('address1') }}
-												</textarea>
-										@error('address1')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-									<label>Address 2</label>
-									<textarea id="address2" class="form-control @error('address2') is-invalid @enderror"
-										name="address2" autocomplete="address2" autofocus>
-												{{ old('address2') }}
-												</textarea>
-										@error('address2')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-
-									</div>
-								</div>
+								
 
 
 								
 								
 
-								<div class="col-md-6 car_field">
-									<div class="form-group">
-									<label>Car Make:</label>
-										<input id="car_make" placeholder="Car Make" type="text"
-											class="form-control @error('car_make') is-invalid @enderror"
-											name="car_make" value="{{ old('car_make') }}"
-											autocomplete="car_make" autofocus>
-										@error('car_make')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
-								<div class="col-md-6 car_field">
-									<div class="form-group">
-									<label>Car Model:</label>
-										<input id="car_model" placeholder="Car Model" type="text"
-											class="form-control @error('car_model') is-invalid @enderror"
-											name="car_model" value="{{ old('car_model') }}"
-											autocomplete="car_model" autofocus>
-										@error('car_model')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
-								<div class="col-md-6 car_field">
-									<div class="form-group">
-									<label>Car license plate number:</label>
-										<input id="driver_license_number" placeholder="Car license plate number" type="text"
-											class="form-control @error('driver_license_number') is-invalid @enderror"
-											name="driver_license_number" value="{{ old('driver_license_number') }}"
-											autocomplete="driver_license_number" autofocus>
-										@error('driver_license_number')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
-								<div class="col-md-6 car_field">
-									<div class="form-group">
-									<label>Drivers license number:</label>
-										<input id="car_license_number" placeholder="Drivers license number" type="text"
-											class="form-control @error('car_license_number') is-invalid @enderror"
-											name="car_license_number" value="{{ old('car_license_number') }}"
-											autocomplete="car_license_number" autofocus>
-										@error('car_license_number')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
+								
 
 
 
 								
 
 								
-								<div class="col-md-6">
-									<div class="form-group">
-									<label>School:</label>
-										<input id="school" placeholder="school" type="text"
-											class="form-control @error('school') is-invalid @enderror"
-											name="school" value="{{ old('school') }}"
-											autocomplete="school" autofocus>
-										@error('school')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-									<label>Major:</label>
-										<input id="major" placeholder="major" type="text"
-											class="form-control @error('major') is-invalid @enderror"
-											name="major" value="{{ old('major') }}"
-											autocomplete="major" autofocus>
-										@error('major')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-									<label>Graduation Year:</label>
-										<input id="graduation_year" placeholder="Graduation Year" type="text"
-											class="form-control @error('graduation_year') is-invalid @enderror"
-											name="graduation_year" value="{{ old('graduation_year') }}"
-											autocomplete="graduation_year" autofocus>
-										@error('graduation_year')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-									<label>GPA:</label>
-										<input id="gpa" placeholder="GPA" type="number"
-											class="form-control @error('gpa') is-invalid @enderror"
-											name="gpa" value="{{ old('gpa') }}"
-											autocomplete="gpa" autofocus>
-										@error('gpa')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
-
 								
 
-								
-								<div class="col-md-12">
-									<h6>
-									It is so important that you register to vote in Collage Park (it will make a difference for YOU and future Terps). Pass this on to everyone you know - this CAN really make a difference for YOU living in College Park. Are you willing to register to vote?
-									</h6>
+									<div class="col-lg-12 float-right">
+									<button type="submit" class="btn btn-primary float-right" id="id-form1">
+										Next
+									</button>
+									<a href="{{route('step1')}}" class="btn btn-primary float-left" >
+									Previous
+									</a>
 								</div>
-
-								<div class="col-md-12">
-									<div class="form-group">
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="register_vote" id="vote_yes" value="1" checked="">
-										<label class="form-check-label" for="vote_yes">
-										Yes
-										</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="register_vote" id="vote_no" value="0">
-										<label class="form-check-label" for="vote_no">
-										No
-										</label>
-									</div>
-									@error('register_vote')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-									@enderror
-										
-										
-									</div>
-								</div>
-
-
 								
 
 
 							</div>
-							<button type="submit" class="btn btn-primary" id="id-form1">
-								Update info
-							</button>
+							
 
 						</form>
 					</div>
@@ -357,94 +605,67 @@
 
 	<!-- Custom JS -->
 	<script src="{{ asset('assets/js/script.js') }}"></script>
+	
 	<script>
-		value_house_type=$('#house_type_id').val();
-		if(value_house_type==1){
-			$('.group_house_field').show();
-			$('.boarding_house_field').hide();
-		}else if(value_house_type==2){
-			
-			$('.group_house_field').hide();
-			$('.boarding_house_field').show();
-		}else{
-			$('.group_house_field').hide();
-			$('.boarding_house_field').hide();
+		parents_sign_not=$('input[name="parents_sign_not"]:checked').val();
+		reason_sign_parent_id=$('#reason_sign_parent_id').val();
+
+		 
+		if(parents_sign_not=="1"){
+			$('#reason_sign_parent_id-div').show();	
+			if(reason_sign_parent_id==4){
+				$('#other-div').show();	
+			}
+		}else if(parents_sign_not=="0"){
+			$('#other-div').hide();
+			$('#reason_sign_parent_id-div').hide();
+			$('#parents_sign_not_other_reasons').val('');
 		}
 
+		
+		
 
-	$('#house_type_id').on('change', function() {
+
+	$('input[type="radio"]').on('change', function() {
+		
 		value=$(this).val();
-		if(value==1){
-			$('.group_house_field').show();
-			$('.boarding_house_field').hide();
-		}else if(value==2){
+		
+		if(value=="1"){
+			$('#reason_sign_parent_id-div').show();
+			if(reason_sign_parent_id==4){
+				$('#other-div').show();	
+			}
 			
-			$('.group_house_field').hide();
-			$('.boarding_house_field').show();
+		}else{
+			
+			$('#reason_sign_parent_id-div').hide();
+			$('#other-div').hide();
+			$('#reason_sign_parent_id-div').prop("selectedIndex", 0);
+			$('#parents_sign_not_other_reasons').val('');
+			
 		}
 	});
-	</script>
-	<script>
-		value_house_type=$('#house_type_id').val();
-		if(value_house_type==1){
-			$('.group_house_field').show();
-			$('.boarding_house_field').hide();
-		}else if(value_house_type==2){
-			
-			$('.group_house_field').hide();
-			$('.boarding_house_field').show();
-		}else{
-			$('.group_house_field').hide();
-			$('.boarding_house_field').hide();
-		}
-
-
-	$('#house_type_id').on('change', function() {
-		value=$(this).val();
-		if(value==1){
-			$('.group_house_field').show();
-			$('.boarding_house_field').hide();
-			$('.boarding_house_field input').val();
-			$('.boarding_house_field select').val();
-		}else if(value==2){
-			
-			$('.group_house_field').hide();
-			$('.group_house_field input').val('');
-			$('.group_house_field select').val('');
-			$('.boarding_house_field').show();
-		}
-	});
-	</script>
-
-<script>
-		bringing_Car=$('#bringing_Car').val('');
-		if(bringing_Car==1){
-			$('.car_field').show();
-		}else{
-			$('.car_field').hide();
-			$('.car_field input').val('');
-			$('.car_field select').val('');
-		}
-
-
-	$('#bringing_Car').on('change', function() {
-		value=$(this).val();
-		if(value==1){
-			$('.car_field').show();
-			
-		}else{
-			$('.car_field').hide();
-			$('.car_field input').val('');
-			$('.car_field select').val('');
-		}
-	});
-	</script>
+	
 	
 
 
-
-
-
+	$('#reason_sign_parent_id').on('change', function() {
+		
+		value=$(this).val();
+		
+		if(value==4){
+			$('#other-div').show();
+			
+		}else{
+			
+			
+			$('#other-div').hide();
+			
+			$('#parents_sign_not_other_reasons').val('');
+			
+		}
+	});
+	</script>
 
 </body>
 

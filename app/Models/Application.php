@@ -43,14 +43,13 @@ class Application extends Model
          'group_member_name_2',
          'group_member_name_3',
          'group_member_name_4',
-         'problem-with-both-parents-signing',
-         'parents_sign_not',
+         'reason_sign_parent_id',
          'parents_sign_not_other_reasons',
          'parent_information1_id',
          'parent_information2_id',
          'have_rental_history',
          'have_employment_history',
-         'applicant-full-name'
+         'applicant_full_name'
          
         ];
 }

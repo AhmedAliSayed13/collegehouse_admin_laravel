@@ -60,17 +60,17 @@ class CreateApplicationsTable extends Migration
             $table->string('group_member_name_2')->nullable();
             $table->string('group_member_name_3')->nullable();
             $table->string('group_member_name_4')->nullable();
-            $table->boolean('problem-with-both-parents-signing');
-            $table->string('parents_sign_not');
+            $table->boolean('both_parents_signing');
+            $table->bigInteger('parent_information2_id')->unsigned();
+            $table->foreign('parent_information2_id')->references('id')->on('parent_informations')->onDelete('cascade')->onUpdate('cascade');
             $table->string('parents_sign_not_other_reasons')->nullable();
             $table->bigInteger('parent_information1_id')->unsigned()->nullable();
             $table->foreign('parent_information1_id')->references('id')->on('parent_informations')->onDelete('cascade')->onUpdate('cascade');
-            $table->bigInteger('parent_information2_id')->unsigned()->nullable();
-            $table->foreign('parent_information2_id')->references('id')->on('parent_informations')->onDelete('cascade')->onUpdate('cascade');
-            
+            $table->bigInteger('reason_sign_parent_id')->unsigned()->nullable();
+            $table->foreign('reason_sign_parent_id')->references('id')->on('reason_sign_parents')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('have_rental_history');
             $table->boolean('have_employment_history');
-            $table->string('applicant-full-name');
+            $table->string('applicant_full_name');
 
 
 
