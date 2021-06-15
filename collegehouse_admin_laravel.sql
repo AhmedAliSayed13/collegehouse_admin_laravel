@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2021 at 05:06 PM
+-- Generation Time: Jun 15, 2021 at 05:06 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -64,6 +64,7 @@ CREATE TABLE `applications` (
   `group_member_name_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `group_member_name_3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `group_member_name_4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `register_vote` tinyint(1) NOT NULL,
   `both_parents_signing` tinyint(1) NOT NULL,
   `parent_information2_id` bigint(20) UNSIGNED NOT NULL,
   `parents_sign_not_other_reasons` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -379,7 +380,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (27, '2021_06_12_101908_create_employments_table', 24),
 (28, '2021_06_12_100742_create_rental_histories_table', 25),
 (31, '2021_06_14_084929_create_reason_sign_parents_table', 27),
-(33, '2021_06_10_193622_create_applications_table', 28);
+(34, '2021_06_10_193622_create_applications_table', 28);
 
 -- --------------------------------------------------------
 
@@ -913,7 +914,7 @@ ALTER TABLE `house_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `parent_informations`
