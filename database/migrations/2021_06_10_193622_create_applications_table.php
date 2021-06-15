@@ -60,6 +60,7 @@ class CreateApplicationsTable extends Migration
             $table->string('group_member_name_2')->nullable();
             $table->string('group_member_name_3')->nullable();
             $table->string('group_member_name_4')->nullable();
+            $table->boolean('register_vote');
             $table->boolean('both_parents_signing');
             $table->bigInteger('parent_information2_id')->unsigned();
             $table->foreign('parent_information2_id')->references('id')->on('parent_informations')->onDelete('cascade')->onUpdate('cascade');

@@ -84,13 +84,13 @@
 												Both parents are required to sign the guaranty. Is there any problems with that?
 											</p>
 											<div class="form-check form-check-inline">
-												<input class="form-check-input @error('parents_sign_not') is-invalid @enderror" {{ option_radio(old("both_parents_signing", $application->both_parents_signing),1 )}}   type="radio" name="both_parents_signing" id="vote_yes" value="1" >
+												<input class="form-check-input @error('parents_sign_not') is-invalid @enderror"    type="radio" {{ option_radio(old("both_parents_signing" , $application->both_parents_signing),1)}} name="both_parents_signing" id="vote_yes" value="1" >
 												<label class="form-check-label" for="vote_yes">
 													Yes
 												</label>
 											</div>
 											<div class="form-check form-check-inline">
-												<input class="form-check-input @error('both_parents_signing') is-invalid @enderror" type="radio" {{ option_radio(old("both_parents_signing" , $application->both_parents_signing),0 )}} name="both_parents_signing" id="vote_no" value="0">
+												<input class="form-check-input @error('both_parents_signing') is-invalid @enderror" type="radio"  name="both_parents_signing" id="vote_no" {{ option_radio(old("both_parents_signing" , $application->both_parents_signing),0)}} value="0">
 												<label class="form-check-label" for="vote_no">
 													No
 												</label>
@@ -607,10 +607,10 @@
 	<script src="{{ asset('assets/js/script.js') }}"></script>
 	
 	<script>
-		parents_sign_not=$('input[name="parents_sign_not"]:checked').val();
+		parents_sign_not=$('input[name="both_parents_signing"]:checked').val();
 		reason_sign_parent_id=$('#reason_sign_parent_id').val();
 
-		 
+		
 		if(parents_sign_not=="1"){
 			$('#reason_sign_parent_id-div').show();	
 			if(reason_sign_parent_id==4){

@@ -16,6 +16,7 @@ use App\Models\Paying_rent;
 use App\Models\Application;
 use App\Models\Reason_sign_parent;
 use App\Models\Parent_information;
+use App\Models\Rental_history;
 class ApplicationController extends Controller
 {
 
@@ -47,6 +48,7 @@ class ApplicationController extends Controller
 
     public function PostcreateStep1(Request $request)
     {
+        //print_r($request->all());
         $arr2=[];
         $arr3=[];
         $arr1=array(
@@ -64,19 +66,8 @@ class ApplicationController extends Controller
             'zip' => ['required', 'string'],
             'house_type_id' => ['required', 'integer'],
             'requested_houses' => ['required', 'string'],
-            // 'group_lead_name' => ['required', 'string'],
-            // 'group_member_name_1' => ['required','string'],
-            // 'group_member_name_2' => ['required','string'],
-            // 'group_member_name_3' => ['required','string'],
-            // 'group_member_name_4' => ['required','string'],
-            // 'room_id' => ['required','integer'],
-            // 'room_type_id' => ['required','integer'],
             'amount_pay_dollars' => ['required','integer'],
             'bringing_Car' => ['required'],
-            // 'car_make' => ['required', 'string'],
-            // 'car_model' => ['required', 'string'],
-            // 'driver_license_number' => ['required', 'string'],
-            // 'car_license_number' => ['required', 'string'],
             'school' => ['required', 'string'],
             'major' => ['required', 'string'],
             'graduation_year' => ['required', 'string'],
@@ -119,13 +110,16 @@ class ApplicationController extends Controller
         if(empty($request->session()->get('application'))){
             $application = new Application();
             $application->fill($validatedData);
+            $application->register_vote=$request->register_vote;
             $request->session()->put('application', $application);
         }else{
             $application = $request->session()->get('application');
             $application->fill($validatedData);
+            $application->register_vote=$request->register_vote;
             $request->session()->put('application', $application);
         }
-        return redirect()->route('step2');
+         return redirect()->route('step2');
+        //print_r($application);
     }
 
     public function createStep2(Request $request)
@@ -142,15 +136,13 @@ class ApplicationController extends Controller
         }
 
         $parent_information_2=NULL;
-        if (empty($request->session()->get('parent_information_2'))) {
+        if(empty($request->session()->get('parent_information_2'))) {
             $parent_information_2 = new Parent_information();
             $request->session()->put('parent_information_2', $parent_information_2);
-        } else {
+        }else {
             $parent_information_2 = $request->session()->get('parent_information_2');
             $request->session()->put('parent_information_2', $parent_information_2);
         }
-         
-
          $reason_sign_parents=Reason_sign_parent::all();
          $citys=City::all();
          $states=State::all();
@@ -260,41 +252,82 @@ class ApplicationController extends Controller
         $parent_information_1 = $request->session()->get('parent_information_1');
         $parent_information_2 = $request->session()->get('parent_information_2');
         $application = $request->session()->get('application');
-        print_r($application);
-    }
-
-    public function PostcreateStep3(Request $request)
-    {
-        $register = $request->session()->get('register');
-
-        if (!isset($register->applicationImg)) {
-            $request->validate([
-                'applicationimg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $fileName = "applicationImage-" . time() . '.' . request()->applicationimg->getClientOriginalExtension();
-            $request->applicationimg->storeAs('applicationimg', $fileName);
-            $register = $request->session()->get('register');
-            $register->applicationImg = $fileName;
-            $request->session()->put('register', $register);
+        $rental_histories=[];
+        if (!empty($request->session()->get('rental_histories'))){
+            $rental_histories = $request->session()->get('rental_histories');
         }
-        return view('register.step4', compact('register'));
+        $citys=City::all();
+        $states=State::all();
+        return view('application.step3', compact('application','rental_histories','citys','states'));
     }
 
-    public function removeImage(Request $request)
-    {
-        $register = $request->session()->get('register');
+    public function PostcreateStep3(Request $request){
+        $arr2=[];
+      
+        $arr1=array(
+            'have_rental_history'=>['required','boolean'],
+        );
 
-        $register->applicationImg = null;
+        if($request->have_rental_history==1){
+            $arr2=array(
+                'address1.*'=>['required','string'],
+                'address2.*'=>['required','string'],
+                'city_id.*'=>['required','string'],
+                'state_id.*'=>['required','string'],
+                'zip.*'=>['required','string'],
+                'rental_date.*'=>['required','string'],
+                'monthly_rent.*'=>['required','string'],
+                'first_name.*'=>['required','string'],
+                'last_name.*'=>['required','string'],
+                'phone.*'=>['required','string'],
+                'email.*'=>['required','string'],
 
-        return view('register.step3', compact('register'));
+            );
+        }
+        
+        $arr=$arr1+$arr2;
+        $validatedData = $request->validate($arr);
+        
+        $application=$request->session()->get('application');
+               $application->have_rental_history=$request->have_rental_history;
+        if($request->have_rental_history==0){
+                $rental_histories =[];
+                $request->session()->put('rental_histories', $rental_histories);
+                
+        }else{
+            $rental_histories =[];
+            
+            for($i=0;count($request->address1)>$i;$i++){
+                $rental_history=new Rental_history();
+                $rental_history->address1=$request->address1[$i];
+                $rental_history->address2=$request->address2[$i];
+                $rental_history->city_id=$request->city_id[$i];
+                $rental_history->state_id=$request->state_id[$i];
+                $rental_history->zip=$request->zip[$i];
+                $rental_history->rental_date=$request->rental_date[$i];
+                $rental_history->monthly_rent=$request->monthly_rent[$i];
+                $rental_history->reason_leaving=$request->reason_leaving[$i];
+                $rental_history->first_name=$request->first_name[$i];
+                $rental_history->last_name=$request->last_name[$i];
+                $rental_history->phone=$request->phone[$i];
+                $rental_history->email=$request->email[$i];
+                
+                $rental_histories[$i]=$rental_history;
+
+            }
+            $request->session()->put('rental_histories', $rental_histories);
+        }
+
+        //$rental_histories= $request->session()->get('rental_histories');
+       
+        return redirect()->route('step4');
     }
 
-    public function store(Request $request)
-    {
-        $register = $request->session()->get('register');
-
-        $register->save();
-
-        return redirect('/data');
+    
+    public function remove(Request $request){
+        $item='';
+        $request->session()->forget('rental_histories');
+        return 'done';
     }
+   
 }

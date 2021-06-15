@@ -49,7 +49,8 @@ class Application extends Model
          'parent_information2_id',
          'have_rental_history',
          'have_employment_history',
-         'applicant_full_name'
+         'applicant_full_name',
+         'register_vote'
          
         ];
 }

@@ -17,6 +17,7 @@
 
 	<!-- Feathericon CSS -->
 	<link rel="stylesheet" href="{{ asset('assets/css/feathericon.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/plugins/select2/select2.min.css') }}">
 
 	<!-- Main CSS -->
 	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -742,13 +743,13 @@
 								<div class="col-md-12">
 									<div class="form-group">
 									<div class="form-check form-check-inline">
-										<input class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_yes" value="1" checked="">
+										<input  {{ option_radio(old("register_vote",$application->register_vote),1)}} class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_yes" value="1" >
 										<label class="form-check-label" for="vote_yes">
 										Yes
 										</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_no" value="0">
+										<input {{ option_radio(old("register_vote",$application->register_vote),0)}} class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_no" value="0">
 										<label class="form-check-label" for="vote_no">
 										No
 										</label>
@@ -807,7 +808,7 @@
 
 	<!-- Slimscroll JS -->
 	<script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
-
+	<script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
 	<!-- Custom JS -->
 	<script src="{{ asset('assets/js/script.js') }}"></script>
 	<script>

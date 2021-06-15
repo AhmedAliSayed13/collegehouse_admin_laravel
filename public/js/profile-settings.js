@@ -10,8 +10,7 @@ Version      : 1.0
 
 	
 	// Education Add More
-	
-    $(".education-info").on('click','.trash', function () {
+	$(".education-info").on('click','.trash', function () {
 		$(this).closest('.education-cont').remove();
 		return false;
     });
@@ -59,6 +58,15 @@ Version      : 1.0
         $(".education-info").append(educationcontent);
         return false;
     });
+    
+
+
+
+
+	
+
+
+	
 
 
 
