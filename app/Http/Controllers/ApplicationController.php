@@ -318,11 +318,24 @@ class ApplicationController extends Controller
             $request->session()->put('rental_histories', $rental_histories);
         }
 
-        //$rental_histories= $request->session()->get('rental_histories');
+        
        
         return redirect()->route('step4');
     }
 
+
+    public function createStep4(Request $request){
+        $parent_information_1 = $request->session()->get('parent_information_1');
+        $parent_information_2 = $request->session()->get('parent_information_2');
+        $application = $request->session()->get('application');
+        $rental_histories=[];
+        if (!empty($request->session()->get('rental_histories'))){
+            $rental_histories = $request->session()->get('rental_histories');
+        }
+        $citys=City::all();
+        $states=State::all();
+        return view('application.step4', compact('application','rental_histories','citys','states'));
+    }
     
     public function remove(Request $request){
         $item='';

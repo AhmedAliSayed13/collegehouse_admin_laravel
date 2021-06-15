@@ -79,8 +79,9 @@ Route::post('/step2', 'ApplicationController@PostcreateStep2')->name('step2-save
 
 Route::get('/step3', 'ApplicationController@createStep3')->name('step3');
 Route::post('/step3', 'ApplicationController@PostcreateStep3')->name('step3-save');
-Route::get('/step4', 'ApplicationController@createStep3')->name('step4');
-Route::post('/step4', 'ApplicationController@PostcreateStep3')->name('step4-save');
+
+Route::get('/step4', 'ApplicationController@createStep4')->name('step4');
+Route::post('/step4', 'ApplicationController@PostcreateStep4')->name('step4-save');
 Route::get('/remove', 'ApplicationController@remove');
 
 
