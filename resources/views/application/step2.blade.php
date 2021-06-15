@@ -60,9 +60,9 @@
 				<div class="col-md-9 m-auto ">
 					<div class="div-timeline-application">
 						<ol class="steps-timeline text-center">
-							<li class="steps-timeline__step  "><span
+							<li class="steps-timeline__step  steps-timeline__step--done"><span
 									class="step-text">Applicant Information</span></li>
-							<li class="steps-timeline__step steps-timeline__step--current"><span class="step-text">Guarantors</span></li>
+							<li class="steps-timeline__step steps-timeline__step--current "><span class="step-text">Guarantors</span></li>
 							<li class="steps-timeline__step"><span class="step-text">Rental History</span></li>
 							<li class="steps-timeline__step"><span class="step-text">Employment</span></li>
 							<li class="steps-timeline__step"><span class="step-text">Terms and Conditions</span></li>
