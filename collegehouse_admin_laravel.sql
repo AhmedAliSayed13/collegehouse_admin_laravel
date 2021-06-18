@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2021 at 05:06 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Generation Time: Jun 18, 2021 at 07:55 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -76,6 +77,13 @@ CREATE TABLE `applications` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `applications`
+--
+
+INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_name_1`, `group_member_name_2`, `group_member_name_3`, `group_member_name_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `created_at`, `updated_at`) VALUES
+(1, 'ahmed', 'ali', 1, 'org1@gmail.com', '2021-06-17', '12912233', '435345436', 'erwere', 'ewrwerewr', 1, 19, '34343', 1, '2222', '22222', '2010', 1212, 17, 3, 3, 1, '2', NULL, NULL, 3323, 'wfwef', 'vfv', '2332', '332', NULL, 'sdfsdf', 'sdfsd', 'sdfsdf', 'sdfsd', 'sdfsd', 1, 1, 3, NULL, 1, 2, 1, 1, 'ahmed ali sayed', '2021-06-16 21:22:35', '2021-06-16 21:22:35');
 
 -- --------------------------------------------------------
 
@@ -183,22 +191,30 @@ CREATE TABLE `employments` (
   `employer_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `city_id` bigint(20) UNSIGNED NOT NULL,
   `zip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `state_id` bigint(20) UNSIGNED NOT NULL,
   `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `monthly_gross_salary` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `current_work` tinyint(1) NOT NULL,
+  `current_work` tinyint(1) DEFAULT NULL,
   `employment_date_start` date NOT NULL,
-  `employment_date_end` date DEFAULT NULL,
+  `employment_date_end` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `supervisor_first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `supervisor_last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `supervisor_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `employments`
+--
+
+INSERT INTO `employments` (`id`, `application_id`, `employer_name`, `phone`, `email`, `address1`, `address2`, `city_id`, `zip`, `state_id`, `position`, `monthly_gross_salary`, `current_work`, `employment_date_start`, `employment_date_end`, `supervisor_first_name`, `supervisor_last_name`, `supervisor_title`, `created_at`, `updated_at`) VALUES
+(1, 1, '1', '1', 'org1@gmail.com', '1', '1', 1, '1', 6, '1', '1', NULL, '2021-06-17', '2021-07-02', '1', '1', '1', '2021-06-16 21:25:14', '2021-06-16 21:25:14'),
+(2, 1, '2', '2', 'org1@gmail.com', '2', '2', 2, '2', 1, '2', '2', NULL, '2021-06-10', '2021-06-30', '2', '2', '2', '2021-06-16 21:29:36', '2021-06-16 21:29:36');
 
 -- --------------------------------------------------------
 
@@ -377,10 +393,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (21, '2021_06_11_094951_create_room_types_table', 18),
 (22, '2021_06_11_094836_create_rooms_table', 19),
 (24, '2021_06_11_113246_create_parent_informations_table', 21),
-(27, '2021_06_12_101908_create_employments_table', 24),
 (28, '2021_06_12_100742_create_rental_histories_table', 25),
 (31, '2021_06_14_084929_create_reason_sign_parents_table', 27),
-(34, '2021_06_10_193622_create_applications_table', 28);
+(35, '2021_06_10_193622_create_applications_table', 30),
+(37, '2021_06_12_101908_create_employments_table', 31);
 
 -- --------------------------------------------------------
 
@@ -404,6 +420,14 @@ CREATE TABLE `parent_informations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `parent_informations`
+--
+
+INSERT INTO `parent_informations` (`id`, `first_name`, `last_name`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `phone`, `email`, `Position`, `place_employment`, `created_at`, `updated_at`) VALUES
+(1, 'dddd', 'werew', 'ewrew', 'werwerwe', 1, 19, '3243443', '32432423', 'ahmedalisayed13@gmail.com', 'werwer', 'ewrew', '2021-06-16 21:21:29', '2021-06-16 21:21:29'),
+(3, 'ewrwer', 'werwer', 'werwer', 'werewrwe', 1, 1, '234324', '32432423', 'ahmedalisayed@gmail.com', 'dfgfdgdggd', 'dfgdfgdf', '2021-06-16 21:21:29', '2021-06-16 21:21:29');
 
 -- --------------------------------------------------------
 
@@ -511,6 +535,14 @@ CREATE TABLE `rental_histories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rental_histories`
+--
+
+INSERT INTO `rental_histories` (`id`, `application_id`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `rental_date`, `monthly_rent`, `reason_leaving`, `first_name`, `last_name`, `phone`, `email`, `created_at`, `updated_at`) VALUES
+(1, 1, 'erwtertre', 'ertretre', 1, 19, '343345435', '2021-07-10', '435435', '435435', 'ahmed', 'dfgdfeter', '12914444', 'ahmed.ali@kabtechcorp.com', '2021-06-16 21:25:14', '2021-06-16 21:25:14'),
+(2, 1, 'rtert', 'reter', 1, 18, '35435', '2021-06-25', '435434', '43teter', 'erterter', 'ertert', '3454354', 'ahmed.ali@kabtechcorp.com', '2021-06-16 21:25:14', '2021-06-16 21:25:14');
 
 -- --------------------------------------------------------
 
@@ -860,7 +892,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `chapters`
@@ -878,7 +910,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT for table `employments`
 --
 ALTER TABLE `employments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `flooers`
@@ -914,13 +946,13 @@ ALTER TABLE `house_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `parent_informations`
 --
 ALTER TABLE `parent_informations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `paying_rents`
@@ -944,7 +976,7 @@ ALTER TABLE `reason_sign_parents`
 -- AUTO_INCREMENT for table `rental_histories`
 --
 ALTER TABLE `rental_histories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `roles`
