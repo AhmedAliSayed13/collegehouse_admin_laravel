@@ -17,6 +17,7 @@ use App\Models\Application;
 use App\Models\Reason_sign_parent;
 use App\Models\Parent_information;
 use App\Models\Rental_history;
+use App\Models\Employment;
 class ApplicationController extends Controller
 {
 
@@ -290,6 +291,7 @@ class ApplicationController extends Controller
         
         $application=$request->session()->get('application');
                $application->have_rental_history=$request->have_rental_history;
+               $request->session()->put('application', $application);
         if($request->have_rental_history==0){
                 $rental_histories =[];
                 $request->session()->put('rental_histories', $rental_histories);
@@ -325,21 +327,153 @@ class ApplicationController extends Controller
 
 
     public function createStep4(Request $request){
-        $parent_information_1 = $request->session()->get('parent_information_1');
-        $parent_information_2 = $request->session()->get('parent_information_2');
+       
         $application = $request->session()->get('application');
-        $rental_histories=[];
-        if (!empty($request->session()->get('rental_histories'))){
-            $rental_histories = $request->session()->get('rental_histories');
+        $employments=[];
+        if (!empty($request->session()->get('employments'))){
+            $employments = $request->session()->get('employments');
         }
         $citys=City::all();
         $states=State::all();
-        return view('application.step4', compact('application','rental_histories','citys','states'));
+        return view('application.step4', compact('application','employments','citys','states'));
+    }
+    public function PostcreateStep4(Request $request){
+        $arr2=[];
+      
+        $arr1=array(
+            'have_employment_history'=>['required','boolean'],
+        );
+
+        if($request->have_employment_history==1){
+            $arr2=array(
+                'employer_name.*'=>['required','string'],
+                'address1.*'=>['required','string'],
+                'address2.*'=>['required','string'],
+                'phone.*'=>['required','string'],
+                'email.*'=>['required','string'],
+                'city_id.*'=>['required','string'],
+                'state_id.*'=>['required','string'],
+                'zip.*'=>['required','string'],
+                'position.*'=>['required','string'],
+                'monthly_gross_salary.*'=>['required','string'],
+                'current_work'=>['nullable','boolean'],
+                'employment_date_start.*'=>['required','date'],
+                'employment_date_end.*'=>['nullable','date'],
+                'first_name.*'=>['required','string'],
+                'last_name.*'=>['required','string'],
+                'supervisor_title.*'=>['required','string']
+            );
+        }
+        
+        $arr=$arr1+$arr2;
+        $validatedData = $request->validate($arr);
+        
+        $application=$request->session()->get('application');
+               $application->have_employment_history=$request->have_employment_history;
+               $request->session()->put('application', $application);
+        if($request->have_employment_history==0){
+                $employments =[];
+                $request->session()->put('employments', $employments);
+                
+        }else{
+            $employments =[];
+            
+            for($i=0;count($request->employer_name)>$i;$i++){
+                $employment=new Employment();
+                $employment->employer_name=$request->employer_name[$i];
+                $employment->address1=$request->address1[$i];
+                $employment->address2=$request->address2[$i];
+                $employment->phone=$request->phone[$i];
+                $employment->email=$request->email[$i];
+                $employment->city_id=$request->city_id[$i];
+                $employment->state_id=$request->state_id[$i];
+                $employment->zip=$request->zip[$i];
+                $employment->position=$request->position[$i];
+                $employment->monthly_gross_salary=$request->monthly_gross_salary[$i];
+                $employment->employment_date_start=$request->employment_date_start[$i];
+                $employment->employment_date_end=$request->employment_date_end[$i];
+                $employment->supervisor_first_name=$request->supervisor_first_name[$i];
+                $employment->supervisor_last_name=$request->supervisor_last_name[$i];
+                $employment->supervisor_title=$request->supervisor_title[$i];
+                // if($i==0 &&){
+                //     $employment->supervisor_title
+                // }
+                
+                
+                $employments[$i]=$employment;
+
+            }
+            $request->session()->put('employments', $employments);
+        }
+
+        
+       
+        return redirect()->route('step5');
+    }
+
+    public function createStep5(Request $request){
+        $application = $request->session()->get('application');
+        return view('application.step5',compact('application'));
+    }
+
+    public function PostcreateStep5(Request $request){
+        $validatedData = $request->validate([
+            'applicant_full_name'=>['required','string'],
+            'terms_and_conditions'=>['required'],
+        ]);
+        $application = $request->session()->get('application');
+        $application->applicant_full_name=$request->applicant_full_name;
+        $request->session()->put('application', $application);
+
+        return redirect()->route('step6');
+
+    }
+
+
+    public function createStep6(Request $request){
+        $application = $request->session()->get('application');
+        $parent_information_1 = $request->session()->get('parent_information_1');
+        $parent_information_2 = $request->session()->get('parent_information_2');
+        $rental_histories = $request->session()->get('rental_histories');
+        $employments = $request->session()->get('employments');
+       
+        $houses=House::whereIn('id', explode(',' ,$application->requested_houses))->get();
+        
+        //print_r($application->requested_houses);
+        return view('application.step6',compact('application','parent_information_1','parent_information_2','rental_histories','employments','houses'));
+    }
+
+    public function PostcreateStep6(Request $request){
+        
+       
+        $parent_information_1 = $request->session()->get('parent_information_1');
+        $parent_information_1->save();
+        $parent_information_2 = $request->session()->get('parent_information_2');
+        $parent_information_2->save();
+        $application = $request->session()->get('application');
+        $application->parent_information1_id= $parent_information_1->id;
+        $application->parent_information2_id= $parent_information_2->id;
+        $application->save();
+
+        $rental_histories = $request->session()->get('rental_histories');
+        foreach($rental_histories as $rental_historie){
+            $rental_historie->application_id=$application->id;
+            $rental_historie->save();
+        }
+        $employments = $request->session()->get('employments');
+        foreach($employments as $employment){
+            $employment->application_id=$application->id;
+            $employment->save();
+        }
+        $request->session()->flush();
+
+        return redirect()->route('step1');
+
     }
     
     public function remove(Request $request){
         $item='';
-        $request->session()->forget('rental_histories');
+        $request->session()->forget('employments');
         return 'done';
     }
    

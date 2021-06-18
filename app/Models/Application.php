@@ -3,7 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Gender;
+use App\Models\City;
+use App\Models\State;
+use App\Models\House_type;
+use App\Models\Room;
+use App\Models\Room_type;
+use App\Models\Chapter;
+use App\Models\Payment_method;
+use App\Models\Paying_rent;
+use App\Models\Reason_sign_parent;
 class Application extends Model
 {
     /**
@@ -53,4 +62,48 @@ class Application extends Model
          'register_vote'
          
         ];
+
+
+
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
+    }
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+    public function house_type()
+    {
+        return $this->belongsTo(House_type::class);
+    }
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
+    public function room_type()
+    {
+        return $this->belongsTo(Room_type::class);
+    }
+    public function chapter()
+    {
+        return $this->belongsTo(Chapter::class);
+    }
+    public function payment_method()
+    {
+        return $this->belongsTo(Payment_method::class);
+    }
+    public function paying_rent()
+    {
+        return $this->belongsTo(Paying_rent::class);
+    }
+    public function reason_sign_parent()
+    {
+        return $this->belongsTo(Reason_sign_parent::class);
+    }
 }

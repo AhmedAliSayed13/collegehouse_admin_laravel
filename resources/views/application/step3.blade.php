@@ -209,7 +209,7 @@
 																class="form-control @error('rental_date') is-invalid @enderror"
 																name="rental_date[]" value="{{ old('rental_date',$rental_history->rental_date) }}" autocomplete="rental_date"
 																autofocus>
-																@error('phone')
+																@error('rental_date')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
 																</span>

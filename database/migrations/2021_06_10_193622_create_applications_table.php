@@ -43,6 +43,7 @@ class CreateApplicationsTable extends Migration
             $table->bigInteger('paying_rent_id')->unsigned();
             $table->foreign('paying_rent_id')->references('id')->on('paying_rents')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('bringing_Car');
+            
             $table->string('requested_houses');
             // $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('room_type_id')->unsigned()->nullable();
@@ -60,7 +61,7 @@ class CreateApplicationsTable extends Migration
             $table->string('group_member_name_2')->nullable();
             $table->string('group_member_name_3')->nullable();
             $table->string('group_member_name_4')->nullable();
-            $table->boolean('register_vote');
+            $table->boolean('register_vote')->defult(1);
             $table->boolean('both_parents_signing');
             $table->bigInteger('parent_information2_id')->unsigned();
             $table->foreign('parent_information2_id')->references('id')->on('parent_informations')->onDelete('cascade')->onUpdate('cascade');

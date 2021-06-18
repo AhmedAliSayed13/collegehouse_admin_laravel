@@ -19,9 +19,9 @@ class CreateEmploymentsTable extends Migration
             $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade')->onUpdate('cascade');
             $table->string('employer_name');
             $table->string('phone');
-            $table->string('email');
-            $table->string('first_name'); 
-            $table->string('last_name'); 
+            $table->string('email'); 
+            $table->string('address1'); 
+            $table->string('address2'); 
             $table->bigInteger('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade')->onUpdate('cascade');
             $table->string('zip');
@@ -29,9 +29,9 @@ class CreateEmploymentsTable extends Migration
             $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade')->onUpdate('cascade');
             $table->string('position');
             $table->string('monthly_gross_salary');
-            $table->boolean('current_work');
+            $table->boolean('current_work')->nullable();
             $table->date('employment_date_start');
-            $table->date('employment_date_end')->nullable();
+            $table->text('employment_date_end');
             $table->string('supervisor_first_name');
             $table->string('supervisor_last_name');
             $table->string('supervisor_title');
