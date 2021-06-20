@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2021 at 07:55 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Jun 20, 2021 at 04:44 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -74,16 +73,10 @@ CREATE TABLE `applications` (
   `have_rental_history` tinyint(1) NOT NULL,
   `have_employment_history` tinyint(1) NOT NULL,
   `applicant_full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `terms_and_conditions` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `applications`
---
-
-INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_name_1`, `group_member_name_2`, `group_member_name_3`, `group_member_name_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `created_at`, `updated_at`) VALUES
-(1, 'ahmed', 'ali', 1, 'org1@gmail.com', '2021-06-17', '12912233', '435345436', 'erwere', 'ewrwerewr', 1, 19, '34343', 1, '2222', '22222', '2010', 1212, 17, 3, 3, 1, '2', NULL, NULL, 3323, 'wfwef', 'vfv', '2332', '332', NULL, 'sdfsdf', 'sdfsd', 'sdfsdf', 'sdfsd', 'sdfsd', 1, 1, 3, NULL, 1, 2, 1, 1, 'ahmed ali sayed', '2021-06-16 21:22:35', '2021-06-16 21:22:35');
 
 -- --------------------------------------------------------
 
@@ -176,8 +169,164 @@ CREATE TABLE `cities` (
 --
 
 INSERT INTO `cities` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'option11', NULL, NULL),
-(2, 'option22', NULL, NULL);
+(1, 'Adak', NULL, NULL),
+(2, 'Akiachak', NULL, NULL),
+(5, 'Akiak', NULL, NULL),
+(6, 'Akutan', NULL, NULL),
+(7, 'Alakanuk', NULL, NULL),
+(8, 'Aleknagik', NULL, NULL),
+(9, 'Allakaket', NULL, NULL),
+(10, 'Ambler', NULL, NULL),
+(11, 'Anaktuvuk Pass', NULL, NULL),
+(12, 'Anchor Point', NULL, NULL),
+(13, 'Anchorage', NULL, NULL),
+(14, 'Anderson', NULL, NULL),
+(15, 'Angoon', NULL, NULL),
+(16, 'Aniak', NULL, NULL),
+(17, 'Anvik', NULL, NULL),
+(18, 'Arctic Village', NULL, NULL),
+(19, 'Atka', NULL, NULL),
+(20, 'Atqasuk', NULL, NULL),
+(21, 'Auke Bay', NULL, NULL),
+(22, 'Barrow', NULL, NULL),
+(23, 'Beaver', NULL, NULL),
+(24, 'Bethel', NULL, NULL),
+(25, 'Bettles Field', NULL, NULL),
+(26, 'Big Lake', NULL, NULL),
+(27, 'Brevig Mission', NULL, NULL),
+(28, 'Buckland', NULL, NULL),
+(29, 'Cantwell', NULL, NULL),
+(30, 'Central', NULL, NULL),
+(31, 'Chalkyitsik', NULL, NULL),
+(32, 'Chefornak', NULL, NULL),
+(33, 'Chevak', NULL, NULL),
+(34, 'Chicken', NULL, NULL),
+(35, 'Chignik', NULL, NULL),
+(36, 'Chignik Lagoon', NULL, NULL),
+(37, 'Chignik Lake', NULL, NULL),
+(38, 'Chitina', NULL, NULL),
+(39, 'Chugiak', NULL, NULL),
+(40, 'Circle', NULL, NULL),
+(41, 'Clam Gulch', NULL, NULL),
+(42, 'Clarks Point', NULL, NULL),
+(43, 'Clear', NULL, NULL),
+(44, 'Coffman Cove', NULL, NULL),
+(45, 'Cold Bay', NULL, NULL),
+(46, 'Cooper Landing', NULL, NULL),
+(47, 'Copper Center', NULL, NULL),
+(48, 'Cordova', NULL, NULL),
+(49, 'Craig', NULL, NULL),
+(50, 'Crooked Creek', NULL, NULL),
+(51, 'Deering', NULL, NULL),
+(52, 'Delta Junction', NULL, NULL),
+(53, 'Denali National Park', NULL, NULL),
+(54, 'Dillingham', NULL, NULL),
+(55, 'Douglas', NULL, NULL),
+(56, 'Dutch Harbor', NULL, NULL),
+(57, 'Eagle', NULL, NULL),
+(58, 'Eagle River', NULL, NULL),
+(59, 'Eek', NULL, NULL),
+(60, 'Egegik', NULL, NULL),
+(61, 'Eielson Afb', NULL, NULL),
+(62, 'Ekwok', NULL, NULL),
+(63, 'Elfin Cove', NULL, NULL),
+(64, 'Elim', NULL, NULL),
+(65, 'Elmendorf Afb', NULL, NULL),
+(66, 'Emmonak', NULL, NULL),
+(67, 'Ester', NULL, NULL),
+(68, 'Fairbanks', NULL, NULL),
+(69, 'False Pass', NULL, NULL),
+(70, 'Fort Greely', NULL, NULL),
+(71, 'Fort Richardson', NULL, NULL),
+(72, 'Fort Wainwright', NULL, NULL),
+(73, 'Fort Yukon', NULL, NULL),
+(74, 'Gakona', NULL, NULL),
+(75, 'Galena', NULL, NULL),
+(76, 'Gambell', NULL, NULL),
+(77, 'Girdwood', NULL, NULL),
+(78, 'Glennallen', NULL, NULL),
+(79, 'Goodnews Bay', NULL, NULL),
+(80, 'Grayling', NULL, NULL),
+(81, 'Gustavus', NULL, NULL),
+(82, 'Haines', NULL, NULL),
+(83, 'Healy', NULL, NULL),
+(84, 'Holy Cross', NULL, NULL),
+(85, 'Homer', NULL, NULL),
+(86, 'Hoonah', NULL, NULL),
+(87, 'Hooper Bay', NULL, NULL),
+(88, 'Hope', NULL, NULL),
+(89, 'Houston', NULL, NULL),
+(90, 'Hughes', NULL, NULL),
+(91, 'Huslia', NULL, NULL),
+(92, 'Hydaburg', NULL, NULL),
+(93, 'Hyder', NULL, NULL),
+(94, 'Iliamna', NULL, NULL),
+(95, 'Indian', NULL, NULL),
+(96, 'Juneau', NULL, NULL),
+(97, 'Kake', NULL, NULL),
+(98, 'Kaktovik', NULL, NULL),
+(99, 'Kalskag', NULL, NULL),
+(100, 'Kaltag', NULL, NULL),
+(101, 'Karluk', NULL, NULL),
+(102, 'Kasigluk', NULL, NULL),
+(103, 'Kasilof', NULL, NULL),
+(104, 'Kenai', NULL, NULL),
+(105, 'Ketchikan', NULL, NULL),
+(106, 'Kiana', NULL, NULL),
+(107, 'King Cove', NULL, NULL),
+(108, 'King Salmon', NULL, NULL),
+(109, 'Kipnuk', NULL, NULL),
+(110, 'Kivalina', NULL, NULL),
+(111, 'Klawock', NULL, NULL),
+(112, 'Kobuk', NULL, NULL),
+(113, 'Kodiak', NULL, NULL),
+(114, 'Kongiganak', NULL, NULL),
+(115, 'Kotlik', NULL, NULL),
+(116, 'Kotzebue', NULL, NULL),
+(117, 'Koyuk', NULL, NULL),
+(118, 'Koyukuk', NULL, NULL),
+(119, 'Kwethluk', NULL, NULL),
+(120, 'Kwigillingok', NULL, NULL),
+(121, 'Lake Minchumina', NULL, NULL),
+(122, 'Larsen Bay', NULL, NULL),
+(123, 'Levelock', NULL, NULL),
+(124, 'Lower Kalskag', NULL, NULL),
+(125, 'Manley Hot Springs', NULL, NULL),
+(126, 'Manokotak', NULL, NULL),
+(127, 'Marshall', NULL, NULL),
+(128, 'Mc Grath', NULL, NULL),
+(129, 'Mekoryuk', NULL, NULL),
+(130, 'Metlakatla', NULL, NULL),
+(131, 'Meyers Chuck', NULL, NULL),
+(132, 'Minto', NULL, NULL),
+(133, 'Moose Pass', NULL, NULL),
+(134, 'Mountain Village', NULL, NULL),
+(135, 'Naknek', NULL, NULL),
+(136, 'Napakiak', NULL, NULL),
+(137, 'Nenana', NULL, NULL),
+(138, 'New Stuyahok', NULL, NULL),
+(139, 'Nightmute', NULL, NULL),
+(140, 'Nikiski', NULL, NULL),
+(141, 'Nikolai', NULL, NULL),
+(142, 'Nikolski', NULL, NULL),
+(143, 'Ninilchik', NULL, NULL),
+(144, 'Noatak', NULL, NULL),
+(145, 'Nome', NULL, NULL),
+(146, 'Nondalton', NULL, NULL),
+(147, 'Noorvik', NULL, NULL),
+(148, 'North Pole', NULL, NULL),
+(149, 'Northway', NULL, NULL),
+(150, 'Nuiqsut', NULL, NULL),
+(151, 'Nulato', NULL, NULL),
+(152, 'Nunam Iqua', NULL, NULL),
+(153, 'Nunapitchuk', NULL, NULL),
+(154, 'Old Harbor', NULL, NULL),
+(155, 'Ouzinkie', NULL, NULL),
+(156, 'Palmer', NULL, NULL),
+(157, 'Pedro Bay', NULL, NULL),
+(158, 'Pelican', NULL, NULL),
+(159, 'Perryville', NULL, NULL),
+(160, 'Petersburg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -208,14 +357,6 @@ CREATE TABLE `employments` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `employments`
---
-
-INSERT INTO `employments` (`id`, `application_id`, `employer_name`, `phone`, `email`, `address1`, `address2`, `city_id`, `zip`, `state_id`, `position`, `monthly_gross_salary`, `current_work`, `employment_date_start`, `employment_date_end`, `supervisor_first_name`, `supervisor_last_name`, `supervisor_title`, `created_at`, `updated_at`) VALUES
-(1, 1, '1', '1', 'org1@gmail.com', '1', '1', 1, '1', 6, '1', '1', NULL, '2021-06-17', '2021-07-02', '1', '1', '1', '2021-06-16 21:25:14', '2021-06-16 21:25:14'),
-(2, 1, '2', '2', 'org1@gmail.com', '2', '2', 2, '2', 1, '2', '2', NULL, '2021-06-10', '2021-06-30', '2', '2', '2', '2021-06-16 21:29:36', '2021-06-16 21:29:36');
-
 -- --------------------------------------------------------
 
 --
@@ -239,10 +380,11 @@ CREATE TABLE `flooers` (
 --
 
 INSERT INTO `flooers` (`id`, `size`, `bathroom`, `room`, `describe`, `image`, `house_id`, `created_at`, `updated_at`) VALUES
-(14, 12, 12, 12, '12', '16235899760room_image.png', 2, '2021-06-13 11:12:56', '2021-06-13 11:12:56'),
-(15, 12, 12, 12, '1212', '16235900500room_image.png', 3, '2021-06-13 11:14:10', '2021-06-13 11:14:10'),
-(16, 44, 44, 44, '444', '16235901810room_image.png', 4, '2021-06-13 11:16:21', '2021-06-13 11:16:21'),
-(17, 55, 55, 55, '55', '16235902580room_image.png', 5, '2021-06-13 11:17:38', '2021-06-13 11:17:38');
+(23, 926, 1, 1, 'Exterior Details The first floor has three rooms, a large living space, dining area, open kitchen, and a bathroom, with plenty of closets.', '16241995880room_image.png', 8, '2021-06-20 12:33:08', '2021-06-20 12:33:08'),
+(24, 774, 2, 4, 'Exterior Details The first floor has three rooms, a large living space, dining area, open kitchen, and a bathroom, with plenty of closets.', '16241995881room_image.png', 8, '2021-06-20 12:33:08', '2021-06-20 12:33:08'),
+(25, 1070, 1, 3, 'Exterior Details The first floor has three rooms, a large living space, dining area, open kitchen, and a bathroom, with plenty of closets.', '16242001670room_image.png', 9, '2021-06-20 12:42:47', '2021-06-20 12:42:47'),
+(26, 684, 1, 3, 'Exterior Details The first floor has three rooms, a large living space, dining area, open kitchen, and a bathroom, with plenty of closets.', '16242001671room_image.png', 9, '2021-06-20 12:42:47', '2021-06-20 12:42:47'),
+(27, 571, 1, 3, 'Exterior Details The first floor has three rooms, a large living space, dining area, open kitchen, and a bathroom, with plenty of closets.', '16242001672room_image.png', 9, '2021-06-20 12:42:47', '2021-06-20 12:42:47');
 
 -- --------------------------------------------------------
 
@@ -263,10 +405,21 @@ CREATE TABLE `front_house_images` (
 --
 
 INSERT INTO `front_house_images` (`id`, `name`, `house_id`, `created_at`, `updated_at`) VALUES
-(28, '16235899760front_house_image.png', 2, '2021-06-13 11:12:56', '2021-06-13 11:12:56'),
-(29, '16235900500front_house_image.png', 3, '2021-06-13 11:14:10', '2021-06-13 11:14:10'),
-(30, '16235901810front_house_image.png', 4, '2021-06-13 11:16:21', '2021-06-13 11:16:21'),
-(31, '16235902580front_house_image.png', 5, '2021-06-13 11:17:38', '2021-06-13 11:17:38');
+(48, '16241995880front_house_image.jpg', 8, '2021-06-20 12:33:08', '2021-06-20 12:33:08'),
+(49, '16241995881front_house_image.jpg', 8, '2021-06-20 12:33:08', '2021-06-20 12:33:08'),
+(50, '16241995882front_house_image.jpg', 8, '2021-06-20 12:33:08', '2021-06-20 12:33:08'),
+(51, '16241995883front_house_image.jpg', 8, '2021-06-20 12:33:08', '2021-06-20 12:33:08'),
+(52, '16241995884front_house_image.jpg', 8, '2021-06-20 12:33:08', '2021-06-20 12:33:08'),
+(53, '16242001660front_house_image.jpg', 9, '2021-06-20 12:42:46', '2021-06-20 12:42:46'),
+(54, '16242001661front_house_image.jpg', 9, '2021-06-20 12:42:46', '2021-06-20 12:42:46'),
+(55, '16242001662front_house_image.jpg', 9, '2021-06-20 12:42:46', '2021-06-20 12:42:46'),
+(56, '16242001663front_house_image.jpg', 9, '2021-06-20 12:42:46', '2021-06-20 12:42:46'),
+(57, '16242001664front_house_image.jpg', 9, '2021-06-20 12:42:46', '2021-06-20 12:42:46'),
+(58, '16242001665front_house_image.jpg', 9, '2021-06-20 12:42:46', '2021-06-20 12:42:46'),
+(59, '16242001666front_house_image.jpg', 9, '2021-06-20 12:42:46', '2021-06-20 12:42:46'),
+(60, '16242001677front_house_image.jpg', 9, '2021-06-20 12:42:47', '2021-06-20 12:42:47'),
+(61, '16242001678front_house_image.jpg', 9, '2021-06-20 12:42:47', '2021-06-20 12:42:47'),
+(62, '16242001679front_house_image.jpg', 9, '2021-06-20 12:42:47', '2021-06-20 12:42:47');
 
 -- --------------------------------------------------------
 
@@ -332,10 +485,8 @@ CREATE TABLE `houses` (
 --
 
 INSERT INTO `houses` (`id`, `owner_id`, `address`, `status`, `city_id`, `name`, `house_type_id`, `num_rooms`, `num_residents`, `num_bathrooms`, `num_flooers`, `num_parkings`, `total_size`, `num_kitchens`, `annual_reset`, `payment_method_id`, `image_ownership`, `image_lease`, `description`, `about`, `excellent_location`, `safety_security`, `professional_maintenance`, `resident_account`, `video`, `pdf`, `created_at`, `updated_at`) VALUES
-(2, 2, 'التوسعات الشمالية - قطعة 816', '42343', 1, 'b-house', 2, 12, 12, 12, 12, 12, 1212, 12, 'dfd', 5, '1623589976image_ownership.png', '1623589976image_lease.png', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', '1623589976video.mp4', '1623589976pdf.pdf', '2021-06-13 11:12:56', '2021-06-13 11:12:56'),
-(3, 5, 'التوسعات الشمالية - قطعة 816', 'ertger', 2, 'g-house', 1, 12, 12, 12, 12, 12, 121, 12, 'dfvdf', 2, '1623590050image_ownership.png', '1623590050image_lease.png', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', '1623590050video.mp4', '1623590050pdf.pdf', '2021-06-13 11:14:10', '2021-06-13 11:14:10'),
-(4, 2, 'التوسعات الشمالية - قطعة 816', 'dfgdf', 1, 'g-house2', 1, 12, 12, 12, 12, 12, 121, 12, 'rfdfv', 3, '1623590181image_ownership.png', '1623590181image_lease.png', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', '1623590181video.mp4', '1623590181pdf.pdf', '2021-06-13 11:16:21', '2021-06-13 11:16:21'),
-(5, 5, 'التوسعات الشمالية - قطعة 816', 'drefgdfg', 1, 'b-house2', 2, 55, 55, 55, 55, 55, 555, 55, 'dfbdfb', 4, '1623590257image_ownership.png', '1623590257image_lease.png', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', 'You will be redirected to an external website to complete the download.', '1623590257video.mp4', '1623590257pdf.pdf', '2021-06-13 11:17:37', '2021-06-13 11:17:37');
+(8, 2, '4620 College Ave', 'Maryland', 19, '4620 College Ave', 1, 5, 25, 2, 3, 1, 1700, 1, '6000', 1, '1624199588image_ownership.png', '1624199588image_lease.png', 'Spacious off-campus college house for rent near University of Maryland, College Park. An excellent choice for your next school year only 3 minutes away from your campus!', 'Spacious off-campus college house for rent near University of Maryland, College Park. An excellent choice for your next school year only 3 minutes away from your campus!', 'Just under half a mile from campus!', 'The City of College Park public safety and code enforcement patrol officers patrol the neighborhood regularly and our maintenance team is available 24/7 for maintenance emergencies.', 'All routine house maintenance and your repair needs are addressed by our professional maintenance team.', 'One online account to access your lease information, balance, see important announcements, submit maintenance requests, and more.', '1624199588video.mp4', '1624199588pdf.pdf', '2021-06-20 12:33:08', '2021-06-20 12:33:08'),
+(9, 5, '4603 Knox Road', 'Maryland', 5, '4603 Knox Road', 1, 6, 3, 3, 3, 3, 2505, 3, '6100', 4, '1624200166image_ownership.png', '1624200166image_lease.png', 'Awesome Location and Awesome House! New, spacious off-campus college rental near University of Maryland, College Park. An excellent choice for your next school year only a few minutes away from your campus!', '4603 Knox Road is an ideal house for your off-campus residence! With six rooms, three bathrooms, porch room and a lot of living space. Semi furnished including all your kitchen items plus lots of build-ins that eliminates furniture needs.', 'Just under half a mile from campus!', 'The City of College Park public safety and code enforcement patrol officers patrol the neighborhood regularly and our maintenance team is available 24/7 for maintenance emergencies.', 'All routine house maintenance and your repair needs are addressed by our professional maintenance team.', 'One online account to access your lease information, balance, see important announcements, submit maintenance requests, and more.', '1624200166video.mp4', '1624200166pdf.pdf', '2021-06-20 12:42:46', '2021-06-20 12:42:46');
 
 -- --------------------------------------------------------
 
@@ -392,11 +543,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2021_06_11_093833_create_paying_rents_table', 17),
 (21, '2021_06_11_094951_create_room_types_table', 18),
 (22, '2021_06_11_094836_create_rooms_table', 19),
-(24, '2021_06_11_113246_create_parent_informations_table', 21),
-(28, '2021_06_12_100742_create_rental_histories_table', 25),
 (31, '2021_06_14_084929_create_reason_sign_parents_table', 27),
-(35, '2021_06_10_193622_create_applications_table', 30),
-(37, '2021_06_12_101908_create_employments_table', 31);
+(36, '2021_06_10_193622_create_applications_table', 28),
+(37, '2021_06_12_100742_create_rental_histories_table', 29),
+(38, '2021_06_11_113246_create_parent_informations_table', 30),
+(39, '2021_06_12_101908_create_employments_table', 31);
 
 -- --------------------------------------------------------
 
@@ -420,14 +571,6 @@ CREATE TABLE `parent_informations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `parent_informations`
---
-
-INSERT INTO `parent_informations` (`id`, `first_name`, `last_name`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `phone`, `email`, `Position`, `place_employment`, `created_at`, `updated_at`) VALUES
-(1, 'dddd', 'werew', 'ewrew', 'werwerwe', 1, 19, '3243443', '32432423', 'ahmedalisayed13@gmail.com', 'werwer', 'ewrew', '2021-06-16 21:21:29', '2021-06-16 21:21:29'),
-(3, 'ewrwer', 'werwer', 'werwer', 'werewrwe', 1, 1, '234324', '32432423', 'ahmedalisayed@gmail.com', 'dfgfdgdggd', 'dfgdfgdf', '2021-06-16 21:21:29', '2021-06-16 21:21:29');
 
 -- --------------------------------------------------------
 
@@ -536,14 +679,6 @@ CREATE TABLE `rental_histories` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `rental_histories`
---
-
-INSERT INTO `rental_histories` (`id`, `application_id`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `rental_date`, `monthly_rent`, `reason_leaving`, `first_name`, `last_name`, `phone`, `email`, `created_at`, `updated_at`) VALUES
-(1, 1, 'erwtertre', 'ertretre', 1, 19, '343345435', '2021-07-10', '435435', '435435', 'ahmed', 'dfgdfeter', '12914444', 'ahmed.ali@kabtechcorp.com', '2021-06-16 21:25:14', '2021-06-16 21:25:14'),
-(2, 1, 'rtert', 'reter', 1, 18, '35435', '2021-06-25', '435434', '43teter', 'erterter', 'ertert', '3454354', 'ahmed.ali@kabtechcorp.com', '2021-06-16 21:25:14', '2021-06-16 21:25:14');
-
 -- --------------------------------------------------------
 
 --
@@ -581,14 +716,6 @@ CREATE TABLE `rooms` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `rooms`
---
-
-INSERT INTO `rooms` (`id`, `name`, `house_id`, `room_type_id`, `number`, `created_at`, `updated_at`) VALUES
-(1, 'room1', 4, 2, '121', NULL, NULL),
-(2, 'room2', 5, 2, '222', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -715,11 +842,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone`, `address`, `state`, `city_id`, `zip`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'ahmed', 'ali sayed', '01112912233', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'qwde', 2, 'eqd', 'owner@gmail.com', NULL, '$2y$10$QQL2.pY56aS.am4QzhpwO.SCv0OF4tNX2MeuBpiaXb4PgZvkIFaM6', 2, NULL, '2021-06-02 08:42:20', '2021-06-09 18:16:42'),
-(3, 'ahmed', 'mostafa ali', '01112912244', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'rerbd', 2, 'gredger', 'tenant@gmail.com', NULL, '$2y$10$kLx2oWvk52i6K5LSb1f1cOcUnVGvD3rfK0zGiT2Z/U1/eiD7ETGzm', 3, NULL, '2021-06-02 09:35:35', '2021-06-02 09:52:15'),
-(4, 'ahmed', 'nour', '01112912211', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'wefcew', 2, 'ddwfcwe', 'admin@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 1, NULL, '2021-06-02 09:59:25', '2021-06-02 09:59:25'),
-(5, 'ahmed', 'ali', '01112912999', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'dsds', 1, 'sdcsd', 'owner2@gmail.com', NULL, '$2y$10$FxDqg1eBjmL4p83UhM5A/uHOB0IIXoSmO7hIFc4.OaCDoNUj/z4P2', 2, NULL, '2021-06-02 11:37:23', '2021-06-02 11:37:23'),
-(6, 'nour1', 'qwede', '43638248723', 'التوسعات الشمالية - قطعة 816', 'ergerge', 1, 'ergver', 'ahmednfdfour@gmail.com', NULL, '$2y$10$fwU5ATr2Wvir1rUGhTzWrOSOnLsIUJgzIXzQc6S4su8AzGsUTPOk.', 2, NULL, '2021-06-06 11:37:52', '2021-06-06 11:37:52');
+(2, 'ahmed', 'ali sayed', '01112912233', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'qwde', 2, 'eqd', 'owner@gmail.com', NULL, '$2y$10$QQL2.pY56aS.am4QzhpwO.SCv0OF4tNX2MeuBpiaXb4PgZvkIFaM6', 2, NULL, '2021-06-02 06:42:20', '2021-06-09 16:16:42'),
+(3, 'ahmed', 'mostafa ali', '01112912244', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'rerbd', 2, 'gredger', 'tenant@gmail.com', NULL, '$2y$10$kLx2oWvk52i6K5LSb1f1cOcUnVGvD3rfK0zGiT2Z/U1/eiD7ETGzm', 3, NULL, '2021-06-02 07:35:35', '2021-06-02 07:52:15'),
+(4, 'ahmed', 'nour', '01112912211', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'wefcew', 2, 'ddwfcwe', 'admin@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 1, NULL, '2021-06-02 07:59:25', '2021-06-02 07:59:25'),
+(5, 'ahmed', 'ali', '01112912999', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'dsds', 1, 'sdcsd', 'owner2@gmail.com', NULL, '$2y$10$FxDqg1eBjmL4p83UhM5A/uHOB0IIXoSmO7hIFc4.OaCDoNUj/z4P2', 2, NULL, '2021-06-02 09:37:23', '2021-06-02 09:37:23'),
+(6, 'mostafa', 'adel', '43638248723', 'التوسعات الشمالية - قطعة 816', 'ergerge', 160, 'ergver', 'ahmednfdfour@gmail.com', NULL, '$2y$10$fwU5ATr2Wvir1rUGhTzWrOSOnLsIUJgzIXzQc6S4su8AzGsUTPOk.', 2, NULL, '2021-06-06 09:37:52', '2021-06-20 12:43:35');
 
 --
 -- Indexes for dumped tables
@@ -730,7 +857,6 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone`, `address`, `state
 --
 ALTER TABLE `applications`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `applications_email_unique` (`email`),
   ADD KEY `applications_gender_id_foreign` (`gender_id`),
   ADD KEY `applications_city_id_foreign` (`city_id`),
   ADD KEY `applications_state_id_foreign` (`state_id`),
@@ -812,7 +938,6 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `parent_informations`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `parent_informations_email_unique` (`email`),
   ADD KEY `parent_informations_city_id_foreign` (`city_id`),
   ADD KEY `parent_informations_state_id_foreign` (`state_id`);
 
@@ -892,7 +1017,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `chapters`
@@ -904,7 +1029,7 @@ ALTER TABLE `chapters`
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
 
 --
 -- AUTO_INCREMENT for table `employments`
@@ -916,13 +1041,13 @@ ALTER TABLE `employments`
 -- AUTO_INCREMENT for table `flooers`
 --
 ALTER TABLE `flooers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `front_house_images`
 --
 ALTER TABLE `front_house_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `genders`
@@ -934,7 +1059,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT for table `houses`
 --
 ALTER TABLE `houses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `house_types`
@@ -946,7 +1071,7 @@ ALTER TABLE `house_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `parent_informations`
