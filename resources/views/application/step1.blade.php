@@ -743,13 +743,13 @@
 								<div class="col-md-12">
 									<div class="form-group">
 									<div class="form-check form-check-inline">
-										<input  {{ option_radio(old("register_vote",$application->register_vote),1)}} class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_yes" value="1" >
+										<input  @if(old('register_vote',$application->register_vote)==1) checked="" @endif  class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_yes" value="1" >
 										<label class="form-check-label" for="vote_yes">
 										Yes
 										</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input {{ option_radio(old("register_vote",$application->register_vote),0)}} class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_no" value="0">
+										<input @if(old('register_vote',$application->register_vote)==0) checked=="" @endif   @if(old('register_vote')==0) checked=="" @endif  class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_no" value="0">
 										<label class="form-check-label" for="vote_no">
 										No
 										</label>
@@ -889,6 +889,11 @@
 				$('.car_field select').val('');
 			}
 		});
+	</script>
+	<script>
+	$(".js-example-basic-multiple-limit").select2({
+		maximumSelectionLength: 2
+	});
 	</script>
 
 </body>
