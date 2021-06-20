@@ -84,15 +84,15 @@
 												Both parents are required to sign the guaranty. Is there any problems with that?
 											</p>
 											<div class="form-check form-check-inline">
-												<input class="form-check-input @error('parents_sign_not') is-invalid @enderror"    type="radio" {{ option_radio(old("both_parents_signing" , $application->both_parents_signing),1)}} name="both_parents_signing" id="vote_yes" value="1" >
+												<input class="form-check-input @error('both_parents_signing') is-invalid @enderror"    type="radio" {{ (old("both_parents_signing", $application->both_parents_signing)==1)?'checked':''}} name="both_parents_signing" id="vote_yes" value="1" >
 												<label class="form-check-label" for="vote_yes">
-													Yes
+													Yes 
 												</label>
 											</div>
 											<div class="form-check form-check-inline">
-												<input class="form-check-input @error('both_parents_signing') is-invalid @enderror" type="radio"  name="both_parents_signing" id="vote_no" {{ option_radio(old("both_parents_signing" , $application->both_parents_signing),0)}} value="0">
+												<input class="form-check-input @error('both_parents_signing') is-invalid @enderror" type="radio"  name="both_parents_signing" id="vote_no" {{ (old("both_parents_signing", $application->both_parents_signing)==0)?'checked':''}} value="0">
 												<label class="form-check-label" for="vote_no">
-													No
+													No 
 												</label>
 											</div>
 											@error('both_parents_signing')
@@ -113,7 +113,7 @@
 												<option value="">Select Reason</option>
 												@foreach ($reason_sign_parents as $reason_sign_parent)
 												<option value="{{$reason_sign_parent->id}}"
-													{{ option_select(old("reason_sign_parent_id") , $application->reason_sign_parent_id )}}>{{$reason_sign_parent->name}}
+													{{ option_select(old("reason_sign_parent_id",$application->reason_sign_parent_id) ,$reason_sign_parent->id  )}}>{{$reason_sign_parent->name}}
 												</option>
 												@endforeach
 											</select>
@@ -615,6 +615,8 @@
 			$('#reason_sign_parent_id-div').show();	
 			if(reason_sign_parent_id==4){
 				$('#other-div').show();	
+			}else{
+				$('#other-div').hide();
 			}
 		}else if(parents_sign_not=="0"){
 			$('#other-div').hide();
@@ -664,6 +666,17 @@
 			$('#parents_sign_not_other_reasons').val('');
 			
 		}
+	});
+	</script>
+	<script>
+	$('document').ready(function()
+	{
+		$('textarea').each(function(){
+				value=$(this).val();
+				if(value.length > 0)
+					$(this).val($(this).val().trim());
+				}
+			);
 	});
 	</script>
 

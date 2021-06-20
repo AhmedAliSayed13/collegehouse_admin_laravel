@@ -185,7 +185,7 @@ class ApplicationController extends Controller
             );
         }
 
-        if($request->reason_sign_parent_id==4){
+        if($request->both_parents_signing==1 && $request->reason_sign_parent_id==4){
             $arr2=array(
                 'parents_sign_not_other_reasons' => ['required', 'string'],
             );

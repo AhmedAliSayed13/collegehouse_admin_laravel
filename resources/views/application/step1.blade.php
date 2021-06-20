@@ -327,10 +327,9 @@
 								<div class="col-md-12  group_house_field">
 									<div class="form-group">
 										<label>Requested Property For Rent:</label>
-										<select id="requested_houses"
-											class=" form-control @error('requested_houses') is-invalid @enderror"
+										<select id="requested_houses" class=" form-control @error('requested_houses') is-invalid @enderror"
 											name="requested_houses"  autocomplete="requested_houses"
-											autofocus>
+											autofocus >
 											@foreach ($house_groups as $house_group)
 											<option value="{{$house_group->id}}"
 												{{ option_select(old("requested_houses") , $house_group->id )}}>{{$house_group->name}}
@@ -430,7 +429,7 @@
 										<select id="requested_houses"
 											class=" form-control @error('requested_houses') is-invalid @enderror"
 											name="requested_houses"  autocomplete="requested_houses"
-											autofocus>
+											autofocus >
 											@foreach ($house_boardings as $house_boardings)
 											<option value="{{$house_boardings->id}}"
 												{{ option_select(old("requested_houses") , $house_boardings->id )}}>{{$house_boardings->name}}
@@ -743,13 +742,13 @@
 								<div class="col-md-12">
 									<div class="form-group">
 									<div class="form-check form-check-inline">
-										<input  @if(old('register_vote',$application->register_vote)==1) checked="" @endif  class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_yes" value="1" >
+										<input   @if($application->register_vote==1) checked @endif class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_yes" value="1" >
 										<label class="form-check-label" for="vote_yes">
 										Yes
 										</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input @if(old('register_vote',$application->register_vote)==0) checked=="" @endif   @if(old('register_vote')==0) checked=="" @endif  class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_no" value="0">
+										<input   @if($application->register_vote==0) checked @endif  class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_no" value="0">
 										<label class="form-check-label" for="vote_no">
 										No
 										</label>
@@ -891,8 +890,14 @@
 		});
 	</script>
 	<script>
-	$(".js-example-basic-multiple-limit").select2({
-		maximumSelectionLength: 2
+	$('document').ready(function()
+	{
+		$('textarea').each(function(){
+				value=$(this).val();
+				if(value.length > 0)
+					$(this).val($(this).val().trim());
+				}
+			);
 	});
 	</script>
 

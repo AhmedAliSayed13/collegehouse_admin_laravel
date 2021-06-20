@@ -221,7 +221,7 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label>Monthly rent:</label>
-															<input id="monthly_rent" type="number" placeholder="monthly_rent" required
+															<input id="monthly_rent" type="number" placeholder="Monthly Rent" required
 																class="form-control @error('monthly_rent') is-invalid @enderror"
 																name="monthly_rent[]" value="{{ old('monthly_rent',$rental_history->monthly_rent) }}" autocomplete="monthly_rent"
 																autofocus>
@@ -238,7 +238,7 @@
 								<div class="col-md-12">
 										<div class="form-group">
 											<label>Reason For Leaving:</label>
-											<input id="reason_leaving" type="text" placeholder="reason_leaving" required
+											<input id="reason_leaving" type="text" placeholder="Reason Leaving" required
 												class="form-control @error('reason_leaving') is-invalid @enderror"
 												name="reason_leaving[]" value="{{ old('reason_leaving',$rental_history->reason_leaving) }}" autocomplete="reason_leaving"
 												autofocus>
