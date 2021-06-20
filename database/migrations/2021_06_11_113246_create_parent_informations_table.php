@@ -25,7 +25,7 @@ class CreateParentInformationsTable extends Migration
             $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade')->onUpdate('cascade');
             $table->string('zip');
             $table->string('phone');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('Position');
             $table->string('place_employment');
             $table->timestamps();

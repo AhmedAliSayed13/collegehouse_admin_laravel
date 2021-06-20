@@ -19,7 +19,7 @@ class CreateApplicationsTable extends Migration
             $table->string('last_name');
             $table->bigInteger('gender_id')->unsigned();
             $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade')->onUpdate('cascade'); 
-            $table->string('email')->unique();
+            $table->string('email');
             $table->date('birthday');
             $table->string('phone');
             $table->string('ssn');
@@ -73,6 +73,7 @@ class CreateApplicationsTable extends Migration
             $table->boolean('have_rental_history');
             $table->boolean('have_employment_history');
             $table->string('applicant_full_name');
+            $table->boolean('terms_and_conditions');
 
 
 

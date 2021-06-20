@@ -98,7 +98,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<div class="form-check">
-											<input required class="form-check-input @error('terms_and_conditions') is-invalid @enderror" type="checkbox" value="1" id="invalidCheck2"
+											<input required class="form-check-input @error('terms_and_conditions') is-invalid @enderror" {{(old("terms_and_conditions", $application->terms_and_conditions)==1)?'checked':''}} type="checkbox" value="1" id="invalidCheck2"
 												name="terms_and_conditions">
 											<label class="form-check-label" for="invalidCheck2">
 												I agree to the terms and conditions
@@ -239,7 +239,7 @@
 									<button type="submit" class="btn btn-primary float-right" id="id-form1">
 										Preview Submission
 									</button>
-									<a href="{{route('step3')}}" class="btn btn-primary float-left">
+									<a href="{{route('step4')}}" class="btn btn-primary float-left">
 										Previous
 									</a>
 								</div>

@@ -88,13 +88,13 @@
 											Do you have any Rental history?
 											</p>
 											<div class="form-check form-check-inline">
-												<input required {{ option_radio(old("have_rental_history" , $application->have_rental_history),1)}} class="form-check-input @error('have_rental_history') is-invalid @enderror"    type="radio"  name="have_rental_history" id="vote_yes" value="1" >
+												<input required {{ (old("have_rental_history", $application->have_rental_history)==1)?'checked':''}} class="form-check-input @error('have_rental_history') is-invalid @enderror"    type="radio"  name="have_rental_history" id="vote_yes" value="1" >
 												<label class="form-check-label" for="vote_yes">
 													Yes
 												</label>
 											</div>
 											<div class="form-check form-check-inline">
-												<input class="form-check-input @error('have_rental_history') is-invalid @enderror" {{ option_radio(old("have_rental_history" , $application->have_rental_history),0)}} type="radio"  name="have_rental_history" id="vote_no"  value="0">
+												<input class="form-check-input @error('have_rental_history') is-invalid @enderror" {{ (old("have_rental_history", $application->have_rental_history)==0)?'checked':''}} type="radio"  name="have_rental_history" id="vote_no"  value="0">
 												<label class="form-check-label" for="vote_no">
 													No
 												</label>
@@ -205,7 +205,7 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label>Rental Date:</label>
-															<input id="rental_date" type="date" placeholder="rental_date" required
+															<input id="rental_date" type="date" placeholder="Rental Date" required
 																class="form-control @error('rental_date') is-invalid @enderror"
 																name="rental_date[]" value="{{ old('rental_date',$rental_history->rental_date) }}" autocomplete="rental_date"
 																autofocus>
@@ -438,7 +438,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Rental Date:</label>
-												<input id="rental_date" type="date" placeholder="rental_date" required
+												<input id="rental_date" type="date" placeholder="Rental Date" required
 													class="form-control @error('rental_date') is-invalid @enderror"
 													name="rental_date[]" value="{{ old('rental_date') }}" autocomplete="rental_date"
 													autofocus>
@@ -454,7 +454,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Monthly rent:</label>
-												<input id="monthly_rent" type="number" placeholder="monthly_rent" required
+												<input id="monthly_rent" type="number" placeholder="Monthly Rent" required
 													class="form-control @error('monthly_rent') is-invalid @enderror"
 													name="monthly_rent[]" value="{{ old('monthly_rent') }}" autocomplete="monthly_rent"
 													autofocus>
@@ -471,7 +471,7 @@
 								<div class="col-md-12">
 										<div class="form-group">
 											<label>Reason For Leaving:</label>
-											<input id="reason_leaving" type="text" placeholder="reason_leaving" required
+											<input id="reason_leaving" type="text" placeholder="Reason Leaving" required
 												class="form-control @error('reason_leaving') is-invalid @enderror"
 												name="reason_leaving[]" value="{{ old('reason_leaving') }}" autocomplete="reason_leaving"
 												autofocus>
@@ -681,12 +681,14 @@
 			$("form select").prop("disabled", true);
 			$("form input[type=email]").prop("disabled", true);
 			$("form input[type=date]").prop("disabled", true);
+			$("form input[type=number]").prop("disabled", true);
 			$("form textarea").prop("disabled", true);
 		}else if(have_rental_history=="1"){
 			$("form input[type=text]").prop("disabled", false);
 			$("form select").prop("disabled", false);
 			$("form input[type=email]").prop("disabled", false);
 			$("form input[type=date]").prop("disabled", false);
+			$("form input[type=number]").prop("disabled", false);
 			$("form textarea").prop("disabled", false);
 		}
 
@@ -701,12 +703,14 @@
 			$("form select").prop("disabled", true);
 			$("form input[type=email]").prop("disabled", true);
 			$("form input[type=date]").prop("disabled", true);
+			$("form input[type=number]").prop("disabled", true);
 			$("form textarea").prop("disabled", true);
 		}else{
 			$("form input[type=text]").prop("disabled", false);
 			$("form select").prop("disabled", false);
 			$("form input[type=email]").prop("disabled", false);
 			$("form input[type=date]").prop("disabled", false);
+			$("form input[type=number]").prop("disabled", false);
 			$("form textarea").prop("disabled", false);
 		}
 	});
@@ -740,8 +744,8 @@ $(".rental-info").on('click','.trash', function () {
 		@endforeach
 		rentalcontent=rentalcontent+'</select></div></div>'+
 		'<div class="col-md-3"><div class="form-group"><label>Zip Code:</label><input id="zip" placeholder="Zip Code" type="text" required class="form-control " name="zip[]"  autocomplete="zip" autofocus></div></div>'+
-		'<div class="col-md-6"><div class="form-group"><label>Rental Date:</label><input id="rental_date" type="date" placeholder="rental_date" required class="form-control " name="rental_date[]"  autocomplete="rental_date" autofocus></div></div>'+
-		'<div class="col-md-6"><div class="form-group"><label>Monthly rent:</label><input id="monthly_rent" type="number" placeholder="monthly_rent" required class="form-control " name="monthly_rent[]"  autocomplete="monthly_rent" autofocus></div></div>'+
+		'<div class="col-md-6"><div class="form-group"><label>Rental Date:</label><input id="rental_date" type="date" placeholder="Rental Date" required class="form-control " name="rental_date[]"  autocomplete="rental_date" autofocus></div></div>'+
+		'<div class="col-md-6"><div class="form-group"><label>Monthly rent:</label><input id="monthly_rent" type="number" placeholder="Monthly Rent" required class="form-control " name="monthly_rent[]"  autocomplete="monthly_rent" autofocus></div></div>'+
 		'<div class="col-md-12"><div class="form-group"><label>Reason Leaving:</label><input id="reason_leaving" type="text" placeholder="Reason Leaving" required class="form-control " name="reason_leaving[]"  autocomplete="reason_leaving" autofocus></div></div>'+
 		'<div class="col-md-12"><h4 class="d-block mt-4">Landlord Information:</h4></div>'+
 		'<div class="col-md-6"><div class="form-group"><label>First Name:</label><input id="first_name" type="text" placeholder="First Name" required class="form-control " name="first_name[]"  autocomplete="first_name" autofocus></div></div>'+

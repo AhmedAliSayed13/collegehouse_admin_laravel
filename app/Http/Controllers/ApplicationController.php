@@ -392,6 +392,17 @@ class ApplicationController extends Controller
                 $employment->monthly_gross_salary=$request->monthly_gross_salary[$i];
                 $employment->employment_date_start=$request->employment_date_start[$i];
                 $employment->employment_date_end=$request->employment_date_end[$i];
+                
+                
+                if($request->current_work==1 && $i==0){
+                  
+                        $employment->current_work=$request->current_work;
+                       
+                    
+                   
+                }
+               
+                
                 $employment->supervisor_first_name=$request->supervisor_first_name[$i];
                 $employment->supervisor_last_name=$request->supervisor_last_name[$i];
                 $employment->supervisor_title=$request->supervisor_title[$i];
@@ -423,6 +434,7 @@ class ApplicationController extends Controller
         ]);
         $application = $request->session()->get('application');
         $application->applicant_full_name=$request->applicant_full_name;
+        $application->terms_and_conditions=$request->terms_and_conditions;
         $request->session()->put('application', $application);
 
         return redirect()->route('step6');

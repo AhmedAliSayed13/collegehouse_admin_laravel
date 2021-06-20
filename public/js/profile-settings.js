@@ -41,7 +41,7 @@ Version      : 1.0
 					'<div class="col-12 col-md-6 col-lg-3">' +
 						'<div class="form-group">' +
 							'<label>describe</label>' +
-							'<input type="number" name="flooer_describe[]" required class="form-control">' +
+							'<input type="text" name="flooer_describe[]" required class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-3">' +

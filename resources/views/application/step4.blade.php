@@ -93,7 +93,7 @@
 										</p>
 										<div class="form-check form-check-inline">
 											<input required
-												{{ option_radio(old("have_employment_history" , $application->have_employment_history),1)}}
+												{{ (old("have_employment_history", $application->have_employment_history)==1)?'checked':''}}
 												class="form-check-input @error('have_employment_history') is-invalid @enderror"
 												type="radio" name="have_employment_history" id="vote_yes" value="1">
 											<label class="form-check-label" for="vote_yes">
@@ -103,7 +103,7 @@
 										<div class="form-check form-check-inline">
 											<input
 												class="form-check-input @error('have_employment_history') is-invalid @enderror"
-												{{ option_radio(old("have_employment_history" , $application->have_employment_history),0)}}
+												{{ (old("have_employment_history", $application->have_employment_history)==0)?'checked':''}}
 												type="radio" name="have_employment_history" id="vote_no" value="0">
 											<label class="form-check-label" for="vote_no">
 												No
@@ -119,6 +119,9 @@
 
 
 								@if(!empty($employments))
+								@php
+									$i = 0;
+								@endphp
 									@foreach($employments as $employment )
 										<div class="col-md-12">
 											<h4 class="d-block mt-4">Employer Information:</h4>
@@ -255,7 +258,7 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label>Zip Code:</label>
-												<input id="zip" placeholder="Zip Code"  required
+												<input type="text" id="zip" placeholder="Zip Code"  required
 													class="form-control @error('zip') is-invalid @enderror" name="zip[]"
 													value="{{ old('zip',$employment->zip) }}" autocomplete="zip" autofocus>
 												@error('zip')
@@ -302,25 +305,27 @@
 										</div>
 
 										<div class="col-md-12">
-											<h4 class="d-block mt-4">Employment Dates:</h4>
+											<h4 class="d-block mt-4">Employment Dates: </h4>
 										</div>
-										{{-- <div class="col-md-12">
-											<div class="form-group">
-												<div class="form-check">
-													<input class="form-check-input " type="checkbox" value="1" id="current_work_checkbox"
-														name="current_work[]" @error('current_work') is-invalid @enderror">
-													<label class="form-check-label" for="invalidCheck2">
-														I currently work in this role
-													</label>
-												</div>
-												@error('current_work')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+										@if($employment->current_work)
+											<div class="col-md-12">
+												<div class="form-group">
+													<div class="form-check">
+														<input class="form-check-input current_work_checkbox @error('current_work') is-invalid @enderror" checked type="checkbox" value="1" id="{{$i}}" 
+															name="current_work" >
+														<label class="form-check-label" for="invalidCheck2">
+															I currently work in this role
+														</label>
+													</div>
+													@error('current_work')
+													<span class="invalid-feedback" role="alert">
+														<strong>{{ $message }}</strong>
+													</span>
+													@enderror
 
-											</div>
-										</div> --}}
+												</div>
+											</div> 
+										@endif
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Started:</label>
@@ -337,15 +342,15 @@
 
 											</div>
 										</div>
-
+										@if(!$employment->current_work)
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Ended:</label>
-												<input id="employment_date_end" type="date" required
+												<input  id="employment_date_end" type="date"    
 													class="form-control @error('employment_date_end') is-invalid @enderror"
 													name="employment_date_end[]"
 													value="{{ old('employment_date_end',$employment->employment_date_end) }}"
-													autocomplete="employment_date_end" autofocus>
+													autocomplete="employment_date_end" autofocus required>
 												@error('employment_date_end')
 												<span class="invalid-feedback" role="alert">
 													<strong>{{ $message }}</strong>
@@ -354,6 +359,26 @@
 
 											</div>
 										</div>
+										@else
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Ended:</label>
+												<input  id="employment_date_end" type="date"    
+													class="form-control @error('employment_date_end') is-invalid @enderror"
+													name="employment_date_end[]"
+													value="{{ old('employment_date_end',$employment->employment_date_end) }}"
+													autocomplete="employment_date_end" autofocus readonly>
+												@error('employment_date_end')
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+												@enderror
+
+											</div>
+										</div>
+
+										@endif
+										
 										<div class="col-md-12">
 											<h4 class="d-block mt-4">Supervisor Name:</h4>
 										</div>
@@ -410,7 +435,9 @@
 
 											</div>
 										</div>
-
+										@php
+										$i++;
+										@endphp
 										@endforeach
 
 								@else
@@ -559,7 +586,7 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Zip Code:</label>
-										<input id="zip" placeholder="Zip Code"  required type="text"
+										<input type="text" id="zip" placeholder="Zip Code"  required type="text"
 											class="form-control @error('zip') is-invalid @enderror" name="zip[]"
 											value="{{ old('zip') }}" autocomplete="zip" autofocus>
 										@error('zip')
@@ -894,17 +921,16 @@
 	
 
 		
-		
 		$('.current_work_checkbox').on('change', function() {
 		// alert('run');
 		// value=$('.current_work_checkbox').val();
 		
 		if($('input[name=current_work]').is(':checked') ){
 			$('#employment_date_end').val(new Date());
-			$('#employment_date_end').prop("disabled", true);
+			$('#employment_date_end').attr('readonly','readonly');
 
 		}else{
-			$('#employment_date_end').prop("disabled", false);
+			$('#employment_date_end').removeAttr('readonly');
 		}
 	});
 
