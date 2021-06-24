@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        @include('layouts-admin.style')
+        @include('layouts-tenant.style')
     </head>
     <body>
 	
@@ -9,11 +9,11 @@
         <div class="main-wrapper">
 		
 			<!-- Header -->
-            @include('layouts-admin.header')
+            @include('layouts-tenant.header')
 			<!-- /Header -->
 			
 			<!-- Sidebar -->
-            @include('layouts-admin.sidebar')
+            @include('layouts-tenant.sidebar')
 			<!-- /Sidebar -->
 			
 			<!-- Page Wrapper -->
@@ -31,7 +31,7 @@
 		<!-- /Main Wrapper -->
 		
 		
-        @include('layouts-admin.script')
+        @include('layouts-tenant.script')
 		
     </body>
 </html>

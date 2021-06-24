@@ -24,10 +24,20 @@
 									
 								</ul>
 							</li>
-<!-- 							
-							<li class="">
-								<a href="{{url('all-house')}}"><i class="fe fe-home"></i> <span>All Houses</span></a>
+							<!-- <li class="submenu ">
+								<a href=""><i class="fe fe-document"></i> <span> All Applications </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a class="{{active_link('admin/application/create')}}" href="{{route('application.create')}}"> <i class="fa fa-plus mr-2"></i> Add House </a></li>
+									<li><a class="{{active_link('admin/application')}}" href="{{route('application.index')}}"> <i class="fa fa-th-list mr-2"></i> List Applications </a></li>
+									
+								</ul>
+							</li> -->
+							
+							<li class=" {{active_link('admin/application')}}">
+								<a href="{{route('application.index')}}"><i class="fe fe-home"></i> <span>All Applications</span></a>
 							</li>
+							
+							<!-- 
 							<li class="">
 								<a href="{{url('all-rental-owners')}}"><i class="fe fe-home"></i> <span>All Rental Owners</span></a>
 							</li>

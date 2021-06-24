@@ -38,6 +38,7 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
     Route::resource('tag','Admin\TagController');
     Route::resource('house','Admin\HouseController');
     Route::resource('owner','Admin\OwnerController');
+    Route::resource('application','Admin\ApplicationController');
     Route::post('/house/delete-image-front',[App\Http\Controllers\Admin\HouseController::class,'delete_image_front']);
     Route::post('/house/edit-flooer',[App\Http\Controllers\Admin\HouseController::class,'edit_flooer'])->name('admin.edit-flooer');
 
@@ -66,7 +67,8 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
     Route::get('/change-password',[App\Http\Controllers\TenantController::class,'showChangePassword'])->name('tenant.changepassword');
     Route::post('/change-password-save',[App\Http\Controllers\TenantController::class,'ChangePasswordSave'])->name('tenant.changepassword.save');
-
+    
+    // Route::get('/group/create',[App\Http\Controllers\tennat\GroupController::class,'createGroup'])->name('tenant.create-group');
     
 });
 
