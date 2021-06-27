@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2021 at 04:44 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Generation Time: Jun 27, 2021 at 11:53 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -74,9 +74,40 @@ CREATE TABLE `applications` (
   `have_employment_history` tinyint(1) NOT NULL,
   `applicant_full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `terms_and_conditions` tinyint(1) NOT NULL,
+  `application_case_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `applications`
+--
+
+INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_name_1`, `group_member_name_2`, `group_member_name_3`, `group_member_name_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `terms_and_conditions`, `application_case_id`, `created_at`, `updated_at`) VALUES
+(3, 'ahmed', 'ali', 1, 'ahmedalisayed13@gmail.com', '2021-06-23', '01112912233', '1223456', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 21, 18, '132423', 1, 'test', 'test', '2018', 12, 16, 1, 1, 1, '8', NULL, NULL, 240, 'test', 'test', '235325', '23523523', NULL, 'ahmed ali', 'mostafa', 'omar', 'mohamed', 'nour', 1, 1, 5, 'is simply dummy text of the printing and typesetting industry', 4, 4, 0, 0, 'ahmed ali sayed', 1, 1, '2021-06-27 18:07:51', '2021-06-27 18:07:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `application_cases`
+--
+
+CREATE TABLE `application_cases` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `application_cases`
+--
+
+INSERT INTO `application_cases` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'review', NULL, NULL),
+(2, 'Wating interview', NULL, NULL),
+(4, 'refused', NULL, NULL),
+(5, 'acceptted', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -544,10 +575,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (21, '2021_06_11_094951_create_room_types_table', 18),
 (22, '2021_06_11_094836_create_rooms_table', 19),
 (31, '2021_06_14_084929_create_reason_sign_parents_table', 27),
-(36, '2021_06_10_193622_create_applications_table', 28),
 (37, '2021_06_12_100742_create_rental_histories_table', 29),
 (38, '2021_06_11_113246_create_parent_informations_table', 30),
-(39, '2021_06_12_101908_create_employments_table', 31);
+(39, '2021_06_12_101908_create_employments_table', 31),
+(42, '2021_06_27_201015_create_application_cases_table', 32),
+(43, '2021_06_10_193622_create_applications_table', 33);
 
 -- --------------------------------------------------------
 
@@ -571,6 +603,14 @@ CREATE TABLE `parent_informations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `parent_informations`
+--
+
+INSERT INTO `parent_informations` (`id`, `first_name`, `last_name`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `phone`, `email`, `Position`, `place_employment`, `created_at`, `updated_at`) VALUES
+(4, 'ali', 'sayed', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 19, 21, '3543', '0112912233', 'ahmed.ali@kabtechcorp.com', 'head', 'engnieer', '2021-06-27 18:07:51', '2021-06-27 18:07:51'),
+(5, 'nour', 'farrag', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 14, 14, '34534', '01112912233', 'ahmed.ali@kabtechcorp.com', 'sdfsd', 'sdfs', '2021-06-27 18:07:51', '2021-06-27 18:07:51');
 
 -- --------------------------------------------------------
 
@@ -868,7 +908,14 @@ ALTER TABLE `applications`
   ADD KEY `applications_room_id_foreign` (`room_id`),
   ADD KEY `applications_parent_information2_id_foreign` (`parent_information2_id`),
   ADD KEY `applications_parent_information1_id_foreign` (`parent_information1_id`),
-  ADD KEY `applications_reason_sign_parent_id_foreign` (`reason_sign_parent_id`);
+  ADD KEY `applications_reason_sign_parent_id_foreign` (`reason_sign_parent_id`),
+  ADD KEY `applications_application_case_id_foreign` (`application_case_id`);
+
+--
+-- Indexes for table `application_cases`
+--
+ALTER TABLE `application_cases`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `chapters`
@@ -1017,7 +1064,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `application_cases`
+--
+ALTER TABLE `application_cases`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `chapters`
@@ -1071,13 +1124,13 @@ ALTER TABLE `house_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `parent_informations`
 --
 ALTER TABLE `parent_informations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `paying_rents`
@@ -1141,6 +1194,7 @@ ALTER TABLE `users`
 -- Constraints for table `applications`
 --
 ALTER TABLE `applications`
+  ADD CONSTRAINT `applications_application_case_id_foreign` FOREIGN KEY (`application_case_id`) REFERENCES `application_cases` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_chapter_id_foreign` FOREIGN KEY (`chapter_id`) REFERENCES `chapters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_gender_id_foreign` FOREIGN KEY (`gender_id`) REFERENCES `genders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
