@@ -66,7 +66,8 @@
           </div>
           <a href="{{ route('owner.register') }}" class="index-link-register btn btn-primary mb-2" style="margin-top: 0px!important;" >Register House Owner</a>
           <a href="{{ route('tenant.register') }}" class="index-link-register btn btn-primary mb-2" style="margin-top: 0px!important;" >Register Tenant</a>
-          </form>
+          <a href="{{ route('step1') }}" class="index-link-register btn btn-primary mb-2" style="margin-top: 0px!important;" >Application</a>  
+        </form>
 
 
 

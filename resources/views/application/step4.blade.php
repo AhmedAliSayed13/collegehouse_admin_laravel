@@ -881,12 +881,14 @@
 			$("form select").prop("disabled", true);
 			$("form input[type=email]").prop("disabled", true);
 			$("form input[type=date]").prop("disabled", true);
+			$("form input[type=number]").prop("disabled", true);
 			$("form textarea").prop("disabled", true);
 		}else if(have_employment_history=="1"){
 			$("form input[type=text]").prop("disabled", false);
 			$("form select").prop("disabled", false);
 			$("form input[type=email]").prop("disabled", false);
 			$("form input[type=date]").prop("disabled", false);
+			$("form input[type=number]").prop("disabled", false);
 			$("form textarea").prop("disabled", false);
 		}
 

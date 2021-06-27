@@ -13,6 +13,9 @@ use App\Models\Chapter;
 use App\Models\Payment_method;
 use App\Models\Paying_rent;
 use App\Models\Reason_sign_parent;
+use App\Models\Parent_information;
+use App\Models\Rental_history;
+use App\Models\Employment;
 class Application extends Model
 {
     /**
@@ -105,5 +108,30 @@ class Application extends Model
     public function reason_sign_parent()
     {
         return $this->belongsTo(Reason_sign_parent::class);
+    }
+    public function parent_information1()
+    {
+        if($this->parent_information1_id){
+            $parent1=Parent_information::find($this->parent_information1_id);
+            return  $parent1;
+        }
+        return null;
+    }
+    public function parent_information2()
+    {
+        if($this->parent_information2_id){
+            $parent2=Parent_information::find($this->parent_information2_id);
+            return  $parent2;
+        }
+        return null;
+    }
+
+    public function rental_historys()
+    {
+        return $this->hasMany(Rental_history::class);
+    }
+    public function employments()
+    {
+        return $this->hasMany(Employment::class);
     }
 }

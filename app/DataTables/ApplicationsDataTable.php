@@ -23,9 +23,9 @@ class ApplicationsDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('edit', 'admin.applications.btn.edit')
+            ->addColumn('view', 'admin.applications.btn.view')
             ->addColumn('delete', 'admin.applications.btn.delete')
-            ->rawColumns(['edit','delete']);
+            ->rawColumns(['view','delete']);
     }
 
     /**
@@ -66,8 +66,7 @@ class ApplicationsDataTable extends DataTable
                     ['extend'=>'export','className'=>' btn btn-primary ','text'=>'<i class="fa fa-download"></i> '.'Export'],
                     ['extend'=>'reset','className'=>' btn btn-primary ','text'=>'<i class="fa fa-redo-alt"></i> '.'Reset'],
                     ['extend'=>'reload','className'=>' btn btn-primary ','text'=>'<i class="fa fa-sync-alt"></i> '.'Reload'],
-                    ['className'=>' btn btn-primary ','text'=>'<i class="fa fa-plus-circle"></i>'.'Create','action'=>"function(){
-                                window.location.href='/admin/application/create';}"],
+                    
                 ],
                 'initComplete'=> "function () {
                         this.api().columns([0,1,2,3,4,5,6,7]).every(function () {
@@ -132,9 +131,9 @@ class ApplicationsDataTable extends DataTable
                 'title'=>'Created At'
             ],
             [
-                'name'=>'edit',
-                'data'=>'edit',
-                'title'=>'Edit',
+                'name'=>'view',
+                'data'=>'view',
+                'title'=>'view',
                 'exportable'=>false,
                 'printable'=>false,
                 'orderable'=>false,

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\City;
 use App\Models\State;
+use App\Models\Application;
 class Employment extends Model
 {
      /**
@@ -35,5 +36,9 @@ class Employment extends Model
         public function state()
         {
             return $this->belongsTo(State::class);
+        }
+        public function application()
+        {
+            return $this->belongsTo(Application::class);
         }
 }
