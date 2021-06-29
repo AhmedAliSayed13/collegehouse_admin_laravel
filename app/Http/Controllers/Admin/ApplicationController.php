@@ -11,6 +11,7 @@ use App\Models\House;
 use App\Models\Flooer;
 use App\Models\House_type;
 use App\Models\Payment_method;
+use App\Models\Application_case;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -151,9 +152,9 @@ class ApplicationController extends Controller
         $parent_information_2 =$application-> parent_information2();
         $employments = $application->employments;
         $rental_histories = $application->rental_histories;
+        $application_cases=Application_case::all();
 
-
-        return view('admin.applications.show-Application',compact('application','houses','parent_information_1','parent_information_2','rental_histories','employments'));
+        return view('admin.applications.show-Application',compact('application','houses','parent_information_1','parent_information_2','rental_histories','employments','application_cases'));
     }
 
     public function edit($id)

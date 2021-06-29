@@ -85,10 +85,10 @@
 															
 																<label class="d-block">Application Status : </label>
 																<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
-																		<option value="10">10</option>
-																		<option value="25">25</option>
-																		<option value="50">50</option>
-																		<option value="100">100</option>
+																		<option>select Application Status </option>
+																		@foreach($application_cases as $application_case)
+																		<option value="{{$application_case->id}}">{{$application_case->name}}</option>
+																		@endforeach
 																	</select>
 																
 														</div>
