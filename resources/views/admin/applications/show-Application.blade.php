@@ -102,7 +102,6 @@
 															@enderror
 
 														</div>
-<<<<<<< Updated upstream
 														
 														<div class="col-sm-12 col-lg-3">
 															
@@ -115,33 +114,6 @@
 																<input Type="time" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
 																		
 																
-=======
-														<div class="col-sm-12 col-lg-3 mb-2">
-
-															<label class="d-block">Application Status : </label>
-															<select name="DataTables_Table_0_length"
-																aria-controls="DataTables_Table_0"
-																class="custom-select custom-select-sm form-control form-control-sm">
-																<option value="10">10</option>
-																<option value="25">25</option>
-																<option value="50">50</option>
-																<option value="100">100</option>
-															</select>
-
-														</div>
-														<div class="col-sm-12 col-lg-3">
-
-															<label class="d-block">Application Status : </label>
-															<select name="DataTables_Table_0_length"
-																aria-controls="DataTables_Table_0"
-																class="custom-select custom-select-sm form-control form-control-sm">
-																<option value="10">10</option>
-																<option value="25">25</option>
-																<option value="50">50</option>
-																<option value="100">100</option>
-															</select>
-
->>>>>>> Stashed changes
 														</div>
 
 													</div>
