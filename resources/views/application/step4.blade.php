@@ -120,325 +120,326 @@
 
 								@if(!empty($employments))
 								@php
-									$i = 0;
+								$i = 0;
 								@endphp
-									@foreach($employments as $employment )
-										<div class="col-md-12">
-											<h4 class="d-block mt-4">Employer Information:</h4>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Employer Information:</label>
-												<input id="employer_name" placeholder="Employer Information" type="text"
-													required class="form-control @error('employer_name') is-invalid @enderror"
-													name="employer_name[]"
-													value="{{ old('employer_name',$employment->employer_name) }}"
-													autocomplete="employer_name" autofocus>
-												@error('employer_name')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+								@foreach($employments as $employment )
+								<div class="col-md-12">
+									<h4 class="d-block mt-4">Employer Information:</h4>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Employer Information:</label>
+										<input id="employer_name" placeholder="Employer Information" type="text"
+											required class="form-control @error('employer_name') is-invalid @enderror"
+											name="employer_name[]"
+											value="{{ old('employer_name',$employment->employer_name) }}"
+											autocomplete="employer_name" autofocus>
+										@error('employer_name')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Mobile/Phone number:</label>
-												<input id="phone" placeholder="Mobile/Phone number" type="text" required
-													class="form-control @error('phone') is-invalid @enderror" name="phone[]"
-													value="{{ old('phone',$employment->phone) }}" autocomplete="phone"
-													autofocus>
-												@error('phone')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Mobile/Phone number:</label>
+										<input id="phone" placeholder="Mobile/Phone number" type="text" required
+											class="form-control @error('phone') is-invalid @enderror" name="phone[]"
+											value="{{ old('phone',$employment->phone) }}" autocomplete="phone"
+											autofocus>
+										@error('phone')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-											</div>
-										</div>
+									</div>
+								</div>
 
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Email:</label>
-												<input id="email" placeholder="Email" type="email" required
-													class="form-control @error('email') is-invalid @enderror" name="email[]"
-													value="{{ old('email',$employment->email) }}" autocomplete="email"
-													autofocus>
-												@error('email')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Email:</label>
+										<input id="email" placeholder="Email" type="email" required
+											class="form-control @error('email') is-invalid @enderror" name="email[]"
+											value="{{ old('email',$employment->email) }}" autocomplete="email"
+											autofocus>
+										@error('email')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-											</div>
-										</div>
+									</div>
+								</div>
 
-										<div class="col-md-12">
-											<h4 class="d-block mt-4">Employer Address (optional):</h4>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Address 1</label>
-												<textarea id="address1" required
-													class="form-control @error('address1') is-invalid @enderror"
-													name="address1[]" autocomplete="address1"
-													autofocus>{{ old('address1',$employment->address1) }}</textarea>
-												@error('address1')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+								<div class="col-md-12">
+									<h4 class="d-block mt-4">Employer Address (optional):</h4>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Address 1</label>
+										<textarea id="address1" required
+											class="form-control @error('address1') is-invalid @enderror"
+											name="address1[]" autocomplete="address1"
+											autofocus>{{ old('address1',$employment->address1) }}</textarea>
+										@error('address1')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Address 2</label>
-												<textarea id="address2" required
-													class="form-control @error('address2') is-invalid @enderror"
-													name="address2[]" autocomplete="address2" autofocus>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Address 2</label>
+										<textarea id="address2" required
+											class="form-control @error('address2') is-invalid @enderror"
+											name="address2[]" autocomplete="address2" autofocus>
 																			{{ old('address2',$employment->address2) }}
 																			</textarea>
-												@error('address2')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+										@error('address2')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-											</div>
+									</div>
+								</div>
+
+
+								<div class="col-md-5">
+									<div class="form-group">
+										<label>City:</label>
+										<select id="city_id" required
+											class=" form-control @error('city_id') is-invalid @enderror"
+											name="city_id[]" autocomplete="city_id" autofocus>
+											<option value="">Select City</option>
+											@foreach ($citys as $city)
+											<option value="{{$city->id}}"
+												{{ option_select(old("city_id",$employment->city_id) , $city->id )}}>
+												{{$city->name}}
+											</option>
+											@endforeach
+										</select>
+										@error('city_id')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+
+									</div>
+								</div>
+
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>State:</label>
+										<select id="state_id" required
+											class=" form-control @error('state_id') is-invalid @enderror"
+											name="state_id[]" autocomplete="state_id" autofocus>
+											<option value="">Select City</option>
+											@foreach ($states as $state)
+											<option value="{{$state->id}}"
+												{{ option_select(old("state_id",$employment->state_id) , $state->id )}}>
+												{{$state->name}}
+											</option>
+											@endforeach
+										</select>
+										@error('state_id')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label>Zip Code:</label>
+										<input type="text" id="zip" placeholder="Zip Code" required
+											class="form-control @error('zip') is-invalid @enderror" name="zip[]"
+											value="{{ old('zip',$employment->zip) }}" autocomplete="zip" autofocus>
+										@error('zip')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Your Position:</label>
+										<input id="position" type="text" placeholder="position" required
+											class="form-control @error('position') is-invalid @enderror"
+											name="position[]" value="{{ old('position',$employment->position) }}"
+											autocomplete="position" autofocus>
+										@error('position')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Monthly gross salary:</label>
+										<input id="monthly_gross_salary" type="number"
+											placeholder="Monthly gross salary" required
+											class="form-control @error('monthly_gross_salary') is-invalid @enderror"
+											name="monthly_gross_salary[]"
+											value="{{ old('monthly_gross_salary',$employment->monthly_gross_salary) }}"
+											autocomplete="monthly_gross_salary" autofocus>
+										@error('monthly_gross_salary')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<h4 class="d-block mt-4">Employment Dates: </h4>
+								</div>
+								@if($employment->current_work)
+								<div class="col-md-12">
+									<div class="form-group">
+										<div class="form-check">
+											<input
+												class="form-check-input current_work_checkbox @error('current_work') is-invalid @enderror"
+												checked type="checkbox" value="1" id="{{$i}}" name="current_work">
+											<label class="form-check-label" for="invalidCheck2">
+												I currently work in this role
+											</label>
 										</div>
+										@error('current_work')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
+									</div>
+								</div>
+								@endif
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Started:</label>
+										<input id="employment_date_start" type="date" required
+											class="form-control @error('employment_date_start') is-invalid @enderror"
+											name="employment_date_start[]"
+											value="{{ old('employment_date_start',$employment->employment_date_start) }}"
+											autocomplete="employment_date_start" autofocus>
+										@error('employment_date_start')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-										<div class="col-md-5">
-											<div class="form-group">
-												<label>City:</label>
-												<select id="city_id" required
-													class=" form-control @error('city_id') is-invalid @enderror"
-													name="city_id[]" autocomplete="city_id" autofocus>
-													<option value="">Select City</option>
-													@foreach ($citys as $city)
-													<option value="{{$city->id}}"
-														{{ option_select(old("city_id",$employment->city_id) , $city->id )}}>
-														{{$city->name}}
-													</option>
-													@endforeach
-												</select>
-												@error('city_id')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+									</div>
+								</div>
+								@if(!$employment->current_work)
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Ended:</label>
+										<input id="employment_date_end" type="date"
+											class="form-control @error('employment_date_end') is-invalid @enderror"
+											name="employment_date_end[]"
+											value="{{ old('employment_date_end',$employment->employment_date_end) }}"
+											autocomplete="employment_date_end" autofocus required>
+										@error('employment_date_end')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-											</div>
-										</div>
+									</div>
+								</div>
+								@else
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Ended:</label>
+										<input id="employment_date_end" type="date"
+											class="form-control @error('employment_date_end') is-invalid @enderror"
+											name="employment_date_end[]"
+											value="{{ old('employment_date_end',$employment->employment_date_end) }}"
+											autocomplete="employment_date_end" autofocus readonly>
+										@error('employment_date_end')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-										<div class="col-md-4">
-											<div class="form-group">
-												<label>State:</label>
-												<select id="state_id" required
-													class=" form-control @error('state_id') is-invalid @enderror"
-													name="state_id[]" autocomplete="state_id" autofocus>
-													<option value="">Select City</option>
-													@foreach ($states as $state)
-													<option value="{{$state->id}}"
-														{{ option_select(old("state_id",$employment->state_id) , $state->id )}}>
-														{{$state->name}}
-													</option>
-													@endforeach
-												</select>
-												@error('state_id')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+									</div>
+								</div>
 
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="form-group">
-												<label>Zip Code:</label>
-												<input type="text" id="zip" placeholder="Zip Code"  required
-													class="form-control @error('zip') is-invalid @enderror" name="zip[]"
-													value="{{ old('zip',$employment->zip) }}" autocomplete="zip" autofocus>
-												@error('zip')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+								@endif
 
-											</div>
-										</div>
-
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Your Position:</label>
-												<input id="position" type="text" placeholder="position" required
-													class="form-control @error('position') is-invalid @enderror"
-													name="position[]" value="{{ old('position',$employment->position) }}"
-													autocomplete="position" autofocus>
-												@error('position')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
-
-											</div>
-										</div>
-
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Monthly gross salary:</label>
-												<input id="monthly_gross_salary" type="number"
-													placeholder="Monthly gross salary" required
-													class="form-control @error('monthly_gross_salary') is-invalid @enderror"
-													name="monthly_gross_salary[]"
-													value="{{ old('monthly_gross_salary',$employment->monthly_gross_salary) }}"
-													autocomplete="monthly_gross_salary" autofocus>
-												@error('monthly_gross_salary')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
-
-											</div>
-										</div>
-
-										<div class="col-md-12">
-											<h4 class="d-block mt-4">Employment Dates: </h4>
-										</div>
-										@if($employment->current_work)
-											<div class="col-md-12">
-												<div class="form-group">
-													<div class="form-check">
-														<input class="form-check-input current_work_checkbox @error('current_work') is-invalid @enderror" checked type="checkbox" value="1" id="{{$i}}" 
-															name="current_work" >
-														<label class="form-check-label" for="invalidCheck2">
-															I currently work in this role
-														</label>
-													</div>
-													@error('current_work')
-													<span class="invalid-feedback" role="alert">
-														<strong>{{ $message }}</strong>
-													</span>
-													@enderror
-
-												</div>
-											</div> 
-										@endif
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Started:</label>
-												<input id="employment_date_start" type="date" required
-													class="form-control @error('employment_date_start') is-invalid @enderror"
-													name="employment_date_start[]"
-													value="{{ old('employment_date_start',$employment->employment_date_start) }}"
-													autocomplete="employment_date_start" autofocus>
-												@error('employment_date_start')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
-
-											</div>
-										</div>
-										@if(!$employment->current_work)
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Ended:</label>
-												<input  id="employment_date_end" type="date"    
-													class="form-control @error('employment_date_end') is-invalid @enderror"
-													name="employment_date_end[]"
-													value="{{ old('employment_date_end',$employment->employment_date_end) }}"
-													autocomplete="employment_date_end" autofocus required>
-												@error('employment_date_end')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
-
-											</div>
-										</div>
-										@else
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Ended:</label>
-												<input  id="employment_date_end" type="date"    
-													class="form-control @error('employment_date_end') is-invalid @enderror"
-													name="employment_date_end[]"
-													value="{{ old('employment_date_end',$employment->employment_date_end) }}"
-													autocomplete="employment_date_end" autofocus readonly>
-												@error('employment_date_end')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
-
-											</div>
-										</div>
-
-										@endif
-										
-										<div class="col-md-12">
-											<h4 class="d-block mt-4">Supervisor Name:</h4>
-										</div>
+								<div class="col-md-12">
+									<h4 class="d-block mt-4">Supervisor Name:</h4>
+								</div>
 
 
 
 
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>First name:</label>
-												<input id="supervisor_first_name" type="text" placeholder="First name" required
-													class="form-control @error('supervisor_first_name') is-invalid @enderror"
-													name="supervisor_first_name[]"
-													value="{{ old('supervisor_first_name',$employment->supervisor_first_name) }}"
-													autocomplete="supervisor_first_name" autofocus>
-												@error('supervisor_first_name')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>First name:</label>
+										<input id="supervisor_first_name" type="text" placeholder="First name" required
+											class="form-control @error('supervisor_first_name') is-invalid @enderror"
+											name="supervisor_first_name[]"
+											value="{{ old('supervisor_first_name',$employment->supervisor_first_name) }}"
+											autocomplete="supervisor_first_name" autofocus>
+										@error('supervisor_first_name')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Last name:</label>
-												<input id="supervisor_last_name" type="text" placeholder="Last name" required
-													class="form-control @error('supervisor_last_name') is-invalid @enderror"
-													name="supervisor_last_name[]"
-													value="{{ old('supervisor_last_name',$employment->supervisor_last_name) }}"
-													autocomplete="supervisor_last_name" autofocus>
-												@error('supervisor_last_name')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Last name:</label>
+										<input id="supervisor_last_name" type="text" placeholder="Last name" required
+											class="form-control @error('supervisor_last_name') is-invalid @enderror"
+											name="supervisor_last_name[]"
+											value="{{ old('supervisor_last_name',$employment->supervisor_last_name) }}"
+											autocomplete="supervisor_last_name" autofocus>
+										@error('supervisor_last_name')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-											</div>
-										</div>
+									</div>
+								</div>
 
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Supervisor title:</label>
-												<input id="supervisor_title" type="text" placeholder="Supervisor title" required
-													class="form-control @error('supervisor_title') is-invalid @enderror"
-													name="supervisor_title[]"
-													value="{{ old('supervisor_title',$employment->supervisor_title) }}"
-													autocomplete="supervisor_title" autofocus>
-												@error('supervisor_title')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
-												@enderror
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Supervisor title:</label>
+										<input id="supervisor_title" type="text" placeholder="Supervisor title" required
+											class="form-control @error('supervisor_title') is-invalid @enderror"
+											name="supervisor_title[]"
+											value="{{ old('supervisor_title',$employment->supervisor_title) }}"
+											autocomplete="supervisor_title" autofocus>
+										@error('supervisor_title')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
 
-											</div>
-										</div>
-										@php
-										$i++;
-										@endphp
-										@endforeach
+									</div>
+								</div>
+								@php
+								$i++;
+								@endphp
+								@endforeach
 
 								@else
 
@@ -459,8 +460,7 @@
 										<label>Employer Information:</label>
 										<input id="employer_name" placeholder="Employer Information" type="text"
 											required class="form-control @error('employer_name') is-invalid @enderror"
-											name="employer_name[]"
-											value="{{ old('employer_name') }}"
+											name="employer_name[]" value="{{ old('employer_name') }}"
 											autocomplete="employer_name" autofocus>
 										@error('employer_name')
 										<span class="invalid-feedback" role="alert">
@@ -475,8 +475,7 @@
 										<label>Mobile/Phone number:</label>
 										<input id="phone" placeholder="Mobile/Phone number" type="text" required
 											class="form-control @error('phone') is-invalid @enderror" name="phone[]"
-											value="{{ old('phone') }}" autocomplete="phone"
-											autofocus>
+											value="{{ old('phone') }}" autocomplete="phone" autofocus>
 										@error('phone')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
@@ -491,8 +490,7 @@
 										<label>Email:</label>
 										<input id="email" placeholder="Email" type="email" required
 											class="form-control @error('email') is-invalid @enderror" name="email[]"
-											value="{{ old('email') }}" autocomplete="email"
-											autofocus>
+											value="{{ old('email') }}" autocomplete="email" autofocus>
 										@error('email')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
@@ -586,7 +584,7 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Zip Code:</label>
-										<input type="text" id="zip" placeholder="Zip Code"  required type="text"
+										<input type="text" id="zip" placeholder="Zip Code" required type="text"
 											class="form-control @error('zip') is-invalid @enderror" name="zip[]"
 											value="{{ old('zip') }}" autocomplete="zip" autofocus>
 										@error('zip')
@@ -603,8 +601,8 @@
 										<label>Your Position:</label>
 										<input id="position" type="text" placeholder="position" required
 											class="form-control @error('position') is-invalid @enderror"
-											name="position[]" value="{{ old('position') }}"
-											autocomplete="position" autofocus>
+											name="position[]" value="{{ old('position') }}" autocomplete="position"
+											autofocus>
 										@error('position')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
@@ -620,8 +618,7 @@
 										<input id="monthly_gross_salary" type="number"
 											placeholder="Monthly gross salary" required
 											class="form-control @error('monthly_gross_salary') is-invalid @enderror"
-											name="monthly_gross_salary[]"
-											value="{{ old('monthly_gross_salary') }}"
+											name="monthly_gross_salary[]" value="{{ old('monthly_gross_salary') }}"
 											autocomplete="monthly_gross_salary" autofocus>
 										@error('monthly_gross_salary')
 										<span class="invalid-feedback" role="alert">
@@ -638,8 +635,9 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<div class="form-check">
-											<input class="form-check-input current_work_checkbox  @error('current_work') is-invalid @enderror" type="checkbox" value="1" id="invalidCheck2"
-												name="current_work">
+											<input
+												class="form-check-input current_work_checkbox  @error('current_work') is-invalid @enderror"
+												type="checkbox" value="1" id="invalidCheck2" name="current_work">
 											<label class="form-check-label" for="invalidCheck2">
 												I currently work in this role
 											</label>
@@ -653,7 +651,7 @@
 									</div>
 								</div>
 
-								
+
 
 
 								<div class="col-md-6">
@@ -661,8 +659,7 @@
 										<label>Started:</label>
 										<input id="employment_date_start" type="date" required
 											class="form-control @error('employment_date_start') is-invalid @enderror"
-											name="employment_date_start[]"
-											value="{{ old('employment_date_start') }}"
+											name="employment_date_start[]" value="{{ old('employment_date_start') }}"
 											autocomplete="employment_date_start" autofocus>
 										@error('employment_date_start')
 										<span class="invalid-feedback" role="alert">
@@ -678,8 +675,7 @@
 										<label>Ended:</label>
 										<input id="employment_date_end" type="date" required
 											class="form-control @error('employment_date_end') is-invalid @enderror"
-											name="employment_date_end[]"
-											value="{{ old('employment_date_end') }}"
+											name="employment_date_end[]" value="{{ old('employment_date_end') }}"
 											autocomplete="employment_date_end" autofocus>
 										@error('employment_date_end')
 										<span class="invalid-feedback" role="alert">
@@ -701,8 +697,7 @@
 										<label>First name:</label>
 										<input id="supervisor_first_name" type="text" placeholder="First name" required
 											class="form-control @error('supervisor_first_name') is-invalid @enderror"
-											name="supervisor_first_name[]"
-											value="{{ old('supervisor_first_name') }}"
+											name="supervisor_first_name[]" value="{{ old('supervisor_first_name') }}"
 											autocomplete="supervisor_first_name" autofocus>
 										@error('supervisor_first_name')
 										<span class="invalid-feedback" role="alert">
@@ -717,8 +712,7 @@
 										<label>Last name:</label>
 										<input id="supervisor_last_name" type="text" placeholder="Last name" required
 											class="form-control @error('supervisor_last_name') is-invalid @enderror"
-											name="supervisor_last_name[]"
-											value="{{ old('supervisor_last_name') }}"
+											name="supervisor_last_name[]" value="{{ old('supervisor_last_name') }}"
 											autocomplete="supervisor_last_name" autofocus>
 										@error('supervisor_last_name')
 										<span class="invalid-feedback" role="alert">
@@ -734,8 +728,7 @@
 										<label>Supervisor title:</label>
 										<input id="supervisor_title" type="text" placeholder="Supervisor title" required
 											class="form-control @error('supervisor_title') is-invalid @enderror"
-											name="supervisor_title[]"
-											value="{{ old('supervisor_title') }}"
+											name="supervisor_title[]" value="{{ old('supervisor_title') }}"
 											autocomplete="supervisor_title" autofocus>
 										@error('supervisor_title')
 										<span class="invalid-feedback" role="alert">
@@ -920,9 +913,6 @@
 	
 	</script>
 	<script>
-	
-
-		
 		$('.current_work_checkbox').on('change', function() {
 		// alert('run');
 		// value=$('.current_work_checkbox').val();

@@ -82,16 +82,27 @@
 												<div class="table-responsive">
 													<div class="row">
 														<div class="col-sm-12 col-lg-3">
-															
-																<label class="d-block">Application Status : </label>
-																<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
-																		<option>select Application Status </option>
-																		@foreach($application_cases as $application_case)
-																		<option value="{{$application_case->id}}">{{$application_case->name}}</option>
-																		@endforeach
-																	</select>
-																
+
+															<label class="d-block">Application Status : </label>
+															<select name="DataTables_Table_0_length"
+																aria-controls="DataTables_Table_0"
+																name="application_case_id"
+																class="custom-select custom-select-sm form-control form-control-sm @error('application_case_id') is-invalid @enderror">
+																<option>select Application Status </option>
+																@foreach($application_cases as $application_case)
+																<option value="{{$application_case->id}}"
+																	{{ option_select(old("application_case_id",$application->application_case_id) , $application_case->id )}}>
+																	{{$application_case->name}}</option>
+																@endforeach
+															</select>
+															@error('application_case_id')
+															<span class="invalid-feedback" role="alert">
+																<strong>{{ $message }}</strong>
+															</span>
+															@enderror
+
 														</div>
+<<<<<<< Updated upstream
 														
 														<div class="col-sm-12 col-lg-3">
 															
@@ -104,8 +115,35 @@
 																<input Type="time" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
 																		
 																
+=======
+														<div class="col-sm-12 col-lg-3 mb-2">
+
+															<label class="d-block">Application Status : </label>
+															<select name="DataTables_Table_0_length"
+																aria-controls="DataTables_Table_0"
+																class="custom-select custom-select-sm form-control form-control-sm">
+																<option value="10">10</option>
+																<option value="25">25</option>
+																<option value="50">50</option>
+																<option value="100">100</option>
+															</select>
+
 														</div>
-														
+														<div class="col-sm-12 col-lg-3">
+
+															<label class="d-block">Application Status : </label>
+															<select name="DataTables_Table_0_length"
+																aria-controls="DataTables_Table_0"
+																class="custom-select custom-select-sm form-control form-control-sm">
+																<option value="10">10</option>
+																<option value="25">25</option>
+																<option value="50">50</option>
+																<option value="100">100</option>
+															</select>
+
+>>>>>>> Stashed changes
+														</div>
+
 													</div>
 													<table class="table table-hover mb-0">
 														<thead>
