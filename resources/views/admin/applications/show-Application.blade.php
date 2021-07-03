@@ -89,7 +89,7 @@
 																	<tr>
 																		<td>Meeting ID</td>
 																		
-																		@if($application->meeting->meeting_id)
+																		@if(isset($application->meeting->meeting_id))
 																		<td>{{$application->meeting->meeting_id}}</td>
 																		@else
 																		<td>-</td>
@@ -97,7 +97,7 @@
 																	</tr>
 																	<tr>
 																		<td>Meeting Date</td>
-																		@if($application->meeting->meeting_date)
+																		@if(isset($application->meeting->meeting_date))
 																		<td>{{str_replace('T',' ',$application->meeting->meeting_date)}}</td>
 																		@else
 																		<td>-</td>
@@ -106,7 +106,7 @@
 																	
 																	<tr>
 																		<td>Meeting Join</td>
-																		@if($application->meeting->meeting_url)
+																		@if(isset($application->meeting->meeting_url))
 																		<td><h4><a target="_blank" class="f" href="{{$application->meeting->meeting_url}}"><i class="fa fa-external-link"></i></h4></a></td>
 																		@else
 																		<td>-</td>

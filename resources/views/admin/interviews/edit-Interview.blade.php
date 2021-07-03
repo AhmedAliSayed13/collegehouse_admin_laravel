@@ -50,8 +50,8 @@
 							<h3 class="page-title">Admin</h3>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('owner.index')}}">Owners</a></li>
-								<li class="breadcrumb-item active">Edit Rental Owner</li>
+                                <li class="breadcrumb-item"><a href="{{route('interview.index')}}">Interviews</a></li>
+								<li class="breadcrumb-item active">Edit Interview Information</li>
 							</ul>
 						</div>
 					</div>
@@ -74,70 +74,84 @@
 									<div class="card-body">
 
 										<div class="row">
+											<div class="col-lg-12">
+												<div class="card">
+													<div class="card-header">
+														<h4 class="card-title">Meeting information</h4>
+													</div>
+													<div class="card-body">
+														<div class="table-responsive">
+															<table class="table table-striped mb-0">
+																
+																<tbody>
+																	<tr>
+																		<td>Meeting ID</td>
+																		
+																		@if(isset($application->meeting->meeting_id))
+																		<td>{{$application->meeting->meeting_id}}</td>
+																		@else
+																		<td>-</td>
+																		@endif
+																	</tr>
+																	<tr>
+																		<td>Meeting Date</td>
+																		@if(isset($application->meeting->meeting_date))
+																		<td>{{str_replace('T',' ',$application->meeting->meeting_date)}}</td>
+																		@else
+																		<td>-</td>
+																		@endif
+																	</tr>
+																	
+																	<tr>
+																		<td>Meeting Join</td>
+																		@if(isset($application->meeting->meeting_url))
+																		<td><h4><a target="_blank" class="f" href="{{$application->meeting->meeting_url}}"><i class="fa fa-external-link"></i></h4></a></td>
+																		@else
+																		<td>-</td>
+																		@endif
+																		
+																		
+																	</tr>
+																	
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
 
 											<div class="col-md-12">
 												@include('flash-message')
 												
-												<form method="POST" action="{{route('owner.update',$owner->id)}}">
+												<form method="POST" action="{{url('/api/meetings/'.$interview->meeting_id)}}">
 													{{ csrf_field() }}
-                                                    {{ method_field('PUT') }}
+                                                    @method('PATCH')
+													<input name="id" value="{{$interview->id}}" type="hidden">
 													<div class="row">
-														<div class="col-md-6">
+														<div class="col-md-12">
 															<div class="form-group">
-																<label>First Name:</label>
-
-																<input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name',$owner->first_name) }}" autocomplete="first_name" autofocus>
-																@error('first_name')
+																<label>Meeting Date:</label>
+																
+																<input id="meeting_date" type="datetime-local" min="{{Carbon\Carbon::now()->format('Y-m-d\T00:00:00')}}" class="form-control @error('meeting_date') is-invalid @enderror" name="meeting_date" value="{{ old('meeting_date',$interview->meeting_date) }}" autocomplete="meeting_date" autofocus>
+																@error('meeting_date')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
 																</span>
 																@enderror
 															</div>
 														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>Last Name:</label>
-
-																<input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name',$owner->last_name) }}" autocomplete="last_name" autofocus>
-																@error('last_name')
-																<span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-																</span>
-																@enderror
-															</div>
-														</div>
+													
 														
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>Email Address:</label>
-																<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email',$owner->email) }}" autocomplete="email" autofocus>
-																@error('email')
-																<span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-																</span>
-																@enderror
+														
+														
 
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>Phone:</label>
-																<input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone',$owner->phone) }}" autocomplete="phone" autofocus>
-																@error('phone')
-																<span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-																</span>
-																@enderror
-
-															</div>
-														</div>
-														<div class="col-md-6">
+														<div class="col-md-12">
 															<div class="form-group">
 																<label>City:</label>
-																<select id="city_id" type="text" class="form-control @error('city_id') is-invalid @enderror" name="city_id"  autocomplete="city_id" autofocus>
-																	<option>Select City </option>
-																	@foreach($cities as $city)   
-																		<option value="{{$city->id}}" {{ option_select(old("city_id",$owner->city_id) , $owner->city_id )}} >{{$city->name}}</option>
+																<select id="meeting_case_id"  class="form-control @error('meeting_case_id') is-invalid @enderror" name="meeting_case_id"  autocomplete="meeting_case_id" autofocus>
+																	<option>Select status </option>
+																	@foreach($meeting_cases as $meeting_case)   
+																		<option value="{{$meeting_case->id}}" {{ option_select(old("meeting_case_id ",$interview->meeting_case_id) , $interview->meeting_case_id  )}} >{{$meeting_case->name}}</option>
 																  	@endforeach    
 																</select>
 																	@error('city_id')
@@ -148,66 +162,8 @@
 
 															</div>
 														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>Address:</label>
-																<input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address',$owner->address) }}" autocomplete="address" autofocus>
-																@error('address')
-																<span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-																</span>
-																@enderror
-
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>State:</label>
-																<input id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" value="{{ old('state',$owner->state) }}" autocomplete="state" autofocus>
-																@error('state')
-																<span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-																</span>
-																@enderror
-
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>ZiP Code:</label>
-																<input id="zip" type="text" class="form-control @error('zip') is-invalid @enderror" name="zip" value="{{ old('zip',$owner->zip) }}" autocomplete="zip" autofocus>
-																@error('zip')
-																<span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-																</span>
-																@enderror
-
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>Password:</label>
-																<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  >
-																@error('password')
-																<span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-																</span>
-																@enderror
-
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label>Retype Password:</label>
-																<input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" value="{{ old('password_confirmation') }}" autocomplete="password_confirmation" autofocus>
-																@error('password_confirmation')
-																<span class="invalid-feedback" role="alert">
-																	<strong>{{ $message }}</strong>
-																</span>
-																@enderror
-
-															</div>
-														</div>
+														
+														
 													</div>
 													<button type="submit" class="btn btn-primary" id="id-form1">
 														Update info

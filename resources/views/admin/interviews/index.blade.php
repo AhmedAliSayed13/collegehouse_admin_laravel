@@ -4,10 +4,10 @@
     <div class="page-header">
         <div class="row">
             <div class="col">
-                <h3 class="page-title">All Owners</h3>
+                <h3 class="page-title">All Interviews</h3>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">All Owners</li>
+                    <li class="breadcrumb-item active">All Interviews</li>
                 </ul>
             </div>
         </div>
@@ -17,7 +17,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header ">
-                    <h4 class="card-title">All Owners</h4>
+                    <h4 class="card-title">All Interviews</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

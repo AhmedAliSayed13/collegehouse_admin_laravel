@@ -5,7 +5,7 @@
         <div class="modal-content">
        
             <div class="modal-body">
-                <form method="post" action="{{ url('admin/owner/'.$id)}}">
+                <form method="post" action="{{ url('admin/interview/'.$id)}}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <div class="form-content p-2">

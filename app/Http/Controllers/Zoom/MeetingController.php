@@ -131,9 +131,9 @@ class MeetingController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-            'topic' => 'required|string',
-            'start_time' => 'required|date',
-            'agenda' => 'string|nullable',
+          
+            'meeting_date' => 'nullable|date',
+            'meeting_case_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -146,11 +146,11 @@ class MeetingController extends Controller
 
         $path = 'meetings/' . $id;
         $response = $this->zoomPatch($path, [
-            'topic' => $data['topic'],
+            'topic' => 'meeting for request house',
             'type' => self::MEETING_TYPE_SCHEDULE,
-            'start_time' => (new \DateTime($data['start_time']))->format('Y-m-d\TH:i:s'),
+            'start_time' => (new \DateTime($data['meeting_date']))->format('Y-m-d\TH:i:s'),
             'duration' => 30,
-            'agenda' => $data['agenda'],
+            'agenda' => 'agenda',
             'settings' => [
                 'host_video' => true,
                 'participant_video' => true,
@@ -158,10 +158,17 @@ class MeetingController extends Controller
             ],
         ]);
 
-        return [
-            'success' => $response->status() === 204,
-            'data' => json_decode($response->body(), true),
-        ];
+        $data = json_decode((string) $response->getBody(), true);
+                $url = $data['join_url'];
+                $start_time = $data['start_time'];
+                $id = $data['id'];
+        $meeting=Meeting::find($request->id);
+        $meeting->meeting_url=$url;
+        $meeting->meeting_date=$start_time;
+        $meeting->meeting_id = $id;
+        $meeting->application_case_id =$request->application_case_id;
+        $meeting->save;
+        return back();
     }
 
     public function delete(Request $request, string $id)

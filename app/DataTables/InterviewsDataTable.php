@@ -24,7 +24,7 @@ class InterviewsDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('edit', 'admin.interviews.btn.edit')
-            ->addColumn('delete', 'admin.interviews.btn.delete')
+            // ->addColumn('delete', 'admin.interviews.btn.delete')
             ->addColumn('url', 'admin.interviews.btn.url')
             ->addColumn('email', function ($meeting) {
                 if(!empty($meeting->application_id)){
@@ -91,11 +91,10 @@ class InterviewsDataTable extends DataTable
                     ['extend'=>'export','className'=>' btn btn-primary ','text'=>'<i class="fa fa-download"></i> '.'Export'],
                     ['extend'=>'reset','className'=>' btn btn-primary ','text'=>'<i class="fa fa-redo-alt"></i> '.'Reset'],
                     ['extend'=>'reload','className'=>' btn btn-primary ','text'=>'<i class="fa fa-sync-alt"></i> '.'Reload'],
-                    ['className'=>' btn btn-primary ','text'=>'<i class="fa fa-plus-circle"></i>'.'Create','action'=>"function(){
-                                window.location.href='/admin/interview/create';}"],
+                    
                 ],
                 'initComplete'=> "function () {
-                        this.api().columns([0,1]).every(function () {
+                        this.api().columns([]).every(function () {
                             var column = this;
                             var input = document.createElement(\"input\");
                             $(input).appendTo($(column.footer()).empty())
@@ -151,6 +150,12 @@ class InterviewsDataTable extends DataTable
                 'searchable'=>false,
             ],
             [
+                'name'=>'meeting_date',
+                'data'=>'meeting_date',
+                'title'=>'Interview Date',
+               
+            ],
+            [
                 'name'=>'edit',
                 'data'=>'edit',
                 'title'=>'Edit',
@@ -159,15 +164,15 @@ class InterviewsDataTable extends DataTable
                 'orderable'=>false,
                 'searchable'=>false,
             ],
-            [
-                'name'=>'delete',
-                'data'=>'delete',
-                'title'=>'Delete',
-                'exportable'=>false,
-                'printable'=>false,
-                'orderable'=>false,
-                'searchable'=>false,
-            ],
+            // [
+            //     'name'=>'delete',
+            //     'data'=>'delete',
+            //     'title'=>'Delete',
+            //     'exportable'=>false,
+            //     'printable'=>false,
+            //     'orderable'=>false,
+            //     'searchable'=>false,
+            // ],
         ];
     }
 
