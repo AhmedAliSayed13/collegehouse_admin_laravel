@@ -45,6 +45,8 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
 
     Route::get('/house/delete-flooer/{id}',[App\Http\Controllers\Admin\HouseController::class,'delete_flooer'])->name('admin.delete-flooer');
     Route::post('/house/flooer/create',[App\Http\Controllers\Admin\HouseController::class,'create_flooer'])->name('admin.create-flooer');
+    Route::post('/zoom/create',[App\Http\Controllers\Admin\ZoommeetingController::class,'store'])->name('admin.zoom-create');
+    Route::PATCH('/zoom/edit',[App\Http\Controllers\Admin\ZoommeetingController::class,'update'])->name('admin.zoom-edit');
 });
 
 

@@ -84,11 +84,11 @@
 													<div class="card-body">
 														<div class="table-responsive">
 															<table class="table table-striped mb-0">
-																
+
 																<tbody>
 																	<tr>
 																		<td>Meeting ID</td>
-																		
+
 																		@if(isset($application->meeting->meeting_id))
 																		<td>{{$application->meeting->meeting_id}}</td>
 																		@else
@@ -98,23 +98,29 @@
 																	<tr>
 																		<td>Meeting Date</td>
 																		@if(isset($application->meeting->meeting_date))
-																		<td>{{str_replace('T',' ',$application->meeting->meeting_date)}}</td>
+																		<td>{{str_replace('T',' ',$application->meeting->meeting_date)}}
+																		</td>
 																		@else
 																		<td>-</td>
 																		@endif
 																	</tr>
-																	
+
 																	<tr>
 																		<td>Meeting Join</td>
 																		@if(isset($application->meeting->meeting_url))
-																		<td><h4><a target="_blank" class="f" href="{{$application->meeting->meeting_url}}"><i class="fa fa-external-link"></i></h4></a></td>
+																		<td>
+																			<h4><a target="_blank" class="f"
+																					href="{{$application->meeting->meeting_url}}"><i
+																						class="fa fa-external-link"></i>
+																			</h4></a>
+																		</td>
 																		@else
 																		<td>-</td>
 																		@endif
-																		
-																		
+
+
 																	</tr>
-																	
+
 																</tbody>
 															</table>
 														</div>
@@ -124,16 +130,16 @@
 											<div class="col-md-12">
 												@include('flash-message')
 												<div class="table-responsive">
-													<form action="{{url('/api/meetings')}}" method="POST">
+													<form action="{{route('admin.zoom-create')}}" method="POST">
 														@csrf
-													<div class="row">
-														
-															<input name="application_id" value="{{$application->id}}" type="hidden">
+														<div class="row">
+
+															<input name="application_id" value="{{$application->id}}"
+																type="hidden">
 															<div class="col-sm-12 col-lg-3">
 
 																<label class="d-block">Application Status : </label>
-																<select 
-																	aria-controls="DataTables_Table_0"
+																<select aria-controls="DataTables_Table_0"
 																	name="application_case_id"
 																	class="custom-select custom-select-sm form-control form-control-sm @error('application_case_id') is-invalid @enderror">
 																	<option>select Application Status </option>
@@ -150,22 +156,26 @@
 																@enderror
 
 															</div>
-															
+
 															<div class="col-sm-12 col-lg-3 mb-2">
-																
-																	<label class="d-block">Metting Date : </label>
-																	<input Type="datetime-local"  name="meeting_date" min="{{Carbon\Carbon::now()->format('Y-m-d\T00:00:00')}}" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
-																			
-																	
+
+																<label class="d-block">Metting Date : </label>
+																<input Type="datetime-local" name="meeting_date"
+																	min="{{Carbon\Carbon::now()->format('Y-m-d\T00:00:00')}}"
+																	aria-controls="DataTables_Table_0"
+																	class="custom-select custom-select-sm form-control form-control-sm">
+
+
 															</div>
 															<div class="col-sm-12 col-lg-3 mb-2">
 																<label class="d-block"></label>
-																<input type="submit" class="btn btn-info mt-3" value="Save">
+																<input type="submit" class="btn btn-info mt-3"
+																	value="Save">
 															</div>
-														
 
-													</div>
-												</form>
+
+														</div>
+													</form>
 													<table class="table table-hover mb-0">
 														<thead>
 															<tr>

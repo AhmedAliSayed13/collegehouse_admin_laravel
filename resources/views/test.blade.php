@@ -10,98 +10,62 @@
 
 </head>
 
-  
+
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-   
 
-    <div class="panel panel-primary">
 
-      <div class="panel-heading"><h2>Laravel 5.8 image upload example - HDTuto.com</h2></div>
+        <div class="panel panel-primary">
 
-      <div class="panel-body">
+            <div class="panel-heading">
+                <h2>Laravel 5.8 image upload example - HDTuto.com</h2>
+            </div>
 
-   
+            <form method="POST" action="{{route('admin.zoom-edit')}}">
+                {{ csrf_field() }}
+                @method('PATCH')
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Meeting Date:</label>
+                                <input type="hidden" name="meeting_id" value="99499381527">
+                            <input id="meeting_date" type="datetime-local"
+                                
+                                class="form-control @error('meeting_date') is-invalid @enderror" name="meeting_date"
+                               
+                                autofocus>
+                            @error('meeting_date')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
 
-        @if ($message = Session::get('success'))
 
-        <div class="alert alert-success alert-block">
 
-            <button type="button" class="close" data-dismiss="alert">×</button>
 
-                <strong>{{ $message }}</strong>
+
+                    
+
+
+                </div>
+                <button type="submit" class="btn btn-primary" id="id-form1">
+                    Update info
+                </button>
+
+            </form>
 
         </div>
 
-        <img src="images/{{ Session::get('image') }}">
-
-        @endif
-
-  
-
-        @if (count($errors) > 0)
-
-            <div class="alert alert-danger">
-
-                <strong>Whoops!</strong> There were some problems with your input.
-
-                <ul>
-
-                    @foreach ($errors->all() as $error)
-
-                        <li>{{ $error }}</li>
-
-                    @endforeach
-
-                </ul>
-
-            </div>
-
-        @endif
-
-  
-
-        <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
-
-            @csrf
-
-            <div class="row">
-
-  
-
-                <div class="col-md-6">
-
-                    <input type="file" name="image" class="form-control">
-
-                </div>
-
-   
-
-                <div class="col-md-6">
-
-                    <button type="submit" class="btn btn-success">Upload</button>
-
-                </div>
-
-   
-
-            </div>
-
-        </form>
-
-  
-
-      </div>
-
     </div>
-
-</div>
 
 </body>
 
-  
+
 
 </html>

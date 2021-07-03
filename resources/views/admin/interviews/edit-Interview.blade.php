@@ -123,16 +123,17 @@
 											<div class="col-md-12">
 												@include('flash-message')
 												
-												<form method="POST" action="{{url('/api/meetings/'.$interview->meeting_id)}}">
+												<form method="POST" action="{{route('admin.zoom-edit')}}">
 													{{ csrf_field() }}
                                                     @method('PATCH')
 													<input name="id" value="{{$interview->id}}" type="hidden">
+													<input name="meeting_id" value="{{$interview->meeting_id}}" type="hidden">
 													<div class="row">
 														<div class="col-md-12">
 															<div class="form-group">
 																<label>Meeting Date:</label>
 																
-																<input id="meeting_date" type="datetime-local" min="{{Carbon\Carbon::now()->format('Y-m-d\T00:00:00')}}" class="form-control @error('meeting_date') is-invalid @enderror" name="meeting_date" value="{{ old('meeting_date',$interview->meeting_date) }}" autocomplete="meeting_date" autofocus>
+																<input id="meeting_date" type="datetime-local" min="{{Carbon\Carbon::now()->format('Y-m-d\T00:00:00')}}" class="form-control @error('meeting_date') is-invalid @enderror" name="meeting_date" value="{{ old('meeting_date') }}" autocomplete="meeting_date" autofocus>
 																@error('meeting_date')
 																<span class="invalid-feedback" role="alert">
 																	<strong>{{ $message }}</strong>
@@ -147,11 +148,11 @@
 
 														<div class="col-md-12">
 															<div class="form-group">
-																<label>City:</label>
+																<label>Meeting Status:</label>
 																<select id="meeting_case_id"  class="form-control @error('meeting_case_id') is-invalid @enderror" name="meeting_case_id"  autocomplete="meeting_case_id" autofocus>
 																	<option>Select status </option>
 																	@foreach($meeting_cases as $meeting_case)   
-																		<option value="{{$meeting_case->id}}" {{ option_select(old("meeting_case_id ",$interview->meeting_case_id) , $interview->meeting_case_id  )}} >{{$meeting_case->name}}</option>
+																		<option value="{{$meeting_case->id}}" {{ option_select(old("meeting_case_id",$interview->meeting_case_id) , $meeting_case->id  )}} >{{$meeting_case->name}}</option>
 																  	@endforeach    
 																</select>
 																	@error('city_id')
