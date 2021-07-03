@@ -36,6 +36,10 @@
 							<li class=" {{active_link('admin/application')}}">
 								<a href="{{route('application.index')}}"><i class="fe fe-home"></i> <span>All Applications</span></a>
 							</li>
+
+							<li class=" {{active_link('admin/interview')}}">
+								<a href="{{route('interview.index')}}"><i class="fe fe-home"></i> <span>All Interviews</span></a>
+							</li>
 							
 							<!-- 
 							<li class="">

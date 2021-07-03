@@ -76,8 +76,11 @@ class CreateApplicationsTable extends Migration
             $table->boolean('terms_and_conditions');
             $table->bigInteger('application_case_id')->unsigned()->default(1);
             $table->foreign('application_case_id')->references('id')->on('application_cases')->onDelete('cascade')->onUpdate('cascade');
-
-
+            // $table->string('meeting_date')->nullable();
+            // $table->string('meeting_id')->nullable();
+            // $table->string('meeting_url')->nullable();
+            $table->bigInteger('meeting_id')->unsigned()->nullable();
+            $table->foreign('meeting_id')->references('id')->on('meetings')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

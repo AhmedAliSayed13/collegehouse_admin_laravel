@@ -39,6 +39,7 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
     Route::resource('house','Admin\HouseController');
     Route::resource('owner','Admin\OwnerController');
     Route::resource('application','Admin\ApplicationController');
+    Route::resource('interview','Admin\InterviewController');
     Route::post('/house/delete-image-front',[App\Http\Controllers\Admin\HouseController::class,'delete_image_front']);
     Route::post('/house/edit-flooer',[App\Http\Controllers\Admin\HouseController::class,'edit_flooer'])->name('admin.edit-flooer');
 
@@ -92,6 +93,8 @@ Route::get('/step6', 'ApplicationController@createStep6')->name('step6');
 Route::post('/step6', 'ApplicationController@PostcreateStep6')->name('step6-save');
 
 Route::get('/remove', 'ApplicationController@remove');
+Route::get('/test', 'TestController@test');
+Route::post('/test2', 'TestController@test2');
 
 
 

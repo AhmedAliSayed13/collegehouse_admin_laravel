@@ -76,47 +76,96 @@
 									<div class="card-body">
 
 										<div class="row">
-
+											<div class="col-lg-5">
+												<div class="card">
+													<div class="card-header">
+														<h4 class="card-title">Meeting information</h4>
+													</div>
+													<div class="card-body">
+														<div class="table-responsive">
+															<table class="table table-striped mb-0">
+																
+																<tbody>
+																	<tr>
+																		<td>Meeting ID</td>
+																		
+																		@if($application->meeting->meeting_id)
+																		<td>{{$application->meeting->meeting_id}}</td>
+																		@else
+																		<td>-</td>
+																		@endif
+																	</tr>
+																	<tr>
+																		<td>Meeting Date</td>
+																		@if($application->meeting->meeting_date)
+																		<td>{{str_replace('T',' ',$application->meeting->meeting_date)}}</td>
+																		@else
+																		<td>-</td>
+																		@endif
+																	</tr>
+																	
+																	<tr>
+																		<td>Meeting Join</td>
+																		@if($application->meeting->meeting_url)
+																		<td><h4><a target="_blank" class="f" href="{{$application->meeting->meeting_url}}"><i class="fa fa-external-link"></i></h4></a></td>
+																		@else
+																		<td>-</td>
+																		@endif
+																		
+																		
+																	</tr>
+																	
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
 											<div class="col-md-12">
 												@include('flash-message')
 												<div class="table-responsive">
+													<form action="{{url('/api/meetings')}}" method="POST">
+														@csrf
 													<div class="row">
-														<div class="col-sm-12 col-lg-3">
-
-															<label class="d-block">Application Status : </label>
-															<select name="DataTables_Table_0_length"
-																aria-controls="DataTables_Table_0"
-																name="application_case_id"
-																class="custom-select custom-select-sm form-control form-control-sm @error('application_case_id') is-invalid @enderror">
-																<option>select Application Status </option>
-																@foreach($application_cases as $application_case)
-																<option value="{{$application_case->id}}"
-																	{{ option_select(old("application_case_id",$application->application_case_id) , $application_case->id )}}>
-																	{{$application_case->name}}</option>
-																@endforeach
-															</select>
-															@error('application_case_id')
-															<span class="invalid-feedback" role="alert">
-																<strong>{{ $message }}</strong>
-															</span>
-															@enderror
-
-														</div>
 														
-														<div class="col-sm-12 col-lg-3">
+															<input name="application_id" value="{{$application->id}}" type="hidden">
+															<div class="col-sm-12 col-lg-3">
+
+																<label class="d-block">Application Status : </label>
+																<select 
+																	aria-controls="DataTables_Table_0"
+																	name="application_case_id"
+																	class="custom-select custom-select-sm form-control form-control-sm @error('application_case_id') is-invalid @enderror">
+																	<option>select Application Status </option>
+																	@foreach($application_cases as $application_case)
+																	<option value="{{$application_case->id}}"
+																		{{ option_select(old("application_case_id",$application->application_case_id) , $application_case->id )}}>
+																		{{$application_case->name}}</option>
+																	@endforeach
+																</select>
+																@error('application_case_id')
+																<span class="invalid-feedback" role="alert">
+																	<strong>{{ $message }}</strong>
+																</span>
+																@enderror
+
+															</div>
 															
-																<label class="d-block">Metting Date : </label>
-																<input Type="date"  name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">		
-														</div>
-														<div class="col-sm-12 col-lg-3 mb-2">
-															
-																<label class="d-block">Metting Time : </label>
-																<input Type="time" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
-																		
+															<div class="col-sm-12 col-lg-3 mb-2">
 																
-														</div>
+																	<label class="d-block">Metting Date : </label>
+																	<input Type="datetime-local"  name="meeting_date" min="{{Carbon\Carbon::now()->format('Y-m-d\T00:00:00')}}" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
+																			
+																	
+															</div>
+															<div class="col-sm-12 col-lg-3 mb-2">
+																<label class="d-block"></label>
+																<input type="submit" class="btn btn-info mt-3" value="Save">
+															</div>
+														
 
 													</div>
+												</form>
 													<table class="table table-hover mb-0">
 														<thead>
 															<tr>

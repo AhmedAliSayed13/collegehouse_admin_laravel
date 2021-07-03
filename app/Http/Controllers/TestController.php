@@ -3,37 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Zoom;
+use Carbon\Carbon;
 
 class TestController extends Controller
 {
     public function test(){
-        return view('test');
-    }
-    public function test2()
+        // $meeting = Zoom::meeting()->make([
+        //     'topic' => 'New meeting',
+        //     'type' => 8,
+        //     'start_time' => new Carbon('2020-08-12 10:00:00'), 
+        //   ]);
+        //  $data=Zoom::user()->find('id')->meetings()->save($meeting);
+        // $data=Zoom::user()->meetings()->all();
+        // print_r($data);
 
+
+        // $users = Zoom::user()->where('status', 'active')->paginate(100)->get();
+
+        $user = Zoom::user()->where('status', 'active')->first();
+        print($user);
+    }
+    public function test2(Request $request)
     {
 
-        request()->validate([
-
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
-        ]);
+       return $request;
 
   
 
-        $imageName = time().'.'.request()->image->getClientOriginalExtension();
-
-  
-
-        request()->image->move(public_path('images'), $imageName);
-
-  
-
-        return back()
-
-            ->with('success','You have successfully upload image.')
-
-            ->with('image',$imageName);
+        
 
     }
 }

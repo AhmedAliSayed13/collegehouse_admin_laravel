@@ -16,6 +16,8 @@ use App\Models\Reason_sign_parent;
 use App\Models\Parent_information;
 use App\Models\Rental_history;
 use App\Models\Employment;
+use App\Models\Meeting;
+use App\Models\Application_case;
 class Application extends Model
 {
     /**
@@ -65,7 +67,7 @@ class Application extends Model
          'register_vote'
          
         ];
-
+        
 
 
 
@@ -133,5 +135,13 @@ class Application extends Model
     public function employments()
     {
         return $this->hasMany(Employment::class);
+    }
+    public function meeting()
+    {
+        return $this->hasOne(Meeting::class);
+    }
+    public function application_case()
+    {
+        return $this->belongsTo(Application_case::class);
     }
 }
