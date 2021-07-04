@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2021 at 07:56 AM
+-- Generation Time: Jul 04, 2021 at 08:27 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -75,6 +75,7 @@ CREATE TABLE `applications` (
   `applicant_full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `terms_and_conditions` tinyint(1) NOT NULL,
   `application_case_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
+  `meeting_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -83,8 +84,8 @@ CREATE TABLE `applications` (
 -- Dumping data for table `applications`
 --
 
-INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_name_1`, `group_member_name_2`, `group_member_name_3`, `group_member_name_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `terms_and_conditions`, `application_case_id`, `created_at`, `updated_at`) VALUES
-(3, 'ahmed', 'ali', 1, 'ahmedalisayed13@gmail.com', '2021-06-23', '01112912233', '1223456', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 21, 18, '132423', 1, 'test', 'test', '2018', 12, 16, 1, 1, 1, '8', NULL, NULL, 240, 'test', 'test', '235325', '23523523', NULL, 'ahmed ali', 'mostafa', 'omar', 'mohamed', 'nour', 1, 1, 5, 'is simply dummy text of the printing and typesetting industry', 4, 4, 0, 0, 'ahmed ali sayed', 1, 1, '2021-06-27 18:07:51', '2021-06-27 18:07:51');
+INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_name_1`, `group_member_name_2`, `group_member_name_3`, `group_member_name_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `terms_and_conditions`, `application_case_id`, `meeting_id`, `created_at`, `updated_at`) VALUES
+(3, 'ahmed', 'ali', 1, 'ahmedalisayed13@gmail.com', '2021-06-23', '01112912233', '1223456', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 21, 18, '132423', 1, 'test', 'test', '2018', 12, 16, 1, 1, 1, '8', NULL, NULL, 240, 'test', 'test', '235325', '23523523', NULL, 'ahmed ali', 'mostafa', 'omar', 'mohamed', 'nour', 1, 1, 5, 'is simply dummy text of the printing and typesetting industry', 4, 4, 0, 0, 'ahmed ali sayed', 1, 5, 5, '2021-06-27 18:07:51', '2021-07-03 16:25:17');
 
 -- --------------------------------------------------------
 
@@ -105,9 +106,10 @@ CREATE TABLE `application_cases` (
 
 INSERT INTO `application_cases` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'review', NULL, NULL),
-(2, 'Wating interview', NULL, NULL),
-(4, 'refused', NULL, NULL),
-(5, 'acceptted', NULL, NULL);
+(2, 'Wating list', NULL, NULL),
+(4, 'rejected', NULL, NULL),
+(5, 'accepted', NULL, NULL),
+(6, 'pending', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -543,6 +545,52 @@ INSERT INTO `house_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `meetings`
+--
+
+CREATE TABLE `meetings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `meeting_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meeting_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meeting_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meeting_case_id` bigint(20) UNSIGNED NOT NULL DEFAULT 2,
+  `application_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `meetings`
+--
+
+INSERT INTO `meetings` (`id`, `meeting_date`, `meeting_id`, `meeting_url`, `meeting_case_id`, `application_id`, `created_at`, `updated_at`) VALUES
+(5, '2021-07-24T20:25', '99910498802', 'https://zoom.us/j/99910498802?pwd=K2JqZVVWT0ZhbjlmMi9BOGt3bHEyZz09', 3, 3, '2021-07-03 16:18:21', '2021-07-03 16:25:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `meeting_cases`
+--
+
+CREATE TABLE `meeting_cases` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `meeting_cases`
+--
+
+INSERT INTO `meeting_cases` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Completed', '2021-07-28 02:50:08', '2021-07-19 02:50:16'),
+(2, 'Upcoming', '2021-07-09 02:50:11', '2021-07-06 02:50:18'),
+(3, 'Cancel', '2021-07-09 02:50:14', '2021-07-06 02:50:21');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -579,7 +627,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (38, '2021_06_11_113246_create_parent_informations_table', 30),
 (39, '2021_06_12_101908_create_employments_table', 31),
 (42, '2021_06_27_201015_create_application_cases_table', 32),
-(43, '2021_06_10_193622_create_applications_table', 33);
+(50, '2021_07_03_023855_create_meeting_cases_table', 34),
+(54, '2021_06_10_193622_create_applications_table', 36),
+(56, '2021_07_03_024043_create_meetings_table', 37);
 
 -- --------------------------------------------------------
 
@@ -909,7 +959,8 @@ ALTER TABLE `applications`
   ADD KEY `applications_parent_information2_id_foreign` (`parent_information2_id`),
   ADD KEY `applications_parent_information1_id_foreign` (`parent_information1_id`),
   ADD KEY `applications_reason_sign_parent_id_foreign` (`reason_sign_parent_id`),
-  ADD KEY `applications_application_case_id_foreign` (`application_case_id`);
+  ADD KEY `applications_application_case_id_foreign` (`application_case_id`),
+  ADD KEY `applications_meeting_id_foreign` (`meeting_id`);
 
 --
 -- Indexes for table `application_cases`
@@ -972,6 +1023,20 @@ ALTER TABLE `houses`
 -- Indexes for table `house_types`
 --
 ALTER TABLE `house_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `meetings`
+--
+ALTER TABLE `meetings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `meetings_meeting_case_id_foreign` (`meeting_case_id`),
+  ADD KEY `meetings_application_id_foreign` (`application_id`);
+
+--
+-- Indexes for table `meeting_cases`
+--
+ALTER TABLE `meeting_cases`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1070,7 +1135,7 @@ ALTER TABLE `applications`
 -- AUTO_INCREMENT for table `application_cases`
 --
 ALTER TABLE `application_cases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `chapters`
@@ -1121,10 +1186,22 @@ ALTER TABLE `house_types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `meetings`
+--
+ALTER TABLE `meetings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `meeting_cases`
+--
+ALTER TABLE `meeting_cases`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `parent_informations`
@@ -1199,6 +1276,7 @@ ALTER TABLE `applications`
   ADD CONSTRAINT `applications_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_gender_id_foreign` FOREIGN KEY (`gender_id`) REFERENCES `genders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_house_type_id_foreign` FOREIGN KEY (`house_type_id`) REFERENCES `house_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_meeting_id_foreign` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_parent_information1_id_foreign` FOREIGN KEY (`parent_information1_id`) REFERENCES `parent_informations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_parent_information2_id_foreign` FOREIGN KEY (`parent_information2_id`) REFERENCES `parent_informations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_paying_rent_id_foreign` FOREIGN KEY (`paying_rent_id`) REFERENCES `paying_rents` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -1236,6 +1314,13 @@ ALTER TABLE `houses`
   ADD CONSTRAINT `houses_house_type_id_foreign` FOREIGN KEY (`house_type_id`) REFERENCES `house_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `houses_owner_id_foreign` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `houses_payment_method_id_foreign` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `meetings`
+--
+ALTER TABLE `meetings`
+  ADD CONSTRAINT `meetings_application_id_foreign` FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `meetings_meeting_case_id_foreign` FOREIGN KEY (`meeting_case_id`) REFERENCES `meeting_cases` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `parent_informations`
