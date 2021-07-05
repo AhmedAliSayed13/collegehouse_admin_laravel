@@ -6,6 +6,7 @@ use App\Models\Payment_method;
 use App\Models\Front_house_image;
 use App\Models\Flooer;
 use App\User;
+use App\Models\House_state;
 use Illuminate\Database\Eloquent\Model;
 
 class House extends Model
@@ -29,5 +30,9 @@ class House extends Model
     public function flooers()
     {
         return $this->hasMany(Flooer::class);
+    }
+    public function house_state()
+    {
+        return $this->belongsTo(House_state::class);
     }
 }

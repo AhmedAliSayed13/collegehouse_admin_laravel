@@ -44,6 +44,8 @@ class CreateHousesTable extends Migration
             $table->string('resident_account', 255);
             $table->string('video');
             $table->string('pdf');
+            $table->bigInteger('house_state_id')->unsigned()->default(1);
+            $table->foreign('house_state_id')->references('id')->on('house_states')->onDelete('cascade')->onUpdate('cascade');
 
 
 

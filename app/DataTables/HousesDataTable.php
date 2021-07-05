@@ -37,13 +37,13 @@ class HousesDataTable extends DataTable
                 }
                 return 'no Owner';
             })
-            ->addColumn('payment_method_id', function ($house) {
-                if(!empty($house->payment_method)){
-                    return $house->payment_method->name;
+            ->addColumn('house_status_id', function ($house) {
+                if(!empty($house->house_state)){
+                    return $house->house_state->name;
                 }
                 return 'no Value';
             })
-            ->rawColumns(['house_type_id','owner_id','payment_method_id','edit','delete']);
+            ->rawColumns(['house_type_id','owner_id','house_status_id','edit','delete']);
     }
 
     /**
@@ -88,7 +88,7 @@ class HousesDataTable extends DataTable
                                 window.location.href='/admin/house/create';}"],
                 ],
                 'initComplete'=> "function () {
-                        this.api().columns([0,1,2,3,4,5,6,7,8,9,10,11]).every(function () {
+                        this.api().columns([0,1,2,3,4,5]).every(function () {
                             var column = this;
                             var input = document.createElement(\"input\");
                             $(input).appendTo($(column.footer()).empty())
@@ -125,54 +125,25 @@ class HousesDataTable extends DataTable
                 'title'=>'Name'
             ],
             [
-                'name'=>'payment_method_id',
-                'data'=>'payment_method_id',
-                'title'=>'Payment Method'
+                'name'=>'address',
+                'data'=>'address',
+                'title'=>'Address'
             ],
             [
-                'name'=>'num_rooms',
-                'data'=>'num_rooms',
-                'title'=>'Rooms'
+                'name'=>'house_status_id',
+                'data'=>'house_status_id',
+                'title'=>'House Status'
             ],
+            
             [
                 'name'=>'house_type_id',
                 'data'=>'house_type_id',
                 'title'=>'House Type'
             ],
             [
-                'name'=>'num_residents',
-                'data'=>'num_residents',
-                'title'=>'Residents'
-            ],
-            [
-                'name'=>'num_bathrooms',
-                'data'=>'num_bathrooms',
-                'title'=>'Bathrooms'
-            ],
-            [
-                'name'=>'num_flooers',
-                'data'=>'num_flooers',
-                'title'=>'Flooers'
-            ],
-            [
-                'name'=>'num_parkings',
-                'data'=>'num_parkings',
-                'title'=>'Parkings'
-            ],
-            [
-                'name'=>'num_kitchens',
-                'data'=>'num_kitchens',
-                'title'=>'kitchens'
-            ],
-            [
-                'name'=>'total_size',
-                'data'=>'total_size',
-                'title'=>'Total Size'
-            ],
-            [
                 'name'=>'created_at',
                 'data'=>'created_at',
-                'title'=>'Created At'
+                'title'=>'Date'
             ],
             [
                 'name'=>'edit',
