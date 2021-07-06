@@ -18,6 +18,8 @@ use App\Models\Reason_sign_parent;
 use App\Models\Parent_information;
 use App\Models\Rental_history;
 use App\Models\Employment;
+use Validator;
+use Auth;
 class ApplicationController extends Controller
 {
 
@@ -465,6 +467,7 @@ class ApplicationController extends Controller
         $application = $request->session()->get('application');
         $application->parent_information1_id= $parent_information_1->id;
         $application->parent_information2_id= $parent_information_2->id;
+        $application->user_id=Auth::user()->id;
         $application->save();
 
         $rental_histories = $request->session()->get('rental_histories');
@@ -487,6 +490,26 @@ class ApplicationController extends Controller
         $item='';
         $request->session()->forget('employments');
         return 'done';
+    }
+    public function popupLogin(Request $request){
+        $rules = [
+            'email' => 'required',
+            'password' => 'required',
+        ];
+        $validator= Validator::make($request->all(), $rules);
+        if($validator->fails()){
+            return response()->json($validator->messages()->get('*'));
+        }else{
+            $credentials = $request->only('email', 'password');
+            if (Auth::attempt($credentials)) {
+                return response()->json(1);
+            }else{
+                return response()->json(0);
+            }
+            
+        }
+
+        // return response()->json(1);
     }
    
 }

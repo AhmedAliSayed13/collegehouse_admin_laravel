@@ -25,6 +25,9 @@
 
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	<!-- firebase files end -->
 	<style>
 
@@ -1122,9 +1125,15 @@
 							<div class="row">
 
 								<div class="col-lg-12 float-right">
+									
+
+									@if (!Auth::guest())
 									<button type="submit" class="btn btn-success float-right" id="id-form1">
 										 Submit
 									</button>
+									@else
+									<a href="#Add_Specialities_details" data-toggle="modal" class="btn btn-primary float-right mt-2">Login</a>
+									@endif
 									<a href="{{route('step1')}}" class="btn btn-info float-left">
 										Edit <i class="fa fa-edit"></i>
 									</a>
@@ -1155,6 +1164,62 @@
 	<!-- /Page Wrapper -->
 
 
+	<!-- login Modal -->
+			<div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-dialog-centered" role="document" >
+					<div class="modal-content">
+						
+						<div class="modal-body">
+							
+							<div class="loginbox">
+                    	
+                        <div class="login-right">
+							<div class="login-right-wrap">
+								<h1 class="text-center">Login</h1>
+								<p class="account-subtitle">Complate your Application</p>
+								
+								<!-- Form -->
+								<form action="{{route('popup-login')}}" method="Post" id="form-popup-login">
+								@csrf
+									<div class="form-group">
+										<input class="form-control" type="email" name="email" placeholder="Email" >
+										<span class="text-danger" >
+											<strong id='emailMessage'></strong>
+										</span>
+									</div>
+									<div class="form-group">
+										<input class="form-control" type="password" name="password" placeholder="Password" >
+										<span class="text-danger" >
+											<strong id='passwordMessage'></strong>
+										</span>
+									</div>
+									<div class="form-group">
+										<button class="btn btn-primary btn-block" type="submit">Login</button>
+									</div>
+								</form>
+								<!-- /Form -->
+								
+								<div class="text-center forgotpass"><a href="forgot-password.html">Forgot Password?</a></div>
+								<div class="login-or">
+									<span class="or-line"></span>
+									<span class="span-or">or</span>
+								</div>
+								
+								<div class="text-center dont-have">Don’t have an account? <a  href="{{route('tenant.register')}}">Register</a></div>
+							</div>
+                        </div>
+                    </div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+	<!-- /Login Modal -->
+
+
+
+	
+	
 	<!-- /Main Wrapper -->
 
 	<!-- jQuery -->
@@ -1172,7 +1237,39 @@
 	<script src="{{ asset('js/profile-settings.js') }}"></script>
 
 
+	<script>
+    $('#form-popup-login').submit(function(e){
+		alert('run');
+        e.preventDefault();
+        var url = $(this).attr("action");
+        var postdata = $(this).serialize();
+        var request = $.post(url, postdata, formpostcompleted, "json");
+        function formpostcompleted(data, status) {
+			console.log(data);
+			if(data==1)
+			{
+				$('#emailMessage').empty();
+				$('#passwordMessage').empty();
+				e.currentTarget.submit();
+			}else if(data==0){
+				$('#emailMessage').empty();
+				$('#passwordMessage').empty();
+				$('#emailMessage').append('These credentials do not match our records.');
+			}else{
+				$emailMessage=data['email'];
+				$passwordMessage=data['password'];
+				$('#emailMessage').empty();
+				$('#passwordMessage').empty();
+				alert($emailMessage);
+				$('#emailMessage').append($emailMessage);
+				$('#passwordMessage').append($passwordMessage);
+				alert(-1);
+			}
+           
 
+        }
+        });
+	</script>
 
 
 
