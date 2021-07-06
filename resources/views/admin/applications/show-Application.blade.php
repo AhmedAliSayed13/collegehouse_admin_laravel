@@ -117,8 +117,6 @@
 																		@else
 																		<td>-</td>
 																		@endif
-
-
 																	</tr>
 
 																</tbody>
