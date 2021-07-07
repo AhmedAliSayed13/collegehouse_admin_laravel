@@ -362,11 +362,12 @@
 										@enderror
 									</div>
 								</div>
-
+								@if(!empty($groups))
+								@foreach($groups as $group)
 								<div class="col-md-6 group_house_field">
 									<div class="form-group">
 										<label>Group member name :</label>
-										<input id="group_member_name" required placeholder="Group member name " type="text"
+										<input id="group_member_name" required placeholder="Group member name " type="text" value="{{$groups[0]->name}}"
 											class="form-control "
 											name="group_member_name[]"  autocomplete="group_member_name"
 											autofocus>
@@ -376,13 +377,36 @@
 								<div class="col-md-6 group_house_field">
 									<div class="form-group">
 										<label>Group Email:</label>
-										<input id="group_member_email" placeholder="Group member Email" type="email" required
+										<input id="group_member_email" value="{{$group->email}}" placeholder="Group member Email" type="email" required
 											class="form-control "
 											name="group_member_email[]"  autocomplete="group_member_email"
 											autofocus>
 										
 									</div>
 								</div>
+								@endforeach
+								@else
+									<div class="col-md-6 group_house_field">
+										<div class="form-group">
+											<label>Group member name :</label>
+											<input id="group_member_name" required placeholder="Group member name " type="text"
+												class="form-control "
+												name="group_member_name[]"  autocomplete="group_member_name"
+												autofocus>
+										</div>
+									</div>
+
+									<div class="col-md-6 group_house_field">
+										<div class="form-group">
+											<label>Group Email:</label>
+											<input id="group_member_email" placeholder="Group member Email" type="email" required
+												class="form-control "
+												name="group_member_email[]"  autocomplete="group_member_email"
+												autofocus>
+											
+										</div>
+									</div>
+								@endif
 								<div class="col-md-12 rental-info">
 
 									<div class=" rental-cont">

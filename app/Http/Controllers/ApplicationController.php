@@ -54,7 +54,7 @@ class ApplicationController extends Controller
         $chapters=Chapter::all();
         $payment_methods=Payment_method::all();
         $paying_rents=Paying_rent::all();
-        return view('application.step1', compact('application','genders','citys','states','house_types','house_groups','house_boardings','room_types','rooms','chapters','payment_methods','paying_rents'));
+        return view('application.step1', compact('application','genders','citys','states','house_types','house_groups','house_boardings','room_types','rooms','chapters','payment_methods','paying_rents','groups'));
     }
 
     public function PostcreateStep1(Request $request)
