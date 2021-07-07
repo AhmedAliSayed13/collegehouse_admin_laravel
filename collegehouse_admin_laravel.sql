@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2021 at 08:27 AM
+-- Generation Time: Jul 07, 2021 at 05:18 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -76,6 +76,7 @@ CREATE TABLE `applications` (
   `terms_and_conditions` tinyint(1) NOT NULL,
   `application_case_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
   `meeting_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -84,8 +85,9 @@ CREATE TABLE `applications` (
 -- Dumping data for table `applications`
 --
 
-INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_name_1`, `group_member_name_2`, `group_member_name_3`, `group_member_name_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `terms_and_conditions`, `application_case_id`, `meeting_id`, `created_at`, `updated_at`) VALUES
-(3, 'ahmed', 'ali', 1, 'ahmedalisayed13@gmail.com', '2021-06-23', '01112912233', '1223456', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 21, 18, '132423', 1, 'test', 'test', '2018', 12, 16, 1, 1, 1, '8', NULL, NULL, 240, 'test', 'test', '235325', '23523523', NULL, 'ahmed ali', 'mostafa', 'omar', 'mohamed', 'nour', 1, 1, 5, 'is simply dummy text of the printing and typesetting industry', 4, 4, 0, 0, 'ahmed ali sayed', 1, 5, 5, '2021-06-27 18:07:51', '2021-07-03 16:25:17');
+INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_name_1`, `group_member_name_2`, `group_member_name_3`, `group_member_name_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `terms_and_conditions`, `application_case_id`, `meeting_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(3, 'ahmed', 'ali', 1, 'ahmedalisayed13@gmail.com', '2021-06-23', '01112912233', '1223456', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 21, 18, '132423', 1, 'test', 'test', '2018', 12, 16, 1, 1, 1, '8', NULL, NULL, 240, 'test', 'test', '235325', '23523523', NULL, 'ahmed ali', 'mostafa', 'omar', 'mohamed', 'nour', 1, 1, 5, 'is simply dummy text of the printing and typesetting industry', 4, 4, 0, 0, 'ahmed ali sayed', 1, 5, 5, 3, '2021-06-27 18:07:51', '2021-07-03 16:25:17'),
+(4, 'ahmed', 'ali', 1, 'ahmedalisayed13@gmail.com', '2021-07-21', '01112912233', '234234', 'dfds', 'sdfsd', 20, 18, '534', 1, '32e3', '332', '23432', 234, 1, 1, 1, 0, '8', NULL, NULL, 250, NULL, NULL, NULL, NULL, NULL, 'ahmed ali', 'a1', 'a2', 'a3', 'a4', 1, 0, 7, NULL, 6, NULL, 0, 0, 'ahmed ali sayed', 1, 1, NULL, 3, '2021-07-06 09:33:46', '2021-07-06 09:33:46');
 
 -- --------------------------------------------------------
 
@@ -479,6 +481,21 @@ INSERT INTO `genders` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `groups`
+--
+
+CREATE TABLE `groups` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `application_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `houses`
 --
 
@@ -518,7 +535,7 @@ CREATE TABLE `houses` (
 --
 
 INSERT INTO `houses` (`id`, `owner_id`, `address`, `status`, `city_id`, `name`, `house_type_id`, `num_rooms`, `num_residents`, `num_bathrooms`, `num_flooers`, `num_parkings`, `total_size`, `num_kitchens`, `annual_reset`, `payment_method_id`, `image_ownership`, `image_lease`, `description`, `about`, `excellent_location`, `safety_security`, `professional_maintenance`, `resident_account`, `video`, `pdf`, `created_at`, `updated_at`) VALUES
-(8, 2, '4620 College Ave', 'Maryland', 19, '4620 College Ave', 1, 5, 25, 2, 3, 1, 1700, 1, '6000', 1, '1624199588image_ownership.png', '1624199588image_lease.png', 'Spacious off-campus college house for rent near University of Maryland, College Park. An excellent choice for your next school year only 3 minutes away from your campus!', 'Spacious off-campus college house for rent near University of Maryland, College Park. An excellent choice for your next school year only 3 minutes away from your campus!', 'Just under half a mile from campus!', 'The City of College Park public safety and code enforcement patrol officers patrol the neighborhood regularly and our maintenance team is available 24/7 for maintenance emergencies.', 'All routine house maintenance and your repair needs are addressed by our professional maintenance team.', 'One online account to access your lease information, balance, see important announcements, submit maintenance requests, and more.', '1624199588video.mp4', '1624199588pdf.pdf', '2021-06-20 12:33:08', '2021-06-20 12:33:08'),
+(8, 2, '4620 College Ave', 'Maryland', 19, '4620 College Ave', 1, 5, 25, 2, 3, 1, 1700, 1, '6000', 3, '1624199588image_ownership.png', '1624199588image_lease.png', 'Spacious off-campus college house for rent near University of Maryland, College Park. An excellent choice for your next school year only 3 minutes away from your campus!', 'Spacious off-campus college house for rent near University of Maryland, College Park. An excellent choice for your next school year only 3 minutes away from your campus!', 'Just under half a mile from campus!', 'The City of College Park public safety and code enforcement patrol officers patrol the neighborhood regularly and our maintenance team is available 24/7 for maintenance emergencies.', 'All routine house maintenance and your repair needs are addressed by our professional maintenance team.', 'One online account to access your lease information, balance, see important announcements, submit maintenance requests, and more.', '1624199588video.mp4', '1624199588pdf.pdf', '2021-06-20 12:33:08', '2021-07-04 07:16:49'),
 (9, 5, '4603 Knox Road', 'Maryland', 5, '4603 Knox Road', 1, 6, 3, 3, 3, 3, 2505, 3, '6100', 4, '1624200166image_ownership.png', '1624200166image_lease.png', 'Awesome Location and Awesome House! New, spacious off-campus college rental near University of Maryland, College Park. An excellent choice for your next school year only a few minutes away from your campus!', '4603 Knox Road is an ideal house for your off-campus residence! With six rooms, three bathrooms, porch room and a lot of living space. Semi furnished including all your kitchen items plus lots of build-ins that eliminates furniture needs.', 'Just under half a mile from campus!', 'The City of College Park public safety and code enforcement patrol officers patrol the neighborhood regularly and our maintenance team is available 24/7 for maintenance emergencies.', 'All routine house maintenance and your repair needs are addressed by our professional maintenance team.', 'One online account to access your lease information, balance, see important announcements, submit maintenance requests, and more.', '1624200166video.mp4', '1624200166pdf.pdf', '2021-06-20 12:42:46', '2021-06-20 12:42:46');
 
 -- --------------------------------------------------------
@@ -564,7 +581,7 @@ CREATE TABLE `meetings` (
 --
 
 INSERT INTO `meetings` (`id`, `meeting_date`, `meeting_id`, `meeting_url`, `meeting_case_id`, `application_id`, `created_at`, `updated_at`) VALUES
-(5, '2021-07-24T20:25', '99910498802', 'https://zoom.us/j/99910498802?pwd=K2JqZVVWT0ZhbjlmMi9BOGt3bHEyZz09', 3, 3, '2021-07-03 16:18:21', '2021-07-03 16:25:18');
+(5, '2021-07-24T20:25', '99910498802', 'https://zoom.us/j/99910498802?pwd=K2JqZVVWT0ZhbjlmMi9BOGt3bHEyZz09', 1, 3, '2021-07-03 16:18:21', '2021-07-06 10:15:33');
 
 -- --------------------------------------------------------
 
@@ -628,8 +645,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (39, '2021_06_12_101908_create_employments_table', 31),
 (42, '2021_06_27_201015_create_application_cases_table', 32),
 (50, '2021_07_03_023855_create_meeting_cases_table', 34),
-(54, '2021_06_10_193622_create_applications_table', 36),
-(56, '2021_07_03_024043_create_meetings_table', 37);
+(56, '2021_07_03_024043_create_meetings_table', 37),
+(57, '2021_06_10_193622_create_applications_table', 38),
+(58, '2021_06_24_110352_create_groups_table', 39);
 
 -- --------------------------------------------------------
 
@@ -660,7 +678,9 @@ CREATE TABLE `parent_informations` (
 
 INSERT INTO `parent_informations` (`id`, `first_name`, `last_name`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `phone`, `email`, `Position`, `place_employment`, `created_at`, `updated_at`) VALUES
 (4, 'ali', 'sayed', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 19, 21, '3543', '0112912233', 'ahmed.ali@kabtechcorp.com', 'head', 'engnieer', '2021-06-27 18:07:51', '2021-06-27 18:07:51'),
-(5, 'nour', 'farrag', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 14, 14, '34534', '01112912233', 'ahmed.ali@kabtechcorp.com', 'sdfsd', 'sdfs', '2021-06-27 18:07:51', '2021-06-27 18:07:51');
+(5, 'nour', 'farrag', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 14, 14, '34534', '01112912233', 'ahmed.ali@kabtechcorp.com', 'sdfsd', 'sdfs', '2021-06-27 18:07:51', '2021-06-27 18:07:51'),
+(6, 'ahmed', 'ali', 'fe', 'ewfew', 21, 18, '34534', '01112912233', 'ahmedalisayed13@gmail.com', 'egre', 'efd', '2021-07-06 09:32:52', '2021-07-06 09:32:52'),
+(7, 'ergre', 'erger', 'ergre', 'ergtre', 20, 20, '34543', '01112912233', 'ahmedalisayed@gmail.com', 'sdfds', 'dss', '2021-07-06 09:32:52', '2021-07-06 09:32:52');
 
 -- --------------------------------------------------------
 
@@ -960,7 +980,8 @@ ALTER TABLE `applications`
   ADD KEY `applications_parent_information1_id_foreign` (`parent_information1_id`),
   ADD KEY `applications_reason_sign_parent_id_foreign` (`reason_sign_parent_id`),
   ADD KEY `applications_application_case_id_foreign` (`application_case_id`),
-  ADD KEY `applications_meeting_id_foreign` (`meeting_id`);
+  ADD KEY `applications_meeting_id_foreign` (`meeting_id`),
+  ADD KEY `applications_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `application_cases`
@@ -1008,6 +1029,13 @@ ALTER TABLE `front_house_images`
 --
 ALTER TABLE `genders`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `groups_application_id_foreign` (`application_id`);
 
 --
 -- Indexes for table `houses`
@@ -1129,7 +1157,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `application_cases`
@@ -1174,6 +1202,12 @@ ALTER TABLE `genders`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `houses`
 --
 ALTER TABLE `houses`
@@ -1201,13 +1235,13 @@ ALTER TABLE `meeting_cases`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `parent_informations`
 --
 ALTER TABLE `parent_informations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `paying_rents`
@@ -1284,7 +1318,8 @@ ALTER TABLE `applications`
   ADD CONSTRAINT `applications_reason_sign_parent_id_foreign` FOREIGN KEY (`reason_sign_parent_id`) REFERENCES `reason_sign_parents` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_room_type_id_foreign` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `applications_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `applications_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `applications_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `employments`
@@ -1305,6 +1340,12 @@ ALTER TABLE `flooers`
 --
 ALTER TABLE `front_house_images`
   ADD CONSTRAINT `front_house_images_house_id_foreign` FOREIGN KEY (`house_id`) REFERENCES `houses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `groups`
+--
+ALTER TABLE `groups`
+  ADD CONSTRAINT `groups_application_id_foreign` FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `houses`
