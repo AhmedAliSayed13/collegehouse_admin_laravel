@@ -18,6 +18,7 @@ use App\Models\Reason_sign_parent;
 use App\Models\Parent_information;
 use App\Models\Rental_history;
 use App\Models\Employment;
+use App\Models\Group;
 use Validator;
 use Auth;
 class ApplicationController extends Controller
@@ -26,6 +27,7 @@ class ApplicationController extends Controller
     public function createStep1(Request $request)
     {
         $application=NULL;
+        
         if (empty($request->session()->get('application'))) {
             $application = new Application();
             $request->session()->put('application', $application);
@@ -33,6 +35,12 @@ class ApplicationController extends Controller
             $application = $request->session()->get('application');
             $request->session()->put('application', $application);
         }
+
+        $groups=NULL;
+        if (empty($request->session()->get('groups'))) {
+            $application = $request->session()->get('groups');
+            $request->session()->put('groups', $groups);
+        } 
 
         
         $genders=Gender::all();
@@ -51,7 +59,7 @@ class ApplicationController extends Controller
 
     public function PostcreateStep1(Request $request)
     {
-        //print_r($request->all());
+        // return($request->all());
         $arr2=[];
         $arr3=[];
         $arr1=array(
@@ -83,10 +91,10 @@ class ApplicationController extends Controller
         if($request->house_type_id==1){
             $arr2=array(
                 'group_lead_name' => ['required', 'string'],
-                'group_member_name_1' => ['required','string'],
-                'group_member_name_2' => ['required','string'],
-                'group_member_name_3' => ['required','string'],
-                'group_member_name_4' => ['required','string']
+                'group_member_name.*' => ['required','string'],
+                'group_member_email.*' => ['required','email'],
+                // 'group_member_name_3' => ['required','string'],
+                // 'group_member_name_4' => ['required','string']
                 
             );
         }elseif($request->house_type_id==2){
@@ -115,11 +123,38 @@ class ApplicationController extends Controller
             $application->fill($validatedData);
             $application->register_vote=$request->register_vote;
             $request->session()->put('application', $application);
+            $request->session()->forget('groups');
+            $groups =[];
+            
+            for($i=0;count($request->group_member_name)>$i;$i++){
+                $group=new Group();
+                $group->name=$request->group_member_name[$i];
+                $group->email=$request->group_member_email[$i];
+                
+                $groups[$i]=$group;
+
+            }
+            $request->session()->put('groups', $groups);
+
+
         }else{
             $application = $request->session()->get('application');
             $application->fill($validatedData);
             $application->register_vote=$request->register_vote;
             $request->session()->put('application', $application);
+            $groups =[];
+            $request->session()->forget('groups');
+            for($i=0;count($request->group_member_name)>$i;$i++){
+                $group=new Group();
+                $group->name=$request->group_member_name[$i];
+                $group->email=$request->group_member_email[$i];
+                
+                $groups[$i]=$group;
+
+            }
+            $request->session()->put('groups', $groups);
+
+
         }
          return redirect()->route('step2');
         //print_r($application);
@@ -150,6 +185,7 @@ class ApplicationController extends Controller
          $citys=City::all();
          $states=State::all();
          return view('application.step2', compact('application','reason_sign_parents','citys','states','parent_information_1','parent_information_2'));
+           // return $application = $request->session()->get('groups');
     }
 
     public function PostcreateStep2(Request $request)

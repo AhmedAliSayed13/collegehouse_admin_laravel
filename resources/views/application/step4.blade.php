@@ -739,29 +739,6 @@
 									</div>
 								</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 								@endif
 
 
@@ -932,9 +909,9 @@
 
 	<script>
 		$(".rental-info").on('click','.trash', function () {
-		$(this).closest('.rental-cont').remove();
-		return false;
-    });
+			$(this).closest('.rental-cont').remove();
+			return false;
+    	});
 
     $(".add-rental").on('click', function () {
 		check=$('input[name="have_employment_history"]:checked').val();

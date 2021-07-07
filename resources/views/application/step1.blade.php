@@ -87,7 +87,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>First Name:</label>
-										<input id="first_name" type="text" placeholder="First Name"
+										<input id="first_name" required type="text" placeholder="First Name"
 											class="form-control @error('first_name') is-invalid @enderror"
 											name="first_name" value="{{ old('first_name',$application->first_name) }}" autocomplete="first_name"
 											autofocus>
@@ -103,7 +103,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Last Name:</label>
-										<input id="last_name" type="text" placeholder="Last Name"
+										<input id="last_name" required type="text" placeholder="Last Name"
 											class="form-control @error('last_name') is-invalid @enderror"
 											name="last_name" value="{{ old('last_name',$application->last_name) }}" autocomplete="last_name"
 											autofocus>
@@ -120,7 +120,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Gender:</label>
-										<select id="gender_id"
+										<select id="gender_id" required
 											class=" form-control @error('gender_id') is-invalid @enderror"
 											name="gender_id" value="{{ old('gender_id') }}" autocomplete="gender_id"
 											autofocus>
@@ -143,7 +143,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Email Address:</label>
-										<input id="email" placeholder="email" type="email"
+										<input id="email" placeholder="email" type="email" required
 											class="form-control @error('email') is-invalid @enderror"
 											name="email" value="{{ old('email',$application->email) }}" autocomplete="email"
 											autofocus>
@@ -159,7 +159,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Birthday:</label>
-										<input id="birthday" placeholder="Birthday" type="date"
+										<input id="birthday" placeholder="Birthday" type="date" required
 											class="form-control @error('birthday') is-invalid @enderror"
 											name="birthday" value="{{ old('birthday',$application->birthday) }}"
 											autocomplete="birthday" autofocus>
@@ -175,7 +175,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Mobile/Phone Number:</label>
-										<input id="phone"  type="text" placeholder="Phone"
+										<input id="phone"  type="text" placeholder="Phone" required
 											class="form-control @error('phone') is-invalid @enderror"
 											name="phone" value="{{ old('phone',$application->phone) }}"
 											autocomplete="phone" autofocus>
@@ -191,7 +191,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>SSN:</label>
-										<input id="ssn"  type="text" placeholder="ssn"
+										<input id="ssn"  type="text" placeholder="ssn" required
 											class="form-control @error('ssn') is-invalid @enderror"
 											name="ssn" value="{{ old('ssn',$application->ssn) }}"
 											autocomplete="ssn" autofocus>
@@ -213,7 +213,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									<label>Address 1</label>
-									<textarea id="address1" class="form-control @error('address1') is-invalid @enderror"
+									<textarea id="address1" class="form-control @error('address1') is-invalid @enderror" required
 										name="address1" autocomplete="address1" autofocus>
 												{{ old('address1',$application->address1) }}
 												</textarea>
@@ -228,7 +228,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									<label>Address 2</label>
-									<textarea id="address2" class="form-control @error('address2') is-invalid @enderror"
+									<textarea id="address2" class="form-control @error('address2') is-invalid @enderror" required
 										name="address2" autocomplete="address2" autofocus>
 												{{ old('address2',$application->address2) }}
 												</textarea>
@@ -247,7 +247,7 @@
 										<label>City:</label>
 										<select id="city_id"
 											class=" form-control @error('city_id') is-invalid @enderror"
-											name="city_id"  autocomplete="city_id"
+											name="city_id"  autocomplete="city_id" required
 											autofocus>
 											<option value="">Select City</option>
 											@foreach ($citys as $city)
@@ -269,7 +269,7 @@
 										<label>State:</label>
 										<select id="city_id"
 											class=" form-control @error('state_id') is-invalid @enderror"
-											name="state_id"  autocomplete="state_id"
+											name="state_id"  autocomplete="state_id" required
 											autofocus>
 											<option value="">Select City</option>
 											@foreach ($states as $state)
@@ -290,7 +290,7 @@
 									<div class="form-group">
 										<label>Zip Code:</label>
 										<input id="zip" placeholder="Zip Code" type="text"
-											class="form-control @error('zip') is-invalid @enderror"
+											class="form-control @error('zip') is-invalid @enderror" required
 											name="zip" value="{{ old('zip',$application->zip) }}" autocomplete="zip"
 											autofocus>
 										@error('zip')
@@ -306,7 +306,7 @@
 										<label>Requested Housing Type:</label>
 										<select id="house_type_id"
 											class=" form-control @error('house_type_id') is-invalid @enderror"
-											name="house_type_id"  autocomplete="house_type_id"
+											name="house_type_id"  autocomplete="house_type_id" required
 											autofocus>
 											<option value="">Select Housing Type</option>
 											@foreach ($house_types as $house_type)
@@ -328,7 +328,7 @@
 									<div class="form-group">
 										<label>Requested Property For Rent:</label>
 										<select id="requested_houses" class=" form-control @error('requested_houses') is-invalid @enderror"
-											name="requested_houses"  autocomplete="requested_houses"
+											name="requested_houses"  autocomplete="requested_houses" required
 											autofocus >
 											@foreach ($house_groups as $house_group)
 											<option value="{{$house_group->id}}"
@@ -351,7 +351,7 @@
 								<div class="col-md-12 group_house_field">
 									<div class="form-group">
 										<label>Group lead name:</label>
-										<input id="group_lead_name" placeholder="Group lead name" type="text"
+										<input id="group_lead_name" placeholder="Group lead name" type="text" required
 											class="form-control @error('group_lead_name') is-invalid @enderror"
 											name="group_lead_name" value="{{ old('group_lead_name',$application->group_lead_name) }}" autocomplete="group_lead_name"
 											autofocus>
@@ -365,50 +365,45 @@
 
 								<div class="col-md-6 group_house_field">
 									<div class="form-group">
-										<label>Group member name (1):</label>
-										<input id="group_member_name_1" placeholder="Group member name (1)" type="text"
-											class="form-control @error('group_member_name_1') is-invalid @enderror"
-											name="group_member_name_1" value="{{ old('group_member_name_1',$application->group_member_name_1) }}" autocomplete="group_member_name_1"
+										<label>Group member name :</label>
+										<input id="group_member_name" required placeholder="Group member name " type="text"
+											class="form-control "
+											name="group_member_name[]"  autocomplete="group_member_name"
 											autofocus>
-										@error('group_member_name_1')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
 									</div>
 								</div>
 
 								<div class="col-md-6 group_house_field">
 									<div class="form-group">
-										<label>Group member name (2):</label>
-										<input id="group_member_name_2" placeholder="Group member name (2)" type="text"
-											class="form-control @error('group_member_name_1') is-invalid @enderror"
-											name="group_member_name_2" value="{{ old('group_member_name_2',$application->group_member_name_2) }}" autocomplete="group_member_name_2"
+										<label>Group Email:</label>
+										<input id="group_member_email" placeholder="Group member Email" type="email" required
+											class="form-control "
+											name="group_member_email[]"  autocomplete="group_member_email"
 											autofocus>
-										@error('group_member_name_2')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
+										
 									</div>
 								</div>
+								<div class="col-md-12 rental-info">
 
-								<div class="col-md-6 group_house_field">
+									<div class=" rental-cont">
+
+									</div>
+
+								</div>
+
+								<div class="col-md-12 group_house_field">
 									<div class="form-group">
-										<label>Group member name (3):</label>
-										<input id="group_member_name_3" placeholder="Group member name (3)" type="text"
-											class="form-control @error('group_member_name_1') is-invalid @enderror"
-											name="group_member_name_3" value="{{ old('group_member_name_3',$application->group_member_name_3) }}" autocomplete="group_member_name_3"
-											autofocus>
-										@error('group_member_name_3')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-										@enderror
+									
+									<div class="add-more  ml-4">
+										<a href="javascript:void(0);" class="add-rental"><i class="fa fa-plus-circle"></i>
+											Add More
+											</a>
+									</div>
+									
 									</div>
 								</div>
 
-								<div class="col-md-6 group_house_field">
+								<!-- <div class="col-md-6 group_house_field">
 									<div class="form-group">
 										<label>Group member name (4):</label>
 										<input id="group_member_name_4" placeholder="Group member name (4)" type="text"
@@ -421,13 +416,15 @@
 										</span>
 										@enderror
 									</div>
-								</div>
+								</div> -->
+
+								
 
 								<div class="col-md-12 boarding_house_field">
 									<div class="form-group">
 										<label>Requested Property For Rent:</label>
 										<select id="requested_houses"
-											class=" form-control @error('requested_houses') is-invalid @enderror"
+											class=" form-control @error('requested_houses') is-invalid @enderror" 
 											name="requested_houses"  autocomplete="requested_houses"
 											autofocus >
 											@foreach ($house_boardings as $house_boardings)
@@ -449,7 +446,7 @@
 									<div class="form-group">
 										<label>Room Number:</label>
 										<select id="room_id"
-											class="form-control @error('room_id') is-invalid @enderror"
+											class="form-control @error('room_id') is-invalid @enderror" 
 											name="room_id"  autocomplete="room_id"
 											autofocus>
 
@@ -472,7 +469,7 @@
 									<div class="form-group">
 										<label>Room Type:</label>
 										<select id="room_type_id"
-											class="form-control @error('room_type_id') is-invalid @enderror"
+											class="form-control @error('room_type_id') is-invalid @enderror" 
 											name="room_type_id"  autocomplete="room_type_id"
 											autofocus>
 
@@ -498,7 +495,7 @@
 									<div class="form-group">
 									<label>Estimated amount to pay in dollars</label>
 										<input id="amount_pay_dollars" placeholder="Estimated amount to pay in dollars" type="number"
-											class="form-control @error('amount_pay_dollars') is-invalid @enderror"
+											class="form-control @error('amount_pay_dollars') is-invalid @enderror" required
 											name="amount_pay_dollars" value="{{ old('amount_pay_dollars',$application->amount_pay_dollars) }}" autocomplete="amount_pay_dollars"
 											autofocus>
 										@error('amount_pay_dollars')
@@ -523,7 +520,7 @@
 									<div class="form-group">
 										<label>Are you bringing a Car?:</label>
 										<select id="bringing_Car"
-											class=" form-control @error('bringing_Car') is-invalid @enderror"
+											class=" form-control @error('bringing_Car') is-invalid @enderror" required
 											name="bringing_Car"  autocomplete="bringing_Car"
 											autofocus>
 											
@@ -543,7 +540,7 @@
 									<div class="form-group">
 									<label>Car Make:</label>
 										<input id="car_make" placeholder="Car Make" type="text"
-											class="form-control @error('car_make') is-invalid @enderror"
+											class="form-control @error('car_make') is-invalid @enderror" 
 											name="car_make" value="{{ old('car_make',$application->car_make) }}"
 											autocomplete="car_make" autofocus>
 										@error('car_make')
@@ -558,7 +555,7 @@
 									<div class="form-group">
 									<label>Car Model:</label>
 										<input id="car_model" placeholder="Car Model" type="text"
-											class="form-control @error('car_model') is-invalid @enderror"
+											class="form-control @error('car_model') is-invalid @enderror" 
 											name="car_model" value="{{ old('car_model',$application->car_model) }}"
 											autocomplete="car_model" autofocus>
 										@error('car_model')
@@ -572,7 +569,7 @@
 								<div class="col-md-6 car_field">
 									<div class="form-group">
 									<label>Car license plate number:</label>
-										<input id="driver_license_number" placeholder="Car license plate number" type="text"
+										<input id="driver_license_number" placeholder="Car license plate number" type="text" 
 											class="form-control @error('driver_license_number') is-invalid @enderror"
 											name="driver_license_number" value="{{ old('driver_license_number',$application->driver_license_number) }}"
 											autocomplete="driver_license_number" autofocus>
@@ -587,7 +584,7 @@
 								<div class="col-md-6 car_field">
 									<div class="form-group">
 									<label>Drivers license number:</label>
-										<input id="car_license_number" placeholder="Drivers license number" type="text"
+										<input id="car_license_number" placeholder="Drivers license number" type="text" 
 											class="form-control @error('car_license_number') is-invalid @enderror"
 											name="car_license_number" value="{{ old('car_license_number',$application->car_license_number) }}"
 											autocomplete="car_license_number" autofocus>
@@ -607,7 +604,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									<label>School:</label>
-										<input id="school" placeholder="school" type="text"
+										<input id="school" placeholder="school" type="text" required
 											class="form-control @error('school') is-invalid @enderror"
 											name="school" value="{{ old('school',$application->school) }}"
 											autocomplete="school" autofocus>
@@ -622,7 +619,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									<label>Major:</label>
-										<input id="major" placeholder="major" type="text"
+										<input id="major" placeholder="major" type="text" required
 											class="form-control @error('major') is-invalid @enderror"
 											name="major" value="{{ old('major',$application->major) }}"
 											autocomplete="major" autofocus>
@@ -637,7 +634,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									<label>Graduation Year:</label>
-										<input id="graduation_year" placeholder="Graduation Year" type="text"
+										<input id="graduation_year" placeholder="Graduation Year" type="text" required
 											class="form-control @error('graduation_year') is-invalid @enderror"
 											name="graduation_year" value="{{ old('graduation_year',$application->graduation_year) }}"
 											autocomplete="graduation_year" autofocus>
@@ -652,7 +649,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									<label>GPA:</label>
-										<input id="gpa" placeholder="GPA" type="number"
+										<input id="gpa" placeholder="GPA" type="number" required
 											class="form-control @error('gpa') is-invalid @enderror"
 											name="gpa" value="{{ old('gpa',$application->gpa) }}"
 											autocomplete="gpa" autofocus>
@@ -668,7 +665,7 @@
 									<div class="form-group">
 										<label>Chapters:</label>
 										<select id="chapter_id"
-											class="form-control @error('chapter_id') is-invalid @enderror"
+											class="form-control @error('chapter_id') is-invalid @enderror" required
 											name="chapter_id"  autocomplete="chapter_id"
 											autofocus>
 
@@ -691,7 +688,7 @@
 									<div class="form-group">
 										<label>Preferred payment schedule:</label>
 										<select id="payment_method_id"
-											class="form-control @error('payment_method_id') is-invalid @enderror"
+											class="form-control @error('payment_method_id') is-invalid @enderror" required
 											name="payment_method_id"  autocomplete="payment_method_id"
 											autofocus>
 
@@ -714,7 +711,7 @@
 									<div class="form-group">
 										<label>Who is paying the rent ?</label>
 										<select id="paying_rent_id"
-											class="form-control @error('paying_rent_id') is-invalid @enderror"
+											class="form-control @error('paying_rent_id') is-invalid @enderror" required
 											name="paying_rent_id"  autocomplete="paying_rent_id"
 											autofocus>
 
@@ -742,13 +739,13 @@
 								<div class="col-md-12">
 									<div class="form-group">
 									<div class="form-check form-check-inline">
-										<input   @if($application->register_vote==1) checked @endif class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_yes" value="1" >
+										<input   @if($application->register_vote==1) checked @endif class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_yes" value="1"  required>
 										<label class="form-check-label" for="vote_yes">
 										Yes
 										</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input   @if($application->register_vote==0) checked @endif  class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_no" value="0">
+										<input   @if($application->register_vote==0) checked @endif  class="form-check-input @error('register_vote') is-invalid @enderror" type="radio" name="register_vote" id="vote_no" value="0" required>
 										<label class="form-check-label" for="vote_no">
 										No
 										</label>
@@ -815,13 +812,20 @@
 		if(value_house_type==1){
 			$('.group_house_field').show();
 			$('.boarding_house_field').hide();
+
+			$(".boarding_house_field").attr("required", false);
+			$(".group_house_field").attr("required", true);
 		}else if(value_house_type==2){
 			
 			$('.group_house_field').hide();
 			$('.boarding_house_field').show();
+			$(".boarding_house_field").attr("required", true);
+			$(".group_house_field").attr("required", false);
 		}else{
 			$('.group_house_field').hide();
 			$('.boarding_house_field').hide();
+			$(".boarding_house_field").attr("required", false);
+			$(".group_house_field").attr("required", false);
 		}
 
 
@@ -830,10 +834,15 @@
 		if(value==1){
 			$('.group_house_field').show();
 			$('.boarding_house_field').hide();
+			$(".boarding_house_field").attr("required", false);
+			$(".group_house_field").attr("required", true);
 		}else if(value==2){
 			
 			$('.group_house_field').hide();
 			$('.boarding_house_field').show();
+
+			$(".boarding_house_field").attr("required", true);
+			$(".group_house_field").attr("required", false);
 		}
 	});
 	</script>
@@ -842,13 +851,20 @@
 		if(value_house_type==1){
 			$('.group_house_field').show();
 			$('.boarding_house_field').hide();
+			$(".boarding_house_field").attr("required", false);
+			$(".group_house_field").attr("required", true);
 		}else if(value_house_type==2){
 			
 			$('.group_house_field').hide();
 			$('.boarding_house_field').show();
+
+			$(".boarding_house_field").attr("required", true);
+			$(".group_house_field").attr("required", false);
 		}else{
 			$('.group_house_field').hide();
 			$('.boarding_house_field').hide();
+			$(".boarding_house_field").attr("required", false);
+			$(".group_house_field").attr("required", false);
 		}
 
 
@@ -859,12 +875,21 @@
 			$('.boarding_house_field').hide();
 			$('.boarding_house_field input').val();
 			$('.boarding_house_field select').val();
+			$(".boarding_house_field input").attr("required", false);
+			$(".boarding_house_field select").attr("required", false);
+			$(".group_house_field select").attr("required", true);
+			$(".group_house_field input").attr("required", true);
 		}else if(value==2){
 			
 			$('.group_house_field').hide();
 			$('.group_house_field input').val('');
 			$('.group_house_field select').val('');
 			$('.boarding_house_field').show();
+
+			$(".boarding_house_field input").attr("required", true);
+			$(".boarding_house_field select").attr("required", true);
+			$(".group_house_field select").attr("required", false);
+			$(".group_house_field input").attr("required", false);
 		}
 	});
 	</script>
@@ -873,33 +898,90 @@
 		bringing_Car=$('#bringing_Car').val();
 		if(bringing_Car==1){
 			$('.car_field').show();
+			$(".car_field input").attr("required", true);
+			$(".car_field select").attr("required", true);
 		}else{
 			$('.car_field').hide();
 			$('.car_field input').val('');
 			$('.car_field select').val('');
+			$(".car_field select").attr("required", false);
+			$(".car_field input").attr("required", false);
 		}
 		$('#bringing_Car').on('change', function() {
 			value=$(this).val();
 			if(value==1){
+				$(".car_field select").attr("required", false);
+				$(".car_field input").attr("required", false);
 				$('.car_field').show();
 			}else{
 				$('.car_field').hide();
 				$('.car_field input').val('');
+				$(".car_field input").attr("required", true);
+				$(".car_field select").attr("required", true);
 				$('.car_field select').val('');
+				
 			}
 		});
 	</script>
 	<script>
-	$('document').ready(function()
-	{
-		$('textarea').each(function(){
-				value=$(this).val();
-				if(value.length > 0)
-					$(this).val($(this).val().trim());
-				}
-			);
-	});
+		$('document').ready(function()
+		{
+			$('textarea').each(function(){
+					value=$(this).val();
+					if(value.length > 0)
+						$(this).val($(this).val().trim());
+					}
+				);
+		});
 	</script>
+
+
+
+
+
+
+<script>
+		$(".rental-info").on('click','.trash', function () {
+			$(this).closest('.rental-cont').remove();
+			return false;
+    	});
+
+    $(".add-rental").on('click', function () {
+		
+		
+									
+										
+										
+									
+		
+		var rentalcontent ='<div class="col-md-12 form-row rental-cont">' +
+		 '<div class="col-md-5 group_house_field">' +
+		'<div class="form-group">'+
+		'<label>Group member name :</label>'+
+		'<input id="group_member_name" required placeholder="Group member name " type="text" class="form-control @error('group_member_name') is-invalid @enderror" name="group_member_name[]"  autocomplete="group_member_name" autofocus>'+
+		'</div>'+
+		'</div>'+
+
+		
+									
+		'<div class="col-md-5 group_house_field">'+
+		'<div class="form-group">'+
+		'<label>Group Email:</label>'+
+		'<input id="group_member_email" required placeholder="Group member Email" type="email" class="form-control " name="group_member_email[]"  autocomplete="group_member_email" autofocus>'+
+		'</div>'+
+		'</div>'+
+		'<div class="col-12 col-md-2 mb-2 group_house_field "><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="#" class="btn btn-danger trash"><i class="fa fa-trash"></i></a></div>' +
+		'</div>'
+		;
+		
+        $(".rental-info").append(rentalcontent);
+        return false;
+		
+    });
+
+	</script>
+
+
 
 </body>
 
