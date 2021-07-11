@@ -1239,13 +1239,11 @@
 
 	<script>
     $('#form-popup-login').submit(function(e){
-		alert('run');
         e.preventDefault();
         var url = $(this).attr("action");
         var postdata = $(this).serialize();
         var request = $.post(url, postdata, formpostcompleted, "json");
         function formpostcompleted(data, status) {
-			console.log(data);
 			if(data==1)
 			{
 				$('#emailMessage').empty();
@@ -1263,7 +1261,7 @@
 				alert($emailMessage);
 				$('#emailMessage').append($emailMessage);
 				$('#passwordMessage').append($passwordMessage);
-				alert(-1);
+				
 			}
            
 

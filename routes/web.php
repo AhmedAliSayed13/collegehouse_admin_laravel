@@ -71,7 +71,7 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
     Route::get('/change-password',[App\Http\Controllers\TenantController::class,'showChangePassword'])->name('tenant.changepassword');
     Route::post('/change-password-save',[App\Http\Controllers\TenantController::class,'ChangePasswordSave'])->name('tenant.changepassword.save');
     
-    // Route::get('/group/create',[App\Http\Controllers\tennat\GroupController::class,'createGroup'])->name('tenant.create-group');
+    Route::get('/group/create',[App\Http\Controllers\tennat\GroupController::class,'createGroup'])->name('tenant.create-group');
     
 });
 

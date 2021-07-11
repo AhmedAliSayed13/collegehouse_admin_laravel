@@ -40,7 +40,7 @@ class ApplicationController extends Controller
         if (empty($request->session()->get('groups'))) {
             $application = $request->session()->get('groups');
             $request->session()->put('groups', $groups);
-        } 
+        }
 
         
         $genders=Gender::all();
