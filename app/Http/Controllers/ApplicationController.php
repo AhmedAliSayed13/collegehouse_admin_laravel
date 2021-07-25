@@ -143,6 +143,10 @@ class ApplicationController extends Controller
             $application = $request->session()->get('application');
             $application->fill($validatedData);
             $application->register_vote=$request->register_vote;
+            $application->group_member_email_1=$request->group_member_email_1;
+            $application->group_member_email_2=$request->group_member_email_2;
+            $application->group_member_email_3=$request->group_member_email_3;
+            $application->group_member_email_4=$request->group_member_email_4;
             $request->session()->put('application', $application);
             // $groups =[];
             // $request->session()->forget('groups');
@@ -158,8 +162,8 @@ class ApplicationController extends Controller
 
 
         }
-         //return redirect()->route('step2');
-        print_r($application);
+         return redirect()->route('step2');
+        //print_r($application);
     }
 
     public function createStep2(Request $request)
