@@ -225,6 +225,7 @@
 
 									</div>
 								</div>
+
 								<div class="col-md-6">
 									<div class="form-group">
 									<label>Address 2</label>
@@ -264,6 +265,7 @@
 
 									</div>
 								</div>
+
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>State:</label>
@@ -286,6 +288,7 @@
 
 									</div>
 								</div>
+
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Zip Code:</label>
@@ -301,6 +304,7 @@
 
 									</div>
 								</div>
+
 								<div class="col-md-12">
 									<div class="form-group">
 										<label>Requested Housing Type:</label>
@@ -348,6 +352,7 @@
 								<div class="col-md-12 group_house_field">
 									<h4 class="d-block mt-4">Group Members:</h4>
 								</div>
+
 								<div class="col-md-12 group_house_field">
 									<div class="form-group">
 										<label>Group lead name:</label>
@@ -362,51 +367,7 @@
 										@enderror
 									</div>
 								</div>
-								@if(!empty($groups))
-								@foreach($groups as $group)
-								<div class="col-md-6 group_house_field">
-									<div class="form-group">
-										<label>Group member name :</label>
-										<input id="group_member_name" required placeholder="Group member name " type="text" value="{{$groups[0]->name}}"
-											class="form-control "
-											name="group_member_name[]"  autocomplete="group_member_name"
-											autofocus>
-									</div>
-								</div>
-
-								<div class="col-md-6 group_house_field">
-									<div class="form-group">
-										<label>Group Email:</label>
-										<input id="group_member_email" value="{{$group->email}}" placeholder="Group member Email" type="email" required
-											class="form-control "
-											name="group_member_email[]"  autocomplete="group_member_email"
-											autofocus>
-										
-									</div>
-								</div>
-								@endforeach
-								@else
-									<div class="col-md-6 group_house_field">
-										<div class="form-group">
-											<label>Group member name :</label>
-											<input id="group_member_name" required placeholder="Group member name " type="text"
-												class="form-control "
-												name="group_member_name[]"  autocomplete="group_member_name"
-												autofocus>
-										</div>
-									</div>
-
-									<div class="col-md-6 group_house_field">
-										<div class="form-group">
-											<label>Group Email:</label>
-											<input id="group_member_email" placeholder="Group member Email" type="email" required
-												class="form-control "
-												name="group_member_email[]"  autocomplete="group_member_email"
-												autofocus>
-											
-										</div>
-									</div>
-								@endif
+								
 								<div class="col-md-12 rental-info">
 
 									<div class=" rental-cont">
@@ -515,6 +476,7 @@
 								<div class="col-md-12">
 									<h4 class="d-block mt-4">Estimated amount you are prepared to pay per person (without utilities):</h4>
 								</div>
+								
 								<div class="col-md-12">
 									<div class="form-group">
 									<label>Estimated amount to pay in dollars</label>

@@ -31,16 +31,18 @@ class ApplicationController extends Controller
         if (empty($request->session()->get('application'))) {
             $application = new Application();
             $request->session()->put('application', $application);
-        } else {
+        }else{
+            $application = new Application();
             $application = $request->session()->get('application');
+            $request->session()->put('application', $application);
             $request->session()->put('application', $application);
         }
 
-        $groups=NULL;
-        if (empty($request->session()->get('groups'))) {
-            $application = $request->session()->get('groups');
-            $request->session()->put('groups', $groups);
-        }
+        // $groups=NULL;
+        // if (empty($request->session()->get('groups'))) {
+        //     $application = $request->session()->get('groups');
+        //     $request->session()->put('groups', $groups);
+        // }
 
         
         $genders=Gender::all();
@@ -54,7 +56,7 @@ class ApplicationController extends Controller
         $chapters=Chapter::all();
         $payment_methods=Payment_method::all();
         $paying_rents=Paying_rent::all();
-        return view('application.step1', compact('application','genders','citys','states','house_types','house_groups','house_boardings','room_types','rooms','chapters','payment_methods','paying_rents','groups'));
+        return view('application.step1', compact('application','genders','citys','states','house_types','house_groups','house_boardings','room_types','rooms','chapters','payment_methods','paying_rents'));
     }
 
     public function PostcreateStep1(Request $request)
