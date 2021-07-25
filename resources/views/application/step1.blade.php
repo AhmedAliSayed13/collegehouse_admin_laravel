@@ -368,15 +368,9 @@
 									</div>
 								</div>
 								
-								<div class="col-md-12 rental-info">
+								
 
-									<div class=" rental-cont">
-
-									</div>
-
-								</div>
-
-								<div class="col-md-12 group_house_field">
+								<!-- <div class="col-md-12 group_house_field">
 									<div class="form-group">
 									
 									<div class="add-more  ml-4">
@@ -386,23 +380,71 @@
 									</div>
 									
 									</div>
-								</div>
+								</div> -->
 
-								<!-- <div class="col-md-6 group_house_field">
+								<div class="col-md-6 group_house_field">
 									<div class="form-group">
-										<label>Group member name (4):</label>
-										<input id="group_member_name_4" placeholder="Group member name (4)" type="text"
-											class="form-control @error('group_member_name_1') is-invalid @enderror"
-											name="group_member_name_4" value="{{ old('group_member_name_4',$application->group_member_name_4) }}" autocomplete="group_member_name_4"
+										<label>Group member email (1):</label>
+										<input id="group_member_email_1" placeholder="Group member email (1)" type="email"
+											class="form-control @error('group_member_email_1') is-invalid @enderror"
+											name="group_member_email_1" value="{{ $application->group_member_email_1 }}" autocomplete="group_member_email_1"
 											autofocus>
-										@error('group_member_name_4')
+										@error('group_member_email_1')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
 										</span>
 										@enderror
 									</div>
-								</div> -->
+								</div>
 
+								<div class="col-md-6 group_house_field">
+									<div class="form-group">
+										<label>Group member email (2):</label>
+										<input id="group_member_email_2" placeholder="Group member email (2)" type="email"
+											class="form-control @error('group_member_email_2') is-invalid @enderror"
+											name="group_member_email_2" value="{{ old('group_member_email_2',$application->group_member_email_2) }}" autocomplete="group_member_email_2"
+											autofocus>
+										@error('group_member_email_2')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+
+								<div class="col-md-6 group_house_field">
+									<div class="form-group">
+										<label>Group member email (3):</label>
+										<input id="group_member_email_3" placeholder="Group member email (3)" type="email"
+											class="form-control @error('group_member_email_3') is-invalid @enderror"
+											name="group_member_email_3" value="{{ old('group_member_email_3',$application->group_member_email_3) }}" autocomplete="group_member_email_3"
+											autofocus>
+										@error('group_member_email_3')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+
+								<div class="col-md-6 group_house_field">
+									<div class="form-group">
+										<label>Group member email (4):</label>
+										<input id="group_member_email_4" placeholder="Group member email (4)" type="email"
+											class="form-control @error('group_member_email_4') is-invalid @enderror"
+											name="group_member_email_4" value="{{ old('group_member_email_4',$application->group_member_email_4) }}" autocomplete="group_member_email_4"
+											autofocus>
+										@error('group_member_email_4')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+								
+
+								
 								
 
 								<div class="col-md-12 boarding_house_field">

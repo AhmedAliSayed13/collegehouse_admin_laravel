@@ -35,14 +35,9 @@ class ApplicationController extends Controller
             $application = new Application();
             $application = $request->session()->get('application');
             $request->session()->put('application', $application);
-            $request->session()->put('application', $application);
         }
 
-        // $groups=NULL;
-        // if (empty($request->session()->get('groups'))) {
-        //     $application = $request->session()->get('groups');
-        //     $request->session()->put('groups', $groups);
-        // }
+        
 
         
         $genders=Gender::all();
@@ -93,10 +88,10 @@ class ApplicationController extends Controller
         if($request->house_type_id==1){
             $arr2=array(
                 'group_lead_name' => ['required', 'string'],
-                'group_member_name.*' => ['required','string'],
-                'group_member_email.*' => ['required','email'],
-                // 'group_member_name_3' => ['required','string'],
-                // 'group_member_name_4' => ['required','string']
+                'group_member_email_1' => ['required','email'],
+                'group_member_email_2' => ['required','email'],
+                'group_member_email_3' => ['required','email'],
+                'group_member_email_4' => ['required','email'],
                 
             );
         }elseif($request->house_type_id==2){
@@ -122,21 +117,26 @@ class ApplicationController extends Controller
 
         if(empty($request->session()->get('application'))){
             $application = new Application();
-            $application->fill($validatedData);
-            $application->register_vote=$request->register_vote;
-            $request->session()->put('application', $application);
-            $request->session()->forget('groups');
-            $groups =[];
             
-            for($i=0;count($request->group_member_name)>$i;$i++){
-                $group=new Group();
-                $group->name=$request->group_member_name[$i];
-                $group->email=$request->group_member_email[$i];
+            $application->register_vote=$request->register_vote;
+            $application->group_member_email_1=$request->group_member_email_1;
+            $application->group_member_email_2=$request->group_member_email_2;
+            $application->group_member_email_3=$request->group_member_email_3;
+            $application->group_member_email_4=$request->group_member_email_4;
+            $application->fill($validatedData);
+            $request->session()->put('application', $application);
+            // $request->session()->forget('groups');
+            // $groups =[];
+            
+            // for($i=0;count($request->group_member_name)>$i;$i++){
+            //     $group=new Group();
+            //     $group->name=$request->group_member_name[$i];
+            //     $group->email=$request->group_member_email[$i];
                 
-                $groups[$i]=$group;
+            //     $groups[$i]=$group;
 
-            }
-            $request->session()->put('groups', $groups);
+            // }
+            // $request->session()->put('groups', $groups);
 
 
         }else{
@@ -144,22 +144,22 @@ class ApplicationController extends Controller
             $application->fill($validatedData);
             $application->register_vote=$request->register_vote;
             $request->session()->put('application', $application);
-            $groups =[];
-            $request->session()->forget('groups');
-            for($i=0;count($request->group_member_name)>$i;$i++){
-                $group=new Group();
-                $group->name=$request->group_member_name[$i];
-                $group->email=$request->group_member_email[$i];
+            // $groups =[];
+            // $request->session()->forget('groups');
+            // for($i=0;count($request->group_member_name)>$i;$i++){
+            //     $group=new Group();
+            //     $group->name=$request->group_member_name[$i];
+            //     $group->email=$request->group_member_email[$i];
                 
-                $groups[$i]=$group;
+            //     $groups[$i]=$group;
 
-            }
-            $request->session()->put('groups', $groups);
+            // }
+            // $request->session()->put('groups', $groups);
 
 
         }
-         return redirect()->route('step2');
-        //print_r($application);
+         //return redirect()->route('step2');
+        print_r($application);
     }
 
     public function createStep2(Request $request)

@@ -57,10 +57,10 @@ class CreateApplicationsTable extends Migration
             $table->string('car_license_number')->nullable();
             $table->string('requested_property')->nullable();
             $table->string('group_lead_name')->nullable();
-            $table->string('group_member_name_1')->nullable();
-            $table->string('group_member_name_2')->nullable();
-            $table->string('group_member_name_3')->nullable();
-            $table->string('group_member_name_4')->nullable();
+            $table->string('group_member_email_1')->nullable();
+            $table->string('group_member_email_2')->nullable();
+            $table->string('group_member_email_3')->nullable();
+            $table->string('group_member_email_4')->nullable();
             $table->boolean('register_vote')->defult(1);
             $table->boolean('both_parents_signing');
             $table->bigInteger('parent_information2_id')->unsigned();
