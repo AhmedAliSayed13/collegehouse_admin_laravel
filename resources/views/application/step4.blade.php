@@ -272,7 +272,7 @@
 
 								<div class="col-md-6">
 									<div class="form-group">
-										<label>Your Position:</label>
+										<label>Your position:</label>
 										<input id="position" type="text" placeholder="position" required
 											class="form-control @error('position') is-invalid @enderror"
 											name="position[]" value="{{ old('position',$employment->position) }}"
@@ -598,7 +598,7 @@
 
 								<div class="col-md-6">
 									<div class="form-group">
-										<label>Your Position:</label>
+										<label>Your position:</label>
 										<input id="position" type="text" placeholder="position" required
 											class="form-control @error('position') is-invalid @enderror"
 											name="position[]" value="{{ old('position') }}" autocomplete="position"
@@ -938,7 +938,7 @@
 		@endforeach
 		rentalcontent=rentalcontent+'</select></div></div>'+
 		'<div class="col-md-3"><div class="form-group"><label>Zip Code:</label><input id="zip" placeholder="Zip Code" type="text" required class="form-control " name="zip[]"  autocomplete="zip" autofocus></div></div>'+
-		'<div class="col-md-6"><div class="form-group"><label>Your Position:</label><input id="position" type="text" placeholder="position" required class="form-control " name="position[]"  autocomplete="position" autofocus></div></div>'+
+		'<div class="col-md-6"><div class="form-group"><label>Your position:</label><input id="position" type="text" placeholder="position" required class="form-control " name="position[]"  autocomplete="position" autofocus></div></div>'+
 		'<div class="col-md-6"><div class="form-group"><label>Monthly gross salary:</label><input id="monthly_gross_salary" type="number" placeholder="Monthly gross salary" required class="form-control " name="monthly_gross_salary[]"  autocomplete="monthly_gross_salary" autofocus></div></div>'+
 		
 		'<div class="col-md-12"><h4 class="d-block mt-4">Employment Dates:</h4></div>'+

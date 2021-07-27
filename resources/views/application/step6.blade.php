@@ -215,41 +215,41 @@
 												</tr>
 												<tr>
 													<td>
-														Group member name (1)
+														Group member email (1)
 
 													</td>
 													<td>
-														{{$application->group_member_name_1}}
+														{{$application->group_member_email_1}}
 													</td>
 													
 												</tr>
 												<tr>
 													<td>
-														Group member name (2)
+														Group member email (2)
 
 													</td>
 													<td>
-														{{$application->group_member_name_2}}
+														{{$application->group_member_email_2}}
 													</td>
 													
 												</tr>
 												<tr>
 													<td>
-														Group member name (3)
+														Group member email (3)
 
 													</td>
 													<td>
-														{{$application->group_member_name_3}}
+														{{$application->group_member_email_3}}
 													</td>
 													
 												</tr>
 												<tr>
 													<td>
-														Group member name (4)
+														Group member email (4)
 
 													</td>
 													<td>
-														{{$application->group_member_name_4}}
+														{{$application->group_member_email_4}}
 													</td>
 													
 												</tr>
@@ -550,7 +550,7 @@
 
 													</td>
 													<td>
-														{{$parent_information_1->Position}}
+														{{$parent_information_1->position}}
 													</td>
 													
 												</tr>
@@ -669,7 +669,7 @@
 
 													</td>
 													<td>
-														{{$parent_information_2->Position}}
+														{{$parent_information_2->position}}
 													</td>
 													
 												</tr>
@@ -1127,13 +1127,13 @@
 								<div class="col-lg-12 float-right">
 									
 
-									@if (!Auth::guest())
+									{{-- @if (!Auth::guest()) --}}
 									<button type="submit" class="btn btn-success float-right" id="id-form1">
 										 Submit
 									</button>
-									@else
+									{{-- @else
 									<a href="#Add_Specialities_details" data-toggle="modal" class="btn btn-primary float-right mt-2">Login</a>
-									@endif
+									@endif --}}
 									<a href="{{route('step1')}}" class="btn btn-info float-left">
 										Edit <i class="fa fa-edit"></i>
 									</a>

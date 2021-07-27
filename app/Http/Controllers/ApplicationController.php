@@ -37,9 +37,6 @@ class ApplicationController extends Controller
             $request->session()->put('application', $application);
         }
 
-        
-
-        
         $genders=Gender::all();
         $citys=City::all();
         $states=State::all();
@@ -110,6 +107,7 @@ class ApplicationController extends Controller
                 'car_license_number' => ['required', 'string']
             );
         }
+
         $arr=$arr1+$arr2+$arr3;
         $validatedData = $request->validate($arr);
 
@@ -140,6 +138,7 @@ class ApplicationController extends Controller
 
 
         }else{
+            
             $application = $request->session()->get('application');
             $application->fill($validatedData);
             $application->register_vote=$request->register_vote;
@@ -210,7 +209,7 @@ class ApplicationController extends Controller
             'email' => ['required', 'email'],
             'phone' => ['required', 'string'],
             'place_employment' => ['required','string'],
-            'Position' => ['required','string'],
+            'position' => ['required','string'],
             'first_name_2' => ['required', 'string'],
             'last_name_2' => ['required', 'string'],
             'address1_2' => ['required', 'string'],
@@ -221,7 +220,7 @@ class ApplicationController extends Controller
             'phone_2' => ['required', 'string'],
             'zip_2' => ['required', 'string'],
             'place_employment_2' => ['required','string'],
-            'Position_2' => ['required','string']
+            'position_2' => ['required','string']
         );
         if($request->both_parents_signing==1){
             $arr2=array(
@@ -259,6 +258,7 @@ class ApplicationController extends Controller
             $parent_information_1 = $request->session()->get('parent_information_1');
             $parent_information_2 = $request->session()->get('parent_information_2');
         }
+
         $parent_information_1->first_name=$request->first_name;
         $parent_information_1->last_name=$request->last_name;
         $parent_information_1->address1=$request->address1;
@@ -268,9 +268,9 @@ class ApplicationController extends Controller
         $parent_information_1->zip =$request->zip ;
         $parent_information_1->phone =$request->phone ;
         $parent_information_1->email =$request->email ;
-        $parent_information_1->Position =$request->Position ;
+        $parent_information_1->position =$request->position ;
         $parent_information_1->place_employment =$request->place_employment ;
-
+        $parent_information_1->save();
 
         $parent_information_2->first_name=$request->first_name_2;
         $parent_information_2->last_name=$request->last_name_2;
@@ -281,8 +281,10 @@ class ApplicationController extends Controller
         $parent_information_2->zip =$request->zip_2 ;
         $parent_information_2->phone =$request->phone_2 ;
         $parent_information_2->email  =$request->email_2  ;
-        $parent_information_2->Position =$request->Position_2 ;
+        $parent_information_2->position =$request->position_2 ;
         $parent_information_2->place_employment =$request->place_employment_2 ;
+        $parent_information_2->save();
+
 
         $request->session()->put('parent_information_1', $parent_information_1);
         $request->session()->put('parent_information_2', $parent_information_2);

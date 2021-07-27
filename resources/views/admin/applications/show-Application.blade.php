@@ -636,7 +636,7 @@
 
 																	</td>
 																	<td>
-																		{{$parent_information_1->Position}}
+																		{{$parent_information_1->position}}
 																	</td>
 
 																</tr>
@@ -755,7 +755,7 @@
 
 																	</td>
 																	<td>
-																		{{$parent_information_2->Position}}
+																		{{$parent_information_2->position}}
 																	</td>
 
 																</tr>

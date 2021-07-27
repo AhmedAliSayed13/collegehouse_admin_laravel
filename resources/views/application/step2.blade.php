@@ -323,12 +323,12 @@
 
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Position:</label>
-											<input id="Position" type="text" placeholder="Position"
-												class="form-control @error('Position') is-invalid @enderror"
-												name="Position" value="{{ old('Position',$parent_information_1->Position) }}" autocomplete="Position"
+											<label>position:</label>
+											<input id="position" type="text" placeholder="position"
+												class="form-control @error('position') is-invalid @enderror"
+												name="position" value="{{ old('position',$parent_information_1->position) }}" autocomplete="position"
 												autofocus>
-												@error('Position')
+												@error('position')
 												<span class="invalid-feedback" role="alert">
 													<strong>{{ $message }}</strong>
 												</span>
@@ -520,12 +520,12 @@
 
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Position:</label>
-											<input id="Position_2" type="text" placeholder="Position"
-												class="form-control @error('Position_2') is-invalid @enderror"
-												name="Position_2" value="{{ old('Position_2',$parent_information_2->Position) }}" autocomplete="Position_2"
+											<label>position:</label>
+											<input id="position_2" type="text" placeholder="position"
+												class="form-control @error('position_2') is-invalid @enderror"
+												name="position_2" value="{{ old('position_2',$parent_information_2->position) }}" autocomplete="position_2"
 												autofocus>
-												@error('Position_2')
+												@error('position_2')
 												<span class="invalid-feedback" role="alert">
 													<strong>{{ $message }}</strong>
 												</span>

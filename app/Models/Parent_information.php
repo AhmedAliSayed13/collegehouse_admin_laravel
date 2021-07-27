@@ -13,7 +13,17 @@ class Parent_information extends Model
      * @var array
      */
     protected $fillable = [ 
-        'first_name', 'last_name', 'address1', 'address2', 'city_id', 'state_id', 'zip', 'phone', 'email', 'Position', 'place_employment'
+        'first_name', 
+        'last_name', 
+        'address1', 
+        'address2', 
+        'city_id', 
+        'state_id', 
+        'zip', 
+        'phone', 
+        'email', 
+        'position', 
+        'place_employment'
          
         ];
 

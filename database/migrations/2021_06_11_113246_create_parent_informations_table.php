@@ -26,7 +26,7 @@ class CreateParentInformationsTable extends Migration
             $table->string('zip');
             $table->string('phone');
             $table->string('email');
-            $table->string('Position');
+            $table->string('position');
             $table->string('place_employment');
             $table->timestamps();
         });
