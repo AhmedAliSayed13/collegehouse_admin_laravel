@@ -26,15 +26,12 @@ class ApplicationController extends Controller
 
     public function createStep1(Request $request)
     {
-        $application=NULL;
+        $application=new Application();
         
         if (empty($request->session()->get('application'))) {
-            $application = new Application();
             $request->session()->put('application', $application);
         }else{
-            $application = new Application();
             $application = $request->session()->get('application');
-            $request->session()->put('application', $application);
         }
 
         $genders=Gender::all();
@@ -48,6 +45,7 @@ class ApplicationController extends Controller
         $chapters=Chapter::all();
         $payment_methods=Payment_method::all();
         $paying_rents=Paying_rent::all();
+        //return $application;
         return view('application.step1', compact('application','genders','citys','states','house_types','house_groups','house_boardings','room_types','rooms','chapters','payment_methods','paying_rents'));
     }
 
@@ -112,9 +110,9 @@ class ApplicationController extends Controller
         $validatedData = $request->validate($arr);
 
         
-
+        $application = new Application();
         if(empty($request->session()->get('application'))){
-            $application = new Application();
+            
             
             $application->register_vote=$request->register_vote;
             $application->group_member_email_1=$request->group_member_email_1;
@@ -123,22 +121,7 @@ class ApplicationController extends Controller
             $application->group_member_email_4=$request->group_member_email_4;
             $application->fill($validatedData);
             $request->session()->put('application', $application);
-            // $request->session()->forget('groups');
-            // $groups =[];
-            
-            // for($i=0;count($request->group_member_name)>$i;$i++){
-            //     $group=new Group();
-            //     $group->name=$request->group_member_name[$i];
-            //     $group->email=$request->group_member_email[$i];
-                
-            //     $groups[$i]=$group;
-
-            // }
-            // $request->session()->put('groups', $groups);
-
-
         }else{
-            
             $application = $request->session()->get('application');
             $application->fill($validatedData);
             $application->register_vote=$request->register_vote;
@@ -147,44 +130,22 @@ class ApplicationController extends Controller
             $application->group_member_email_3=$request->group_member_email_3;
             $application->group_member_email_4=$request->group_member_email_4;
             $request->session()->put('application', $application);
-            // $groups =[];
-            // $request->session()->forget('groups');
-            // for($i=0;count($request->group_member_name)>$i;$i++){
-            //     $group=new Group();
-            //     $group->name=$request->group_member_name[$i];
-            //     $group->email=$request->group_member_email[$i];
-                
-            //     $groups[$i]=$group;
-
-            // }
-            // $request->session()->put('groups', $groups);
-
-
         }
          return redirect()->route('step2');
-        //print_r($application);
+         //return($application);
     }
 
     public function createStep2(Request $request)
     {
         $application = $request->session()->get('application');
-
-        $parent_information_1=NULL;
-        if (empty($request->session()->get('parent_information_1'))) {
-            $parent_information_1 = new Parent_information();
-            $request->session()->put('parent_information_1', $parent_information_1);
-        } else {
+        $parent_information_1 = new Parent_information();
+        if (!empty($request->session()->get('parent_information_1'))) {
             $parent_information_1 = $request->session()->get('parent_information_1');
-            $request->session()->put('parent_information_1', $parent_information_1);
         }
 
-        $parent_information_2=NULL;
-        if(empty($request->session()->get('parent_information_2'))) {
-            $parent_information_2 = new Parent_information();
-            $request->session()->put('parent_information_2', $parent_information_2);
-        }else {
+        $parent_information_2 = new Parent_information();
+        if(!empty($request->session()->get('parent_information_2'))) {
             $parent_information_2 = $request->session()->get('parent_information_2');
-            $request->session()->put('parent_information_2', $parent_information_2);
         }
          $reason_sign_parents=Reason_sign_parent::all();
          $citys=City::all();
@@ -238,8 +199,8 @@ class ApplicationController extends Controller
         $validatedData = $request->validate($arr);
 
         $application="";
-        $parent_information_1="";
-        $parent_information_2="";
+        $parent_information_1 = new Parent_information();
+        $parent_information_2 = new Parent_information();
         if(empty($request->session()->get('application'))){
             redirect()->route('step1');
         }else{
@@ -251,14 +212,12 @@ class ApplicationController extends Controller
         }
 
 
-        if(empty($request->session()->get('parent_information_2'))){
-            $parent_information_1 = new Parent_information();
-            $parent_information_2 = new Parent_information();
-        }else{
-            $parent_information_1 = $request->session()->get('parent_information_1');
-            $parent_information_2 = $request->session()->get('parent_information_2');
+        if(!empty($request->session()->get('parent_information_2'))){
+            // $parent_information_1 = $request->session()->get('parent_information_1');
+            // $parent_information_2 = $request->session()->get('parent_information_2');
         }
-
+        $parent_information_1 = new Parent_information();
+        $parent_information_2 = new Parent_information();
         $parent_information_1->first_name=$request->first_name;
         $parent_information_1->last_name=$request->last_name;
         $parent_information_1->address1=$request->address1;
@@ -524,9 +483,9 @@ class ApplicationController extends Controller
             $employment->application_id=$application->id;
             $employment->save();
         }
-        $request->session()->flush();
+        //$request->session()->flush();
 
-        return redirect()->route('step1');
+        return redirect()->route('step6');
 
     }
     
