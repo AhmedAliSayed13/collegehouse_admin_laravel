@@ -215,40 +215,40 @@ class ApplicationController extends Controller
         if(!empty($request->session()->get('parent_information_2'))){
             // $parent_information_1 = $request->session()->get('parent_information_1');
             // $parent_information_2 = $request->session()->get('parent_information_2');
+       
+            $parent_information_1 = new Parent_information();
+            $parent_information_2 = new Parent_information();
+            $parent_information_1->first_name=$request->first_name;
+            $parent_information_1->last_name=$request->last_name;
+            $parent_information_1->address1=$request->address1;
+            $parent_information_1->address2=$request->address2;
+            $parent_information_1->city_id =$request->city_id ;
+            $parent_information_1->state_id  =$request->state_id  ;
+            $parent_information_1->zip =$request->zip ;
+            $parent_information_1->phone =$request->phone ;
+            $parent_information_1->email =$request->email ;
+            $parent_information_1->position =$request->position ;
+            $parent_information_1->place_employment =$request->place_employment ;
+            //$parent_information_1->save();
+
+            $parent_information_2->first_name=$request->first_name_2;
+            $parent_information_2->last_name=$request->last_name_2;
+            $parent_information_2->address1=$request->address1_2;
+            $parent_information_2->address2=$request->address2_2;
+            $parent_information_2->city_id =$request->city_id_2 ;
+            $parent_information_2->state_id =$request->city_id_2 ;
+            $parent_information_2->zip =$request->zip_2 ;
+            $parent_information_2->phone =$request->phone_2 ;
+            $parent_information_2->email  =$request->email_2  ;
+            $parent_information_2->position =$request->position_2 ;
+            $parent_information_2->place_employment =$request->place_employment_2;
+            //$parent_information_2->save();
         }
-        $parent_information_1 = new Parent_information();
-        $parent_information_2 = new Parent_information();
-        $parent_information_1->first_name=$request->first_name;
-        $parent_information_1->last_name=$request->last_name;
-        $parent_information_1->address1=$request->address1;
-        $parent_information_1->address2=$request->address2;
-        $parent_information_1->city_id =$request->city_id ;
-        $parent_information_1->state_id  =$request->state_id  ;
-        $parent_information_1->zip =$request->zip ;
-        $parent_information_1->phone =$request->phone ;
-        $parent_information_1->email =$request->email ;
-        $parent_information_1->position =$request->position ;
-        $parent_information_1->place_employment =$request->place_employment ;
-        $parent_information_1->save();
-
-        $parent_information_2->first_name=$request->first_name_2;
-        $parent_information_2->last_name=$request->last_name_2;
-        $parent_information_2->address1=$request->address1_2;
-        $parent_information_2->address2=$request->address2_2;
-        $parent_information_2->city_id =$request->city_id_2 ;
-        $parent_information_2->state_id =$request->city_id_2 ;
-        $parent_information_2->zip =$request->zip_2 ;
-        $parent_information_2->phone =$request->phone_2 ;
-        $parent_information_2->email  =$request->email_2  ;
-        $parent_information_2->position =$request->position_2 ;
-        $parent_information_2->place_employment =$request->place_employment_2 ;
-        $parent_information_2->save();
-
-
+        $request->session()->forget('parent_information_1');
+        $request->session()->forget('parent_information_2');
         $request->session()->put('parent_information_1', $parent_information_1);
         $request->session()->put('parent_information_2', $parent_information_2);
         $request->session()->put('application', $application);
-
         return redirect()->route('step3');
        
     }
@@ -318,9 +318,8 @@ class ApplicationController extends Controller
                 $rental_history->last_name=$request->last_name[$i];
                 $rental_history->phone=$request->phone[$i];
                 $rental_history->email=$request->email[$i];
-                
                 $rental_histories[$i]=$rental_history;
-
+                
             }
             $request->session()->put('rental_histories', $rental_histories);
         }
@@ -470,7 +469,7 @@ class ApplicationController extends Controller
         $application = $request->session()->get('application');
         $application->parent_information1_id= $parent_information_1->id;
         $application->parent_information2_id= $parent_information_2->id;
-        $application->user_id=Auth::user()->id;
+        $application->user_id=3;
         $application->save();
 
         $rental_histories = $request->session()->get('rental_histories');
