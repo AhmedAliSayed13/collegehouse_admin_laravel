@@ -92,7 +92,7 @@ Route::get('/step5', 'ApplicationController@createStep5')->name('step5');
 Route::post('/step5', 'ApplicationController@PostcreateStep5')->name('step5-save');
 
 Route::get('/step6', 'ApplicationController@createStep6')->name('step6');
-Route::post('/step6', 'ApplicationController@PostcreateStep6')->name('step6-save')->middleware('isTenant');
+Route::post('/step6', 'ApplicationController@PostcreateStep6')->name('step6-save');
 
 Route::post('/popup-login', 'ApplicationController@popupLogin')->name('popup-login');
 

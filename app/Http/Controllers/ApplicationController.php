@@ -138,14 +138,18 @@ class ApplicationController extends Controller
     public function createStep2(Request $request)
     {
         $application = $request->session()->get('application');
-        $parent_information_1 = new Parent_information();
+        $parent_information_1 = null;
         if (!empty($request->session()->get('parent_information_1'))) {
             $parent_information_1 = $request->session()->get('parent_information_1');
+        }else{
+            $parent_information_1 = new Parent_information();
         }
 
-        $parent_information_2 = new Parent_information();
+        $parent_information_2 = null;
         if(!empty($request->session()->get('parent_information_2'))) {
             $parent_information_2 = $request->session()->get('parent_information_2');
+        }else{
+            $parent_information_2 = new Parent_information();
         }
          $reason_sign_parents=Reason_sign_parent::all();
          $citys=City::all();
@@ -199,8 +203,10 @@ class ApplicationController extends Controller
         $validatedData = $request->validate($arr);
 
         $application="";
-        $parent_information_1 = new Parent_information();
-        $parent_information_2 = new Parent_information();
+        // $parent_information_1 = new Parent_information();
+        // $parent_information_2 = new Parent_information();
+        $parent_information_1 = null;
+        $parent_information_2 = null;
         if(empty($request->session()->get('application'))){
             redirect()->route('step1');
         }else{
@@ -213,8 +219,8 @@ class ApplicationController extends Controller
 
 
         if(!empty($request->session()->get('parent_information_2'))){
-            // $parent_information_1 = $request->session()->get('parent_information_1');
-            // $parent_information_2 = $request->session()->get('parent_information_2');
+            $parent_information_1 = $request->session()->get('parent_information_1');
+            $parent_information_2 = $request->session()->get('parent_information_2');
        
             $parent_information_1 = new Parent_information();
             $parent_information_2 = new Parent_information();
@@ -229,7 +235,7 @@ class ApplicationController extends Controller
             $parent_information_1->email =$request->email ;
             $parent_information_1->position =$request->position ;
             $parent_information_1->place_employment =$request->place_employment ;
-            //$parent_information_1->save();
+            // $parent_information_1->save();
 
             $parent_information_2->first_name=$request->first_name_2;
             $parent_information_2->last_name=$request->last_name_2;
@@ -242,10 +248,10 @@ class ApplicationController extends Controller
             $parent_information_2->email  =$request->email_2  ;
             $parent_information_2->position =$request->position_2 ;
             $parent_information_2->place_employment =$request->place_employment_2;
-            //$parent_information_2->save();
+            // $parent_information_2->save();
         }
-        $request->session()->forget('parent_information_1');
-        $request->session()->forget('parent_information_2');
+        // $request->session()->forget('parent_information_1');
+        // $request->session()->forget('parent_information_2');
         $request->session()->put('parent_information_1', $parent_information_1);
         $request->session()->put('parent_information_2', $parent_information_2);
         $request->session()->put('application', $application);
@@ -461,11 +467,18 @@ class ApplicationController extends Controller
 
     public function PostcreateStep6(Request $request){
         
+        
        
         $parent_information_1 = $request->session()->get('parent_information_1');
-        $parent_information_1->save();
-        $parent_information_2 = $request->session()->get('parent_information_2');
-        $parent_information_2->save();
+        $parent_information_1->save(); 
+        
+
+         $parent_information_2 = $request->session()->get('parent_information_2');
+         $parent_information_2->save();
+
+
+       
+        
         $application = $request->session()->get('application');
         $application->parent_information1_id= $parent_information_1->id;
         $application->parent_information2_id= $parent_information_2->id;
