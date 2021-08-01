@@ -21,12 +21,15 @@ use App\Models\Employment;
 use App\Models\Group;
 use Validator;
 use Auth;
+use Illuminate\Support\Facades\Input;
+use Str;
 class ApplicationController extends Controller
 {
 
     public function createStep1(Request $request)
     {
         $application=new Application();
+
         
         if (empty($request->session()->get('application'))) {
             $request->session()->put('application', $application);
@@ -45,15 +48,27 @@ class ApplicationController extends Controller
         $chapters=Chapter::all();
         $payment_methods=Payment_method::all();
         $paying_rents=Paying_rent::all();
-        //return $application;
-        return view('application.step1', compact('application','genders','citys','states','house_types','house_groups','house_boardings','room_types','rooms','chapters','payment_methods','paying_rents'));
+        if(!empty($request->code)){
+            $request->session()->put('code', $request->code);
+        }
+
+        if($request->session()->get('code')){
+            $code=$request->session()->get('code');
+            return view('application.step1', compact('application','genders','citys','states','house_types','house_groups','house_boardings','room_types','rooms','chapters','payment_methods','paying_rents','code'));
+        }else{
+            return view('application.step1', compact('application','genders','citys','states','house_types','house_groups','house_boardings','room_types','rooms','chapters','payment_methods','paying_rents'));
+        }
+         
+       
+        
     }
 
     public function PostcreateStep1(Request $request)
     {
-        // return($request->all());
+         //return($request->all());
         $arr2=[];
         $arr3=[];
+       
         $arr1=array(
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
@@ -67,8 +82,8 @@ class ApplicationController extends Controller
             'city_id' => ['required', 'integer'],
             'state_id' => ['required', 'integer'],
             'zip' => ['required', 'string'],
-            'house_type_id' => ['required', 'integer'],
-            'requested_houses' => ['required', 'string'],
+            'house_type_id' => ['nullable', 'integer'],
+            'requested_houses' => ['nullable', 'string'],
             'amount_pay_dollars' => ['required','integer'],
             'bringing_Car' => ['required'],
             'school' => ['required', 'string'],
@@ -80,21 +95,27 @@ class ApplicationController extends Controller
             'paying_rent_id' => ['required','integer'],
             'register_vote' => ['required']
         );
-        if($request->house_type_id==1){
-            $arr2=array(
-                'group_lead_name' => ['required', 'string'],
-                'group_member_email_1' => ['required','email'],
-                'group_member_email_2' => ['required','email'],
-                'group_member_email_3' => ['required','email'],
-                'group_member_email_4' => ['required','email'],
-                
-            );
-        }elseif($request->house_type_id==2){
-            $arr2=array(
-                'room_id' => ['required','integer'],
-                'room_type_id' => ['required','integer']
-            );
+
+
+
+        if(empty($request->session()->get('code'))){
+            if($request->house_type_id==1){
+                $arr2=array(
+                    'group_lead_name' => ['required', 'string'],
+                    'group_member_email_1' => ['required','email'],
+                    'group_member_email_2' => ['required','email'],
+                    'group_member_email_3' => ['required','email'],
+                    'group_member_email_4' => ['required','email'],
+                    
+                );
+            }elseif($request->house_type_id==2){
+                $arr2=array(
+                    'room_id' => ['required','integer'],
+                    'room_type_id' => ['required','integer']
+                );
+            }
         }
+        
 
 
         if($request->bringing_Car==1){
@@ -106,7 +127,8 @@ class ApplicationController extends Controller
             );
         }
 
-        $arr=$arr1+$arr2+$arr3;
+         $arr=$arr1+$arr2+$arr3;
+         //return $arr;
         $validatedData = $request->validate($arr);
 
         
@@ -115,6 +137,7 @@ class ApplicationController extends Controller
             
             
             $application->register_vote=$request->register_vote;
+            $application->group_lead_name=$request->group_lead_name;
             $application->group_member_email_1=$request->group_member_email_1;
             $application->group_member_email_2=$request->group_member_email_2;
             $application->group_member_email_3=$request->group_member_email_3;
@@ -125,14 +148,14 @@ class ApplicationController extends Controller
             $application = $request->session()->get('application');
             $application->fill($validatedData);
             $application->register_vote=$request->register_vote;
+            $application->group_lead_name=$request->group_lead_name;
             $application->group_member_email_1=$request->group_member_email_1;
             $application->group_member_email_2=$request->group_member_email_2;
             $application->group_member_email_3=$request->group_member_email_3;
             $application->group_member_email_4=$request->group_member_email_4;
             $request->session()->put('application', $application);
         }
-         return redirect()->route('step2');
-         //return($application);
+        return redirect()->route('step2');
     }
 
     public function createStep2(Request $request)
@@ -205,8 +228,8 @@ class ApplicationController extends Controller
         $application="";
         // $parent_information_1 = new Parent_information();
         // $parent_information_2 = new Parent_information();
-        $parent_information_1 = null;
-        $parent_information_2 = null;
+        $parent_information_1 = new Parent_information();
+        $parent_information_2 = new Parent_information();
         if(empty($request->session()->get('application'))){
             redirect()->route('step1');
         }else{
@@ -221,9 +244,8 @@ class ApplicationController extends Controller
         if(!empty($request->session()->get('parent_information_2'))){
             $parent_information_1 = $request->session()->get('parent_information_1');
             $parent_information_2 = $request->session()->get('parent_information_2');
-       
-            $parent_information_1 = new Parent_information();
-            $parent_information_2 = new Parent_information();
+        }
+            
             $parent_information_1->first_name=$request->first_name;
             $parent_information_1->last_name=$request->last_name;
             $parent_information_1->address1=$request->address1;
@@ -235,7 +257,7 @@ class ApplicationController extends Controller
             $parent_information_1->email =$request->email ;
             $parent_information_1->position =$request->position ;
             $parent_information_1->place_employment =$request->place_employment ;
-            // $parent_information_1->save();
+            
 
             $parent_information_2->first_name=$request->first_name_2;
             $parent_information_2->last_name=$request->last_name_2;
@@ -248,10 +270,8 @@ class ApplicationController extends Controller
             $parent_information_2->email  =$request->email_2  ;
             $parent_information_2->position =$request->position_2 ;
             $parent_information_2->place_employment =$request->place_employment_2;
-            // $parent_information_2->save();
-        }
-        // $request->session()->forget('parent_information_1');
-        // $request->session()->forget('parent_information_2');
+            
+        
         $request->session()->put('parent_information_1', $parent_information_1);
         $request->session()->put('parent_information_2', $parent_information_2);
         $request->session()->put('application', $application);
@@ -458,11 +478,12 @@ class ApplicationController extends Controller
         $parent_information_2 = $request->session()->get('parent_information_2');
         $rental_histories = $request->session()->get('rental_histories');
         $employments = $request->session()->get('employments');
-       
+        $code = $request->session()->get('code');
+      
         $houses=House::whereIn('id', explode(',' ,$application->requested_houses))->get();
-        
+        //return $parent_information_2;
         //print_r($application->requested_houses);
-        return view('application.step6',compact('application','parent_information_1','parent_information_2','rental_histories','employments','houses'));
+        return view('application.step6',compact('application','parent_information_1','parent_information_2','rental_histories','employments','houses','code'));
     }
 
     public function PostcreateStep6(Request $request){
@@ -482,7 +503,7 @@ class ApplicationController extends Controller
         $application = $request->session()->get('application');
         $application->parent_information1_id= $parent_information_1->id;
         $application->parent_information2_id= $parent_information_2->id;
-        $application->user_id=3;
+        $application->user_id=Auth::user()->id;
         $application->save();
 
         $rental_histories = $request->session()->get('rental_histories');
@@ -495,15 +516,28 @@ class ApplicationController extends Controller
             $employment->application_id=$application->id;
             $employment->save();
         }
-        //$request->session()->flush();
+        
 
+        $group=new Group();
+        $group->email=$application->email;
+        $group->application_id=$application->id;
+        $group->user_id=Auth::user()->id;
+        if(empty($request->session()->get('code')) && !empty($application->requested_houses)){
+            $group->leader=1;
+            $group->code=Str::random(40).''.$application->id;
+        }else{
+            $group->leader=0;
+            $group->code=$request->session()->get('code');
+        }
+        $group->save();
+        //$request->session()->flush();
         return redirect()->route('step6');
 
     }
     
     public function remove(Request $request){
         $item='';
-        $request->session()->forget('employments');
+        $request->session()->flush();
         return 'done';
     }
     public function popupLogin(Request $request){
@@ -517,7 +551,7 @@ class ApplicationController extends Controller
         }else{
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials)) {
-                return response()->json(1);
+                return ['success' => true, 'data' => 1];
             }else{
                 return response()->json(0);
             }

@@ -304,7 +304,7 @@
 
 									</div>
 								</div>
-
+								@if(!isset($code))
 								<div class="col-md-12">
 									<div class="form-group">
 										<label>Requested Housing Type:</label>
@@ -370,17 +370,7 @@
 								
 								
 
-								<!-- <div class="col-md-12 group_house_field">
-									<div class="form-group">
-									
-									<div class="add-more  ml-4">
-										<a href="javascript:void(0);" class="add-rental"><i class="fa fa-plus-circle"></i>
-											Add More
-											</a>
-									</div>
-									
-									</div>
-								</div> -->
+							
 
 								<div class="col-md-6 group_house_field">
 									<div class="form-group">
@@ -514,6 +504,9 @@
 										@enderror
 									</div>
 								</div>
+
+								@endif
+
 
 								<div class="col-md-12">
 									<h4 class="d-block mt-4">Estimated amount you are prepared to pay per person (without utilities):</h4>
@@ -791,6 +784,7 @@
 
 								
 								<div class="col-lg-12 float-right">
+									
 									<button type="submit" class="btn btn-primary float-right" id="id-form1">
 										Next
 									</button>

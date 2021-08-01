@@ -31,7 +31,7 @@ class CreateEmploymentsTable extends Migration
             $table->string('monthly_gross_salary');
             $table->boolean('current_work')->nullable();
             $table->date('employment_date_start');
-            $table->text('employment_date_end');
+            $table->text('employment_date_end')->nullable();
             $table->string('supervisor_first_name');
             $table->string('supervisor_last_name');
             $table->string('supervisor_title');

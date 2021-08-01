@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -107,6 +107,7 @@
 													</td>
 													
 												</tr>
+
 												<tr>
 													<td>
 														Applicant last name
@@ -117,6 +118,7 @@
 													</td>
 													
 												</tr>
+
 												<tr>
 													<td>
 														Applicant gender
@@ -126,6 +128,7 @@
 													</td>
 													
 												</tr>
+
 												<tr>
 													<td>
 														Applicant email address
@@ -136,6 +139,7 @@
 													</td>
 													
 												</tr>
+
 												<tr>
 													<td>
 														Applicant Address 1
@@ -145,6 +149,7 @@
 													</td>
 													
 												</tr>
+
 												<tr>
 													<td>
 														Applicant Address 2
@@ -154,6 +159,7 @@
 													</td>
 													
 												</tr>
+
 												<tr>
 													<td>
 														Applicant city
@@ -163,6 +169,7 @@
 													</td>
 													
 												</tr>
+
 												<tr>
 													<td>
 														Applicant state
@@ -172,6 +179,7 @@
 													</td>
 													
 												</tr>
+
 												<tr>
 													<td>
 														Applicant Zip Code
@@ -181,15 +189,19 @@
 													</td>
 													
 												</tr>
-												<tr>
-													<td>
-														Requested House Type
-													</td>
-													<td>
-														{{$application->house_type->name}}
-													</td>
-													
-												</tr>
+
+												@if(empty($code))
+													<tr>
+														<td>
+															Requested House Type
+														</td>
+														<td>
+															{{$application->house_type->name}}
+														</td>
+														
+													</tr>
+												@endif
+
 												@for($i=0;$i<count($houses);$i++)
 												<tr>
 													<td>
@@ -202,78 +214,79 @@
 												</tr>
 												@endfor
 
+												@if(empty($code))
+													@if($application->house_type_id==1)
+															<tr>
+																<td>
+																	Group lead name
+																</td>
+																<td>
+																	{{$application->group_lead_name}}
+																</td>
+																
+															</tr>
+															<tr>
+																<td>
+																	Group member email (1)
 
-												@if($application->house_type_id==1)
-												<tr>
-													<td>
-														Group lead name
-													</td>
-													<td>
-														{{$application->group_lead_name}}
-													</td>
-													
-												</tr>
-												<tr>
-													<td>
-														Group member email (1)
+																</td>
+																<td>
+																	{{$application->group_member_email_1}}
+																</td>
+																
+															</tr>
+															<tr>
+																<td>
+																	Group member email (2)
 
-													</td>
-													<td>
-														{{$application->group_member_email_1}}
-													</td>
-													
-												</tr>
-												<tr>
-													<td>
-														Group member email (2)
+																</td>
+																<td>
+																	{{$application->group_member_email_2}}
+																</td>
+																
+															</tr>
+															<tr>
+																<td>
+																	Group member email (3)
 
-													</td>
-													<td>
-														{{$application->group_member_email_2}}
-													</td>
-													
-												</tr>
-												<tr>
-													<td>
-														Group member email (3)
+																</td>
+																<td>
+																	{{$application->group_member_email_3}}
+																</td>
+																
+															</tr>
+															<tr>
+																<td>
+																	Group member email (4)
 
-													</td>
-													<td>
-														{{$application->group_member_email_3}}
-													</td>
-													
-												</tr>
-												<tr>
-													<td>
-														Group member email (4)
+																</td>
+																<td>
+																	{{$application->group_member_email_4}}
+																</td>
+																
+															</tr>
+													@else
+														<tr>
+															<td>
+																Room Number
 
-													</td>
-													<td>
-														{{$application->group_member_email_4}}
-													</td>
-													
-												</tr>
-												@else
-												<tr>
-													<td>
-														Room Number
+															</td>
+															<td>
+																{{$application->room->number}}
+															</td>
+															
+														</tr>
+														<tr>
+															<td>
+																Room Number
 
-													</td>
-													<td>
-														{{$application->room->number}}
-													</td>
-													
-												</tr>
-												<tr>
-													<td>
-														Room Number
-
-													</td>
-													<td>
-														{{$application->room_type->name}}
-													</td>
-													
-												</tr>
+															</td>
+															<td>
+																{{$application->room_type->name}}
+															</td>
+															
+														</tr>
+													@endif
 												@endif
 
 												<tr>
@@ -286,6 +299,7 @@
 													</td>
 													
 												</tr>
+
 												<tr>
 													<td>
 														Are you bringing a Car?
@@ -295,43 +309,44 @@
 													</td>
 													
 												</tr>
+
 												@if($application->bringing_Car==1)
-												<tr>
-													<td>
-														Car Make
-													</td>
-													<td>
-														{{$application->car_make}}
-													</td>
-													
-												</tr>
-												<tr>
-													<td>
-														Car Model
-													</td>
-													<td>
-														{{$application->car_model}}
-													</td>
-													
-												</tr>
-												<tr>
-													<td>
-														Car license plate number
-													</td>
-													<td>
-														{{$application->driver_license_number}}
-													</td>
-													
-												</tr>
-												<tr>
-													<td>
-														Drivers license number
-													</td>
-													<td>
-														{{$application->car_license_number}}
-													</td>
-													
-												</tr>
+													<tr>
+														<td>
+															Car Make
+														</td>
+														<td>
+															{{$application->car_make}}
+														</td>
+														
+													</tr>
+													<tr>
+														<td>
+															Car Model
+														</td>
+														<td>
+															{{$application->car_model}}
+														</td>
+														
+													</tr>
+													<tr>
+														<td>
+															Car license plate number
+														</td>
+														<td>
+															{{$application->driver_license_number}}
+														</td>
+														
+													</tr>
+													<tr>
+														<td>
+															Drivers license number
+														</td>
+														<td>
+															{{$application->car_license_number}}
+														</td>
+														
+													</tr>
 												@endif
 												<tr>
 													<td>
@@ -562,7 +577,7 @@
 
 
 
-												<tr>
+												 <tr>
 													<td>
 														Parent 2 First name
 
@@ -989,7 +1004,7 @@
 														
 														
 													@endfor
-												@endif
+												@endif 
 
 												<tr>
 													<td>
@@ -1127,13 +1142,13 @@
 								<div class="col-lg-12 float-right">
 									
 
-									{{-- @if (!Auth::guest()) --}}
+									@if (!Auth::guest())
 									<button type="submit" class="btn btn-success float-right" id="id-form1">
 										 Submit
 									</button>
-									{{-- @else
+									@else
 									<a href="#Add_Specialities_details" data-toggle="modal" class="btn btn-primary float-right mt-2">Login</a>
-									@endif --}}
+									@endif
 									<a href="{{route('step1')}}" class="btn btn-info float-left">
 										Edit <i class="fa fa-edit"></i>
 									</a>
@@ -1223,6 +1238,8 @@
 	<!-- /Main Wrapper -->
 
 	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
 	<script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
 
 	<!-- Bootstrap Core JS -->
@@ -1248,7 +1265,8 @@
 			{
 				$('#emailMessage').empty();
 				$('#passwordMessage').empty();
-				e.currentTarget.submit();
+				// e.currentTarget.submit();
+				location.reload();
 			}else if(data==0){
 				$('#emailMessage').empty();
 				$('#passwordMessage').empty();

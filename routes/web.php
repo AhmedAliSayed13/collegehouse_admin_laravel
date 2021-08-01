@@ -77,6 +77,7 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
 
 Route::get('/step1', 'ApplicationController@createStep1')->name('step1');
+
 Route::post('/step1', 'ApplicationController@PostcreateStep1')->name('step1-save');
 
 Route::get('/step2', 'ApplicationController@createStep2')->name('step2');
@@ -103,3 +104,9 @@ Route::post('/test2', 'TestController@test2');
 
 
 
+
+// mail
+
+Route::get('sendbasicemail','MailController@basic_email');
+Route::get('sendhtmlemail','MailController@html_email');
+Route::get('sendattachmentemail','MailController@attachment_email');
