@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2021 at 05:18 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.3.28
+-- Generation Time: Aug 01, 2021 at 03:11 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -41,7 +42,7 @@ CREATE TABLE `applications` (
   `city_id` bigint(20) UNSIGNED NOT NULL,
   `state_id` bigint(20) UNSIGNED NOT NULL,
   `zip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `house_type_id` bigint(20) UNSIGNED NOT NULL,
+  `house_type_id` bigint(20) UNSIGNED DEFAULT NULL,
   `school` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `major` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `graduation_year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -50,7 +51,7 @@ CREATE TABLE `applications` (
   `payment_method_id` bigint(20) UNSIGNED NOT NULL,
   `paying_rent_id` bigint(20) UNSIGNED NOT NULL,
   `bringing_Car` tinyint(1) NOT NULL,
-  `requested_houses` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `requested_houses` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `room_type_id` bigint(20) UNSIGNED DEFAULT NULL,
   `room_id` bigint(20) UNSIGNED DEFAULT NULL,
   `amount_pay_dollars` int(11) NOT NULL,
@@ -60,10 +61,10 @@ CREATE TABLE `applications` (
   `car_license_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `requested_property` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `group_lead_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `group_member_name_1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `group_member_name_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `group_member_name_3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `group_member_name_4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_member_email_1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_member_email_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_member_email_3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_member_email_4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `register_vote` tinyint(1) NOT NULL,
   `both_parents_signing` tinyint(1) NOT NULL,
   `parent_information2_id` bigint(20) UNSIGNED NOT NULL,
@@ -85,9 +86,9 @@ CREATE TABLE `applications` (
 -- Dumping data for table `applications`
 --
 
-INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_name_1`, `group_member_name_2`, `group_member_name_3`, `group_member_name_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `terms_and_conditions`, `application_case_id`, `meeting_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(3, 'ahmed', 'ali', 1, 'ahmedalisayed13@gmail.com', '2021-06-23', '01112912233', '1223456', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 21, 18, '132423', 1, 'test', 'test', '2018', 12, 16, 1, 1, 1, '8', NULL, NULL, 240, 'test', 'test', '235325', '23523523', NULL, 'ahmed ali', 'mostafa', 'omar', 'mohamed', 'nour', 1, 1, 5, 'is simply dummy text of the printing and typesetting industry', 4, 4, 0, 0, 'ahmed ali sayed', 1, 5, 5, 3, '2021-06-27 18:07:51', '2021-07-03 16:25:17'),
-(4, 'ahmed', 'ali', 1, 'ahmedalisayed13@gmail.com', '2021-07-21', '01112912233', '234234', 'dfds', 'sdfsd', 20, 18, '534', 1, '32e3', '332', '23432', 234, 1, 1, 1, 0, '8', NULL, NULL, 250, NULL, NULL, NULL, NULL, NULL, 'ahmed ali', 'a1', 'a2', 'a3', 'a4', 1, 0, 7, NULL, 6, NULL, 0, 0, 'ahmed ali sayed', 1, 1, NULL, 3, '2021-07-06 09:33:46', '2021-07-06 09:33:46');
+INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_email_1`, `group_member_email_2`, `group_member_email_3`, `group_member_email_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `terms_and_conditions`, `application_case_id`, `meeting_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'ahmed', 'ali', 1, 'ahmedalisayed13@gmail.com', '2021-07-24', '34346', '233543', 's simply dummy text of the printing and typesetting industry. Lorem Ipsum ha', 's simply dummy text of the printing and typesetting industry. Lorem Ipsum ha', 21, 7, '34436', 1, 'asd1', 'asd1', '2019', 21, 1, 1, 1, 1, '8', NULL, NULL, 249, 'asd1', 'asd1', 'asd1', 'asd1', NULL, 'ahmed ali', 'ahmedali1@gmail.com', 'ahmedali2@gmail.com', 'ahmedali4@gmail.com', 'ahmedali3@gmail.com', 1, 1, 2, NULL, 1, 1, 1, 1, 'ahmed ali sayed', 1, 1, NULL, 3, '2021-07-30 23:30:50', '2021-07-30 23:30:50'),
+(2, 'sad', 'sad', 1, 'org1@gmail.com', '2021-07-24', '34654654', '34534', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 20, 9, '346436', NULL, 'asdas', 'asdsa', '435', 34534, 1, 1, 1, 0, NULL, NULL, NULL, 278, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 4, NULL, 3, NULL, 0, 0, 'ahmed mostafa', 1, 1, NULL, 3, '2021-07-31 00:16:06', '2021-07-31 00:16:06');
 
 -- --------------------------------------------------------
 
@@ -384,13 +385,20 @@ CREATE TABLE `employments` (
   `monthly_gross_salary` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `current_work` tinyint(1) DEFAULT NULL,
   `employment_date_start` date NOT NULL,
-  `employment_date_end` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `employment_date_end` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `supervisor_first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `supervisor_last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `supervisor_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `employments`
+--
+
+INSERT INTO `employments` (`id`, `application_id`, `employer_name`, `phone`, `email`, `address1`, `address2`, `city_id`, `zip`, `state_id`, `position`, `monthly_gross_salary`, `current_work`, `employment_date_start`, `employment_date_end`, `supervisor_first_name`, `supervisor_last_name`, `supervisor_title`, `created_at`, `updated_at`) VALUES
+(1, 1, 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been', '3465465756', 'dodo@gmail.com', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been', 21, '43456', 14, 'asd1', '5000', 1, '2021-07-23', NULL, 'mohamed', 'bassem', 'web developer', '2021-07-30 23:30:50', '2021-07-30 23:30:50');
 
 -- --------------------------------------------------------
 
@@ -486,12 +494,22 @@ INSERT INTO `genders` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `groups` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `application_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `leader` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`id`, `code`, `email`, `application_id`, `user_id`, `leader`, `created_at`, `updated_at`) VALUES
+(2, '6BcTw7lfiqbaopJ1JslzrNCGZCgkz6ceWFYB857G1', 'ahmedalisayed13@gmail.com', 1, 3, 1, '2021-07-30 23:31:54', '2021-07-30 23:31:54'),
+(3, '6BcTw7lfiqbaopJ1JslzrNCGZCgkz6ceWFYB857G1', 'org1@gmail.com', 2, 3, 0, '2021-07-31 00:16:06', '2021-07-31 00:16:06');
 
 -- --------------------------------------------------------
 
@@ -641,13 +659,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2021_06_11_094836_create_rooms_table', 19),
 (31, '2021_06_14_084929_create_reason_sign_parents_table', 27),
 (37, '2021_06_12_100742_create_rental_histories_table', 29),
-(38, '2021_06_11_113246_create_parent_informations_table', 30),
-(39, '2021_06_12_101908_create_employments_table', 31),
 (42, '2021_06_27_201015_create_application_cases_table', 32),
 (50, '2021_07_03_023855_create_meeting_cases_table', 34),
 (56, '2021_07_03_024043_create_meetings_table', 37),
-(57, '2021_06_10_193622_create_applications_table', 38),
-(58, '2021_06_24_110352_create_groups_table', 39);
+(59, '2021_06_11_113246_create_parent_informations_table', 40),
+(66, '2021_06_10_193622_create_applications_table', 41),
+(67, '2021_06_12_101908_create_employments_table', 42);
 
 -- --------------------------------------------------------
 
@@ -666,7 +683,7 @@ CREATE TABLE `parent_informations` (
   `zip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `place_employment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -676,11 +693,11 @@ CREATE TABLE `parent_informations` (
 -- Dumping data for table `parent_informations`
 --
 
-INSERT INTO `parent_informations` (`id`, `first_name`, `last_name`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `phone`, `email`, `Position`, `place_employment`, `created_at`, `updated_at`) VALUES
-(4, 'ali', 'sayed', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 19, 21, '3543', '0112912233', 'ahmed.ali@kabtechcorp.com', 'head', 'engnieer', '2021-06-27 18:07:51', '2021-06-27 18:07:51'),
-(5, 'nour', 'farrag', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 14, 14, '34534', '01112912233', 'ahmed.ali@kabtechcorp.com', 'sdfsd', 'sdfs', '2021-06-27 18:07:51', '2021-06-27 18:07:51'),
-(6, 'ahmed', 'ali', 'fe', 'ewfew', 21, 18, '34534', '01112912233', 'ahmedalisayed13@gmail.com', 'egre', 'efd', '2021-07-06 09:32:52', '2021-07-06 09:32:52'),
-(7, 'ergre', 'erger', 'ergre', 'ergtre', 20, 20, '34543', '01112912233', 'ahmedalisayed@gmail.com', 'sdfds', 'dss', '2021-07-06 09:32:52', '2021-07-06 09:32:52');
+INSERT INTO `parent_informations` (`id`, `first_name`, `last_name`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `phone`, `email`, `position`, `place_employment`, `created_at`, `updated_at`) VALUES
+(1, 'ali', 'sayed', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 20, 16, '43654', '34654', 'ali@gmail.com', 'asd1', 'asd1', '2021-07-30 23:30:49', '2021-07-30 23:30:49'),
+(2, 'hoda', 'farrag', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 16, 16, '34543', '34654', 'ali@gmail.com', 'asdp2', 'asdp2', '2021-07-30 23:30:50', '2021-07-30 23:30:50'),
+(3, 'qwrqw', 'wqrqw', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 20, 16, '45645', '34645', 'inf5@gmail.com', 'asdas', 'asdas', '2021-07-31 00:16:06', '2021-07-31 00:16:06'),
+(4, 'sadas', 'asdasd', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 20, 20, '346346', '34636', 'inf5@gmail.com', 'asfas', 'fwdad', '2021-07-31 00:16:06', '2021-07-31 00:16:06');
 
 -- --------------------------------------------------------
 
@@ -788,6 +805,14 @@ CREATE TABLE `rental_histories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rental_histories`
+--
+
+INSERT INTO `rental_histories` (`id`, `application_id`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `rental_date`, `monthly_rent`, `reason_leaving`, `first_name`, `last_name`, `phone`, `email`, `created_at`, `updated_at`) VALUES
+(7, 1, 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 2, 3, '34543', '2021-07-03', '200', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has bee', 'nour', 'adel', '34456', 'nourmostafa@gmail.com', '2021-07-30 23:30:50', '2021-07-30 23:30:50'),
+(8, 1, 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 5, 5, '4565', '2021-06-30', '4000', 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy', 'mostafa', 'adel', '213111111116', 'mostafa@gmail.com', '2021-07-30 23:30:50', '2021-07-30 23:30:50');
 
 -- --------------------------------------------------------
 
@@ -1034,8 +1059,7 @@ ALTER TABLE `genders`
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `groups_application_id_foreign` (`application_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `houses`
@@ -1157,7 +1181,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `application_cases`
@@ -1181,7 +1205,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT for table `employments`
 --
 ALTER TABLE `employments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `flooers`
@@ -1205,7 +1229,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `houses`
@@ -1235,13 +1259,13 @@ ALTER TABLE `meeting_cases`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `parent_informations`
 --
 ALTER TABLE `parent_informations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `paying_rents`
@@ -1265,7 +1289,7 @@ ALTER TABLE `reason_sign_parents`
 -- AUTO_INCREMENT for table `rental_histories`
 --
 ALTER TABLE `rental_histories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1340,12 +1364,6 @@ ALTER TABLE `flooers`
 --
 ALTER TABLE `front_house_images`
   ADD CONSTRAINT `front_house_images_house_id_foreign` FOREIGN KEY (`house_id`) REFERENCES `houses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `groups`
---
-ALTER TABLE `groups`
-  ADD CONSTRAINT `groups_application_id_foreign` FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `houses`
