@@ -35,6 +35,7 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
     //resource
     Route::resource('tag','Admin\TagController');
     Route::resource('house','Admin\HouseController');
+    Route::resource('group','Admin\GroupController');
     Route::resource('owner','Admin\OwnerController');
     Route::resource('application','Admin\ApplicationController');
     Route::resource('interview','Admin\InterviewController');
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
 
 Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
     Route::get('/dashboard',[App\Http\Controllers\OwnerController::class,'showDashboard'])->name('owner.dashboard');
+    Route::resource('house','Owner\HouseController');
 
     Route::get('/profile',[App\Http\Controllers\OwnerController::class,'showProfile'])->name('owner.profile');
     Route::post('/profile-save',[App\Http\Controllers\OwnerController::class,'profileSave'])->name('owner.profile.save');

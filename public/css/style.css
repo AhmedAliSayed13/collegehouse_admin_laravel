@@ -22,7 +22,7 @@ h2 span.sign-admin-text{
 }
 .register-div-1 h2{
     padding-top: 50px;
-    
+
 }
 .image-edit-house{
     width: 150px;
@@ -168,3 +168,14 @@ span.step-text{
     margin-bottom: 10px;
 }
 
+
+
+/*  Groups style */
+.groups .card .card-header{
+    background-color: #00d0f1;
+    border-bottom: 1px solid #00d0f1;
+    color: #FFF;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 10px 22px;
+}
