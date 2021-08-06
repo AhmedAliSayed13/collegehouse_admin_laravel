@@ -26,7 +26,6 @@
                                     <th>Lead</th>
                                     <th>email</th>
                                     <th>action</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,7 +47,6 @@
                                             <i class="fe fe-eye"></i> view
                                         </a>
                                     </td>
-
                                 </tr>
                                 @endforeach
 
