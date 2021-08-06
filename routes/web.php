@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Routing\Route;
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
 
@@ -51,13 +54,20 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
 
 Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
     Route::get('/dashboard',[App\Http\Controllers\OwnerController::class,'showDashboard'])->name('owner.dashboard');
+
+    // all houses
     Route::resource('house','Owner\HouseController');
 
+    // Edit or delete house from owner
     Route::post('/house/delete-image-front',[App\Http\Controllers\Owner\HouseController::class,'delete_image_front']);
     Route::post('/house/edit-flooer',[App\Http\Controllers\Owner\HouseController::class,'edit_flooer'])->name('owner.edit-flooer');
-
     Route::get('/house/delete-flooer/{id}',[App\Http\Controllers\Owner\HouseController::class,'delete_flooer'])->name('owner.delete-flooer');
     Route::post('/house/flooer/create',[App\Http\Controllers\Owner\HouseController::class,'create_flooer'])->name('owner.create-flooer');
+
+
+    //  test send mail form gmail to another gmail
+    Route::post('/mail/send',[App\Http\Controllers\Owner\MailController::class,'send_mail'])->name('owner.send-mail');
+
 
     Route::get('/profile',[App\Http\Controllers\OwnerController::class,'showProfile'])->name('owner.profile');
     Route::post('/profile-save',[App\Http\Controllers\OwnerController::class,'profileSave'])->name('owner.profile.save');
@@ -117,3 +127,4 @@ Route::post('/test2', 'TestController@test2');
 Route::get('sendbasicemail','MailController@basic_email');
 Route::get('sendhtmlemail','MailController@html_email');
 Route::get('sendattachmentemail','MailController@attachment_email');
+
