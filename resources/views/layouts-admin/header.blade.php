@@ -1,5 +1,5 @@
 <div class="header">
-			
+
             <!-- Logo -->
             <div class="header-left">
                 <a href="{{route('home')}}" class="logo">
@@ -10,24 +10,24 @@
                 </a>
             </div>
             <!-- /Logo -->
-            
+
             <a href="javascript:void(0);" id="toggle_btn">
                 <i class="fe fe-text-align-left"></i>
             </a>
-            
+
             <div class="top-nav-search">
                 <form>
                     <input type="text" class="form-control" placeholder="Search here">
                     <button class="btn" type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
-            
+
             <!-- Mobile Menu Toggle -->
             <a class="mobile_btn" id="mobile_btn">
                 <i class="fa fa-bars"></i>
             </a>
             <!-- /Mobile Menu Toggle -->
-            
+
             <!-- Header Right Menu -->
             <ul class="nav user-menu">
 
@@ -42,7 +42,7 @@
                             <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
                         </div>
                         <div class="noti-content">
-                            
+
                         </div>
                         <div class="topnav-dropdown-footer">
                             <a href="#">View all Notifications</a>
@@ -50,7 +50,7 @@
                     </div>
                 </li>
                 <!-- /Notifications -->
-                
+
                 <!-- User Menu -->
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -68,7 +68,7 @@
                         </div>
                         <a class="dropdown-item {{active_link('admin/profile')}}" href="{{route('admin.profile')}}">My Profile</a>
                         <a class="dropdown-item {{active_link('admin/change-password')}}" href="{{route('admin.changepassword')}}">Change Password</a>
-                        
+
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" >Logout</a>
                         <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -76,8 +76,8 @@
                     </div>
                 </li>
                 <!-- /User Menu -->
-                
+
             </ul>
             <!-- /Header Right Menu -->
-            
+
         </div>

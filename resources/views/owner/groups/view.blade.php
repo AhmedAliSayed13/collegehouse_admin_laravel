@@ -1,7 +1,5 @@
 @extends('layouts-owner.index')
 @section('content')
-<div class="page-wrapper">
-    <div class="content container-fluid">
     <!-- Page Header -->
     <div class="page-header">
         <div class="row">
@@ -32,8 +30,8 @@
                             <tbody>
                                 @foreach($groups as $group)
                                 <tr>
-                                    
-                                    
+
+
                                     <td>
                                         {{$group->application->id}}
                                     </td>
@@ -61,11 +59,8 @@
                     </div>
                 </div>
             </div>
-        </div>			
+        </div>
     </div>
-    </div>
-</div>
-
 
 
 @stop

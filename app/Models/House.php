@@ -7,6 +7,7 @@ use App\Models\Front_house_image;
 use App\Models\Flooer;
 use App\User;
 use App\Models\House_state;
+use App\Models\City;
 use Illuminate\Database\Eloquent\Model;
 
 class House extends Model
@@ -34,5 +35,8 @@ class House extends Model
     public function house_state()
     {
         return $this->belongsTo(House_state::class);
+    }
+    public function city(){
+        return $this->belongsTo(City::class);
     }
 }

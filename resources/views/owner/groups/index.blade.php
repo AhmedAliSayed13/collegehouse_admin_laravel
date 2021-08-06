@@ -1,7 +1,6 @@
 @extends('layouts-owner.index')
 @section('content')
-<div class="page-wrapper">
-    <div class="content container-fluid">
+
     <!-- Page Header -->
     <div class="page-header">
         <div class="row">
@@ -27,14 +26,13 @@
                                     <th>Lead</th>
                                     <th>email</th>
                                     <th>action</th>
-                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($groups as $group)
                                 <tr>
-                                    
-                                    
+
+
                                     <td>
                                         {{$group->code}}
                                     </td>
@@ -49,19 +47,16 @@
                                             <i class="fe fe-eye"></i> view
                                         </a>
                                     </td>
-                                    
                                 </tr>
                                 @endforeach
-                                
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </div>			
+        </div>
     </div>
-    </div>
-</div>
 
 
 
@@ -71,5 +66,5 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
     <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
     <script src="/vendor/datatables/buttons.server-side.js"></script>
-   
+
 @endpush

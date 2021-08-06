@@ -7,6 +7,7 @@ use App\Models\Application;
 use App\Models\Parent_information;
 use App\Models\Rental_history;
 use App\Models\Employment;
+use App\Models\House;
 class City extends Model
 {
     public function applications()
@@ -24,5 +25,8 @@ class City extends Model
     public function employments()
     {
         return $this->hasMany(Employment::class);
+    }
+    public function house(){
+        return $this->hasMany(House::class,'city_id');
     }
 }

@@ -53,6 +53,12 @@ Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
     Route::get('/dashboard',[App\Http\Controllers\OwnerController::class,'showDashboard'])->name('owner.dashboard');
     Route::resource('house','Owner\HouseController');
 
+    Route::post('/house/delete-image-front',[App\Http\Controllers\Owner\HouseController::class,'delete_image_front']);
+    Route::post('/house/edit-flooer',[App\Http\Controllers\Owner\HouseController::class,'edit_flooer'])->name('owner.edit-flooer');
+
+    Route::get('/house/delete-flooer/{id}',[App\Http\Controllers\Owner\HouseController::class,'delete_flooer'])->name('owner.delete-flooer');
+    Route::post('/house/flooer/create',[App\Http\Controllers\Owner\HouseController::class,'create_flooer'])->name('owner.create-flooer');
+
     Route::get('/profile',[App\Http\Controllers\OwnerController::class,'showProfile'])->name('owner.profile');
     Route::post('/profile-save',[App\Http\Controllers\OwnerController::class,'profileSave'])->name('owner.profile.save');
 
