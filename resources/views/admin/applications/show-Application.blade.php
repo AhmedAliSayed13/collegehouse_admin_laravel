@@ -192,7 +192,9 @@
 																</td>
 
 															</tr>
-															<tr>
+
+
+															 <tr>
 																<td>
 																	Applicant last name
 
@@ -221,6 +223,7 @@
 																</td>
 
 															</tr>
+															
 															<tr>
 																<td>
 																	Applicant Address 1
@@ -239,6 +242,7 @@
 																</td>
 
 															</tr>
+															
 															<tr>
 																<td>
 																	Applicant city
@@ -248,6 +252,7 @@
 																</td>
 
 															</tr>
+															
 															<tr>
 																<td>
 																	Applicant state
@@ -266,15 +271,18 @@
 																</td>
 
 															</tr>
-															<tr>
-																<td>
-																	Requested House Type
-																</td>
-																<td>
-																	{{$application->house_type->name}}
-																</td>
+															@if(isset($application->house_type->id))
+																<tr>
+																	<td>
+																		Requested House Type
+																	</td>
+																	<td>
+																		{{$application->house_type->id}}
+																	</td>
 
-															</tr>
+																</tr>
+															@endif
+															
 															@for($i=0;$i<count($houses);$i++) <tr>
 																<td>
 																	Requested property({{$i}})
@@ -299,45 +307,49 @@
 																</tr>
 																<tr>
 																	<td>
-																		Group member name (1)
+																		Group member email (1)
 
 																	</td>
 																	<td>
-																		{{$application->group_member_name_1}}
+																		{{$application->group_member_email_1}}
+																	</td>
+
+																</tr>
+																
+																<tr>
+																	<td>
+																		Group member email (2)
+
+																	</td>
+																	<td>
+																		{{$application->group_member_email_2}}
 																	</td>
 
 																</tr>
 																<tr>
 																	<td>
-																		Group member name (2)
+																		Group member email (3)
 
 																	</td>
 																	<td>
-																		{{$application->group_member_name_2}}
-																	</td>
-
-																</tr>
-																<tr>
-																	<td>
-																		Group member name (3)
-
-																	</td>
-																	<td>
-																		{{$application->group_member_name_3}}
+																		{{$application->group_member_email_3}}
 																	</td>
 
 																</tr>
 																<tr>
 																	<td>
-																		Group member name (4)
+																		Group member email (4)
 
 																	</td>
 																	<td>
-																		{{$application->group_member_name_4}}
+																		{{$application->group_member_email_4}}
 																	</td>
 
 																</tr>
 																@else
+
+
+																@if($application->room)
 																<tr>
 																	<td>
 																		Room Number
@@ -358,6 +370,7 @@
 																	</td>
 
 																</tr>
+																@endif
 																@endif
 
 																<tr>
@@ -380,6 +393,7 @@
 																	</td>
 
 																</tr>
+																
 																@if($application->bringing_Car==1)
 																<tr>
 																	<td>
@@ -455,6 +469,7 @@
 																	</td>
 
 																</tr>
+																
 																<tr>
 																	<td>
 																		Chapters
@@ -501,6 +516,7 @@
 																	</td>
 
 																</tr>
+																
 																@if($application->both_parents_signing==1)
 																<tr>
 																	<td>
@@ -580,6 +596,7 @@
 																	</td>
 
 																</tr>
+																
 																<tr>
 																	<td>
 																		Parent 1 state
@@ -640,6 +657,7 @@
 																	</td>
 
 																</tr>
+																
 
 
 
@@ -855,6 +873,7 @@
 																		</td>
 
 																	</tr>
+																	
 																	<tr>
 																		<td>
 																			Landlord Information First Name ({{$i+1}})
@@ -1092,7 +1111,7 @@
 																			</td>
 																			<td>
 																				{{$application->applicant_full_name}}
-																			</td>
+																			</td> 
 
 																		</tr>
 

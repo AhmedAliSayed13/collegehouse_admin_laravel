@@ -41,9 +41,9 @@
 								<a href="{{route('interview.index')}}"><i class="fe fe-home"></i> <span>All Interviews</span></a>
 							</li>
 
-                            <li class="{{active_link('admin/group')}}">
+                            {{-- <li class="{{active_link('admin/group')}}">
 								<a href="{{route('group.index')}}"><i class="fe fe-home"></i> <span>Groups</span></a>
-							</li>
+							</li> --}}
 
 							<!--
 							<li class="">
