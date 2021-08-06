@@ -1281,8 +1281,7 @@
 				$('#passwordMessage').append($passwordMessage);
 				
 			}
-           
-
+        
         }
         });
 	</script>
