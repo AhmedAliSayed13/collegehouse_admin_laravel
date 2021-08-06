@@ -53,8 +53,12 @@
 								<a href="{{url('all-rooms')}}"><i class="fe fe-home"></i> <span>All Rooms</span></a>
 							</li> -->
 
-
+	                       <li class="{{active_link('admin/meetings')}}"> 
+								<a href="{{route('admin.meeting')}}"><i class="fe fe-users"></i> <span>Mettings</span></a>
+							</li>
 						</ul>
+
+						
 					</div>
                 </div>
             </div>

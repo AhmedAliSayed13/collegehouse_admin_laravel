@@ -7,9 +7,14 @@ use App\Models\Application;
 use App\Models\Meeting_case;
 class Meeting extends Model
 {
-    public function application()
+    protected $fillable=["meeting_date"];
+    // public function application()
+    // {
+    //     return $this->hasOne(Application::class);
+    // }
+    public function groups()
     {
-        return $this->hasOne(Application::class);
+        return $this->hasOne(Group::class);
     }
     public function meeting_case()
     {

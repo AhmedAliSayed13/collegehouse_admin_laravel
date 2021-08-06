@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\User;
 use App\Models\House;
+use App\Models\Meeting;
 use App\Models\House_type;
 use App\Models\Payment_method;
 use App\Front_house_image;
@@ -177,5 +178,9 @@ class AdminController extends Controller
      
         
 
+    }
+    public function showmeeting(){
+        $meetings=Meeting::all();
+        return view('admin.adminmeeting',compact('meetings',$meetings));
     }
 }

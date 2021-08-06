@@ -33,7 +33,8 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
     Route::post('/save-owner',[App\Http\Controllers\AdminController::class,'ShowAddOwnerSave'])->name('admin.showAddOwner.save');
     Route::get('/list-owner',[App\Http\Controllers\AdminController::class,'ShowListOwner'])->name('admin.showListOwner');
 
-
+   //meeting
+   Route::get('/meetings',[App\Http\Controllers\AdminController::class,'showmeeting'])->name('admin.meeting');
     //resource
     Route::resource('tag','Admin\TagController');
     Route::resource('house','Admin\HouseController');
@@ -65,7 +66,13 @@ Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
 
     //  test send mail form gmail to another gmail
     Route::get('/mail/send',[App\Http\Controllers\Owner\MailController::class,'send_mail'])->name('owner.send-mail');
-
+ 
+    //Meeting
+    Route::get('/meeting',[App\Http\Controllers\OwnerController::class,'showmeeting'])->name('owner.meeting');
+    Route::delete('/meeting/{id}',[App\Http\Controllers\OwnerController::class,'deletemeeting'])->name('owner.deletemeeting');
+    Route::put('/meeting/update/{id}',[App\Http\Controllers\OwnerController::class,'updatemeeting'])->name('owner.updatemeeting');
+    
+    Route::get('/meeting/{id}',[App\Http\Controllers\OwnerController::class,'editmeeting'])->name('owner.editmeeting');
 
     Route::get('/profile',[App\Http\Controllers\OwnerController::class,'showProfile'])->name('owner.profile');
     Route::post('/profile-save',[App\Http\Controllers\OwnerController::class,'profileSave'])->name('owner.profile.save');

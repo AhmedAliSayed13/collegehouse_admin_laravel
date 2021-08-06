@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\User;
+use App\Models\Meeting;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
+// use Brian2694\Toastr\Facades\Toastr;
 use Auth;
 
 class OwnerController extends Controller
@@ -56,5 +58,30 @@ class OwnerController extends Controller
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
         $success="Change Password Successfully";
         return  back()->with('success',$success);
+    }
+
+    public function showmeeting(){
+        $meetings=Meeting::all();
+        return view('owner.meeting',compact('meetings',$meetings));
+    }
+    public function editmeeting($id){
+        $meetings = Meeting::find($id);
+        // $positions = Position::all();
+        return view('owner.create_metting')->with('meetings',$meetings);
+        
+    }
+    public function updatemeeting(Request $request,$id){
+        $input = $request->all();
+        $meetings = Meeting::findOrFail($id);
+        $meetings->update([
+            'meeting_date' => $request->meeting_date
+        ]);
+        //  Toastr::success('meeting updated successfully');
+        return redirect()->route('owner.meeting');
+        
+    }
+    public function deletemeeting($id){
+        Meeting::find($id)->delete();
+        return redirect()->back();
     }
 }

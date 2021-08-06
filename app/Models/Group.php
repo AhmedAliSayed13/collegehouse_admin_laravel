@@ -19,4 +19,9 @@ class Group extends Model
     {
         return $this->belongsTo(Application::class);
     }
+    
+    public function meetings()
+    {
+        return $this->hasOne(Meeting::class);
+    }
 }

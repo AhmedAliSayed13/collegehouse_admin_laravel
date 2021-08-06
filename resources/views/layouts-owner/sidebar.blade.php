@@ -15,6 +15,10 @@
 							<li class="{{active_link('owner/group')}}">
 								<a href="{{route('group.index')}}"><i class="fe fe-home"></i> <span>Groups</span></a>
 							</li>
+								</li>
+							<li class="{{active_link('owner/meeting')}}"> 
+								<a href="{{route('owner.meeting')}}"><i class="fe fe-home"></i> <span>Mettings</span></a>
+							</li>
 
 						</ul>
 					</div>
