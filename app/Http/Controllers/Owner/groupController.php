@@ -48,7 +48,10 @@ class groupController extends Controller
      */
     public function show($id)
     {
-        //
+        $group=Group::find($id);
+        $code=$group->code;
+        $groups=Group::where('code','=',$code)->get();
+        return view('owner.groups.view',compact('groups')); 
     }
 
     /**

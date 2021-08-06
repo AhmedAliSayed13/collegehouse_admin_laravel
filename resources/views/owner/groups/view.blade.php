@@ -23,11 +23,10 @@
                         <table class="datatable table table-hover table-center mb-0">
                             <thead>
                                 <tr>
-                                    <th> code</th>
-                                    <th>Lead</th>
+                                    <th>ID</th>
                                     <th>email</th>
-                                    <th>action</th>
-                                    
+                                    <th>leader</th>
+                                    {{-- <th>Application</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,19 +35,23 @@
                                     
                                     
                                     <td>
-                                        {{$group->code}}
+                                        {{$group->application->id}}
                                     </td>
                                     <td>
-                                        {{$group->application->first_name.' '.$group->application->first_name}}
+                                        {{$group->application->email}}
                                     </td>
                                     <td>
-                                        {{$group->email}}
+                                        @if($group->leader)
+                                            <span class="badge badge-pill bg-success inv-badge">leader</span>
+                                        @else
+                                            <span class="badge badge-pill bg-danger inv-badge">--</span>
+                                        @endif
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         <a class="btn btn-sm bg-success-light"  href="{{route('group.show',$group)}}">
                                             <i class="fe fe-eye"></i> view
                                         </a>
-                                    </td>
+                                    </td> --}}
                                     
                                 </tr>
                                 @endforeach
