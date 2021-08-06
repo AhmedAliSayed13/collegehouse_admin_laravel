@@ -23,7 +23,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('hom
 
 Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
     Route::get('/dashboard',[App\Http\Controllers\AdminController::class,'showDashboard'])->name('admin.dashboard');
-
     Route::get('/profile',[App\Http\Controllers\AdminController::class,'showProfile'])->name('admin.profile');
     Route::post('/profile',[App\Http\Controllers\AdminController::class,'profileSave']);
     Route::get('/change-password',[App\Http\Controllers\AdminController::class,'showChangePassword'])->name('admin.changepassword');
@@ -32,7 +31,7 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
     Route::get('/add-owner',[App\Http\Controllers\AdminController::class,'ShowAddOwner'])->name('admin.showAddOwner');
     Route::post('/save-owner',[App\Http\Controllers\AdminController::class,'ShowAddOwnerSave'])->name('admin.showAddOwner.save');
     Route::get('/list-owner',[App\Http\Controllers\AdminController::class,'ShowListOwner'])->name('admin.showListOwner');
-   
+
 
     //resource
     Route::resource('tag','Admin\TagController');
@@ -70,9 +69,9 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
     Route::get('/change-password',[App\Http\Controllers\TenantController::class,'showChangePassword'])->name('tenant.changepassword');
     Route::post('/change-password-save',[App\Http\Controllers\TenantController::class,'ChangePasswordSave'])->name('tenant.changepassword.save');
-    
+
     Route::get('/group/create',[App\Http\Controllers\tennat\GroupController::class,'createGroup'])->name('tenant.create-group');
-    
+
 });
 
 
