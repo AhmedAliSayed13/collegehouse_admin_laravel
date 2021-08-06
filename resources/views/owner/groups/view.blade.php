@@ -26,7 +26,7 @@
                                     <th>ID</th>
                                     <th>email</th>
                                     <th>leader</th>
-                                    {{-- <th>Application</th> --}}
+                                    <th>action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,11 +47,11 @@
                                             <span class="badge badge-pill bg-danger inv-badge">--</span>
                                         @endif
                                     </td>
-                                    {{-- <td>
+                                    <td>
                                         <a class="btn btn-sm bg-success-light"  href="{{route('group.show',$group)}}">
                                             <i class="fe fe-eye"></i> view
                                         </a>
-                                    </td> --}}
+                                    </td>
                                     
                                 </tr>
                                 @endforeach

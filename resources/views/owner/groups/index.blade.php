@@ -26,6 +26,7 @@
                                     <th> code</th>
                                     <th>Lead</th>
                                     <th>email</th>
+                                    <th>action</th>
                                     
                                 </tr>
                             </thead>
@@ -42,6 +43,11 @@
                                     </td>
                                     <td>
                                         {{$group->email}}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm bg-success-light"  href="{{route('group.show',$group)}}">
+                                            <i class="fe fe-eye"></i> view
+                                        </a>
                                     </td>
                                     
                                 </tr>
