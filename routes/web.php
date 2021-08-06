@@ -11,7 +11,6 @@
 |
 */
 
-use Illuminate\Routing\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
@@ -64,9 +63,8 @@ Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
     Route::get('/house/delete-flooer/{id}',[App\Http\Controllers\Owner\HouseController::class,'delete_flooer'])->name('owner.delete-flooer');
     Route::post('/house/flooer/create',[App\Http\Controllers\Owner\HouseController::class,'create_flooer'])->name('owner.create-flooer');
 
-
     //  test send mail form gmail to another gmail
-    Route::post('/mail/send',[App\Http\Controllers\Owner\MailController::class,'send_mail'])->name('owner.send-mail');
+    Route::get('/mail/send',[App\Http\Controllers\Owner\MailController::class,'send_mail'])->name('owner.send-mail');
 
 
     Route::get('/profile',[App\Http\Controllers\OwnerController::class,'showProfile'])->name('owner.profile');
