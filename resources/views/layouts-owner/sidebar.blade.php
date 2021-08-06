@@ -13,7 +13,7 @@
 								<a href="{{route('house.index')}}"><i class="fe fe-home"></i> <span>Houses</span></a>
 							</li>
 							<li class="{{active_link('owner/house')}}">
-								<a href="{{route('house.index')}}"><i class="fe fe-home"></i> <span>Houses</span></a>
+								<a href="{{route('group.index')}}"><i class="fe fe-home"></i> <span>Groups</span></a>
 							</li>
 
 						</ul>

@@ -8,5 +8,7 @@
 	<!-- Slimscroll JS -->
 	<script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
+	<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+		<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
 	<!-- Custom JS -->
 	<script src="{{ asset('assets/js/script.js') }}"></script>

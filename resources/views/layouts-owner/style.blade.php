@@ -17,7 +17,7 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-
+<link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
 <!-- firebase files start -->
 
-<link rel="stylesheet" href="{{ asset('css/style.css') }}" 
+<link rel="stylesheet" href="{{ asset('css/style.css') }}" >

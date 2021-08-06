@@ -17,6 +17,7 @@ use App\Models\Rental_history;
 use App\Models\Room;
 use App\Models\Room_type;
 use App\Models\State;
+use App\Models\Group;
 use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
@@ -145,5 +146,9 @@ class Application extends Model
     public function application_case()
     {
         return $this->belongsTo(Application_case::class);
+    }
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
     }
 }
