@@ -58,6 +58,7 @@ Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
 
     Route::get('/change-password',[App\Http\Controllers\OwnerController::class,'showChangePassword'])->name('owner.changepassword');
     Route::post('/change-password-save',[App\Http\Controllers\OwnerController::class,'ChangePasswordSave'])->name('owner.changepassword.save');
+    Route::resource('group','Owner\groupController');
 });
 
 
