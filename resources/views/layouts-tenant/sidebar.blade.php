@@ -13,6 +13,7 @@
 								<ul style="display: none;">
 									<li><a class="{{active_link('tenant/group/create')}}" href="{{route('tenant.create-group')}}"> <i class="fa fa-plus mr-2"></i> Create Group </a></li>
 									<li><a class="{{active_link('tenant/group')}}" href="{{route('application.index')}}"> <i class="fa fa-th-list mr-2"></i> List Groups </a></li>
+									<li><a class="{{active_link('tenant/zailcode')}}" href="{{url('/showzailcode')}}"> <i class="fa fa-th-list mr-2"></i> Add Zail code </a></li>
 									
 								</ul>
 							</li>

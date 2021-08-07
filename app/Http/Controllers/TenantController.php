@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Brian2694\Toastr\Facades\Toastr;
 use App\Models\City;
+use App\Models\Group;
 use App\User;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
@@ -56,5 +57,24 @@ class TenantController extends Controller
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
         $success="Change Password Successfully";
         return  back()->with('success',$success);
+    }
+    public function showzailcode($code){
+        
+    return view('tenant.create_zailcode',compact('code'));
+    }
+    public function addzailcode(Request $request){
+        $validatedData = $request->validate([
+            'zailcode' => ['required'],
+            'code' => ['required'],
+        ]);
+        $groups = Group::where('code','=',$request->code)->get();
+        
+            foreach($groups as $group){
+                $group->zailcode=$request->zailcode;
+                $group->save();
+            }
+        
+            Toastr::success('Zailcode added successfully');
+         return redirect()->route('tenant.dashboard');
     }
 }
