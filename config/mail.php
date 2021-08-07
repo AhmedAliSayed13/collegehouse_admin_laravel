@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'ahmed.ali@kabtechcorp.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'ahmedelhadary9596@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Email_Subject'),
     ],
 
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('ahmed.ali@kabtechcorp.com'),
+    'username' => env('MAIL_USERNAME'),
 
-    'password' => env('tD2bI7rZ8pL4sW3d'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

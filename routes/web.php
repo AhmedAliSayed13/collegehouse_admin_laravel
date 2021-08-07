@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\SendEmailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -125,11 +125,8 @@ Route::get('/test', 'TestController@test');
 Route::post('/test2', 'TestController@test2');
 
 
+Route::get('/sendemail', [SendEmailController::class,'index']);
+Route::post('/sendemail/send', [SendEmailController::class,'send']);
 
 
-// mail
-
-Route::get('sendbasicemail','MailController@basic_email');
-Route::get('sendhtmlemail','MailController@html_email');
-Route::get('sendattachmentemail','MailController@attachment_email');
 

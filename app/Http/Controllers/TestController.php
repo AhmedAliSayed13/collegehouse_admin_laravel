@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Zoom;
 use Carbon\Carbon;
+use Mail;
+use App\Mail\testmail;
 
 class TestController extends Controller
 {
@@ -20,4 +22,5 @@ class TestController extends Controller
         
 
     }
+
 }
