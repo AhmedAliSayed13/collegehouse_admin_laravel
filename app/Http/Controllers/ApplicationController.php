@@ -23,6 +23,8 @@ use Validator;
 use Auth;
 use Illuminate\Support\Facades\Input;
 use Str;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 class ApplicationController extends Controller
 {
 
@@ -226,8 +228,6 @@ class ApplicationController extends Controller
         $validatedData = $request->validate($arr);
 
         $application="";
-        // $parent_information_1 = new Parent_information();
-        // $parent_information_2 = new Parent_information();
         $parent_information_1 = new Parent_information();
         $parent_information_2 = new Parent_information();
         if(empty($request->session()->get('application'))){
@@ -271,7 +271,7 @@ class ApplicationController extends Controller
             $parent_information_2->position =$request->position_2 ;
             $parent_information_2->place_employment =$request->place_employment_2;
             
-        
+            
         $request->session()->put('parent_information_1', $parent_information_1);
         $request->session()->put('parent_information_2', $parent_information_2);
         $request->session()->put('application', $application);
@@ -423,22 +423,13 @@ class ApplicationController extends Controller
                 $employment->employment_date_start=$request->employment_date_start[$i];
                 $employment->employment_date_end=$request->employment_date_end[$i];
                 
-                
-                if($request->current_work==1 && $i==0){
-                  
-                        $employment->current_work=$request->current_work;
-                       
-                    
-                   
+                if($request->current_work==1 && $i==0){ 
+                        $employment->current_work=$request->current_work;       
                 }
-               
-                
                 $employment->supervisor_first_name=$request->supervisor_first_name[$i];
                 $employment->supervisor_last_name=$request->supervisor_last_name[$i];
                 $employment->supervisor_title=$request->supervisor_title[$i];
-                // if($i==0 &&){
-                //     $employment->supervisor_title
-                // }
+                
                 
                 
                 $employments[$i]=$employment;
@@ -447,8 +438,6 @@ class ApplicationController extends Controller
             $request->session()->put('employments', $employments);
         }
 
-        
-       
         return redirect()->route('step5');
     }
 
@@ -481,40 +470,144 @@ class ApplicationController extends Controller
         $code = $request->session()->get('code');
       
         $houses=House::whereIn('id', explode(',' ,$application->requested_houses))->get();
-        //return $parent_information_2;
-        //print_r($application->requested_houses);
+
         return view('application.step6',compact('application','parent_information_1','parent_information_2','rental_histories','employments','houses','code'));
     }
 
     public function PostcreateStep6(Request $request){
         
+        $parent_information=$request->session()->get('parent_information_1');
+        $parent_information_1= Parent_information::create([
+            'first_name' => $parent_information->first_name,
+            'last_name' => $parent_information->last_name,
+            'address1' => $parent_information->address1,
+            'address2' => $parent_information->address2,
+            'city_id' => $parent_information->city_id,
+            'state_id' => $parent_information->state_id,
+            'zip' => $parent_information->zip,
+            'phone' => $parent_information->phone,
+            'email' => $parent_information->email,
+            'position' => $parent_information->position,
+            'place_employment' => $parent_information->place_employment,
+        ]);
         
+
+         $parent_information = $request->session()->get('parent_information_2');
+         $parent_information_2= Parent_information::create([
+            'first_name' => $parent_information->first_name,
+            'last_name' => $parent_information->last_name,
+            'address1' => $parent_information->address1,
+            'address2' => $parent_information->address2,
+            'city_id' => $parent_information->city_id,
+            'state_id' => $parent_information->state_id,
+            'zip' => $parent_information->zip,
+            'phone' => $parent_information->phone,
+            'email' => $parent_information->email,
+            'position' => $parent_information->position,
+            'place_employment' => $parent_information->place_employment,
+        ]);
+        
+
+
+
+
        
-        $parent_information_1 = $request->session()->get('parent_information_1');
-        $parent_information_1->save(); 
+ 
         
-
-         $parent_information_2 = $request->session()->get('parent_information_2');
-         $parent_information_2->save();
-
 
        
         
-        $application = $request->session()->get('application');
+        $app = $request->session()->get('application');
+        $application= new Application();
         $application->parent_information1_id= $parent_information_1->id;
-        $application->parent_information2_id= $parent_information_2->id;
-        $application->user_id=Auth::user()->id;
+        $application->parent_information2_id= $parent_information_1->id;
+        $application->first_name= $app->first_name;
+        $application->last_name= $app->last_name;
+        $application->gender_id= $app->gender_id;
+        $application->email= $app->email;
+        $application->birthday= $app->birthday;
+        $application->phone= $app->phone;
+        $application->ssn= $app->ssn;
+        $application->address1= $app->address1;
+        $application->address2= $app->address2;
+        $application->city_id= $app->city_id;
+        $application->state_id= $app->state_id;
+        $application->zip= $app->zip;
+        $application->school= $app->school;
+        $application->major= $app->major;
+        $application->graduation_year= $app->graduation_year;
+        $application->gpa= $app->gpa;
+        $application->amount_pay_dollars= $app->amount_pay_dollars;
+        $application->both_parents_signing= $app->both_parents_signing;
+        $application->chapter_id= $app->chapter_id;
+        $application->have_rental_history= $app->have_rental_history;
+        $application->applicant_full_name= $app->applicant_full_name;
+        $application->terms_and_conditions= $app->terms_and_conditions;
+        $application->have_employment_history= $app->have_employment_history;
+        $application->payment_method_id= $app->payment_method_id;
+        $application->paying_rent_id= $app->paying_rent_id;
+        $application->bringing_Car= $app->bringing_Car;
+        $application->requested_houses= $app->requested_houses;
+        $application->bringing_Car= $app->bringing_Car;
+        $application->register_vote= $app->register_vote;
+        $application->group_lead_name= $app->group_lead_name;
+        $application->group_member_email_1= $app->group_member_email_1;
+        $application->group_member_email_2= $app->group_member_email_2;
+        $application->group_member_email_3= $app->group_member_email_3;
+        $application->group_member_email_4= $app->group_member_email_4;
+        $application->room_id= $app->room_id;
+        $application->room_type_id= $app->room_type_id;
+        $application->car_make= $app->car_make;
+        $application->car_model= $app->car_model;
+        $application->driver_license_number= $app->driver_license_number;
+        $application->car_license_number= $app->car_license_number;
+        $application->user_id=auth()->user()->id;
         $application->save();
 
+        
         $rental_histories = $request->session()->get('rental_histories');
         foreach($rental_histories as $rental_historie){
-            $rental_historie->application_id=$application->id;
-            $rental_historie->save();
+            $rental=new Rental_history();
+            $rental->application_id=$application->id;
+            $rental->address1=$rental_historie->address1;
+            $rental->address2=$rental_historie->address2;
+            $rental->city_id=$rental_historie->city_id;
+            $rental->state_id=$rental_historie->state_id;
+            $rental->zip=$rental_historie->zip;
+            $rental->rental_date=$rental_historie->rental_date;
+            $rental->monthly_rent=$rental_historie->monthly_rent;
+            $rental->reason_leaving=$rental_historie->reason_leaving;
+            $rental->first_name=$rental_historie->first_name;
+            $rental->last_name=$rental_historie->last_name;
+            $rental->phone=$rental_historie->phone;
+            $rental->email=$rental_historie->email;
+            $rental->save();
+
+
+            
         }
+
         $employments = $request->session()->get('employments');
         foreach($employments as $employment){
-            $employment->application_id=$application->id;
-            $employment->save();
+            $emp=new Employment();
+            $emp->application_id=$application->id;
+            $emp->employer_name=$employment->employer_name;
+            $emp->phone=$employment->phone;
+            $emp->email=$employment->email;
+            $emp->address1=$employment->address1;
+            $emp->address2=$employment->address2;
+            $emp->city_id=$employment->city_id;
+            $emp->zip=$employment->zip;
+            $emp->state_id=$employment->state_id;
+            $emp->position=$employment->position;
+            $emp->monthly_gross_salary=$employment->monthly_gross_salary;
+            $emp->current_work=$employment->current_work;
+            $emp->employment_date_start=$employment->employment_date_start;
+            $emp->employment_date_end=$employment->employment_date_end;
+            $emp->supervisor_first_name=$employment->supervisor_first_name;
+            $emp->supervisor_last_name=$employment->supervisor_last_name;
+            $emp->supervisor_title=$employment->supervisor_title;
+            $emp->save();
         }
         
 
@@ -530,9 +623,34 @@ class ApplicationController extends Controller
             $group->code=$request->session()->get('code');
         }
         $group->save();
-        //$request->session()->flush();
-        return redirect()->route('step6');
-
+        
+        
+        
+        if($request->session()->get('code')){
+            $emails=array();
+            if($application->group_member_email_1){
+                array_push($emails,$application->group_member_email_1);
+            }
+            if($application->group_member_email_2){
+                array_push($emails,$application->group_member_email_2);
+            }
+            if($application->group_member_email_3){
+                array_push($emails,$application->group_member_email_3);
+            }
+            if($application->group_member_email_4){
+                array_push($emails,$application->group_member_email_4);
+            }
+            foreach($emails as $email)
+            {
+                $data['type']=1;
+                $data['code']=$request->session()->get('code');
+                $data['name']=$application->first_name.' '.$application->last_name;
+                Mail::to($email)->send(new SendMail($data));
+            }
+        }
+        
+        $request->session()->flush();
+        return redirect()->route('step1');
     }
     
     public function remove(Request $request){
