@@ -99,6 +99,8 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
     Route::get('/group/create',[App\Http\Controllers\tennat\GroupController::class,'createGroup'])->name('tenant.create-group');
 
+    Route::get('/group/list',[App\Http\Controllers\TenantController::class,'list_group'])->name('tenant.list-group');
+
 });
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\City;
 use App\Models\Group;
+use App\Models\Application;
 use App\User;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
@@ -76,5 +77,10 @@ class TenantController extends Controller
         
             Toastr::success('Zailcode added successfully');
          return redirect()->route('tenant.dashboard');
+    }
+    public function list_group(){
+        $user_id=auth()->user()->id;
+        $groups=Group::where('user_id','=',$user_id)->get();
+        return view('tenant.list-group',compact('groups'));
     }
 }
