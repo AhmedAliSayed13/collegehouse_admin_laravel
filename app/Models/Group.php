@@ -11,7 +11,7 @@ class Group extends Model
      *
      * @var array
      */
-    protected $fillable = ['email', 'name','application_id'];
+    protected $fillable = ['code','zailcode','email', 'name','application_id'];
 
 
 

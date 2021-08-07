@@ -16,6 +16,7 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code')->nullable();
+            $table->string('zailcode')->nullable();
             $table->string('email');
             $table->bigInteger('application_id')->unsigned();
             $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade')->onUpdate('cascade');

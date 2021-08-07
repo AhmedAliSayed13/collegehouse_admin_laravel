@@ -90,6 +90,10 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
     Route::get('/profile',[App\Http\Controllers\TenantController::class,'showProfile'])->name('tenant.profile');
     Route::post('/profile-save',[App\Http\Controllers\TenantController::class,'profileSave'])->name('tenant.profile.save');
 
+    Route::get('/showzailcode/{code}',[App\Http\Controllers\TenantController::class,'showzailcode'])->name('tenant.showzailcode');
+    Route::post('/zailcode/update',[App\Http\Controllers\TenantController::class,'addzailcode'])->name('tenant.addzailcode');
+   
+    
     Route::get('/change-password',[App\Http\Controllers\TenantController::class,'showChangePassword'])->name('tenant.changepassword');
     Route::post('/change-password-save',[App\Http\Controllers\TenantController::class,'ChangePasswordSave'])->name('tenant.changepassword.save');
 

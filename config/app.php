@@ -162,7 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         yajra\Datatables\DatatablesServiceProvider::class,
-      
+        Brian2694\Toastr\ToastrServiceProvider::class,
+
 
         /*
          * Package Service Providers...
@@ -229,8 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Datatables' => yajra\Datatables\Datatables::class,
-        
-        
+        'Toastr'  => Brian2694\Toastr\Facades\Toastr::class
 
     ],
 
