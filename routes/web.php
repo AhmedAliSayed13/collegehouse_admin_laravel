@@ -1,4 +1,6 @@
 <?php
+
+
 use App\Http\Controllers\SendEmailController;
 /*
 |--------------------------------------------------------------------------
@@ -66,14 +68,16 @@ Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
 
     //  test send mail form gmail to another gmail
     Route::get('/mail/send',[App\Http\Controllers\Owner\MailController::class,'send_mail'])->name('owner.send-mail');
- 
+
     //Meeting
     Route::get('/meeting',[App\Http\Controllers\OwnerController::class,'showmeeting'])->name('owner.meeting');
     Route::delete('/meeting/{id}',[App\Http\Controllers\OwnerController::class,'deletemeeting'])->name('owner.deletemeeting');
     Route::put('/meeting/update/{id}',[App\Http\Controllers\OwnerController::class,'updatemeeting'])->name('owner.updatemeeting');
-    
+        
     Route::get('/meeting/{id}',[App\Http\Controllers\OwnerController::class,'editmeeting'])->name('owner.editmeeting');
 
+    // calendar
+    Route::resource('calendar', 'Owner\CalendarController');
     Route::get('/profile',[App\Http\Controllers\OwnerController::class,'showProfile'])->name('owner.profile');
     Route::post('/profile-save',[App\Http\Controllers\OwnerController::class,'profileSave'])->name('owner.profile.save');
 
@@ -92,8 +96,8 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
     Route::get('/showzailcode/{code}',[App\Http\Controllers\TenantController::class,'showzailcode'])->name('tenant.showzailcode');
     Route::post('/zailcode/update',[App\Http\Controllers\TenantController::class,'addzailcode'])->name('tenant.addzailcode');
-   
-    
+
+
     Route::get('/change-password',[App\Http\Controllers\TenantController::class,'showChangePassword'])->name('tenant.changepassword');
     Route::post('/change-password-save',[App\Http\Controllers\TenantController::class,'ChangePasswordSave'])->name('tenant.changepassword.save');
 
