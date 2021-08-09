@@ -89,6 +89,28 @@ Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
 
 
 Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
+
+
+    Route::get('/step1', 'ApplicationController@createStep1')->name('step1');
+
+    Route::post('/step1', 'ApplicationController@PostcreateStep1')->name('step1-save');
+    
+    Route::get('/step2', 'ApplicationController@createStep2')->name('step2');
+    Route::post('/step2', 'ApplicationController@PostcreateStep2')->name('step2-save');
+    
+    Route::get('/step3', 'ApplicationController@createStep3')->name('step3');
+    Route::post('/step3', 'ApplicationController@PostcreateStep3')->name('step3-save');
+    
+    Route::get('/step4', 'ApplicationController@createStep4')->name('step4');
+    Route::post('/step4', 'ApplicationController@PostcreateStep4')->name('step4-save');
+
+    Route::get('/step5', 'ApplicationController@createStep5')->name('step5');
+    Route::post('/step5', 'ApplicationController@PostcreateStep5')->name('step5-save');
+
+    Route::get('/step6', 'ApplicationController@createStep6')->name('step6');
+    Route::post('/step6', 'ApplicationController@PostcreateStep6')->name('step6-save');
+
+
     Route::get('/dashboard',[App\Http\Controllers\TenantController::class,'showDashboard'])->name('tenant.dashboard');
 
     Route::get('/profile',[App\Http\Controllers\TenantController::class,'showProfile'])->name('tenant.profile');
@@ -108,24 +130,7 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 });
 
 
-Route::get('/step1', 'ApplicationController@createStep1')->name('step1');
 
-Route::post('/step1', 'ApplicationController@PostcreateStep1')->name('step1-save');
-
-Route::get('/step2', 'ApplicationController@createStep2')->name('step2');
-Route::post('/step2', 'ApplicationController@PostcreateStep2')->name('step2-save');
-
-Route::get('/step3', 'ApplicationController@createStep3')->name('step3');
-Route::post('/step3', 'ApplicationController@PostcreateStep3')->name('step3-save');
-
-Route::get('/step4', 'ApplicationController@createStep4')->name('step4');
-Route::post('/step4', 'ApplicationController@PostcreateStep4')->name('step4-save');
-
-Route::get('/step5', 'ApplicationController@createStep5')->name('step5');
-Route::post('/step5', 'ApplicationController@PostcreateStep5')->name('step5-save');
-
-Route::get('/step6', 'ApplicationController@createStep6')->name('step6');
-Route::post('/step6', 'ApplicationController@PostcreateStep6')->name('step6-save');
 
 Route::post('/popup-login', 'ApplicationController@popupLogin')->name('popup-login');
 
