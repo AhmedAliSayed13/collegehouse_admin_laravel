@@ -550,6 +550,7 @@ class ApplicationController extends Controller
         $application->requested_houses= $app->requested_houses;
         $application->bringing_Car= $app->bringing_Car;
         $application->register_vote= $app->register_vote;
+        $application->house_type_id= $app->house_type_id;
         $application->group_lead_name= $app->group_lead_name;
         $application->group_member_email_1= $app->group_member_email_1;
         $application->group_member_email_2= $app->group_member_email_2;
