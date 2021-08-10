@@ -1214,7 +1214,7 @@
 								
 								<!-- Form -->
 								<form action="{{route('popup-login')}}" method="Post" id="form-popup-login">
-								@csrf
+									@csrf
 									<div class="form-group">
 										<input class="form-control" type="email" name="email" placeholder="Email" >
 										<span class="text-danger" >
@@ -1233,7 +1233,7 @@
 								</form>
 								<!-- /Form -->
 								
-								<div class="text-center forgotpass"><a href="forgot-password.html">Forgot Password?</a></div>
+								
 								<div class="login-or">
 									<span class="or-line"></span>
 									<span class="span-or">or</span>
@@ -1280,12 +1280,14 @@
         var postdata = $(this).serialize();
         var request = $.post(url, postdata, formpostcompleted, "json");
         function formpostcompleted(data, status) {
+			console.log(data);
 			if(data==1)
 			{
 				$('#emailMessage').empty();
 				$('#passwordMessage').empty();
-				// e.currentTarget.submit();
-				location.reload();
+				
+				// location.reload();
+				window.location.reload();
 			}else if(data==0){
 				$('#emailMessage').empty();
 				$('#passwordMessage').empty();
@@ -1295,7 +1297,7 @@
 				$passwordMessage=data['password'];
 				$('#emailMessage').empty();
 				$('#passwordMessage').empty();
-				alert($emailMessage);
+				
 				$('#emailMessage').append($emailMessage);
 				$('#passwordMessage').append($passwordMessage);
 				

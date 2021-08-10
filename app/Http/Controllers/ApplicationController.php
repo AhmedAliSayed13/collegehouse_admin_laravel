@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Input;
 use Str;
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
+use SebastianBergmann\Environment\Console;
+
 class ApplicationController extends Controller
 {
 
@@ -641,6 +643,8 @@ class ApplicationController extends Controller
             if($application->group_member_email_4){
                 array_push($emails,$application->group_member_email_4);
             }
+
+
             foreach($emails as $email)
             {
                 $data['type']=1;
@@ -648,7 +652,23 @@ class ApplicationController extends Controller
                 $data['name']=$application->first_name.' '.$application->last_name;
                 Mail::to($email)->send(new SendMail($data));
             }
+
+                
+            
         }
+
+
+        $data=array();
+        $data['type']=2;
+        $data['tenant']=$parent_information_1->first_name.' '.$parent_information_1->last_name;
+        $data['name']=$application->first_name.' '.$application->last_name;
+        Mail::to($parent_information_1->email)->send(new SendMail($data));
+
+        $data=array();
+        $data['type']=2;
+        $data['tenant']=$parent_information_2->first_name.' '.$parent_information_2->last_name;
+        $data['name']=$application->first_name.' '.$application->last_name;
+        Mail::to($parent_information_2->email)->send(new SendMail($data));
         
         $request->session()->flush();
         return redirect()->route('step1');
@@ -666,7 +686,7 @@ class ApplicationController extends Controller
         ];
         $validator= Validator::make($request->all(), $rules);
         if($validator->fails()){
-            return response()->json($validator->messages()->get('*'));
+            return response()->json($validator->messages()->get('*'));  
         }else{
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials)) {
@@ -674,7 +694,6 @@ class ApplicationController extends Controller
             }else{
                 return response()->json(0);
             }
-            
         }
 
         // return response()->json(1);
