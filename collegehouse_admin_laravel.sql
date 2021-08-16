@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2021 at 06:15 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.3.28
+-- Generation Time: Aug 16, 2021 at 08:43 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -86,7 +87,8 @@ CREATE TABLE `applications` (
 --
 
 INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_email_1`, `group_member_email_2`, `group_member_email_3`, `group_member_email_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `terms_and_conditions`, `application_case_id`, `meeting_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'ahmed', 'ali', 1, 'ahmed.ali@kabtechcorp.com', '2021-08-14', '01122334455', '345435', 'It is a long established fact that a reader will be distracted by', 'It is a long established fact that a reader will be distracted by', 20, 17, '456', 1, 'Lorem Ipsum', 'Lorem Ipsum', '2019', 2, 1, 1, 1, 0, '8', NULL, NULL, 250, NULL, NULL, NULL, NULL, NULL, 'ahmed ali', 'ahmedalisayed13@gmail.com', 'pksaudi4@gmail.com', 'alolahmed84@gmail.com', 'smahaemn28@gmail.com', 1, 0, 16, NULL, 16, NULL, 0, 0, 'ahmed ali sayed', 1, 1, NULL, 11, '2021-08-09 11:58:47', '2021-08-09 11:58:47');
+(1, 'ahmed', 'ali', 1, 'ahmed.ali@kabtechcorp.com', '2021-08-14', '01122334455', '345435', 'It is a long established fact that a reader will be distracted by', 'It is a long established fact that a reader will be distracted by', 20, 17, '456', 1, 'Lorem Ipsum', 'Lorem Ipsum', '2019', 2, 1, 1, 1, 0, '8', NULL, NULL, 250, NULL, NULL, NULL, NULL, NULL, 'ahmed ali', 'ahmedalisayed13@gmail.com', 'pksaudi4@gmail.com', 'alolahmed84@gmail.com', 'smahaemn28@gmail.com', 1, 0, 16, NULL, 16, NULL, 0, 0, 'ahmed ali sayed', 1, 2, 6, 11, '2021-08-09 11:58:47', '2021-08-12 15:50:40'),
+(2, 'ahmed', 'nour', 1, 'pksaudi4@gmail.com', '2021-08-14', '54645645', '345435', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', 24, 18, '45654', NULL, 'Lorem Ipsum', 'Lorem Ipsum', '2019', 2, 1, 1, 1, 0, NULL, NULL, NULL, 248, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 22, NULL, 22, NULL, 0, 0, 'ahmed nour eldeen', 1, 1, NULL, 8, '2021-08-09 16:38:42', '2021-08-09 16:38:42');
 
 -- --------------------------------------------------------
 
@@ -500,7 +502,8 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `code`, `zailcode`, `email`, `application_id`, `user_id`, `leader`, `created_at`, `updated_at`) VALUES
-(1, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'ahmed.ali@kabtechcorp.com', 1, 11, 1, '2021-08-09 11:58:47', '2021-08-09 11:58:47');
+(1, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'ahmed.ali@kabtechcorp.com', 1, 11, 1, '2021-08-09 11:58:47', '2021-08-09 11:58:47'),
+(2, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'pksaudi4@gmail.com', 2, 8, 0, '2021-08-09 16:38:42', '2021-08-09 16:38:42');
 
 -- --------------------------------------------------------
 
@@ -590,7 +593,8 @@ CREATE TABLE `meetings` (
 --
 
 INSERT INTO `meetings` (`id`, `meeting_date`, `meeting_id`, `meeting_url`, `meeting_case_id`, `application_id`, `created_at`, `updated_at`) VALUES
-(5, '2021-07-24T20:25', '99910498802', 'https://zoom.us/j/99910498802?pwd=K2JqZVVWT0ZhbjlmMi9BOGt3bHEyZz09', 1, 3, '2021-07-03 16:18:21', '2021-07-06 10:15:33');
+(5, '2021-07-24T20:25', '99910498802', 'https://zoom.us/j/99910498802?pwd=K2JqZVVWT0ZhbjlmMi9BOGt3bHEyZz09', 1, 3, '2021-07-03 16:18:21', '2021-07-06 10:15:33'),
+(6, '2021-09-01T17:50:00Z', '95742865175', 'https://zoom.us/j/95742865175?pwd=ZFFIa3dXQUxGZlUrM0NVaFlhak1rZz09', 2, 1, '2021-08-12 15:50:40', '2021-08-12 15:50:40');
 
 -- --------------------------------------------------------
 
@@ -692,7 +696,9 @@ INSERT INTO `parent_informations` (`id`, `first_name`, `last_name`, `address1`, 
 (18, 'nour eldeen', 'ahmed', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', 21, 15, '3453', '01112916666', 'nourahmed@gmail.com', 'It is a long established fact that a', 'It is a long established fact that a', '2021-08-09 14:02:39', '2021-08-09 14:02:39'),
 (19, 'fofa', 'mostafa', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', 20, 20, '34564', '01112916666', 'nourahmed@gmail.com', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', '2021-08-09 14:02:39', '2021-08-09 14:02:39'),
 (20, 'nour eldeen', 'ahmed', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', 21, 15, '3453', '01112916666', 'nourahmed@gmail.com', 'It is a long established fact that a', 'It is a long established fact that a', '2021-08-09 14:03:39', '2021-08-09 14:03:39'),
-(21, 'fofa', 'mostafa', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', 20, 20, '34564', '01112916666', 'nourahmed@gmail.com', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', '2021-08-09 14:03:39', '2021-08-09 14:03:39');
+(21, 'fofa', 'mostafa', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', 20, 20, '34564', '01112916666', 'nourahmed@gmail.com', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', '2021-08-09 14:03:39', '2021-08-09 14:03:39'),
+(22, 'nour', 'eldeen ahmed', 'Lorem Ipsum', 'Lorem Ipsum', 17, 20, '544356', '345446346', 'org1@gmail.com', 'Lorem Ipsum', 'Lorem Ipsum', '2021-08-09 16:38:42', '2021-08-09 16:38:42'),
+(23, 'mostafa', 'ahmed', 'Lorem Ipsum', 'Lorem Ipsum', 19, 19, '34534', '3534545', 'org1@gmail.com', '34534543', '5343534', '2021-08-09 16:38:42', '2021-08-09 16:38:42');
 
 -- --------------------------------------------------------
 
@@ -964,15 +970,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone`, `address`, `state`, `city_id`, `zip`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'ahmed', 'ali sayed', '01112912233', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'qwde', 2, 'eqd', 'owner@gmail.com', NULL, '$2y$10$QQL2.pY56aS.am4QzhpwO.SCv0OF4tNX2MeuBpiaXb4PgZvkIFaM6', 2, NULL, '2021-06-02 06:42:20', '2021-06-09 16:16:42'),
-(3, 'ahmed', 'mostafa ali', '01112912244', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'rerbd', 2, 'gredger', 'tenant@gmail.com', NULL, '$2y$10$kLx2oWvk52i6K5LSb1f1cOcUnVGvD3rfK0zGiT2Z/U1/eiD7ETGzm', 3, NULL, '2021-06-02 07:35:35', '2021-06-02 07:52:15'),
+(2, 'ahmed', 'ali sayed', '01112912233', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'qwde', 2, 'eqd', 'owner@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 2, NULL, '2021-06-02 06:42:20', '2021-06-09 16:16:42'),
+(3, 'ahmed', 'mostafa ali', '01112912244', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'rerbd', 2, 'gredger', 'tenant@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-06-02 07:35:35', '2021-06-02 07:52:15'),
 (4, 'ahmed', 'nour', '01112912211', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'wefcew', 2, 'ddwfcwe', 'admin@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 1, NULL, '2021-06-02 07:59:25', '2021-06-02 07:59:25'),
-(5, 'ahmed', 'ali', '01112912999', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'dsds', 1, 'sdcsd', 'owner2@gmail.com', NULL, '$2y$10$FxDqg1eBjmL4p83UhM5A/uHOB0IIXoSmO7hIFc4.OaCDoNUj/z4P2', 2, NULL, '2021-06-02 09:37:23', '2021-06-02 09:37:23'),
-(6, 'mostafa', 'adel', '43638248723', 'التوسعات الشمالية - قطعة 816', 'ergerge', 160, 'ergver', 'ahmednfdfour@gmail.com', NULL, '$2y$10$fwU5ATr2Wvir1rUGhTzWrOSOnLsIUJgzIXzQc6S4su8AzGsUTPOk.', 2, NULL, '2021-06-06 09:37:52', '2021-06-20 12:43:35'),
-(8, 'ahmed', 'nour', '212424', 'التوسعات الشمالية - قطعة 816', '34534', 21, '346456', 'pksaudi4@gmail.com', NULL, '$2y$10$stXFTsJ3cwX.MU2IpCFGGe7NP/pmGGM1TTX6fnB89XKKrM8TsFbOK', 3, NULL, '2021-08-09 11:46:45', '2021-08-09 11:46:45'),
-(9, 'ahmed', 'mostafa', '45645765', 'التوسعات الشمالية - قطعة 816', '3456436', 21, '457567', 'ahmedalisayed13@gmail.com', NULL, '$2y$10$RXuG7giarqBVrgzzut50peo9w5lqH9BessMPh287ZYBMLln4bSYV.', 3, NULL, '2021-08-09 11:48:04', '2021-08-09 11:48:04'),
-(10, 'ahmed', 'hamam', '01112912966', 'التوسعات الشمالية - قطعة 816', '34534', 19, '34645', 'alolahmed84@gmail.com', NULL, '$2y$10$Bfik5JpgYQpnWPIBZ4658Oc5WjedXq3BMheAFGS30cdYBmeanP48K', 3, NULL, '2021-08-09 11:49:10', '2021-08-09 11:49:10'),
-(11, 'ahmed', 'ali', '346456457', 'التوسعات الشمالية - قطعة 816', 'teerger', 7, '54656', 'ahmed.ali@kabtechcorp.com', NULL, '$2y$10$ZEyxPybQzM/fJZ1uM0dSQejGGngk2Kz1iy2njPtjZViwrPltT/PPG', 3, NULL, '2021-08-09 11:50:31', '2021-08-09 11:50:31');
+(5, 'ahmed', 'ali', '01112912999', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'dsds', 1, 'sdcsd', 'owner2@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 2, NULL, '2021-06-02 09:37:23', '2021-06-02 09:37:23'),
+(6, 'mostafa', 'adel', '43638248723', 'التوسعات الشمالية - قطعة 816', 'ergerge', 160, 'ergver', 'ahmednfdfour@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 2, NULL, '2021-06-06 09:37:52', '2021-06-20 12:43:35'),
+(8, 'ahmed', 'nour', '212424', 'التوسعات الشمالية - قطعة 816', '34534', 21, '346456', 'pksaudi4@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-08-09 11:46:45', '2021-08-09 11:46:45'),
+(9, 'ahmed', 'mostafa', '45645765', 'التوسعات الشمالية - قطعة 816', '3456436', 21, '457567', 'ahmedalisayed13@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-08-09 11:48:04', '2021-08-09 11:48:04'),
+(10, 'ahmed', 'hamam', '01112912966', 'التوسعات الشمالية - قطعة 816', '34534', 19, '34645', 'alolahmed84@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-08-09 11:49:10', '2021-08-09 11:49:10'),
+(11, 'ahmed', 'ali', '346456457', 'التوسعات الشمالية - قطعة 816', 'teerger', 7, '54656', 'ahmed.ali@kabtechcorp.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-08-09 11:50:31', '2021-08-09 11:50:31');
 
 --
 -- Indexes for dumped tables
@@ -1174,7 +1180,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `application_cases`
@@ -1222,7 +1228,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `houses`
@@ -1240,7 +1246,7 @@ ALTER TABLE `house_types`
 -- AUTO_INCREMENT for table `meetings`
 --
 ALTER TABLE `meetings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `meeting_cases`
@@ -1258,7 +1264,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `parent_informations`
 --
 ALTER TABLE `parent_informations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `paying_rents`
@@ -1375,40 +1381,11 @@ ALTER TABLE `houses`
   ADD CONSTRAINT `houses_payment_method_id_foreign` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `meetings`
---
-ALTER TABLE `meetings`
-  ADD CONSTRAINT `meetings_application_id_foreign` FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `meetings_meeting_case_id_foreign` FOREIGN KEY (`meeting_case_id`) REFERENCES `meeting_cases` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `parent_informations`
 --
 ALTER TABLE `parent_informations`
   ADD CONSTRAINT `parent_informations_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `parent_informations_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `rental_histories`
---
-ALTER TABLE `rental_histories`
-  ADD CONSTRAINT `rental_histories_application_id_foreign` FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rental_histories_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rental_histories_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `rooms`
---
-ALTER TABLE `rooms`
-  ADD CONSTRAINT `rooms_house_id_foreign` FOREIGN KEY (`house_id`) REFERENCES `houses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rooms_room_type_id_foreign` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
