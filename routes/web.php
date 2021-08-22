@@ -92,7 +92,8 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
     Route::get('/showzailcode/{code}',[App\Http\Controllers\TenantController::class,'showzailcode'])->name('tenant.showzailcode');
     Route::post('/zailcode/update',[App\Http\Controllers\TenantController::class,'addzailcode'])->name('tenant.addzailcode');
-   
+    
+    Route::get('/application',[App\Http\Controllers\TenantController::class,'showapplications'])->name('tenant.showapplications');
     
     Route::get('/change-password',[App\Http\Controllers\TenantController::class,'showChangePassword'])->name('tenant.changepassword');
     Route::post('/change-password-save',[App\Http\Controllers\TenantController::class,'ChangePasswordSave'])->name('tenant.changepassword.save');

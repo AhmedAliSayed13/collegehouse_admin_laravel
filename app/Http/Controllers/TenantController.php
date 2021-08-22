@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\City;
 use App\Models\Group;
+use App\Models\Application;
+
 use App\User;
+use App\DataTables\ApplicationsDataTable;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
@@ -77,4 +80,12 @@ class TenantController extends Controller
             Toastr::success('Zailcode added successfully');
          return redirect()->route('tenant.dashboard');
     }
+
+    public function showapplications(ApplicationsDataTable $house){
+
+        $applications=Application::all();
+        $cities=City::all();
+        return view('tenant.applications',compact('applications','cities'));
+    }
+    
 }

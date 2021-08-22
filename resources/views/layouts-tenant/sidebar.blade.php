@@ -17,6 +17,12 @@
 									
 								</ul>
 							</li>
+							<li class="submenu ">
+								<a href=""><i class="fe fe-document"></i> <span> Applications</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a class="{{active_link('tenant/applications/')}}" href="{{route('tenant.showapplications')}}"> <i class="fa fa-plus mr-2"></i> All Applications </a></li>
+								</ul>
+							</li>
 							
 
 						</ul>

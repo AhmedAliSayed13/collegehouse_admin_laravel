@@ -21,6 +21,7 @@ class ApplicationController extends Controller
     public function index(ApplicationsDataTable $house)
     {
         return $house->render('admin.houses.index', ['title' => 'admin title']);
+        dd($house);
     }
  
     public function create()
@@ -147,6 +148,7 @@ class ApplicationController extends Controller
     public function show($id)
     {
         $application =Application::find($id);
+        
         $houses=House::whereIn('id', explode(',' ,$application->requested_houses))->get();
         $parent_information_1 =$application-> parent_information1();
         $parent_information_2 =$application-> parent_information2();
