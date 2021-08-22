@@ -73,7 +73,7 @@ Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
     Route::get('/meeting',[App\Http\Controllers\OwnerController::class,'showmeeting'])->name('owner.meeting');
     Route::delete('/meeting/{id}',[App\Http\Controllers\OwnerController::class,'deletemeeting'])->name('owner.deletemeeting');
     Route::put('/meeting/update/{id}',[App\Http\Controllers\OwnerController::class,'updatemeeting'])->name('owner.updatemeeting');
-        
+
     Route::get('/meeting/{id}',[App\Http\Controllers\OwnerController::class,'editmeeting'])->name('owner.editmeeting');
 
     // calendar
@@ -94,13 +94,13 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
     Route::get('/step1', 'ApplicationController@createStep1')->name('step1');
 
     Route::post('/step1', 'ApplicationController@PostcreateStep1')->name('step1-save');
-    
+
     Route::get('/step2', 'ApplicationController@createStep2')->name('step2');
     Route::post('/step2', 'ApplicationController@PostcreateStep2')->name('step2-save');
-    
+
     Route::get('/step3', 'ApplicationController@createStep3')->name('step3');
     Route::post('/step3', 'ApplicationController@PostcreateStep3')->name('step3-save');
-    
+
     Route::get('/step4', 'ApplicationController@createStep4')->name('step4');
     Route::post('/step4', 'ApplicationController@PostcreateStep4')->name('step4-save');
 
@@ -142,6 +142,8 @@ Route::post('/test2', 'TestController@test2');
 
 Route::get('/sendemail', [SendEmailController::class,'index']);
 Route::post('/sendemail/send', [SendEmailController::class,'send']);
+
+Route::post('/acceptedLeader',[SendEmailController::class,'acceptedLeader'])->name('acceptedLeader');
 
 
 
