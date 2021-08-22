@@ -2,6 +2,31 @@
 @section('content')
 
         <div class="row">
+            <div class="col-md-12 col-lg-5">
+
+                <!-- Recent Orders -->
+                <div class="card">
+
+                <div class="card-header">
+                        <h5 class="card-title">Send mail to leader</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{{ route('acceptedLeader') }}">
+                            @csrf
+                            <div class="form-group">
+                             <label>Enter Your Email</label>
+                             <input type="text" name="email" class="form-control" value="" />
+                            </div>
+
+                            <div class="form-group">
+                             <input type="submit" name="send" class="btn btn-info" value="Send" />
+                            </div>
+                           </form>
+                    </div>
+                </div>
+                <!-- /Recent Orders -->
+
+            </div>
             <div class="col-md-12 col-lg-7">
 
                 <!-- Recent Orders -->

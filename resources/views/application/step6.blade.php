@@ -93,7 +93,7 @@
 							<div class="row">
 
 
-								<div class="col-md-12">
+							<div class="col-md-12">
 									<div class="table-responsive">
 										<table class="table table-hover mb-0">
 											<tbody>
@@ -118,7 +118,7 @@
 													</td>
 													
 												</tr>
-
+												@if(isset($application->gender->name))
 												<tr>
 													<td>
 														Applicant gender
@@ -128,7 +128,9 @@
 													</td>
 													
 												</tr>
+												@endif
 
+												
 												<tr>
 													<td>
 														Applicant email address
@@ -139,7 +141,7 @@
 													</td>
 													
 												</tr>
-
+												
 												<tr>
 													<td>
 														Applicant Address 1
@@ -159,7 +161,7 @@
 													</td>
 													
 												</tr>
-
+												@if(isset($application->city->name))
 												<tr>
 													<td>
 														Applicant city
@@ -169,7 +171,8 @@
 													</td>
 													
 												</tr>
-
+												@endif
+												@if(isset($application->state->name))
 												<tr>
 													<td>
 														Applicant state
@@ -179,6 +182,7 @@
 													</td>
 													
 												</tr>
+												@endif
 
 												<tr>
 													<td>
@@ -190,7 +194,8 @@
 													
 												</tr>
 
-												@if(empty($code))
+
+												@if(isset($application->house_type->name) )
 													<tr>
 														<td>
 															Requested House Type
@@ -202,17 +207,22 @@
 													</tr>
 												@endif
 
-												@for($i=0;$i<count($houses);$i++)
-												<tr>
-													<td>
-														Requested property({{$i}})
-													</td>
-													<td>
-														{{$houses[$i]->name}}
-													</td>
-													
-												</tr>
-												@endfor
+
+												@if(isset($houses) )
+													@for($i=0;$i<count($houses);$i++)
+													<tr>
+														<td>
+															Requested property({{$i}})
+														</td>
+														<td>
+															{{$houses[$i]->name}}
+														</td>
+														
+													</tr>
+													@endfor
+												@endif
+
+
 
 												@if(empty($code))
 													@if($application->house_type_id==1)
@@ -374,8 +384,7 @@
 													<td>
 														{{$application->graduation_year}}
 													</td>
-													
-												</tr>
+													</tr>
 												<tr>
 													<td>
 														GPA
@@ -431,7 +440,8 @@
 													</td>
 													
 												</tr>
-												@if($application->both_parents_signing==1)
+
+												@if(isset($application->reason_sign_parent->name))
 												<tr>
 													<td>
 														note reason
@@ -444,7 +454,8 @@
 													
 												@endif
 
-												@if($application->reason_sign_parent_id==6 && $application->both_parents_signing==1)
+
+												@if(isset($application->parents_sign_not_other_reasons))
 
 													<tr>
 														<td>
@@ -478,7 +489,6 @@
 													</td>
 													
 												</tr>
-
 												<tr>
 													<td>
 														Parent 1 Address 1
@@ -539,6 +549,7 @@
 													</td>
 													
 												</tr>
+
 												<tr>
 													<td>
 														Parent 1 Email Address
@@ -618,6 +629,8 @@
 													</td>
 													
 												</tr>
+
+												@if(isset($parent_information_2->city->name))
 												<tr>
 													<td>
 														Parent 2 City
@@ -628,6 +641,8 @@
 													</td>
 													
 												</tr>
+												@endif
+												@if(isset($parent_information_2->state->name))
 												<tr>
 													<td>
 														Parent 2 state
@@ -638,6 +653,9 @@
 													</td>
 													
 												</tr>
+												@endif
+
+
 												<tr>
 													<td>
 														Parent 2 Zip Code.
@@ -700,6 +718,7 @@
 													</td>
 													
 												</tr>
+
 												@if($application->have_rental_history==1)
 
 													@for($i=0;$i<count($rental_histories);$i++)
@@ -1195,7 +1214,7 @@
 								
 								<!-- Form -->
 								<form action="{{route('popup-login')}}" method="Post" id="form-popup-login">
-								@csrf
+									@csrf
 									<div class="form-group">
 										<input class="form-control" type="email" name="email" placeholder="Email" >
 										<span class="text-danger" >
@@ -1214,7 +1233,7 @@
 								</form>
 								<!-- /Form -->
 								
-								<div class="text-center forgotpass"><a href="forgot-password.html">Forgot Password?</a></div>
+								
 								<div class="login-or">
 									<span class="or-line"></span>
 									<span class="span-or">or</span>
@@ -1261,12 +1280,14 @@
         var postdata = $(this).serialize();
         var request = $.post(url, postdata, formpostcompleted, "json");
         function formpostcompleted(data, status) {
+			console.log(data);
 			if(data==1)
 			{
 				$('#emailMessage').empty();
 				$('#passwordMessage').empty();
-				// e.currentTarget.submit();
-				location.reload();
+				
+				// location.reload();
+				window.location.reload();
 			}else if(data==0){
 				$('#emailMessage').empty();
 				$('#passwordMessage').empty();
@@ -1276,7 +1297,7 @@
 				$passwordMessage=data['password'];
 				$('#emailMessage').empty();
 				$('#passwordMessage').empty();
-				alert($emailMessage);
+				
 				$('#emailMessage').append($emailMessage);
 				$('#passwordMessage').append($passwordMessage);
 				

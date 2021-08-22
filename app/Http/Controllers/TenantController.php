@@ -5,7 +5,6 @@ use Brian2694\Toastr\Facades\Toastr;
 use App\Models\City;
 use App\Models\Group;
 use App\Models\Application;
-
 use App\User;
 use App\DataTables\ApplicationsDataTable;
 use Illuminate\Http\Request;
@@ -62,7 +61,7 @@ class TenantController extends Controller
         return  back()->with('success',$success);
     }
     public function showzailcode($code){
-        
+
     return view('tenant.create_zailcode',compact('code'));
     }
     public function addzailcode(Request $request){
@@ -71,21 +70,26 @@ class TenantController extends Controller
             'code' => ['required'],
         ]);
         $groups = Group::where('code','=',$request->code)->get();
-        
+
             foreach($groups as $group){
                 $group->zailcode=$request->zailcode;
                 $group->save();
             }
-        
+
             Toastr::success('Zailcode added successfully');
          return redirect()->route('tenant.dashboard');
     }
 
-    public function showapplications(ApplicationsDataTable $house){
+    // public function showapplications(ApplicationsDataTable $house){
 
-        $applications=Application::all();
-        $cities=City::all();
-        return view('tenant.applications',compact('applications','cities'));
+    //     $applications=Application::all();
+    //     $cities=City::all();
+    //     return view('tenant.applications',compact('applications','cities'));
+    // }
+
+    public function list_group(){
+        $user_id=auth()->user()->id;
+        $groups=Group::where('user_id','=',$user_id)->get();
+        return view('tenant.list-group',compact('groups'));
     }
-    
 }

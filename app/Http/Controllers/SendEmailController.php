@@ -29,4 +29,11 @@ class SendEmailController extends Controller
         Mail::to($request->email)->send(new SendMail($data));
         return back()->with('success', 'Thanks for contacting us!');
     }
+
+    public function acceptedLeader(Request $request){
+        $data ="sasasass";
+        Mail::to($request->email)->send(new SendMail($data));
+        return back()->with('success', 'Thanks for contacting us!');
+
+    }
 }
