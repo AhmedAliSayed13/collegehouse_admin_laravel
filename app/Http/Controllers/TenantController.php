@@ -7,6 +7,7 @@ use App\Models\Group;
 use App\Models\Application;
 use App\User;
 use App\DataTables\ApplicationsDataTable;
+use App\Models\tentantPayment;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
@@ -61,8 +62,7 @@ class TenantController extends Controller
         return  back()->with('success',$success);
     }
     public function showzailcode($code){
-
-    return view('tenant.create_zailcode',compact('code'));
+      return view('tenant.create_zailcode',compact('code'));
     }
     public function addzailcode(Request $request){
         $validatedData = $request->validate([
@@ -91,5 +91,16 @@ class TenantController extends Controller
         $user_id=auth()->user()->id;
         $groups=Group::where('user_id','=',$user_id)->get();
         return view('tenant.list-group',compact('groups'));
+    }
+
+    public function add_payment(){
+        return view('tenant.add-payment');
+    }
+
+    public function store_payment(Request $request){
+        tentantPayment::create([
+            'message' => $request->message
+        ]);
+        return view('tenant.dashboard');
     }
 }

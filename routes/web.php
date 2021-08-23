@@ -49,7 +49,7 @@ Route::group(['middleware' => ['isAdmin'],'prefix' => 'admin'], function () {
 
     Route::get('/house/delete-flooer/{id}',[App\Http\Controllers\Admin\HouseController::class,'delete_flooer'])->name('admin.delete-flooer');
     Route::post('/house/flooer/create',[App\Http\Controllers\Admin\HouseController::class,'create_flooer'])->name('admin.create-flooer');
-    
+
 });
 
 
@@ -129,6 +129,8 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
     Route::get('/group/list',[App\Http\Controllers\TenantController::class,'list_group'])->name('tenant.list-group');
 
+    Route::get('/addPayment',[App\Http\Controllers\TenantController::class,'add_payment'])->name('tenant.add_payment');
+    Route::post('/storePayment',[App\Http\Controllers\TenantController::class,'store_payment'])->name('tenant.store_payment');
 });
 
 
