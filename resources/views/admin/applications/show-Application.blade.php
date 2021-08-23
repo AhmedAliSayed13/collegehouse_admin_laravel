@@ -75,7 +75,7 @@
 
 									<div class="card-body">
 
-										<div class="row">
+										
 											<div class="col-lg-5">
 												<div class="card">
 													<div class="card-header">
@@ -1120,8 +1120,7 @@
 												</div>
 
 											</div>
-										</div>
-
+										
 
 
 									</div>

@@ -645,8 +645,7 @@ class ApplicationController extends Controller
             }
 
 
-            foreach($emails as $email)
-            {
+            foreach($emails as $email){
                 $data['type']=1;
                 $data['code']=$request->session()->get('code');
                 $data['name']=$application->first_name.' '.$application->last_name;

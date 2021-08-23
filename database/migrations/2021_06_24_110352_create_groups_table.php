@@ -23,10 +23,9 @@ class CreateGroupsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('leader')->default(0);
-            // $table->bigInteger('house_id')->unsigned()->nullable();
-            // $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade')->onUpdate('cascade');
-            // $table->bigInteger('house_id')->unsigned();
-            // $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('complate')->default(0);
+             $table->bigInteger('group_status_id')->unsigned()->default(1);
+            // $table->foreign('group_status_id')->references('id')->on('group_statuss')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Owner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
+use DB;
 class groupController extends Controller
 {
      /**
@@ -14,8 +15,17 @@ class groupController extends Controller
      */
     public function index()
     {
-        $groups=Group::where('leader','=',1)->get();
+        
+        $grpups_counts=Group::selectRaw('code,count(*) as total')
+        ->groupBy('code')->get();
+        foreach($grpups_counts as $grpups_count){
+            if($grpups_count->total==5){
+                
+                DB::table('groups')->where('code', $grpups_count->code)->update(array('complate' => 1));
+            }
+        }
 
+        $groups=Group::where('leader','=',1)->get();
         return view('owner.groups.index',compact('groups'));
     }
 
@@ -50,8 +60,9 @@ class groupController extends Controller
     {
         $group=Group::find($id);
         $code=$group->code;
+        $complate=$group->complate;
         $groups=Group::where('code','=',$code)->get();
-        return view('owner.groups.view',compact('groups')); 
+        return view('owner.groups.view',compact('groups','complate')); 
     }
 
     /**
