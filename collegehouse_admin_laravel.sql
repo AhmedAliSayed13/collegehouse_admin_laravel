@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2021 at 08:43 AM
+-- Generation Time: Aug 23, 2021 at 08:05 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -75,7 +75,6 @@ CREATE TABLE `applications` (
   `have_employment_history` tinyint(1) NOT NULL,
   `applicant_full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `terms_and_conditions` tinyint(1) NOT NULL,
-  `application_case_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
   `meeting_id` bigint(20) UNSIGNED DEFAULT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -86,9 +85,9 @@ CREATE TABLE `applications` (
 -- Dumping data for table `applications`
 --
 
-INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_email_1`, `group_member_email_2`, `group_member_email_3`, `group_member_email_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `terms_and_conditions`, `application_case_id`, `meeting_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'ahmed', 'ali', 1, 'ahmed.ali@kabtechcorp.com', '2021-08-14', '01122334455', '345435', 'It is a long established fact that a reader will be distracted by', 'It is a long established fact that a reader will be distracted by', 20, 17, '456', 1, 'Lorem Ipsum', 'Lorem Ipsum', '2019', 2, 1, 1, 1, 0, '8', NULL, NULL, 250, NULL, NULL, NULL, NULL, NULL, 'ahmed ali', 'ahmedalisayed13@gmail.com', 'pksaudi4@gmail.com', 'alolahmed84@gmail.com', 'smahaemn28@gmail.com', 1, 0, 16, NULL, 16, NULL, 0, 0, 'ahmed ali sayed', 1, 2, 6, 11, '2021-08-09 11:58:47', '2021-08-12 15:50:40'),
-(2, 'ahmed', 'nour', 1, 'pksaudi4@gmail.com', '2021-08-14', '54645645', '345435', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', 24, 18, '45654', NULL, 'Lorem Ipsum', 'Lorem Ipsum', '2019', 2, 1, 1, 1, 0, NULL, NULL, NULL, 248, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 22, NULL, 22, NULL, 0, 0, 'ahmed nour eldeen', 1, 1, NULL, 8, '2021-08-09 16:38:42', '2021-08-09 16:38:42');
+INSERT INTO `applications` (`id`, `first_name`, `last_name`, `gender_id`, `email`, `birthday`, `phone`, `ssn`, `address1`, `address2`, `city_id`, `state_id`, `zip`, `house_type_id`, `school`, `major`, `graduation_year`, `gpa`, `chapter_id`, `payment_method_id`, `paying_rent_id`, `bringing_Car`, `requested_houses`, `room_type_id`, `room_id`, `amount_pay_dollars`, `car_make`, `car_model`, `driver_license_number`, `car_license_number`, `requested_property`, `group_lead_name`, `group_member_email_1`, `group_member_email_2`, `group_member_email_3`, `group_member_email_4`, `register_vote`, `both_parents_signing`, `parent_information2_id`, `parents_sign_not_other_reasons`, `parent_information1_id`, `reason_sign_parent_id`, `have_rental_history`, `have_employment_history`, `applicant_full_name`, `terms_and_conditions`, `meeting_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'ahmed', 'ali', 1, 'ahmed.ali@kabtechcorp.com', '2021-08-14', '01122334455', '345435', 'It is a long established fact that a reader will be distracted by', 'It is a long established fact that a reader will be distracted by', 20, 17, '456', 1, 'Lorem Ipsum', 'Lorem Ipsum', '2019', 2, 1, 1, 1, 0, '8', NULL, NULL, 250, NULL, NULL, NULL, NULL, NULL, 'ahmed ali', 'ahmedalisayed13@gmail.com', 'pksaudi4@gmail.com', 'alolahmed84@gmail.com', 'smahaemn28@gmail.com', 1, 0, 16, NULL, 16, NULL, 0, 0, 'ahmed ali sayed', 1, 6, 11, '2021-08-09 11:58:47', '2021-08-12 15:50:40'),
+(2, 'ahmed', 'nour', 1, 'pksaudi4@gmail.com', '2021-08-14', '54645645', '345435', 'It is a long established fact that a reader will be distracted by the', 'It is a long established fact that a reader will be distracted by the', 24, 18, '45654', NULL, 'Lorem Ipsum', 'Lorem Ipsum', '2019', 2, 1, 1, 1, 0, NULL, NULL, NULL, 248, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 22, NULL, 22, NULL, 0, 0, 'ahmed nour eldeen', 1, NULL, 8, '2021-08-09 16:38:42', '2021-08-09 16:38:42');
 
 -- --------------------------------------------------------
 
@@ -493,6 +492,8 @@ CREATE TABLE `groups` (
   `application_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `leader` tinyint(1) NOT NULL DEFAULT 0,
+  `complate` tinyint(1) NOT NULL DEFAULT 0,
+  `group_status_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -501,9 +502,33 @@ CREATE TABLE `groups` (
 -- Dumping data for table `groups`
 --
 
-INSERT INTO `groups` (`id`, `code`, `zailcode`, `email`, `application_id`, `user_id`, `leader`, `created_at`, `updated_at`) VALUES
-(1, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'ahmed.ali@kabtechcorp.com', 1, 11, 1, '2021-08-09 11:58:47', '2021-08-09 11:58:47'),
-(2, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'pksaudi4@gmail.com', 2, 8, 0, '2021-08-09 16:38:42', '2021-08-09 16:38:42');
+INSERT INTO `groups` (`id`, `code`, `zailcode`, `email`, `application_id`, `user_id`, `leader`, `complate`, `group_status_id`, `created_at`, `updated_at`) VALUES
+(1, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'ahmed.ali@kabtechcorp.com', 1, 11, 1, 0, 1, '2021-08-09 11:58:47', '2021-08-09 11:58:47'),
+(2, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'pksaudi4@gmail.com', 2, 8, 0, 0, 1, '2021-08-09 16:38:42', '2021-08-09 16:38:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `group_statuss`
+--
+
+CREATE TABLE `group_statuss` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `group_statuss`
+--
+
+INSERT INTO `group_statuss` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'review', '2021-08-09 22:00:00', NULL),
+(2, 'Wating list	', '2021-08-09 22:00:00', NULL),
+(3, 'rejected', '2021-08-09 22:00:00', NULL),
+(4, 'accepted', '2021-08-09 22:00:00', NULL),
+(5, 'pending', '2021-08-09 22:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -588,14 +613,6 @@ CREATE TABLE `meetings` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `meetings`
---
-
-INSERT INTO `meetings` (`id`, `meeting_date`, `meeting_id`, `meeting_url`, `meeting_case_id`, `application_id`, `created_at`, `updated_at`) VALUES
-(5, '2021-07-24T20:25', '99910498802', 'https://zoom.us/j/99910498802?pwd=K2JqZVVWT0ZhbjlmMi9BOGt3bHEyZz09', 1, 3, '2021-07-03 16:18:21', '2021-07-06 10:15:33'),
-(6, '2021-09-01T17:50:00Z', '95742865175', 'https://zoom.us/j/95742865175?pwd=ZFFIa3dXQUxGZlUrM0NVaFlhak1rZz09', 2, 1, '2021-08-12 15:50:40', '2021-08-12 15:50:40');
-
 -- --------------------------------------------------------
 
 --
@@ -658,8 +675,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (39, '2021_06_12_101908_create_employments_table', 31),
 (42, '2021_06_27_201015_create_application_cases_table', 32),
 (50, '2021_07_03_023855_create_meeting_cases_table', 34),
-(59, '2021_06_10_193622_create_applications_table', 35),
-(60, '2021_06_24_110352_create_groups_table', 36);
+(63, '2021_06_10_193622_create_applications_table', 37),
+(64, '2021_08_23_054920_create_group_statuss_table', 38),
+(65, '2021_06_24_110352_create_groups_table', 39);
 
 -- --------------------------------------------------------
 
@@ -1001,7 +1019,6 @@ ALTER TABLE `applications`
   ADD KEY `applications_parent_information2_id_foreign` (`parent_information2_id`),
   ADD KEY `applications_parent_information1_id_foreign` (`parent_information1_id`),
   ADD KEY `applications_reason_sign_parent_id_foreign` (`reason_sign_parent_id`),
-  ADD KEY `applications_application_case_id_foreign` (`application_case_id`),
   ADD KEY `applications_meeting_id_foreign` (`meeting_id`),
   ADD KEY `applications_user_id_foreign` (`user_id`);
 
@@ -1059,6 +1076,12 @@ ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`),
   ADD KEY `groups_application_id_foreign` (`application_id`),
   ADD KEY `groups_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `group_statuss`
+--
+ALTER TABLE `group_statuss`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `houses`
@@ -1231,6 +1254,12 @@ ALTER TABLE `groups`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `group_statuss`
+--
+ALTER TABLE `group_statuss`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `houses`
 --
 ALTER TABLE `houses`
@@ -1258,7 +1287,7 @@ ALTER TABLE `meeting_cases`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `parent_informations`
@@ -1328,7 +1357,6 @@ ALTER TABLE `users`
 -- Constraints for table `applications`
 --
 ALTER TABLE `applications`
-  ADD CONSTRAINT `applications_application_case_id_foreign` FOREIGN KEY (`application_case_id`) REFERENCES `application_cases` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_chapter_id_foreign` FOREIGN KEY (`chapter_id`) REFERENCES `chapters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `applications_gender_id_foreign` FOREIGN KEY (`gender_id`) REFERENCES `genders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
