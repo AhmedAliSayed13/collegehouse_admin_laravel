@@ -83,8 +83,8 @@ Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
     Route::get('/change-password',[App\Http\Controllers\OwnerController::class,'showChangePassword'])->name('owner.changepassword');
     Route::post('/change-password-save',[App\Http\Controllers\OwnerController::class,'ChangePasswordSave'])->name('owner.changepassword.save');
     Route::resource('group','Owner\groupController');
-    Route::post('/zoom/create',[App\Http\Controllers\Admin\ZoommeetingController::class,'store'])->name('admin.zoom-create');
-    Route::PATCH('/zoom/edit',[App\Http\Controllers\Admin\ZoommeetingController::class,'update'])->name('admin.zoom-edit');
+    Route::post('/zoom/create',[App\Http\Controllers\Admin\ZoommeetingController::class,'store'])->name('owner.zoom-create');
+    Route::PATCH('/zoom/edit',[App\Http\Controllers\Admin\ZoommeetingController::class,'update'])->name('owner.zoom-edit');
 });
 
 

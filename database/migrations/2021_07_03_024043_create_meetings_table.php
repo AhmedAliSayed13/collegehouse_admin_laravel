@@ -20,8 +20,7 @@ class CreateMeetingsTable extends Migration
             $table->string('meeting_url');
             $table->bigInteger('meeting_case_id')->unsigned()->default(2);
             $table->foreign('meeting_case_id')->references('id')->on('meeting_cases')->onDelete('cascade')->onUpdate('cascade');
-            $table->bigInteger('group_id')->unsigned();
-            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('group_code');
             $table->timestamps();
         });
     }

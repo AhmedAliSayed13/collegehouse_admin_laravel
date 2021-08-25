@@ -8,6 +8,7 @@ use App\Models\Meeting;
 use App\Models\ZoomMeeting;
 use App\Traits\ZoomMeetingTrait;
 use Illuminate\Http\Request;
+use App\Models\Group;
 use Validator;
 
 class ZoommeetingController extends Controller
@@ -30,9 +31,9 @@ class ZoommeetingController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'application_id' => 'required',
+                'group_code' => 'required',
                 'meeting_date' => 'nullable|date',
-                'application_case_id' => 'required',
+                'group_status_id' => 'required',
             ]);
             if ($validator->fails()) {
                 return [
@@ -40,20 +41,19 @@ class ZoommeetingController extends Controller
                     'data' => $validator->errors(),
                 ];
             }
-            $application = Application::find($request->application_id);
 
-            if ($application->meeting) {
-                $application->application_case_id = $request->application_case_id;
-                $application->save();
+            $groups=Group::where('code', $request->group_code)->update(['group_status_id' => $request->group_status_id]);
+            $meeting = Meeting::where('group_code',$request->group_code)->first();
 
-                if ($request->meeting_date) {
-                    $meeting = $application->meeting;
+            if ($meeting) {
+                
+
+                if($request->meeting_date){
                     $meeting_id = $meeting->meeting_id;
                     $data = $this->update2($meeting_id, $request->all())['data'];
                     $meeting->meeting_date = $request->meeting_date;
                     $meeting->save();
                 }
-
             } else {
                 $data = $this->create($request->all())['data'];
                 $url = $data['join_url'];
@@ -63,11 +63,11 @@ class ZoommeetingController extends Controller
                 $meeting->meeting_url = $url;
                 $meeting->meeting_date = $start_time;
                 $meeting->meeting_id = $id;
-                $meeting->application_id = $application->id;
+                $meeting->group_code = $request->group_code;
+               
                 $meeting->save();
-                $application->meeting_id = $meeting->id;
-                $application->application_case_id = $request->application_case_id;
-                $application->save();
+               
+                
 
             }
             return back();

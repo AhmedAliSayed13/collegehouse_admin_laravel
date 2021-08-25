@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Owner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
+use App\Models\Meeting;
+use App\Models\Group_status;
 use DB;
 class groupController extends Controller
 {
@@ -60,9 +62,12 @@ class groupController extends Controller
     {
         $group=Group::find($id);
         $code=$group->code;
-        $complate=$group->complate;
+        $group_status_id=$group->group_status_id;
+        $complate=$group->group_complate();
         $groups=Group::where('code','=',$code)->get();
-        return view('owner.groups.view',compact('groups','complate')); 
+        $group_statuss=Group_status::all();
+        $meeting=Meeting::where('group_code',$code)->first();
+        return view('owner.groups.view',compact('groups','meeting','code','complate','group_statuss','group_status_id')); 
     }
 
     /**
