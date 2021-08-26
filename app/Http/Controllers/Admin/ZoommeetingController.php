@@ -10,7 +10,9 @@ use App\Traits\ZoomMeetingTrait;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use Validator;
-
+use App\Mail\SendMeetingDate;
+use Illuminate\Support\Facades\Mail;
+use SebastianBergmann\Environment\Console;
 class ZoommeetingController extends Controller
 {
     use ZoomMeetingTrait;
@@ -70,6 +72,16 @@ class ZoommeetingController extends Controller
                 
 
             }
+            $groups=Group::where('code',$request->group_code)->get();
+            $meeting=Meeting::where('group_code',$request->group_code)->first();
+            foreach($groups as  $group){
+                $data=array();
+                $data['name']=$group->application->first_name.' '.$group->application->first_name;
+                $data['date']=$meeting->meeting_date;
+                $data['url']=$meeting->meeting_url;
+                Mail::to($group->email)->send(new SendMeetingDate($data));
+            }
+            
             return back();
         } catch (\GuzzleHttp\Exception\GuzzleException $e) {
             return [
