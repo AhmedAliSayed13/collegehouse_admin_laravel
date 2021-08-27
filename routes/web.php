@@ -134,6 +134,9 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
     Route::post('/rental-deposit',[App\Http\Controllers\TenantController::class,'store_rental_deposit'])->name('tenant.store_rental_deposit');
 
 
+    Route::get('/fill-lease/{code}',[App\Http\Controllers\TenantController::class,'fill_lease'])->name('tenant.fill_lease');
+    Route::post('/fill-lease',[App\Http\Controllers\TenantController::class,'store_fill_lease'])->name('tenant.store_fill_lease');
+
 });
 
 

@@ -13,7 +13,9 @@ use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Alert;
-
+use App\Models\Lease_form;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendFillLeaseForm;
 
 class TenantController extends Controller
 {
@@ -96,7 +98,7 @@ class TenantController extends Controller
     }
 
     public function add_rental_deposit($code){
-        $group=Group::where('code',$code)->where('user_id',auth()->user()->id)->first();
+        //$group=Group::where('code',$code)->where('user_id',auth()->user()->id)->first();
         // if($group){
         //     return view('tenant.add-rental-deposit',compact('code'));   
         // }
@@ -112,8 +114,43 @@ class TenantController extends Controller
         ]);
         $groups = Group::where('code',$request->code)
         ->update(['zailcode' => $request->zailcode]);
+
         alert()->success('Save Information Successfully', 'Success');
+        $group=Group::where('leader',1)->where('code',$request->code)->first();
+        $application= $group->application;
+        $name=$application->first_name.' '.$application->last_name;
+        if($group){
+            $this->sendEmailFillLeaseForm($group->email,$group->code,$name);
+        }
             
+         return back();
+    }
+
+    public function sendEmailFillLeaseForm($email,$code,$name){
+        $data['name'] = $name;
+        $data['code'] =$code;
+        Mail::to($email)->send(new SendFillLeaseForm($data));
+    }
+
+    public function fill_lease($code){
+        $group=Group::where('code',$code)->where('leader',1)->first();
+        return view('tenant.fill_lease',compact('code'));
+         
+    }
+
+    public function store_fill_lease(Request $request){
+        
+        $validatedData = $request->validate([
+            'price' => ['required'],
+            'code' => ['required'],
+        ]);
+        $group=Group::where('code',$request->code)->where('leader',1)->first();
+       $lease_form=new Lease_form();
+       $lease_form->code=$request->code;
+       $lease_form->user_id=$group->user_id;
+       $lease_form->price=$request->price;
+       $lease_form->save();
+        alert()->success('Save Information Successfully', 'Success');
          return back();
     }
 }
