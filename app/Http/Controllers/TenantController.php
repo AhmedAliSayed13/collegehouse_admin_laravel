@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Alert;
+
 
 class TenantController extends Controller
 {
@@ -110,9 +112,8 @@ class TenantController extends Controller
         ]);
         $groups = Group::where('code',$request->code)
         ->update(['zailcode' => $request->zailcode]);
-        return $groups;
-
+        alert()->success('Save Information Successfully', 'Success');
             
-         //return redirect()->route('tenant.dashboard');
+         return back();
     }
 }

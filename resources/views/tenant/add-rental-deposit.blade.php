@@ -19,9 +19,9 @@
                 <div class="card-body" style="margin-left: 255px; ">
                     <form action="{{ route('tenant.store_rental_deposit') }}" method="POST">
                         @csrf
-                        <input name="code" value="{{$code}}" type="text">
+                        <input name="code" value="{{$code}}" type="hidden">
                         <label for="">Enter Security Deposit Code</label>
-                        <input type="text" name="zailcode" required  value="{{$code}}" class="form-control" cols="30" rows="3">
+                        <input type="text" name="zailcode" required   class="form-control" cols="30" rows="3">
                         <button type="submit" class="btn btn-info mt-3"> Send</button>
                     </form>
                 </div>
