@@ -85,6 +85,7 @@ Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
     Route::resource('group','Owner\groupController');
     Route::post('/zoom/create',[App\Http\Controllers\Admin\ZoommeetingController::class,'store'])->name('owner.zoom-create');
     Route::PATCH('/zoom/edit',[App\Http\Controllers\Admin\ZoommeetingController::class,'update'])->name('owner.zoom-edit');
+    Route::post('/rateGroup',[App\Http\Controllers\Owner\groupController::class,'rateGroup'])->name('owner.rateGroup');
 });
 
 
@@ -129,8 +130,10 @@ Route::group(['middleware' => ['isTenant'],'prefix' => 'tenant'], function () {
 
     Route::get('/group/list',[App\Http\Controllers\TenantController::class,'list_group'])->name('tenant.list-group');
 
-    Route::get('/addPayment',[App\Http\Controllers\TenantController::class,'add_payment'])->name('tenant.add_payment');
-    Route::post('/storePayment',[App\Http\Controllers\TenantController::class,'store_payment'])->name('tenant.store_payment');
+    Route::get('/rental-deposit/{code}',[App\Http\Controllers\TenantController::class,'add_rental_deposit'])->name('tenant.add_rental_deposit');
+    Route::post('/rental-deposit',[App\Http\Controllers\TenantController::class,'store_rental_deposit'])->name('tenant.store_rental_deposit');
+
+
 });
 
 

@@ -103,4 +103,22 @@ class groupController extends Controller
     {
         //
     }
+
+    public function rateGroup(Request $request)
+    {
+        $validatedData = $request->validate([
+            'group_ids.*' => ['required'],
+            'rates.*' => ['required'],
+            'notes.*' => ['required'],
+        ]);
+        $group_ids=$request->group_ids;
+        for($i=0;count($group_ids)>$i;$i++){
+            $group=Group::find($request->group_ids[$i]);
+            $group->rate=$request->rates[$i];
+            $group->notes=$request->notes[$i];
+            $group->save();
+        }
+        return back();
+        
+    }
 }

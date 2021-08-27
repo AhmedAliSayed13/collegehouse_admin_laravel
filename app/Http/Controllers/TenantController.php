@@ -93,14 +93,26 @@ class TenantController extends Controller
         return view('tenant.list-group',compact('groups'));
     }
 
-    public function add_payment(){
-        return view('tenant.add-payment');
+    public function add_rental_deposit($code){
+        $group=Group::where('code',$code)->where('user_id',auth()->user()->id)->first();
+        // if($group){
+        //     return view('tenant.add-rental-deposit',compact('code'));   
+        // }
+        return view('tenant.add-rental-deposit',compact('code'));
+         
     }
 
-    public function store_payment(Request $request){
-        tentantPayment::create([
-            'message' => $request->message
+    public function store_rental_deposit(Request $request){
+        
+        $validatedData = $request->validate([
+            'zailcode' => ['required'],
+            'code' => ['required'],
         ]);
-        return view('tenant.dashboard');
+        $groups = Group::where('code',$request->code)
+        ->update(['zailcode' => $request->zailcode]);
+        return $groups;
+
+            
+         //return redirect()->route('tenant.dashboard');
     }
 }

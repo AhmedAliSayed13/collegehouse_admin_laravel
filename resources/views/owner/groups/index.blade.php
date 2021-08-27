@@ -25,22 +25,25 @@
                                     <th> code</th>
                                     <th>Lead</th>
                                     <th>email</th>
+                                    <th>status</th>
                                     <th>action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($groups as $group)
                                 <tr>
-
-
                                     <td>
                                         {{$group->code}}
                                     </td>
                                     <td>
                                         {{$group->application->first_name.' '.$group->application->first_name}}
                                     </td>
+                                    
                                     <td>
                                         {{$group->email}}
+                                    </td>
+                                    <td>
+                                        {{$group->Group_status->name	}}
                                     </td>
                                     <td>
                                         <a class="btn btn-sm bg-success-light"  href="{{route('group.show',$group)}}">

@@ -29,7 +29,7 @@ class AcceptLeader extends Mailable
     public function build()
     {
         return $this->from('steamadv31@gmail.com')
-        ->subject('New Customer Equiry')->view('accept_tenant_email')->with('data', $this->data);
+        ->subject('congratulations your group accepted  ')->view('accept_tenant_email')->with('data', $this->data);
     }
 }
 

@@ -24,8 +24,9 @@ class CreateGroupsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('leader')->default(0);
             $table->boolean('complate')->default(0);
-             $table->bigInteger('group_status_id')->unsigned()->default(1);
-            // $table->foreign('group_status_id')->references('id')->on('group_statuss')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('group_status_id')->unsigned()->default(1);
+            $table->Integer('rate')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

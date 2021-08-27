@@ -17,10 +17,11 @@
         <div class="col-sm-12" >
             <div class="card">
                 <div class="card-body" style="margin-left: 255px; ">
-                    <form action="{{ route('tenant.store_payment') }}" method="POST">
+                    <form action="{{ route('tenant.store_rental_deposit') }}" method="POST">
                         @csrf
-                        <label for="">Send Payment</label>
-                        <textarea name="message"  class="form-control" cols="30" rows="5"></textarea>
+                        <input name="code" value="{{$code}}" type="text">
+                        <label for="">Enter Security Deposit Code</label>
+                        <input type="text" name="zailcode" required  value="{{$code}}" class="form-control" cols="30" rows="3">
                         <button type="submit" class="btn btn-info mt-3"> Send</button>
                     </form>
                 </div>

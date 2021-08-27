@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Application;
 use App\Models\Group;
+use App\Models\Group_status;
 class Group extends Model
 {
     /**
@@ -57,5 +58,10 @@ class Group extends Model
         }
         return $complate;
 
+    }
+
+    public function group_status()
+    {
+        return $this->belongsTo(Group_status::class);
     }
 }
