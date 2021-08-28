@@ -151,6 +151,8 @@ Route::post('/popup-login', 'ApplicationController@popupLogin')->name('popup-log
 
 Route::get('/remove', 'ApplicationController@remove');
 Route::get('/test', 'TestController@test');
+	
+Route::get('/export-pdf','TestController@exportPdf')->name('exportPdf'); 
 Route::post('/test2', 'TestController@test2');
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2021 at 01:23 AM
+-- Generation Time: Aug 28, 2021 at 05:25 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -496,6 +496,8 @@ CREATE TABLE `groups` (
   `leader` tinyint(1) NOT NULL DEFAULT 0,
   `complate` tinyint(1) NOT NULL DEFAULT 0,
   `group_status_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
+  `rate` int(11) DEFAULT NULL,
+  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -504,12 +506,12 @@ CREATE TABLE `groups` (
 -- Dumping data for table `groups`
 --
 
-INSERT INTO `groups` (`id`, `code`, `zailcode`, `email`, `application_id`, `user_id`, `leader`, `complate`, `group_status_id`, `created_at`, `updated_at`) VALUES
-(1, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'ahmed.ali@kabtechcorp.com', 1, 11, 1, 1, 1, '2021-08-09 11:58:47', '2021-08-25 21:18:12'),
-(2, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'ahmedalisayed1@gmail.com', 2, 8, 0, 1, 1, '2021-08-09 16:38:42', '2021-08-25 21:18:12'),
-(3, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'ahmedalisayed2@gmail.com', 3, 11, 0, 1, 1, '2021-08-23 17:40:05', '2021-08-25 21:18:12'),
-(4, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'ahmedalisayed3@gmail.com', 4, 11, 0, 1, 1, '2021-08-23 17:46:56', '2021-08-25 21:18:12'),
-(5, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', NULL, 'ahmedalisayed4@gmail.com', 2, 2, 0, 1, 1, NULL, '2021-08-25 21:18:12');
+INSERT INTO `groups` (`id`, `code`, `zailcode`, `email`, `application_id`, `user_id`, `leader`, `complate`, `group_status_id`, `rate`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet', 'ahmed.ali@kabtechcorp.com', 1, 11, 1, 1, 4, 1, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover', '2021-08-09 11:58:47', '2021-08-28 10:50:19'),
+(2, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet', 'ahmedalisayed1@gmail.com', 2, 8, 0, 1, 4, 10, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover', '2021-08-09 16:38:42', '2021-08-28 10:50:19'),
+(3, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet', 'ahmedalisayed2@gmail.com', 3, 11, 0, 1, 4, 7, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover', '2021-08-23 17:40:05', '2021-08-28 10:50:19'),
+(4, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet', 'ahmedalisayed3@gmail.com', 4, 11, 0, 1, 4, 8, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover', '2021-08-23 17:46:56', '2021-08-28 10:50:19'),
+(5, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet', 'ahmedalisayed4@gmail.com', 2, 2, 0, 1, 4, 9, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover', NULL, '2021-08-28 10:50:19');
 
 -- --------------------------------------------------------
 
@@ -604,6 +606,31 @@ INSERT INTO `house_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lease_forms`
+--
+
+CREATE TABLE `lease_forms` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lease_pdf` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` int(11) NOT NULL,
+  `house_id` bigint(20) UNSIGNED NOT NULL,
+  `owner_confirm` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `lease_forms`
+--
+
+INSERT INTO `lease_forms` (`id`, `user_id`, `code`, `lease_pdf`, `price`, `house_id`, `owner_confirm`, `created_at`, `updated_at`) VALUES
+(1, 11, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', 'lease_TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1.pdf', 2000, 8, 1, '2021-08-28 08:46:22', '2021-08-28 12:34:10');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `meetings`
 --
 
@@ -623,7 +650,7 @@ CREATE TABLE `meetings` (
 --
 
 INSERT INTO `meetings` (`id`, `meeting_date`, `meeting_id`, `meeting_url`, `meeting_case_id`, `group_code`, `created_at`, `updated_at`) VALUES
-(1, '2021-09-09T01:15', '95717733675', 'https://zoom.us/j/95717733675?pwd=R05HNkxrZHNud3hyaFZqY0dWZ1hQdz09', 2, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', '2021-08-25 21:13:56', '2021-08-25 21:15:25');
+(1, '2021-08-31T02:07', '95717733675', 'https://zoom.us/j/95717733675?pwd=R05HNkxrZHNud3hyaFZqY0dWZ1hQdz09', 2, 'TDy4EoCykI8AO9xu1G8AvVqdkHMq3CjFXZ0dssdC1', '2021-08-25 21:13:56', '2021-08-25 22:07:18');
 
 -- --------------------------------------------------------
 
@@ -689,8 +716,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (50, '2021_07_03_023855_create_meeting_cases_table', 34),
 (63, '2021_06_10_193622_create_applications_table', 37),
 (64, '2021_08_23_054920_create_group_statuss_table', 38),
-(65, '2021_06_24_110352_create_groups_table', 39),
-(67, '2021_07_03_024043_create_meetings_table', 40);
+(67, '2021_07_03_024043_create_meetings_table', 40),
+(68, '2021_06_24_110352_create_groups_table', 41),
+(72, '2021_08_27_160209_creat_lease_forms_table', 42);
 
 -- --------------------------------------------------------
 
@@ -1005,13 +1033,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone`, `address`, `state`, `city_id`, `zip`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'ahmed', 'ali sayed', '01112912233', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'qwde', 2, 'eqd', 'owner@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 2, NULL, '2021-06-02 06:42:20', '2021-06-09 16:16:42'),
+(2, 'ahmed', 'ali sayed', '01112912233', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'qwde', 2, 'eqd', 'ahmedalisayed13@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 2, NULL, '2021-06-02 06:42:20', '2021-06-09 16:16:42'),
 (3, 'ahmed', 'mostafa ali', '01112912244', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'rerbd', 2, 'gredger', 'tenant@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-06-02 07:35:35', '2021-06-02 07:52:15'),
 (4, 'ahmed', 'nour', '01112912211', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'wefcew', 2, 'ddwfcwe', 'admin@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 1, NULL, '2021-06-02 07:59:25', '2021-06-02 07:59:25'),
 (5, 'ahmed', 'ali', '01112912999', '٤٢٩ المحور المركزى _ الحي الأول - 6 أكتوبر _ أمام جامعه 6 اكتوبر', 'dsds', 1, 'sdcsd', 'owner2@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 2, NULL, '2021-06-02 09:37:23', '2021-06-02 09:37:23'),
 (6, 'mostafa', 'adel', '43638248723', 'التوسعات الشمالية - قطعة 816', 'ergerge', 160, 'ergver', 'ahmednfdfour@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 2, NULL, '2021-06-06 09:37:52', '2021-06-20 12:43:35'),
 (8, 'ahmed', 'nour', '212424', 'التوسعات الشمالية - قطعة 816', '34534', 21, '346456', 'pksaudi4@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-08-09 11:46:45', '2021-08-09 11:46:45'),
-(9, 'ahmed', 'mostafa', '45645765', 'التوسعات الشمالية - قطعة 816', '3456436', 21, '457567', 'ahmedalisayed13@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-08-09 11:48:04', '2021-08-09 11:48:04'),
+(9, 'ahmed', 'mostafa', '45645765', 'التوسعات الشمالية - قطعة 816', '3456436', 21, '457567', 'ahmedalisayed313@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-08-09 11:48:04', '2021-08-09 11:48:04'),
 (10, 'ahmed', 'hamam', '01112912966', 'التوسعات الشمالية - قطعة 816', '34534', 19, '34645', 'alolahmed84@gmail.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-08-09 11:49:10', '2021-08-09 11:49:10'),
 (11, 'ahmed', 'ali', '346456457', 'التوسعات الشمالية - قطعة 816', 'teerger', 7, '54656', 'ahmed.ali@kabtechcorp.com', NULL, '$2y$10$wN/OoMc2sempSN8Kz3iFOOLSXz93UyJfkDahudqC39fXTSbWUID3e', 3, NULL, '2021-08-09 11:50:31', '2021-08-09 11:50:31');
 
@@ -1115,6 +1143,14 @@ ALTER TABLE `houses`
 --
 ALTER TABLE `house_types`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lease_forms`
+--
+ALTER TABLE `lease_forms`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lease_forms_user_id_foreign` (`user_id`),
+  ADD KEY `lease_forms_house_id_foreign` (`house_id`);
 
 --
 -- Indexes for table `meetings`
@@ -1288,6 +1324,12 @@ ALTER TABLE `house_types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `lease_forms`
+--
+ALTER TABLE `lease_forms`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `meetings`
 --
 ALTER TABLE `meetings`
@@ -1303,7 +1345,7 @@ ALTER TABLE `meeting_cases`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `parent_informations`
@@ -1423,6 +1465,13 @@ ALTER TABLE `houses`
   ADD CONSTRAINT `houses_house_type_id_foreign` FOREIGN KEY (`house_type_id`) REFERENCES `house_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `houses_owner_id_foreign` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `houses_payment_method_id_foreign` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `lease_forms`
+--
+ALTER TABLE `lease_forms`
+  ADD CONSTRAINT `lease_forms_house_id_foreign` FOREIGN KEY (`house_id`) REFERENCES `houses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lease_forms_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `meetings`

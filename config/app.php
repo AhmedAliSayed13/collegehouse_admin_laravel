@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         yajra\Datatables\DatatablesServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         // Brian2694\Toastr\ToastrServiceProvider::class,
         // Yoeunes\Toastr\ToastrServiceProvider::class,
 
@@ -234,7 +235,7 @@ return [
         'Datatables' => yajra\Datatables\Datatables::class,
         // 'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
-
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

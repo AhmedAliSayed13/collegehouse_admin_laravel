@@ -34,17 +34,10 @@
 <div class="invoice-container">
 
 	<div class="row">
-		<div class="col-sm-6 m-b-20">
+		<div class="col-sm-12 m-b-20">
 			<img alt="Logo" class="inv-logo img-fluid" src="{{asset('assets/img/logo.png')}}">
 		</div>
-		<div class=" col-sm-6 m-b-20">
-			<div class="invoice-details">
-				<h3 class="text-uppercase">Invoice #INV-0001</h3>
-				<ul class="list-unstyled mb-0">
-					<li>Date: <span>March 12, 2019</span></li>
-				</ul>
-			</div>
-		</div>
+		
 	</div>
 	<div class="row">
 		<div class="col-sm-12 m-b-20">
@@ -57,7 +50,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-6 col-lg-7 col-xl-8 m-b-20">
+		<div class="col-sm-12 col-lg-12 col-xl-12 m-b-20">
 			<h6>Invoice to</h6>
 			<ul class="list-unstyled mb-0">
 				<li>
@@ -70,20 +63,7 @@
 				<li><a href="#">charlenereed@example.com</a></li>
 			</ul>
 		</div>
-		<div class="col-sm-6 col-lg-5 col-xl-4 m-b-20">
-			<h6>Payment Details</h6>
-			<ul class="list-unstyled invoice-payment-details mb-0">
-				<li>
-					<h5>Total Due: <span class="text-right">$200</span></h5>
-				</li>
-				<li>Bank name: <span>Profit Bank Europe</span></li>
-				<li>Country: <span>United Kingdom</span></li>
-				<li>City: <span>London E1 8BF</span></li>
-				<li>Address: <span>3 Goodman Street</span></li>
-				<li>IBAN: <span>KFH37784028476740</span></li>
-				<li>SWIFT code: <span>BPT4E</span></li>
-			</ul>
-		</div>
+		
 	</div>
 	<div>
 

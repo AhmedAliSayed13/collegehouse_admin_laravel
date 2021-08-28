@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Barryvdh\DomPDF\Facade as PDF;
 class OwnerController extends Controller
 {
     public function showDashboard(){
@@ -91,7 +92,14 @@ class OwnerController extends Controller
 
     public function store_confirm_lease(Request $request){
         $lease=Lease_form::find($request->id);
+        
+        $pdf = PDF::loadView('lease',array('lease'=>$lease)); 
+        $path = public_path('pdf_docs/'); 
+        $fileName =  'lease_'.$lease->code.'.'. 'pdf' ; 
+        $pdf->save($path . '/' . $fileName);
+        $generated_pdf_link = url('pdf_docs/'.$fileName);
         $lease->owner_confirm=$request->owner_confirm;
+        $lease->lease_pdf=$fileName;
         $lease->save();
         alert()->success('Save Information Successfully','Success');
         return redirect()->back();
