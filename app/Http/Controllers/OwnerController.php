@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\User;
 use App\Models\Meeting;
+use App\Models\Lease_form;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
-// use Brian2694\Toastr\Facades\Toastr;
 use Auth;
-
 class OwnerController extends Controller
 {
     public function showDashboard(){
@@ -82,6 +81,19 @@ class OwnerController extends Controller
     }
     public function deletemeeting($id){
         Meeting::find($id)->delete();
+        return redirect()->back();
+    }
+
+    public function confirm_lease($code){
+        $lease=Lease_form::where('code',$code)->first();
+        return view('owner.confirm_lease',compact('lease'));
+    }
+
+    public function store_confirm_lease(Request $request){
+        $lease=Lease_form::find($request->id);
+        $lease->owner_confirm=$request->owner_confirm;
+        $lease->save();
+        alert()->success('Save Information Successfully','Success');
         return redirect()->back();
     }
 }

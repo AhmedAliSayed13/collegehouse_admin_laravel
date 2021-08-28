@@ -20,6 +20,9 @@ class CreatLeaseFormsTable extends Migration
             $table->string('code');
             $table->string('lease_pdf')->nullable();
             $table->integer('price');
+            $table->bigInteger('house_id')->unsigned();
+            $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('owner_confirm')->default(0);
             $table->timestamps();
         });
     }

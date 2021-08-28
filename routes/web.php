@@ -86,6 +86,10 @@ Route::group(['middleware' => ['isOwner'],'prefix' => 'owner'], function () {
     Route::post('/zoom/create',[App\Http\Controllers\Admin\ZoommeetingController::class,'store'])->name('owner.zoom-create');
     Route::PATCH('/zoom/edit',[App\Http\Controllers\Admin\ZoommeetingController::class,'update'])->name('owner.zoom-edit');
     Route::post('/rateGroup',[App\Http\Controllers\Owner\groupController::class,'rateGroup'])->name('owner.rateGroup');
+
+    Route::get('/confirm-lease/{code}',[App\Http\Controllers\OwnerController::class,'confirm_lease'])->name('owner.confirm_lease');
+    Route::post('/confirm-lease',[App\Http\Controllers\OwnerController::class,'store_confirm_lease'])->name('owner.store_confirm_lease');
+
 });
 
 

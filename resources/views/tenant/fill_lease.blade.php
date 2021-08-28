@@ -32,6 +32,22 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label">Houses </label>
+                            <div class="col-lg-10">
+                                <select  required name="house_id" class="form-control @error('house_id') is-invalid @enderror">
+                                    <option value="">select Houses </option>
+                                    @foreach($houses as $house)
+                                    <option value="{{$house->id}}">{{$house->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('house_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>

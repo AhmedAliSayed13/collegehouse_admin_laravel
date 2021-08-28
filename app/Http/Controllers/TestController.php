@@ -12,8 +12,8 @@ use App\Mail\testmail;
 class TestController extends Controller
 {
     public function test(){
-        $group=Group::find(1);
-        return $group->group_complate();
+        
+        return view('lease');
     }
     
 

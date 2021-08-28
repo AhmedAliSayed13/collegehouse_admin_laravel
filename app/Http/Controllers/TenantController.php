@@ -5,6 +5,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use App\Models\City;
 use App\Models\Group;
 use App\Models\Application;
+use App\Models\House;
 use App\User;
 use App\DataTables\ApplicationsDataTable;
 use App\Models\tentantPayment;
@@ -16,6 +17,7 @@ use Alert;
 use App\Models\Lease_form;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendFillLeaseForm;
+use App\Mail\sendOwnerConfirmLeaseForm;
 
 class TenantController extends Controller
 {
@@ -134,7 +136,15 @@ class TenantController extends Controller
 
     public function fill_lease($code){
         $group=Group::where('code',$code)->where('leader',1)->first();
-        return view('tenant.fill_lease',compact('code'));
+        $application=$group->application;
+        $houses='';
+        if($application->house_type_id==1){
+            $requested_houses = explode(',', $application->requested_houses);
+           $houses=House::whereIn('id',$requested_houses)->get();
+        }else{
+            $houses=House::where('house_type_id',$application->house_type_id)->get();
+        }
+        return view('tenant.fill_lease',compact('code','houses'));
          
     }
 
@@ -143,14 +153,24 @@ class TenantController extends Controller
         $validatedData = $request->validate([
             'price' => ['required'],
             'code' => ['required'],
+            'house_id' => ['required'],
         ]);
         $group=Group::where('code',$request->code)->where('leader',1)->first();
        $lease_form=new Lease_form();
        $lease_form->code=$request->code;
        $lease_form->user_id=$group->user_id;
        $lease_form->price=$request->price;
+       $lease_form->house_id=$request->house_id;
        $lease_form->save();
+       $owner=$lease_form->house->owner;
         alert()->success('Save Information Successfully', 'Success');
+        $this->sendOwnerConfirmLeaseForm($owner->email,$lease_form->code,$owner->fullname());
          return back();
+    }
+
+    public function sendOwnerConfirmLeaseForm($email,$code,$name){
+        $data['name'] = $name;
+        $data['code'] =$code;
+        Mail::to($email)->send(new sendOwnerConfirmLeaseForm($data));
     }
 }

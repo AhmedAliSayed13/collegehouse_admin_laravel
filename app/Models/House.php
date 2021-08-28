@@ -9,6 +9,7 @@ use App\User;
 use App\Models\House_state;
 use App\Models\City;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Lease_form;
 
 class House extends Model
 {
@@ -18,7 +19,7 @@ class House extends Model
     }
     public function owner()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'owner_id','id');
     }
     public function payment_method()
     {
@@ -38,5 +39,9 @@ class House extends Model
     }
     public function city(){
         return $this->belongsTo(City::class);
+    }
+    public function lease_forms()
+    {
+        return $this->hasMany(Lease_form::class);
     }
 }
