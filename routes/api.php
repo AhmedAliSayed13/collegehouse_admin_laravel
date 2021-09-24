@@ -34,3 +34,11 @@ Route::post('/meetings', 'Zoom\MeetingController@create');
 Route::get('/meetings/{id}', 'Zoom\MeetingController@get')->where('id', '[0-9]+');
 Route::patch('/meetings/{id}', 'Zoom\MeetingController@update')->where('id', '[0-9]+');
 Route::delete('/meetings/{id}', 'Zoom\MeetingController@delete')->where('id', '[0-9]+');
+
+
+
+
+
+// terpx
+
+Route::get('/categories', 'Api\MeetingController@get')->where('id', '[0-9]+');
