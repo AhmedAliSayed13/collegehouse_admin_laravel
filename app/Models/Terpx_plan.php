@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Terpx_type extends Model
+class Terpx_plan extends Model
 {
-    protected $fillable = ['title'];
+    //
 }

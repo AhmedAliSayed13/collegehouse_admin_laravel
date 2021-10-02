@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTerpxUsersTable extends Migration
+class CreateTerpxImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateTerpxUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('terpx_users', function (Blueprint $table) {
+        Schema::create('terpx_images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name'); 
-            $table->string('email')->unique();
-            $table->string('phone');
-            $table->string('address');
-            $table->string('postal_code');
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('name');
+            $table->bigInteger('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('terpx_products')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class CreateTerpxUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('terpx_users');
+        Schema::dropIfExists('terpx_images');
     }
 }

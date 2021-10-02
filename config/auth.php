@@ -17,6 +17,9 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+    
+    
+
 
     /*
     |--------------------------------------------------------------------------
@@ -42,10 +45,15 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
-        ],
+        'driver' => 'jwt',
+        'provider' => 'terpx_users',
+        'hash' => false,
+      ],
+
+    //   'terpx_users' => [
+    //     'driver'=>'session',
+    //     'provider' => 'terpx_users'
+    //     ]
     ],
 
     /*
@@ -69,6 +77,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        // 'terpx_users' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Terpx_users::class
+ 
+        // ]
+        'terpx_users' => [
+            'driver' => 'database',
+            'table' => 'Terpx_users',
         ],
 
         // 'users' => [

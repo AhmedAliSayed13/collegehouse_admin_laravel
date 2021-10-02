@@ -39,6 +39,35 @@ Route::delete('/meetings/{id}', 'Zoom\MeetingController@delete')->where('id', '[
 
 
 
-// terpx
+// terpx login
+Route::post('register', 'api\AuthController@register');
+Route::post('login', 'api\AuthController@login');
 
-Route::get('/categories', 'Api\MeetingController@get')->where('id', '[0-9]+');
+
+
+
+Route::get('types', 'api\TypeController@index');
+Route::get('types/{id}', 'api\TypeController@show');
+Route::post('types', 'api\TypeController@store');
+Route::put('types/{id}', 'api\TypeController@update');
+Route::delete('types/{id}', 'api\TypeController@delete');
+
+
+
+Route::get('categories', 'api\CategoryController@index');
+Route::get('categories/{id}', 'api\CategoryController@show');
+Route::post('categories', 'api\CategoryController@store');
+Route::put('categories/{id}', 'api\CategoryController@update');
+Route::delete('categories/{id}', 'api\CategoryController@delete');
+
+
+Route::get('products', 'api\ProductController@index');
+Route::get('products/{id}', 'api\ProductController@show');
+Route::post('products', 'api\ProductController@store');
+Route::put('products/{id}', 'api\ProductController@update');
+Route::delete('products/{id}', 'api\ProductController@delete');
+
+
+
+
+// Route::get('users/categories', 'api\UserController@GetCategories');
