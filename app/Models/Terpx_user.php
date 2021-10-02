@@ -7,7 +7,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-class Terpx_user extends Authenticatable implements JWTSubject
+
+
+
+class Terpx_user 
 {
     use Notifiable;
 
@@ -20,23 +23,29 @@ class Terpx_user extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Terpx_product::class);
     }
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+   
+ 
+   
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
-
+ 
+   
     public function getJWTCustomClaims()
     {
         return [];
     }
 
 
-      /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+     
     protected $hidden = [
         'password', 'remember_token',
     ];
 }
+

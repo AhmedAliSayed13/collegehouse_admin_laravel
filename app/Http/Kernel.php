@@ -64,6 +64,10 @@ class Kernel extends HttpKernel
         'isAdmin' =>\App\Http\Middleware\isAdmin::class,
         'isTenant' =>\App\Http\Middleware\isTenant::class,
         'isOwner' =>\App\Http\Middleware\isOwner::class,
+        'APIMiddleware' => \App\Http\Middleware\APIMiddleware::class,
+        'auth.jwt' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
+        'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
+        'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
     ];
 
     /**

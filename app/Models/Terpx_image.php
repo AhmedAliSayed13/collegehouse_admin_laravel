@@ -11,6 +11,6 @@ class Terpx_image extends Model
     
     public function product()
     {
-        return $this->belongsTo(Terpx_product::class);
+        return $this->belongsTo(Terpx_product::class,'product_id');
     }
 }

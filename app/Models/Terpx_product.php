@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
+use App\Models\Terpx_attribute;
+use App\Models\Terpx_image;
 class Terpx_product extends Model
 {
     protected $fillable = ['title','price','describe','date','location','image','category_id','type_id'];
@@ -12,7 +14,7 @@ class Terpx_product extends Model
 
     public function user()
     {
-        return $this->belongsTo(Terpx_user::class);
+        return $this->belongsTo(User::class);
     }
     public function attributes()
     {

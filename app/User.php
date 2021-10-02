@@ -2,15 +2,16 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\House;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-class User extends Authenticatable 
+
+
+
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-   
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name' ,'email', 'phone','address','state','city_id','zip','role_id','password','created_at'
+        'first_name', 'last_name', 'email', 'phone', 'address', 'state', 'city_id', 'zip', 'role_id', 'password', 'created_at',
     ];
 
     /**
@@ -38,25 +39,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    // public function getJWTIdentifier()
-    // {
-    //   return $this->getKey();
-    // }
-
-    // public function getJWTCustomClaims()
-    // {
-    //   return [];
-    // }
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
     public function role()
     {
         return $this->belongsTo('App\Role');
     }
     public function fullname()
     {
-        return $this->first_name.' '.$this->last_name ;
+        return $this->first_name . ' ' . $this->last_name;
     }
     public function houses()
     {
-        return $this->hasMany(House::class, 'owner_id',);
+        return $this->hasMany(House::class, 'owner_id', );
     }
 }

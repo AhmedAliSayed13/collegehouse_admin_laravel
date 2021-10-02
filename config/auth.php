@@ -17,6 +17,8 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+
+    
     
     
 
@@ -46,7 +48,7 @@ return [
 
         'api' => [
         'driver' => 'jwt',
-        'provider' => 'terpx_users',
+        'provider' => 'users',
         'hash' => false,
       ],
 
@@ -84,10 +86,10 @@ return [
         //     'model' => App\Models\Terpx_users::class
  
         // ]
-        'terpx_users' => [
-            'driver' => 'database',
-            'table' => 'Terpx_users',
-        ],
+        // 'terpx_users' => [
+        //     'driver' => 'database',
+        //     'table' => 'Terpx_users',
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',

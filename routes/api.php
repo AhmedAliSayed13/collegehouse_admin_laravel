@@ -45,12 +45,14 @@ Route::post('login', 'api\AuthController@login');
 
 
 
+Route::group(['middleware' => ['APIMiddleware']], function(){
+    Route::get('types', 'api\TypeController@index');
+    Route::get('types/{id}', 'api\TypeController@show');
+    Route::post('types', 'api\TypeController@store');
+    Route::put('types/{id}', 'api\TypeController@update');
+    Route::delete('types/{id}', 'api\TypeController@delete');
+});
 
-Route::get('types', 'api\TypeController@index');
-Route::get('types/{id}', 'api\TypeController@show');
-Route::post('types', 'api\TypeController@store');
-Route::put('types/{id}', 'api\TypeController@update');
-Route::delete('types/{id}', 'api\TypeController@delete');
 
 
 
@@ -68,6 +70,23 @@ Route::put('products/{id}', 'api\ProductController@update');
 Route::delete('products/{id}', 'api\ProductController@delete');
 
 
+// Route::post('login', 'AuthController@login');
+// Route::post('register', 'AuthController@register');
 
+
+
+
+
+    Route::group(['middleware' => ['jwt.verify']], function() {
+        Route::get('user', 'api\AuthController@getAuthenticatedUser');
+        Route::post('user/update', 'api\AuthController@updateUser');
+        Route::get('closed','api\AuthController@closed');
+
+
+        Route::get('products', 'api\ProductController@index');
+        Route::get('product/{id}', 'api\ProductController@show');
+        Route::post('product', 'api\ProductController@store');
+        Route::delete('products/{id}', 'api\ProductController@delete');
+    });
 
 // Route::get('users/categories', 'api\UserController@GetCategories');
