@@ -8,10 +8,10 @@ use App\Models\Terpx_image;
 use App\Models\Terpx_product;
 use App\User;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
-use  DB;
 
 class ProductController extends Controller
 {
@@ -24,10 +24,10 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Terpx_product::find($id);
-         $user = $product->user;
-         $attrbutes = $product->attributes;
-         $images = $product->images;
-        
+        $user = $product->user;
+        $attrbutes = $product->attributes;
+        $images = $product->images;
+
         return response()->json(compact('product'), 200);
     }
 
@@ -88,36 +88,27 @@ class ProductController extends Controller
                     $attribute->product_id = $product->id;
                     $attribute->save();
                 }
-               return response()->json('product created', 201 );
+                return response()->json('product created', 201);
 
             }
         }
 
     }
 
-   
-
     public function delete(Request $request, $id)
     {
 
-        
         DB::table('terpx_attributes')->where('product_id', $id)->delete();
         $images = Terpx_image::where('product_id', $id)->get();
         foreach ($images as $image) {
-            @unlink('terpx/uploads/'.$image->name);
+            @unlink('terpx/uploads/' . $image->name);
             $image->delete();
         }
-
-       
-        
-       
 
         $product = Terpx_product::findOrFail($id);
 
         $product->delete();
-        
-        
 
-        return response()->json('product deleted', 200 );
+        return response()->json('product deleted', 200);
     }
 }
