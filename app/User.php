@@ -6,7 +6,7 @@ use App\Models\House;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-
+use App\Models\Terpx_favourite;
 
 
 class User extends Authenticatable implements JWTSubject
@@ -58,5 +58,9 @@ class User extends Authenticatable implements JWTSubject
     public function houses()
     {
         return $this->hasMany(House::class, 'owner_id', );
+    }
+    public function favourite()
+    {
+        return $this->belongsTo(Terpx_favourite::class);
     }
 }

@@ -74,28 +74,51 @@
 					"response": []
 				},
 				{
-					"name": "show product",
+					"name": "my-product",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/api/products/show?token={{token}}&id=10",
+							"raw": "{{url}}/api/my-products?token={{token}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"products",
-								"show"
+								"my-products"
 							],
 							"query": [
 								{
 									"key": "token",
 									"value": "{{token}}"
-								},
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show product",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/product/10?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"10"
+							],
+							"query": [
 								{
-									"key": "id",
-									"value": "10"
+									"key": "token",
+									"value": "{{token}}"
 								}
 							]
 						}
@@ -108,14 +131,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/api/products/10?token={{token}}",
+							"raw": "{{url}}/api/products/12?token={{token}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
 								"products",
-								"10"
+								"12"
 							],
 							"query": [
 								{
@@ -213,13 +236,67 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/api/products?token={{token}}",
+							"raw": "{{url}}/api/product?token={{token}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"products"
+								"product"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "favourite",
+			"item": [
+				{
+					"name": "favourite user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/favourite-user?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"favourite-user"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "favourite product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/favourite-product/3?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"favourite-product",
+								"3"
 							],
 							"query": [
 								{

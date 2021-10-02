@@ -87,6 +87,11 @@ Route::delete('products/{id}', 'api\ProductController@delete');
         Route::get('product/{id}', 'api\ProductController@show');
         Route::post('product', 'api\ProductController@store');
         Route::delete('products/{id}', 'api\ProductController@delete');
+        Route::get('my-products', 'api\ProductController@myproducts');
+
+
+        Route::get('favourite-user', 'api\FavouriteController@favourite_user');
+        Route::get('favourite-product/{id}', 'api\FavouriteController@favourite_product');
     });
 
 // Route::get('users/categories', 'api\UserController@GetCategories');

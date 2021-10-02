@@ -15,6 +15,25 @@ use JWTAuth;
 
 class ProductController extends Controller
 {
+    public function myproducts()
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if (!$user) {
+            return response()->json(['user_not_found'], 404);
+        } else {
+            $review_products = Terpx_product::where('user_id', $user->id)->where('status', 1)->orderBy('created_at', 'DESC')->paginate(10);
+            $active_products = Terpx_product::where('user_id', $user->id)->where('status', 2)->orderBy('created_at', 'DESC')->paginate(10);
+            $deactive_products = Terpx_product::where('user_id', $user->id)->where('status', 3)->orderBy('created_at', 'DESC')->paginate(10);
+            $data = [
+                'review_products' => $review_products,
+                'active_products' => $active_products,
+                'deactive_products' => $deactive_products,
+            ];
+            return response()->json(compact('data'), 200);
+        }
+    }
+
     public function index()
     {
         $today = Carbon::now()->format('Y-m-d');

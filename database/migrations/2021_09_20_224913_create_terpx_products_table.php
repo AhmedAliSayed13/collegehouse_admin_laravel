@@ -21,6 +21,7 @@ class CreateTerpxProductsTable extends Migration
             $table->string('start_date');
             $table->string('end_date');
             $table->string('location');
+            $table->integer('status')->default(1);
             $table->bigInteger('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('terpx_categories')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('type_id')->unsigned()->nullable();
@@ -29,6 +30,7 @@ class CreateTerpxProductsTable extends Migration
             $table->foreign('plan_id')->references('id')->on('terpx_plans')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            
             $table->timestamps();
         });
     }

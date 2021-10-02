@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Models\Terpx_attribute;
 use App\Models\Terpx_image;
+use App\Models\Terpx_favourite;
 class Terpx_product extends Model
 {
     protected $fillable = ['title','price','describe','date','location','image','category_id','type_id'];
@@ -23,5 +24,9 @@ class Terpx_product extends Model
     public function images()
     {
         return $this->hasMany(Terpx_image::class,'product_id');
+    }
+    public function favourite()
+    {
+        return $this->belongsTo(Terpx_favourite::class);
     }
 }
