@@ -37,6 +37,6 @@ class TypeController extends Controller
         $type = Terpx_type::findOrFail($id);
         $type->delete();
 
-        return 204;
+        return response()->json('plan deleted', 204);
     }
 }

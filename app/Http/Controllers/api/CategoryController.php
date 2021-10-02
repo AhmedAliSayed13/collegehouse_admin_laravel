@@ -8,11 +8,13 @@ use App\Models\Terpx_category;
 class CategoryController extends Controller
 {
     public function index(){
-        return Terpx_category::all();
+        $category=Terpx_category::all();
+        return response()->json(compact('category'), 200);
     }
  
     public function show($id){
-        return Terpx_category::find($id);
+        $category=Terpx_category::find($id);
+        return response()->json(compact('category'), 200);
     }
 
     public function store(Request $request){
@@ -25,17 +27,18 @@ class CategoryController extends Controller
         if($validation->fails()){
             return $validator->messages();
         }else{
-            return Terpx_category::create($request->all());
+            $category= Terpx_category::create($request->all());
+            return response()->json(compact('category'), 200);
         }
         
     }
 
     public function update(Request $request, $id)
     {
-        $type = Terpx_category::findOrFail($id);
-        $type->update($request->all());
+        $category = Terpx_category::findOrFail($id);
+        $category->update($request->all());
 
-        return $type;
+        return response()->json(compact('category'), 200);
     }
 
     public function delete(Request $request, $id)
@@ -43,6 +46,6 @@ class CategoryController extends Controller
         $type = Terpx_category::findOrFail($id);
         $type->delete();
 
-        return 204;
+        return response()->json('category deleted', 204);
     }
 }
