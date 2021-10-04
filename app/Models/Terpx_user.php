@@ -23,6 +23,7 @@ class Terpx_user
     {
         return $this->hasMany(Terpx_product::class);
     }
+    
     /**
      * The attributes that should be hidden for arrays.
      *

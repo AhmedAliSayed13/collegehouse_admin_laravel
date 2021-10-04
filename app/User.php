@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\Terpx_favourite;
+use App\Models\Terpx_rate;
 
 
 class User extends Authenticatable implements JWTSubject
@@ -62,5 +63,9 @@ class User extends Authenticatable implements JWTSubject
     public function favourite()
     {
         return $this->belongsTo(Terpx_favourite::class);
+    }
+    public function rates()
+    {
+        return $this->hasMany(Terpx_rate::class);
     }
 }
